@@ -1,0 +1,113 @@
+#### User Presence
+
+A user's presence is the recent status of that user. Each updated presence lasts for 5 minutes, or until another status is given. Users who do not have a current status show up as "offline".
+
+A user's status can be updated on *any* authenticated call by simply including the `update_presence` query parameter with a status for its value. If this method is attempted, the response's `meta.updated_presence` key will be set and `true`. If it fails to update, it will be `false`.
+
+
+
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> any</span><span class="method method-get">GET</span> /presence [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-presence) {#get-presence .endpoint}
+
+Retrieve all users' presence statuses that are not "offline".
+
+##### Example Call {.example-code}
+
+```bash
+curl "https://api.pnut.io/v0/presence" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
+
+Returns a list of users' presences.
+
+```json
+{
+  "meta": {
+    "code": 200
+  },
+  "data": [
+    {
+      "id": "1",
+      "last_seen_at": "2016-12-22T19:39:38Z",
+      "presence": "online"
+    }
+  ]
+}
+```
+
+
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/presence [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-users-id-presence) {#get-users-id-presence .endpoint}
+
+Retrieve a user's presence.
+
+If the user has never set a presence, `last_seen_at` will not be included.
+
+##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-1) {#url-parameters-1}
+
+Name|Description
+-|-
+`user_id`|ID of the user to retrieve
+
+##### Example Call {.example-code}
+
+```bash
+curl "https://api.pnut.io/v0/users/1/presence" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}"
+```
+
+Returns a user's current presence.
+
+```json
+{
+  "meta": {
+    "code": 200
+  },
+  "data": {
+    "id": 1,
+    "last_seen_at": "2016-12-22T19:39:38Z",
+    "presence": "online"
+  }
+}
+```
+
+
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> presence</span><span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/presence [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-users-id-presence) {#put-users-id-presence .endpoint}
+
+Update a user's presence.
+
+If the `update_presence` query parameter is set on this call, it will override this call. It will not occur twice.
+
+##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-2) {#url-parameters-2}
+
+Name|Description
+-|-
+`user_id`|ID of the user presence to update
+
+##### PUT Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-parameters-1) {#put-parameters-1}
+
+Name|Description
+-|-
+`presence`|A string up to 64 characters. If not set, or if it is set to `1`, it will be updated to `"online"`. A value of `"offline"` or `0` will delete the user's presence and remove them from the [list of users online](#get-presence).
+
+##### Example Call {.example-code}
+
+```bash
+curl "https://api.pnut.io/v0/users/1/presence" \
+    -X PUT \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -d "presence=keeping my stick on the ice"
+```
+
+
+
+```json
+{
+  "meta": {
+    "code": 200
+  },
+  "data": {
+    "id": "1",
+    "presence": "keeping my stick on the ice",
+    "last_seen_at": "2016-12-22T19:52:28Z"
+  }
+}
+```
