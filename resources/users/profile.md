@@ -179,8 +179,8 @@ Name|Description
 
 Name|Description
 -|-
-`h`|Optional. The requested height to scale the image down to. Will only scale down from the `height` of the original avatar.
-`w`|Optional. The requested width to scale the image down to. Will only scale down from the `width` of the original avatar. If `h` is also set, `w` will be ignored.
+`h`|Optional. The requested height to scale the image down to. Will only scale down from the `height` of the original avatar. If `w` is also set, `h` will be ignored
+`w`|Optional. The requested width to scale the image down to. Will only scale down from the `width` of the original avatar..
 
 ##### Example Call {.example-code}
 
@@ -231,8 +231,8 @@ Name|Description
 
 Name|Description
 -|-
-`h`|Optional. The requested height to scale the image down to. Will only scale down from the `height` of the original avatar.
-`w`|Optional. The requested width to scale the image down to. Will only scale down from the `width` of the original avatar. If `h` is also set, `w` will be ignored.
+`h`|Optional. The requested height to scale the image down to. Will only scale down from the `height` of the original avatar. If `w` is also set, `h` will be ignored
+`w`|Optional. The requested width to scale the image down to. Will only scale down from the `width` of the original avatar.
 
 ##### Example Call {.example-code}
 

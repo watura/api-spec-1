@@ -316,6 +316,8 @@ Returns a list of posts.
 
 Posts created by the specified user.
 
+If a user looks up a blocked or muted user, their posts will still be retrieved.
+
 ##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-2) {#url-parameters-2}
 
 Name|Description

@@ -29,6 +29,12 @@ Returns a list of explore streams.
       "title": "Conversations"
     },
     {
+      "description": "Random posts that never became conversations on pnut.io",
+      "link": "https://api.pnut.io/v0/posts/streams/explore/missed_conversations",
+      "slug": "missed_conversations",
+      "title": "Missed Conversations"
+    },
+    {
       "description": "Posts with photos on pnut.io",
       "link": "https://api.pnut.io/v0/posts/streams/explore/photos",
       "slug": "photos",

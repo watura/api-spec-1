@@ -175,7 +175,7 @@
                             <tr>
                                 <td><code>user_ids</code></td>
                                 <td>list</td>
-                                <td>A list of user IDs who have full access.</td>
+                                <td>A list of user IDs who have full access. (or a list of objects, in certain cases)</td>
                             </tr>
                         </table>
                     </td>
@@ -213,7 +213,7 @@
                             <tr>
                                 <td><code>user_ids</code></td>
                                 <td>list</td>
-                                <td>A list of user IDs who have write access.</td>
+                                <td>A list of user IDs who have write access. (or a list of objects, in certain cases)</td>
                             </tr>
                         </table>
                     </td>
@@ -257,7 +257,7 @@
                             <tr>
                                 <td><code>user_ids</code></td>
                                 <td>list</td>
-                                <td>A list of user IDs who have read access.</td>
+                                <td>A list of user IDs who have read access. (or a list of objects, in certain cases)</td>
                             </tr>
                         </table>
                     </td>
@@ -322,8 +322,10 @@ Name|Type|Description
 -|-|-
 `include_read`|integer (0 or 1)|Include channels that do not have unread messages. Defaults to true.
 `channel_types`|string|Comma-separated list of channel types to retrieve. If not included, will return any channels the app is authorized to view.
+`exclude_channel_types`|string|Comma-separated list of channel types *not* to retrieve. If `channel_types` is set, this is ignored.
 `include_marker`|integer (0 or 1)|Include a [stream marker](stream-marker). Defaults to true except on `GET /channels/{channel_id}`
 `include_inactive`|integer (0 or 1)|Include inactive channels. Defaults to false.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_channel_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all channel objects. Defaults to false.
 `include_recent_message`|integer (0 or 1)|Include the most recent message in the channel. Defaults to false.
+`include_limited_users`|integer (0 or 1)|Include limited user objects instead of user IDs in the ACL. Only on `/users/me/channels/subscribed` and `/channels/{channel_id}`. User objects include `username`, `id`, and `name` (if set). Defaults to false.

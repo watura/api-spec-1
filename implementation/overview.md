@@ -1,9 +1,9 @@
 ## API
 
-#### Current Version: 0.5.0
+#### Current Version: 0.5.1
 #### API Root: `https://api.pnut.io/v0`
 
-*Last Updated 2017-04-14*
+*Last Updated 2017-04-30*
 
 Welcome to the documentation for the pnut.io API.
 
@@ -20,6 +20,8 @@ Note that user objects are included in JSON in the documentation frequently enou
 ##### [Developer Chat](https://patter.chat/room.html?channel=18)
 
 You are welcome to talk over the API in the Developer Channel. Questions, requests, floating ideas--any development-related conversation is encouraged!
+
+If you are developing an app for iOS, [@dasdom](https://pnut.io/@dasdom) has a testing account [@testuser](https://pnut.io/@testuser) to let Apple review your app. PM [@pnutapi](https://pnut.io/@pnutapi) to get access to it.
 
 
 ##### [Libraries](libraries)

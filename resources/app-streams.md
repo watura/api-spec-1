@@ -42,7 +42,7 @@ Returns a list of streams.
       ],
       "type": "long_poll",
       "key": "4",
-      "endpoint": "https://stream.pnut.io/v0/app/3"
+      "endpoint": "wss://stream.pnut.io/v0/app?key=4"
     }
   ]
 }
@@ -91,7 +91,7 @@ Returns the requested stream.
     ],
     "type": "long_poll",
     "key": "4",
-    "endpoint": "https://stream.pnut.io/v0/app/3"
+    "endpoint": "wss://stream.pnut.io/v0/app?key=4"
   }
 }
 ```
@@ -99,7 +99,7 @@ Returns the requested stream.
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> app</span><span class="method method-post">POST</span> /streams [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-streams) {#post-streams .endpoint}
 
-Create an app stream for the authenticated app. Can create up to 5 app streams.
+Create an app stream for the authenticated app. Can create up to five (5) app streams.
 
 Must have a Content-Type of `application/json`.
 
@@ -144,7 +144,7 @@ Returns the created stream.
       "channel_subscription",
       "bookmark"
     ],
-    "endpoint": "https://stream.pnut.io/v0/app/4"
+    "endpoint": "wss://stream.pnut.io/v0/app?key=butterball"
   }
 }
 ```
@@ -193,7 +193,7 @@ Returns the updated stream.
       "message",
       "bookmark"
     ],
-    "endpoint": "https://stream.pnut.io/v0/app/4"
+    "endpoint": "wss://stream.pnut.io/v0/app?key=butterball"
   }
 }
 ```
@@ -236,7 +236,7 @@ Returns a list of deleted streams.
       ],
       "type": "long_poll",
       "key": "4",
-      "endpoint": "https://stream.pnut.io/v0/app/3",
+      "endpoint": "wss://stream.pnut.io/v0/app?key=4",
       "is_deleted": true
     }
   ]
@@ -278,7 +278,7 @@ Returns the deleted stream.
       "message",
       "bookmark"
     ],
-    "endpoint": "https://stream.pnut.io/v0/app/butterball",
+    "endpoint": "wss://stream.pnut.io/v0/app?key=butterball",
     "is_deleted": true
   }
 }
