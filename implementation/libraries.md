@@ -5,30 +5,45 @@ Libraries are easy ways to integrate with the pnut.io API from your language of 
 
 #### C&#35;
 
-* [pnutdotnet](https://github.com/dwmoeller1/pnutdotnet) - general library, by [@dmoeller](https://pnut.io/@dmoeller)
+Name|Description|Maintainer
+-|-|-
+[pnutdotnet](https://github.com/dwmoeller1/pnutdotnet)|library|[@dmoeller](https://pnut.io/@dmoeller)
 
 
 #### Go
 
-* [peanuts](https://github.com/yukkurisinai/peanuts) - general library, by [@yukkuri_sinai](https://pnut.io/@yukkuri_sinai)
+Name|Description|Maintainer
+-|-|-
+[peanuts](https://github.com/yukkurisinai/peanuts)|library|[@yukkuri_sinai](https://pnut.io/@yukkuri_sinai)
 
 
-#### Javascript
+#### Javascript/Node
 
-* [pnut-butter.js](https://github.com/kaiwood/pnut-butter) - general library, by [@kwood](https://pnut.io/@kwood)
-* [pnut.js](https://github.com/pnut-api/pnut.js) - general library
+Name|Description|Maintainer
+-|-|-
+[pnut-butter.js](https://github.com/kaiwood/pnut-butter)|library|[@kwood](https://pnut.io/@kwood)
+[pnut.js](https://github.com/pnut-api/pnut.js)|library|-
+[pnut-to-markdown](https://github.com/kaiwood/pnut-to-markdown)|package to convert HTML content back to raw input text (pre-markdown rendering)|[@kwood](https://pnut.io/@kwood)
+[stpnut](https://github.com/shawnthroop/stpnut)|module for monitoring an App Stream|[@shawn](https://pnut.io/@shawn)
 
 
 #### PHP
 
-* [phpnut](https://github.com/pnut-api/phpnut) - general library
+Name|Description|Maintainer
+-|-|-
+[phpnut](https://github.com/pnut-api/phpnut)|library|-
 
 
 #### Python
 
-* [PNUTpy](https://github.com/pnut-api/PNUTpy) - general library
+Name|Description|Maintainer
+-|-|-
+[PNUTpy](https://github.com/pnut-api/PNUTpy)|library|-
 
 
 #### Swift
 
-* [PnutAttributedString](https://github.com/ericdke/PnutAttributedString) - handling entity positioning, by [@ericd](https://pnut.io/@ericd)
+Name|Description|Maintainer
+-|-|-
+[PnutKit](https://github.com/exsortis/PnutKit)|library|[@paulyhedral](https://pnut.io/@paulyhedral)
+[PnutAttributedString](https://github.com/ericdke/PnutAttributedString)|handling entity positioning|[@ericd](https://pnut.io/@ericd)

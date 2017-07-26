@@ -20,7 +20,7 @@ On successful connection, the API will send a message with a connection ID and t
 
 The app stream will expect to receive a message sent from your server every 50 seconds or less, to keep the connection open. If it disconnects, you will simply have to reconnect and either track your position before a disconnect and backfill with regular API calls, or skip what was missed in between.
 
-Streams "fire and forget"; they do not guarantee you will receive every message.
+Streams "fire and forget"; they do not guarantee you will receive every message, or receive them in chronological order.
 
 The stream objects attempt to return matching objects as they would be called normally, as JSON.
 
@@ -114,6 +114,14 @@ Sent when a user grants or revokes access to your app.
 ##### user
 
 Sent when a user who authorized your app updates their profile.
+
+```json
+
+```
+
+##### file
+
+Sent when a user authorizes uploading a file, updates file details, uploads a file, or deletes a file.
 
 ```json
 

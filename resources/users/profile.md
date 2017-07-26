@@ -198,7 +198,7 @@ Returns a 302 redirect
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> update_profile</span><span class="method method-post">POST</span> /users/me/avatar [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-users-me-avatar) {#post-users-me-avatar .endpoint}
 
-Uploads a new avatar image for the authenticated user. The uploaded image will be cropped to square and must be smaller than 2MB.
+Uploads a new avatar image for the authenticated user. The uploaded image will be cropped to square and must be smaller than 2MiB.
 
 Can specify `Content-Type` of `application/json` with the key <span class="call-param">{from_url}</span>, or a `Content-Type` of `multipart/form-data`, with the file as key `avatar`. `Content-Length` header must also be set.
 
@@ -251,7 +251,7 @@ Returns a 302 redirect
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> update_profile</span><span class="method method-post">POST</span> /users/me/cover [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-users-me-cover) {#post-users-me-cover .endpoint}
 
-Uploads a new cover image for the authenticated user. The uploaded image must be smaller than 4MB, with a width of at least 960px and height of at least 223px.
+Uploads a new cover image for the authenticated user. The uploaded image must be smaller than 4MiB, with a width of at least 960px and height of at least 223px.
 
 Can specify `Content-Type` of `application/json` with the key <span class="call-param">{from_url}</span>, or a `Content-Type` of `multipart/form-data`, with the file as key `cover`. `Content-Length` header must also be set.
 

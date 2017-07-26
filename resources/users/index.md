@@ -76,54 +76,6 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
     </tr>
 
     <tr>
-        <td><code>created_at</code></td>
-        <td>string</td>
-        <td>The time at which the User was created in ISO 8601 format.</td>
-    </tr>
-
-    <tr>
-        <td><code>guid</code></td>
-        <td>string</td>
-        <td>GUID/UUID referring to the user.</td>
-    </tr>
-
-    <tr>
-        <td><code>id</code></td>
-        <td>string</td>
-        <td>Primary identifier for a user. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to User objects. There can be a Post and User with the same ID; no relation is implied.</td>
-    </tr>
-
-    <tr>
-        <td><code>locale</code></td>
-        <td>string</td>
-        <td>User locale in ISO format.</td>
-    </tr>
-
-    <tr>
-        <td><code>timezone</code></td>
-        <td>string</td>
-        <td>User timezone in tzinfo format.</td>
-    </tr>
-
-    <tr>
-        <td><code>type</code></td>
-        <td>string</td>
-        <td>human, feed, or bot. See <a href="https://pnut.io/docs/resources/account_types">Account Types</a> to be sure of the implications.</td>
-    </tr>
-
-    <tr>
-        <td><code>username</code></td>
-        <td>string</td>
-        <td>Case sensitive. 20 characters, may only contain a-z, 0-9 and underscore.</td>
-    </tr>
-
-    <tr>
-        <td><code>name</code></td>
-        <td>string</td>
-        <td>Optional user-supplied name. All Unicode characters allowed. Maximum length 50 characters.</td>
-    </tr>
-
-    <tr>
         <td><code>content</code></td>
         <td>object</td>
         <td>
@@ -132,24 +84,6 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
                     <th>Field</th>
                     <th>Type</th>
                     <th>Description</th>
-                </tr>
-
-                <tr>
-                    <td><code>text</code></td>
-                    <td>string</td>
-                    <td>User supplied text of the user. All Unicode characters allowed. Maximum length 256 characters. The maximum length can be retrieved from the Configuration endpoint.</td>
-                </tr>
-
-                <tr>
-                    <td><code>html</code></td>
-                    <td>string</td>
-                    <td>Server-generated annotated HTML rendering of user text.</td>
-                </tr>
-
-                <tr>
-                    <td><code>entities</code></td>
-                    <td>object</td>
-                    <td>Rich text information for this user. See the <a href="https://pnut.io/docs/implementations/entities">Entities</a> documentation.</td>
                 </tr>
 
                 <tr>
@@ -164,27 +98,27 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
                             </tr>
 
                             <tr>
-                                <td><code>link</code></td>
-                                <td>string</td>
-                                <td>URL linking to the current avatar image.</td>
-                            </tr>
-
-                            <tr>
                                 <td><code>is_default</code></td>
                                 <td>boolean</td>
                                 <td>Whether or not the user's avatar is the original identicon generated for their username, or an image they uploaded.</td>
                             </tr>
 
                             <tr>
-                                <td><code>width</code></td>
-                                <td>integer</td>
-                                <td>Original width of the image.</td>
-                            </tr>
-
-                            <tr>
                                 <td><code>height</code></td>
                                 <td>integer</td>
                                 <td>Original height of the image.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>link</code></td>
+                                <td>string</td>
+                                <td>URL linking to the current avatar image.</td>
+                            </tr>
+
+                            <tr>
+                                <td><code>width</code></td>
+                                <td>integer</td>
+                                <td>Original width of the image.</td>
                             </tr>
                         </table>
                     </td>
@@ -226,6 +160,30 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
                             </tr>
                         </table>
                     </td>
+                </tr>
+
+                <tr>
+                    <td><code>entities</code></td>
+                    <td>object</td>
+                    <td>Rich text information for this user. See the <a href="https://pnut.io/docs/implementations/entities">Entities</a> documentation.</td>
+                </tr>
+
+                <tr>
+                    <td><code>html</code></td>
+                    <td>string</td>
+                    <td>Server-generated annotated HTML rendering of user text.</td>
+                </tr>
+                
+                <tr>
+                    <td><code>markdown_text</code></td>
+                    <td>string</td>
+                    <td><code>text</code>, with the original markdown links preserved. Only included when looking up the authenticated user's profile.</td>
+                </tr>
+
+                <tr>
+                    <td><code>text</code></td>
+                    <td>string</td>
+                    <td>User supplied text of the user. All Unicode characters allowed. Maximum length 256 characters. The maximum length can be retrieved from the Configuration endpoint.</td>
                 </tr>
             </table>
         </td>
@@ -282,15 +240,69 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
     </tr>
 
     <tr>
+        <td><code>created_at</code></td>
+        <td>string</td>
+        <td>The time at which the User was created in ISO 8601 format.</td>
+    </tr>
+
+    <tr>
         <td><code>follows_you</code></td>
         <td>boolean</td>
         <td>Whether or not this user follows you.</td>
     </tr>
 
     <tr>
+        <td><code>guid</code></td>
+        <td>string</td>
+        <td>GUID/UUID referring to the user.</td>
+    </tr>
+
+    <tr>
+        <td><code>id</code></td>
+        <td>string</td>
+        <td>Primary identifier for a user. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to User objects. There can be a Post and User with the same ID; no relation is implied.</td>
+    </tr>
+
+    <tr>
+        <td><code>locale</code></td>
+        <td>string</td>
+        <td>User locale in ISO format.</td>
+    </tr>
+
+    <tr>
+        <td><code>name</code></td>
+        <td>string</td>
+        <td>Optional user-supplied name. All Unicode characters allowed. Maximum length 50 characters.</td>
+    </tr>
+
+    <tr>
+        <td><code>timezone</code></td>
+        <td>string</td>
+        <td>User timezone in tzinfo format.</td>
+    </tr>
+
+    <tr>
+        <td><code>type</code></td>
+        <td>string</td>
+        <td>human, feed, or bot. See <a href="https://pnut.io/docs/resources/account_types">Account Types</a> to be sure of the implications.</td>
+    </tr>
+
+    <tr>
+        <td><code>username</code></td>
+        <td>string</td>
+        <td>Case sensitive. 20 characters, may only contain a-z, 0-9 and underscore.</td>
+    </tr>
+
+    <tr>
         <td><code>you_blocked</code></td>
         <td>boolean</td>
         <td>Whether or not you blocked this user.</td>
+    </tr>
+
+    <tr>
+        <td><code>you_can_follow</code></td>
+        <td>boolean</td>
+        <td>Whether or not you <em>can</em> follow this user -- not taking into account <code>you_follow</code>.</td>
     </tr>
 
     <tr>
@@ -303,12 +315,6 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
         <td><code>you_muted</code></td>
         <td>boolean</td>
         <td>Whether or not you muted this user.</td>
-    </tr>
-
-    <tr>
-        <td><code>you_can_follow</code></td>
-        <td>boolean</td>
-        <td>Whether or not you <em>can</em> follow this user -- not taking into account <code>you_follow</code>.</td>
     </tr>
 
     <tr>
@@ -351,7 +357,7 @@ Name|Type|Description
 `include_html`|integer (0 or 1)|Should the post and user `html` field be included alongside the `text` field in the response objects? Defaults to true.
 `include_user_html`|integer (0 or 1)|Should the user `html` field be included alongside the `text` field in the response objects? Defaults to true. Note that `include_html` takes priority if present.
 `include_counts`|integer (0 or 1)|Include the user's counts. Defaults to true.
-`include_user_as_id`|integer (0 or 1)|Return the user as their (string) ID only. Defaults to false.
+`include_user`|integer (0 or 1)|Return the user as their complete object, or only as (string) ID if false. Defaults to true.
 `include_user_as_guid`|integer (0 or 1)|Return the user as their GUID only. Defaults to false.
 `include_presence`|integer (0 or 1)|Include the user's current presence. Defaults to false.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.

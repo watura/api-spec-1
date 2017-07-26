@@ -6,6 +6,7 @@ Set up at least one redirect URI in the Developer area for your client.
 
 Client-side flow is generally used for Javascript and other situations where the code could be inspected by a 3rd party, and they could see your `client_secret`.
 
+If you are working with mobile clients, or otherwise are embedding the web page in the app, you may want to add `&simple_login=1` to your endpoint URI, which removes the navigation and extraneous links from the authorization page.
 
 #### Server-side flow
 

@@ -12,6 +12,7 @@
 * **presence** update user's presence
 * **messages** all messages and channels
 * **public_messages** only public channels and messages
+* **files** edit and access user's files
 
 
 #### basic
@@ -28,7 +29,7 @@ In the documentation, an <span class="endpoint-meta" style="float:none"><i class
 
 #### Extended Scopes
 
-Channels are the only area of the API that currently allow extended scopes. Extended scopes allow you to only authorize use of the channel types that your app needs access to. For example, if you only will be dealing with private messages, you could request the `messages:io.pnut.core.pm` scope. If your app has its own public-only channel type, you could request the `public_messages:com.example.site` scope.
+Channels and Files currently allow extended scopes. Extended scopes allow you to only authorize use of the channel types that your app needs access to. For example, if you only will be dealing with private messages, you could request the `messages:io.pnut.core.pm` scope. If your app has its own public-only channel type, you could request the `public_messages:com.example.site` scope. Or if it only needs to create, view, and delete files for itself, you could request `files:com.example.site` access.
 
 
 #### Changing Scopes

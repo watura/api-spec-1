@@ -1,9 +1,9 @@
 ## API
 
-#### Current Version: 0.5.1
+#### Current Version: 0.6.0
 #### API Root: `https://api.pnut.io/v0`
 
-*Last Updated 2017-04-30*
+*Last Updated 2017-07-25*
 
 Welcome to the documentation for the pnut.io API.
 
@@ -21,12 +21,10 @@ Note that user objects are included in JSON in the documentation frequently enou
 
 You are welcome to talk over the API in the Developer Channel. Questions, requests, floating ideas--any development-related conversation is encouraged!
 
-If you are developing an app for iOS, [@dasdom](https://pnut.io/@dasdom) has a testing account [@testuser](https://pnut.io/@testuser) to let Apple review your app. PM [@pnutapi](https://pnut.io/@pnutapi) to get access to it.
-
 
 ##### [Libraries](libraries)
 
-List of libraries to interact with the API from your language of choice easily.
+List of libraries and code to easily interact with the API from various languages.
 
 
 ##### [API Documentation](https://github.com/pnut-api/api-spec)
@@ -37,3 +35,8 @@ GitHub has a mirror of our API documentation. That is the recommended way to for
 ##### [Object Metadata](https://github.com/pnut-api/object-metadata)
 
 A repository for object metadata to coordinate common channel and Raw types.
+
+
+##### [@testuser](https://pnut.io/@testuser)
+
+If you are developing an app for iOS, PM [@pnutapi](https://pnut.io/@pnutapi) to get access to a testing account that Apple may review your app with.
