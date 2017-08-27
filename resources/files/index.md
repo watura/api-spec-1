@@ -9,6 +9,32 @@
   "raw": [],
   "is_complete": true,
   "created_at": "2016-10-25T14:53:54Z",
+  "derivative_files": {
+    "core_image_200s": {
+      "link": "https://keis3y5kk5axpg.cloudfront.net/kEKi4idix8wIhHCbm0FFujFT-fi56IsYGU7BrzW_nqe_core_image_200s?response-cache-control=public%2C%2Bmax-age%3D7200%2C%2Bs-maxage%3D172800&response-content-disposition=inline%3B%2Bfilename%2A%3DUTF-8%27%27IMG_20170826_134117_core_image_200s.jpg&Expires=1598387665&Signature=TnU2KHadk3idksilfiov8e-ejksklfli3k2lslDid8g0keOObWrOPKxohB4bBOlAHL42euVJiPA-cPdvH-j0aaaBiK1wGQf6-fTvfIk8O7YixIwwDsalS7K2lPdBLs5P62d4op2GxQpxqZIgRyYAFNvsEs~fWV7HASKqfuanoRHImTyE1ooSZeJUAURMaGpCPldC5uHXOf7wXLsLP-k7RvhnirxMumUV8FlKg-ZrNCbm1EflcJ3gHhN9rbStBEJ94FRo15tdR5Kz~CuiTTTd13FKbeg~Kb9Px1guVKD7bkTNpD-5XurnwCJYKYYuNMajs9oHOYO7yrKdik9sKgSl0g__&Key-Pair-Id=APKAJ2QIHBMHH2ICWRYA",
+      "name": "IMG_20161025_095315_core_image_200s.jpg",
+      "size": 7341,
+      "sha256": "1832a9c35ae5e1f8ff7bbdcc0b2416df4a4b102ab8a3822871dc0dc4e4060ccf",
+      "mime_type": "image/jpeg",
+      "image_info": {
+        "width": 200,
+        "height": 200
+      },
+      "link_expires_at": "2017-03-18T09:00:00Z"
+    },
+    "core_image_960r": {
+      "link": "https://d2fk0vffd5axpg.cloudfront.net/QNrfjtTPg3wIhHCbm0FFujFT-fi56IsYGU7BrzW_nqe_core_image_960r?response-cache-control=public%2C%2Bmax-age%3D7200%2C%2Bs-maxage%3D172800&response-content-disposition=inline%3B%2Bfilename%2A%3DUTF-8%27%27IMG_20170826_134117_core_image_960r.jpg&Expires=1598387665&Signature=eQnO4WdpB-0izDvsbIEag5njyiv6Mx9SqKn3wFpqKNV4XAIE4okyIGbJawSMwhc5Tr6JwYKhFZKw69lrtEMyKPmiqwlnqvKQllNsgIjPpNLGYPWVvONtOvQcSGeCVn-fZBh67XMrqWMIyI1FZ1R6hRTdlI0sEBJuvCDr-rsOAwKu4szAGm84qvX7Sp88rAsOjFE4Y~81nWvnKvUiEllWQDErUmEvJ~lI6-GcgYFenr0In--Lni~y2EM~DXszvqxhl2O63sA1piiLs9G8efPb4HhcjWj4JmZ8JW6tjB6M~znr5L1zzc~zl1fVwccFPF3yzoMtq1Fil5u5Vb6fv~UPRQ__&Key-Pair-Id=APKAJ2QIHBMHH2ICWRYA",
+      "name": "IMG_20161025_095315_core_image_960r.jpg",
+      "size": 50053,
+      "sha256": "0067b65214bkedilseij38608ccaf9e56fd8b715548f74d99c2e6a7ccd411a68",
+      "mime_type": "image/jpeg",
+      "image_info": {
+        "width": 640,
+        "height": 640
+      },
+      "link_expires_at": "2017-03-18T09:00:00Z"
+    },
+  },
   "id": "5761572",
   "image_info": {
     "height": 2448,
@@ -28,7 +54,7 @@
   },
   "type": "robin.image.photo",
   "link": "https://d36tc8clsz1tk5.cloudfront.net/adn-uf-01/o-/O1/TG/o-O1TGXChj9yYa6R5p-v8ypgPRqhZ-qlSirqlMVSczc?response-cache-control=public%2C%20max-age%3D7200%2C%20s-maxage%3D172800&response-content-disposition=inline%3B%20filename%2A%3DUTF-8%27%27IMG_20161025_095315.jpg&Expires=1489827600&Signature=miDIsZr4OPwQx8gURcr3G8fDg8igSC2FupJYuqyxAoecb9NQszmZ5GqlWjgWY8-9pbdVpau5fNf~0bN78a9eSX6z3ieXI9KwX~jC1nI6ojrdCNOfQOEH8H~CGhYJETN24GCsQ7Q7TpgK3KFBeLrMz2dK~vv~hyGvmf-n6zm4mu0_&Key-Pair-Id=APKAIWNGPWT6YVKFBWJA",
-  "link_expires": "2017-03-18T09:00:00Z",
+  "link_expires_at": "2017-03-18T09:00:00Z",
   "user": {...}
 },
 ```
@@ -114,13 +140,13 @@
     <tr>
         <td><code>link</code></td>
         <td>string</td>
-        <td>Direct link to the file, but with an expiration. After expiration, file object will need to be fetched to get a new link (<code>GET /files/{file_id}</code>).</td>
+        <td>Direct link to the file, but with an expiration.</td>
     </tr>
 
     <tr>
         <td><code>link_expires_at</code></td>
         <td>string</td>
-        <td>ISO 8601 timestamp of when <code>link</code> will expire.</td>
+        <td>ISO 8601 timestamp of when <code>link</code> will expire. After expiration, file object will need to be fetched to get a new link (<code>GET /files/{file_id}</code>, this also refreshes any derivative files).</td>
     </tr>
 
     <tr>
@@ -190,7 +216,90 @@
             </table>
         </td>
     </tr>
-    
+
+    <tr>
+        <td><code>derivative_files</code></td>
+        <td>object</td>
+        <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> match specified parameters. For example:
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>core_image_200s</code></td>
+                    <td>object</td>
+                    <td>
+                    
+                        <table>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td><code>link</code></td>
+                                <td>string</td>
+                                <td>Direct link to the file, but with an expiration.</td>
+                            </tr>
+                            <tr>
+                                <td><code>link_expires_at</code></td>
+                                <td>string</td>
+                                <td>ISO 8601 timestamp of when <code>link</code> will expire. After expiration, <code>GET /files/{file_id}</code> of the derived file will refresh these as well.</td>
+                            </tr>
+                            <tr>
+                                <td><code>mime_type</code></td>
+                                <td>string</td>
+                                <td>The mime-encoding of the file.</td>
+                            </tr>
+                            <tr>
+                                <td><code>name</code></td>
+                                <td>string</td>
+                                <td>A readable name of the file. Can be used descriptively or not. Up to 255 ASCII characters.</td>
+                            </tr>
+                            <tr>
+                                <td><code>sha256</code></td>
+                                <td>string</td>
+                                <td>sha256 checksum of file</td>
+                            </tr>
+                            <tr>
+                                <td><code>size</code></td>
+                                <td>integer</td>
+                                <td>Size of the file in bytes.</td>
+                            </tr>
+                            <tr>
+                                <td><code>image_info</code></td>
+                                <td>object</td>
+                                <td>Included if <code>kind: image</code>.
+                                    <table>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td><code>height</code></td>
+                                            <td>integer</td>
+                                            <td>Height of the image.</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td><code>width</code></td>
+                                            <td>integer</td>
+                                            <td>Width of the image.</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
     <tr>
         <td><code>user</code></td>
         <td>object</td>

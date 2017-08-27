@@ -8,7 +8,7 @@ This is the process of setting up an app stream:
 * Set up a websocket server to listen with
 * Point your websocket server at pnut, and start parsing the firehose
 
-To connect to a websocket, you must put a valid app access token and app stream key in the query string.
+To connect to a websocket, you must put a valid app access token in the query string or the Authorization header, and app stream key in the query string.
 
 ```
 wss://stream.pnut.io/v0/apps

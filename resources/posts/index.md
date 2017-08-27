@@ -179,7 +179,7 @@
     <tr>
         <td><code>repost_of</code></td>
         <td>string</td>
-        <td>Optional id of the post this post is a repost of.</td>
+        <td>Optional embedded post object being reposted.</td>
     </tr>
 
     <tr>
@@ -283,6 +283,7 @@ Any endpoint that returns post objects can be subject to these parameters.
 
 Name|Type|Description
 -|-|-
+`include_deleted`|integer (0 or 1)|Include deleted posts. Defaults to true.
 `include_client`|integer (0 or 1)|Include the client object with the post. Defaults to true.
 `include_counts`|integer (0 or 1)|Include the post's counts. Also affects any included user object. Defaults to true.
 `include_html`|integer (0 or 1)|Should the post and user `html` field be included alongside the `text` field in the response objects? Defaults to true.

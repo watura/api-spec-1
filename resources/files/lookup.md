@@ -6,7 +6,7 @@ To only retrieve files by certain types, include them in a comma-separated list 
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-get">GET</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-files-id) {#get-files-id .endpoint}
 
-Retrieve a file object.
+Retrieve a file object. If `link_expires_at` is passed, this will update the `link` and any embedded references to it.
 
 ##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters) {#url-parameters}
 

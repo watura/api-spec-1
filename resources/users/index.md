@@ -165,7 +165,7 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
                 <tr>
                     <td><code>entities</code></td>
                     <td>object</td>
-                    <td>Rich text information for this user. See the <a href="https://pnut.io/docs/implementations/entities">Entities</a> documentation.</td>
+                    <td>Rich text information for this user. See the <a href="https://pnut.io/docs/api/implementation/entities">Entities</a> documentation.</td>
                 </tr>
 
                 <tr>
