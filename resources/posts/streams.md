@@ -26,7 +26,6 @@ Returns a list of posts.
   "data": [
     {
       "created_at": "2016-12-11T18:14:12Z",
-      "guid": "E0C85794-D8E8-44CA-90F2-E34D8CA1A96D",
       "id": "2384",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -56,7 +55,6 @@ Returns a list of posts.
     },
     {
       "created_at": "2016-11-25T22:42:26Z",
-      "guid": "51C581B0-C03A-41FE-8641-8A5EED549E4F",
       "id": "2383",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -122,7 +120,6 @@ Returns a list of posts.
   "data": [
     {
       "created_at": "2016-12-11T18:14:12Z",
-      "guid": "E0C85794-D8E8-44CA-90F2-E34D8CA1A96D",
       "id": "2384",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -152,7 +149,6 @@ Returns a list of posts.
     },
     {
       "created_at": "2016-11-25T22:42:26Z",
-      "guid": "51C581B0-C03A-41FE-8641-8A5EED549E4F",
       "id": "2383",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -224,7 +220,6 @@ Returns a list of posts.
   "data": [
     {
       "created_at": "2016-11-22T16:24:17Z",
-      "guid": "B2478FF7-2FEC-41E8-B715-050A8967F6D2",
       "id": "2357",
       "source": {
         "id": "_ZF0GARr13lyeXrQHZNLQBKuQ1MT-VNi",
@@ -270,7 +265,6 @@ Returns a list of posts.
     },
     {
       "created_at": "2016-11-22T01:48:00Z",
-      "guid": "D1673EEA-EE04-4751-B0C5-D85D83D22405",
       "id": "2346",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -344,7 +338,6 @@ Returns a list of posts.
   "data": [
     {
       "created_at": "2016-11-23T16:59:24Z",
-      "guid": "50FC8A55-F408-427D-9640-F50A9FE4B4DC",
       "id": "2373",
       "source": {
         "id": "RG2OXsxanFOD0pPZ2oURY3OS3zUVixho",
@@ -380,7 +373,6 @@ Returns a list of posts.
     },
     {
       "created_at": "2016-11-23T15:31:57Z",
-      "guid": "356A9FA3-B96A-4B4B-B050-181A0AA86451",
       "id": "2369",
       "source": {
         "id": "RG2OXsxanFOD0pPZ2oURY3OS3zUVixho",
@@ -437,7 +429,6 @@ Returns a list of posts.
   "data": [
     {
       "created_at": "2016-12-11T18:14:12Z",
-      "guid": "E0C85794-D8E8-44CA-90F2-E34D8CA1A96D",
       "id": "2384",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -467,7 +458,6 @@ Returns a list of posts.
     },
     {
       "created_at": "2016-11-25T22:42:26Z",
-      "guid": "51C581B0-C03A-41FE-8641-8A5EED549E4F",
       "id": "2383",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -539,7 +529,6 @@ Returns a list of posts.
   "data": [
     {
       "created_at": "2016-11-08T03:23:02Z",
-      "guid": "BDAA9DD5-1C12-48A7-9024-BDA42EE49944",
       "id": "2034",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -583,7 +572,6 @@ Returns a list of posts.
     },
     {
       "created_at": "2016-10-17T15:01:28Z",
-      "guid": "41069845-2A2A-4DF6-9904-98EC9C55E4AA",
       "id": "1220",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",

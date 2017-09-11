@@ -1,4 +1,4 @@
-### How To File
+### How To: File
 
 Paid users are given 10GiB of file storage to upload to. Once files are uploaded, they can be attached to any object's Raw contents.
 

@@ -32,7 +32,6 @@ Returns a list of posts.
   "data": [
     {
       "created_at": "2016-11-23T20:50:11Z",
-      "guid": "5AE40E47-0608-4C8F-BD71-69F763DA30A1",
       "id": "2375",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -62,7 +61,6 @@ Returns a list of posts.
     },
     {
       "created_at": "2016-11-22T16:39:29Z",
-      "guid": "2F261F14-2265-4E21-917A-72711AAACCA1",
       "id": "2359",
       "source": {
         "id": "fNGJi3HD3IMZQKQ3ryvmt54SsciGlEnt",
@@ -122,7 +120,6 @@ Returns the bookmarked post.
   },
   "data": {
     "created_at": "2016-11-23T20:50:11Z",
-    "guid": "5AE40E47-0608-4C8F-BD71-69F763DA30A1",
     "id": "2375",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -180,7 +177,6 @@ Returns the post a bookmark was removed from.
   },
   "data": {
     "created_at": "2016-11-23T20:50:11Z",
-    "guid": "5AE40E47-0608-4C8F-BD71-69F763DA30A1",
     "id": "2375",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",

@@ -32,7 +32,6 @@ Returns a list of users
     {
       "id": "71",
       "created_at": "2016-11-02T16:28:37Z",
-      "guid": "0C56F535-EC8A-49F1-A0E1-2A20F6CF5F03",
       "locale": "en_US",
       "timezone": "America/Chicago",
       "type": "human",
@@ -91,7 +90,6 @@ Returns a list of users
     {
       "id": "75",
       "created_at": "2016-11-15T03:28:51Z",
-      "guid": "5D645DFC-8C82-4C1D-B709-514BBB225F69",
       "locale": "en",
       "timezone": "America/New_York",
       "type": "human",
@@ -170,7 +168,6 @@ Returns a list of users
     {
       "id": "58",
       "created_at": "2016-10-18T14:43:20Z",
-      "guid": "E8F0CEEF-50C9-43F0-9AA5-371CB3108FDA",
       "locale": "en_US",
       "timezone": "America/Chicago",
       "type": "human",
@@ -215,7 +212,6 @@ Returns a list of users
     {
       "id": "52",
       "created_at": "2016-10-12T14:19:46Z",
-      "guid": "61417352-E698-4C37-B991-192EA467DD38",
       "locale": "de",
       "timezone": "Europe/Zurich",
       "type": "human",
@@ -291,7 +287,6 @@ Returns the followed user
   "data": {
     "id": "3",
     "created_at": "2016-09-10T17:50:41Z",
-    "guid": "0FB5E2CC-8E23-465F-ADA1-67A59D6320FD",
     "locale": "en_US",
     "timezone": "America/Chicago",
     "type": "human",
@@ -356,7 +351,6 @@ Returns the unfollowed user
   "data": {
     "id": "3",
     "created_at": "2016-09-10T17:50:41Z",
-    "guid": "0FB5E2CC-8E23-465F-ADA1-67A59D6320FD",
     "locale": "en_US",
     "timezone": "America/Chicago",
     "type": "human",

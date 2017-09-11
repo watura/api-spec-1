@@ -101,7 +101,6 @@ Returns a list of actions.
       "objects": [
         {
           "created_at": "2016-11-23T20:50:11Z",
-          "guid": "5AE40E47-0608-4C8F-BD71-69F763DA30A1",
           "id": "2375",
           "source": {
             "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -140,7 +139,6 @@ Returns a list of actions.
       "objects": [
         {
           "created_at": "2016-11-23T14:18:47Z",
-          "guid": "FE03A1F3-B5D1-4B70-B5A8-AEE8A89CA20C",
           "id": "2368",
           "source": {
             "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -188,7 +186,6 @@ Returns a list of actions.
       "objects": [
         {
           "created_at": "2016-11-22T14:20:06Z",
-          "guid": "715408F1-2197-4E88-81FD-7A420513B52C",
           "id": "2356",
           "source": {
             "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",

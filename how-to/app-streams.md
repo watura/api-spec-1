@@ -1,4 +1,4 @@
-### How To App Stream
+### How To: App Stream
 
 App streams are live streams of data ("firehoses") sent directly from pnut to developers' servers, to be parsed and used for end-users. Currently, the only connection option is through secure websocket.
 

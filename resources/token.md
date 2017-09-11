@@ -35,7 +35,11 @@ Returns the requested token
       "stream",
       "presence"
     ],
-    "user": {...}
+    "user": {...},
+    "storage": {
+      "available": 10715893954,
+      "total": 10737418240
+    }
   }
 }
 ```
@@ -76,7 +80,11 @@ Returns the deleted token
       "stream",
       "presence"
     ],
-    "user": {...}
+    "user": {...},
+    "storage": {
+      "available": 0,
+      "total": 0
+    }
   }
 }
 ```

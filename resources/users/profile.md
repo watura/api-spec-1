@@ -36,7 +36,6 @@ Returns the updated user object
   "data": {
     "id": "1",
     "created_at": "2016-09-09T17:16:39Z",
-    "guid": "113BA773-F1F2-42CF-99F8-02EC778942C9",
     "locale": "en_US",
     "timezone": "America/Chicago",
     "type": "human",
@@ -116,7 +115,6 @@ Returns the updated user object
   "data": {
     "id": "1",
     "created_at": "2016-09-09T17:16:39Z",
-    "guid": "113BA773-F1F2-42CF-99F8-02EC778942C9",
     "locale": "en_US",
     "timezone": "Europe/Paris",
     "type": "human",

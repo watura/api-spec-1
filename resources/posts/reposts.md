@@ -29,7 +29,6 @@ Returns the reposted post.
   },
   "data": {
     "created_at": "2016-11-23T15:54:51Z",
-    "guid": "FC1A6E77-170E-4CE6-8A2D-6FF355910A3A",
     "id": "2370",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -98,7 +97,6 @@ Returns the previously reposted post.
   },
   "data": {
     "created_at": "2016-11-23T15:54:51Z",
-    "guid": "FC1A6E77-170E-4CE6-8A2D-6FF355910A3A",
     "id": "2370",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",

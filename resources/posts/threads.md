@@ -31,7 +31,6 @@ Returns a list of posts from the thread.
   "data": [
     {
       "created_at": "2017-03-14T18:11:25Z",
-      "guid": "276A551B-F08A-4801-8B69-8D4819AF190D",
       "id": "29910",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -72,7 +71,6 @@ Returns a list of posts from the thread.
     },
     {
       "created_at": "2017-03-14T17:55:00Z",
-      "guid": "2476B7C2-7430-43D6-BBAC-9521566BCD75",
       "id": "29835",
       "source": {
         "id": "XO3CTVQl0rRMMEyo7V9JhJdUFzFDqm8o",
@@ -113,7 +111,6 @@ Returns a list of posts from the thread.
     },
     {
       "created_at": "2016-09-11T05:17:42Z",
-      "guid": "D2CE3D6F-EB85-44E7-87A8-FCABCDDDF6B7",
       "id": "18",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",

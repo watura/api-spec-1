@@ -7,7 +7,6 @@
 ```json
 {
   "created_at": "2016-11-20T01:17:57Z",
-  "guid": "5F0D96CD-EA04-493C-BD23-AF03BFE7B7DB",
   "id": "2301",
   "source": {
     "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -17,7 +16,6 @@
   "user": {
     "id": "9",
     "created_at": "2016-09-10T20:04:47Z",
-    "guid": "935F1DEB-AABB-4C8F-BEAA-9FD802989905",
     "locale": "en_US",
     "timezone": "America/Los_Angeles",
     "type": "human",
@@ -106,12 +104,6 @@
         <td><code>created_at</code></td>
         <td>string</td>
         <td>The time at which the post was created in ISO 8601 format.</td>
-    </tr>
-
-    <tr>
-        <td><code>guid</code></td>
-        <td>string</td>
-        <td>GUID/UUID referring to the post.</td>
     </tr>
 
     <tr>

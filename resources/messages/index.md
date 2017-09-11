@@ -21,7 +21,6 @@
     "type": "human",
     "locale": "en_US",
     "timezone": "America/Chicago",
-    "guid": "113BA773-F1F2-42CF-99F8-02EC778942C9",
     "created_at": "2016-09-09T17:16:39Z",
     "username": "33MHz",
     "name": "Robert",

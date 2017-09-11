@@ -39,7 +39,6 @@ Returns the created post.
   },
   "data": {
     "created_at": "2016-12-22T14:49:16Z",
-    "guid": "43414D15-AF76-448E-8FB0-B8CABBB325A9",
     "id": "2392",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -114,7 +113,6 @@ Returns the revised post.
   },
   "data": {
     "created_at": "2016-12-22T14:49:16Z",
-    "guid": "43414D15-AF76-448E-8FB0-B8CABBB325A9",
     "id": "2392",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -179,7 +177,6 @@ Returns the deleted post.
   },
   "data": {
     "created_at": "2016-12-22T14:49:16Z",
-    "guid": "43414D15-AF76-448E-8FB0-B8CABBB325A9",
     "id": "2392",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",

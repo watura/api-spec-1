@@ -28,7 +28,6 @@ Returns the user object
   "data": {
     "id": "1",
     "created_at": "2016-09-09T17:16:39Z",
-    "guid": "113BA773-F1F2-42CF-99F8-02EC778942C9",
     "locale": "en",
     "timezone": "America/Chicago",
     "type": "human",
@@ -113,7 +112,6 @@ Returns a list of users
     {
       "id": "4",
       "created_at": "2016-09-10T18:01:21Z",
-      "guid": "8F530358-2B30-48E6-8F1F-756EAAA0B05A",
       "locale": "en_CA",
       "timezone": "Europe/Berlin",
       "type": "human",
@@ -161,7 +159,6 @@ Returns a list of users
     {
       "id": "12",
       "created_at": "2016-09-11T00:11:51Z",
-      "guid": "5487A956-D731-4783-821D-AD8AF4A66F01",
       "locale": "en_US",
       "timezone": "America/Chicago",
       "type": "human",
@@ -265,7 +262,6 @@ Returns a list of user tokens
         "type": "human",
         "created_at": "2016-09-09T17:16:39Z",
         "timezone": "America/Chicago",
-        "guid": "113BA773-F1F2-42CF-99F8-02EC778942C9",
         "locale": "en_US",
         "content": {
           "text": "This thing I do. /@pnut #tag here",

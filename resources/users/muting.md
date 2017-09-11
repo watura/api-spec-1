@@ -35,7 +35,6 @@ Returns a list of users
     {
       "id": "2",
       "created_at": "2016-09-10T12:41:21Z",
-      "guid": "A7CEAA50-F227-40FD-869C-262AED0BDD6B",
       "locale": "en_US",
       "timezone": "America/Chicago",
       "type": "human",
@@ -110,7 +109,6 @@ Returns the muted user
   "data": {
     "id": "2",
     "created_at": "2016-09-10T12:41:21Z",
-    "guid": "A7CEAA50-F227-40FD-869C-262AED0BDD6B",
     "locale": "en_US",
     "timezone": "America/Chicago",
     "type": "human",
@@ -183,7 +181,6 @@ Returns the unmuted user
   "data": {
     "id": "2",
     "created_at": "2016-09-10T12:41:21Z",
-    "guid": "A7CEAA50-F227-40FD-869C-262AED0BDD6B",
     "locale": "en_US",
     "timezone": "America/Chicago",
     "type": "human",

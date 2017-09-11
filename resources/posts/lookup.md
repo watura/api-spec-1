@@ -27,7 +27,6 @@ Returns a post
   },
   "data": {
     "created_at": "2016-09-11T05:22:08Z",
-    "guid": "B78F0948-BF00-4CE8-A479-9D6A43F49F93",
     "id": "20",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -94,7 +93,6 @@ Returns a list of posts
   "data": [
     {
       "created_at": "2016-09-11T05:22:08Z",
-      "guid": "B78F0948-BF00-4CE8-A479-9D6A43F49F93",
       "id": "20",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -132,7 +130,6 @@ Returns a list of posts
     },
     {
       "created_at": "2016-09-11T05:22:33Z",
-      "guid": "6E0A3D67-4269-477F-B088-37A885C51790",
       "id": "21",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -170,7 +167,6 @@ Returns a list of posts
     },
     {
       "created_at": "2016-09-11T00:45:48Z",
-      "guid": "BA1C1BE1-75B9-40C6-84CC-97B419158210",
       "id": "4",
       "source": {
         "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -239,7 +235,6 @@ Returns a list of posts
     {
       "id": 2392,
       "created_at": "2016-12-22 11:53:57-06",
-      "guid": "D150EBA0-A92F-40EC-8520-2F30C7A48501",
       "thread_id": 2392,
       "user": {...},
       "source": {

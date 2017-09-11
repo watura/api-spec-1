@@ -8,7 +8,6 @@ Unless otherwise specified, user identifiers can be any of the following:
 
 * User ID (`1`)
 * @username (`@33mhz`)
-* GUID (`113BA773-F1F2-42CF-99F8-02EC778942C9`)
 * "me", when authenticated
 
 User IDs are preferred where convenient, because they take less effort and will never change (unlike usernames).
@@ -23,7 +22,6 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
 {
   "id": "2",
   "created_at": "2016-09-10T12:41:21Z",
-  "guid": "A7CEAA50-F227-40FD-869C-262AED0BDD6B",
   "locale": "en_US",
   "timezone": "America/Chicago",
   "type": "human",
@@ -252,12 +250,6 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
     </tr>
 
     <tr>
-        <td><code>guid</code></td>
-        <td>string</td>
-        <td>GUID/UUID referring to the user.</td>
-    </tr>
-
-    <tr>
         <td><code>id</code></td>
         <td>string</td>
         <td>Primary identifier for a user. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to User objects. There can be a Post and User with the same ID; no relation is implied.</td>
@@ -358,7 +350,6 @@ Name|Type|Description
 `include_user_html`|integer (0 or 1)|Should the user `html` field be included alongside the `text` field in the response objects? Defaults to true. Note that `include_html` takes priority if present.
 `include_counts`|integer (0 or 1)|Include the user's counts. Defaults to true.
 `include_user`|integer (0 or 1)|Return the user as their complete object, or only as (string) ID if false. Defaults to true.
-`include_user_as_guid`|integer (0 or 1)|Return the user as their GUID only. Defaults to false.
 `include_presence`|integer (0 or 1)|Include the user's current presence. Defaults to false.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_user_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all user objects. Defaults to false.
