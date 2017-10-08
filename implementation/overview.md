@@ -1,9 +1,9 @@
 ## API
 
-#### Current Version: 0.7.1
+#### Current Version: 0.7.2
 #### API Root: `https://api.pnut.io/v0`
 
-*Last Updated 2017-09-10*
+*Last Updated 2017-09-30*
 
 Welcome to the documentation for the pnut.io API.
 

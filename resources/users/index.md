@@ -56,6 +56,10 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
     "posts": 19,
     "users": 1
   },
+  "badge": {
+    "id": "1",
+    "name": "Farmer"
+  },
   "follows_you": false,
   "you_blocked": false,
   "you_follow": false,
@@ -71,6 +75,33 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
         <th>Field</th>
         <th>Type</th>
         <th>Description</th>
+    </tr>
+
+    <tr>
+        <td><code>badge</code></td>
+        <td>object</td>
+        <td>
+            Optional. Badges are earned, currently only for supporting pnut.io.
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+
+                <tr>
+                    <td><code>id</code></td>
+                    <td>string</td>
+                    <td>Reference ID of the badge.</td>
+                </tr>
+
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Common name for the badge.</td>
+                </tr>
+            </table>
+        </td>
     </tr>
 
     <tr>

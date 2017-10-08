@@ -35,3 +35,5 @@ A JSON response will be returned in the form of:
 ```json
 {"access_token":ACCESS_TOKEN, "token":{...}, "user_id":USER_ID, "username":USERNAME}
 ```
+
+Every time a user is authorized using the password flow, they are sent an E-mail saying what client they were authorized for and what scopes.

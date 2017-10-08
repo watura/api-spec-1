@@ -17,7 +17,7 @@ The format of a `raw` JSON object is like so:
       ...
     }
   }
-]`
+]
 ```
 
 ### Inclusion
