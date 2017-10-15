@@ -1,5 +1,7 @@
 ### Clients
 
+Client name can contain any Unicode characters. *Be sure to escape it if necessary.*
+
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/clients [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-users-id-clients) {#get-users-id-clients .endpoint}
 

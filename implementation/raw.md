@@ -1,4 +1,4 @@
-## Raw
+### Raw
 
 
 Raw data is arbitrary data that can be attached to posts, users, channels, and messages. Clients can specify a `type` and a `value` for each item in the list of `raw` data.

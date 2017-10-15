@@ -1,4 +1,4 @@
-#### User Following
+### User Following
 
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/following [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-users-id-following) {#get-users-id-following .endpoint}

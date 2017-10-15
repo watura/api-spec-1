@@ -3,7 +3,7 @@
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-get">GET</span> /channels/messages/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-channels-messages-search) {#get-channels-messages-search .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/messages/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-channels-messages-search) {#get-channels-messages-search .endpoint}
 
 Retrieve a list of messages filtered by the given criteria.
 

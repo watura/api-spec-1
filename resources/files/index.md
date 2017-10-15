@@ -1,6 +1,7 @@
 ### Files
 
 
+#### Object
 
 ##### Click For Example [<i class="fa fa-paragraph" aria-hidden="true"></i>](#file) {#file .endpoint}
 
@@ -164,7 +165,7 @@
     <tr>
         <td><code>name</code></td>
         <td>string</td>
-        <td>A readable name of the file. Can be used descriptively or not. Up to 255 ASCII characters.</td>
+        <td>A readable name of the file. Can be used descriptively or not. Up to 256 Unicode characters.  <em>Be sure to escape if necessary.</em></td>
     </tr>
 
     <tr>
@@ -194,7 +195,7 @@
     <tr>
         <td><code>upload_parameters</code></td>
         <td>object</td>
-        <td>Included on creation of a file placeholder.
+        <td>Only included on creation of a file placeholder.
             <table>
                 <tr>
                     <th>Field</th>
@@ -220,7 +221,7 @@
     <tr>
         <td><code>derivative_files</code></td>
         <td>object</td>
-        <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> match specified parameters. For example:
+        <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> are reserved, though some are allowed if they match specified parameters. For example:
             <table>
                 <tr>
                     <th>Field</th>

@@ -16,7 +16,7 @@ Start by making this <span class="method method-get">GET</span> call:
 https://pnut.io/oauth/authenticate
 ?client_id=[client ID]
 &redirect_uri=[redirect URI]
-&scope=[space-delimited scopes]
+&scope=[comma-delimited scopes]
 &response_type=code
 ```
 
@@ -55,7 +55,7 @@ Start with this <span class="method method-get">GET</span>:
 https://pnut.io/oauth/authenticate
   ?client_id=[client ID]
   &redirect_uri=[redirect URI]
-  &scope=[space-delimited scopes]
+  &scope=[comma-delimited scopes]
   &response_type=token
 ```
     

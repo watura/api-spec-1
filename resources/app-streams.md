@@ -108,7 +108,7 @@ Must have a Content-Type of `application/json`.
 Field|Type|Description
 -|-|-
 `type`|string|The only value currently allowed is `long_poll`
-`object_types`|list|Comma-separated list of object types to listen for. Valid values are `post`, `bookmark`, `follow`, `mute`, `block`, `message`, `channel`, `channel_subscription`, `token`, and `user`.
+`object_types`|array|List of object types to listen for. Valid values are `post`, `bookmark`, `follow`, `mute`, `block`, `message`, `channel`, `channel_subscription`, `token`, `file`, and `user`.
 `key`|string|Optional name for the stream, instead of an automatically assigned numeric key. Alphanumeric and underscore allowed, 32 characters, unique for this app.
 
 ##### Example Call {.example-code}

@@ -1,4 +1,4 @@
-#### User Presence
+### User Presence
 
 A user's presence is the recent status of that user. Each updated presence lasts for 5 minutes, or until another status is given. Users who do not have a current status show up as "offline".
 
@@ -39,7 +39,7 @@ Returns a list of users' presences.
 
 Retrieve a user's presence.
 
-If the user has never set a presence, `last_seen_at` will not be included.
+If the user has never set a presence, `last_seen_at` will not be set.
 
 ##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-1) {#url-parameters-1}
 
@@ -62,7 +62,7 @@ Returns a user's current presence.
     "code": 200
   },
   "data": {
-    "id": 1,
+    "id": "1",
     "last_seen_at": "2016-12-22T19:39:38Z",
     "presence": "online"
   }
@@ -86,7 +86,7 @@ Name|Description
 
 Name|Description
 -|-
-`presence`|A string up to 64 characters. If not set, or if it is set to `1`, it will be updated to `"online"`. A value of `"offline"` or `0` will delete the user's presence and remove them from the [list of users online](#get-presence).
+`presence`|A string up to 64 unicode characters. If not set, or if it is set to `1`, it will be updated to `"online"`. A value of `"offline"` or `0` will delete the user's presence and remove them from the [list of users online](#get-presence).
 
 ##### Example Call {.example-code}
 

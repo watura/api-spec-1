@@ -1,4 +1,4 @@
-#### User Lookup
+### User Lookup
 
 
 #### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-users-id) {#get-users-id .endpoint}

@@ -1,6 +1,11 @@
 ### Posts
 
+#### Canonical Thread view
 
+Posts can be viewed in their thread from `https://pnut.io/@username/{post_id}`, and a short redirect via `https://posts.pnut.io/{post_id}`.
+
+
+#### Object
 
 ##### Click For Example [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post) {#post .endpoint}
 

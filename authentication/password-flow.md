@@ -23,10 +23,10 @@ Now make a <span class="method method-post">POST</span> call with what you now h
 curl "https://api.pnut.io/v0/oauth/access_token" \
   -d "client_id=[client ID]" \
   -d "password_grant_secret=[stand-in for the client secret]" \
-  -d "username=[username without the "@" or E-mail address]" \
+  -d "username=[username or E-mail address]" \
   -d "password=[account password OR one-time use password]" \
   -d "grant_type=password" \
-  -d "scope=[space or CSV scopes]" \
+  -d "scope=[comma-delimited scopes]" \
   -X POST
 ```
 

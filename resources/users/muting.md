@@ -1,4 +1,4 @@
-#### User Muting
+### User Muting
 
 Muting a user will prevent them from being visible to the muting user unless specifically requested.
 

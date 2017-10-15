@@ -4,7 +4,7 @@ For an explanation of how to attach files to other objects, read [How To File](.
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-post">POST</span> /files [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-files) {#post-files .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-post">POST</span> /files [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-files) {#post-files .endpoint}
 
 Create a file placeholder or a complete file. `type`, `kind`, and `name` are necessary. By default, the file will be private.
 
@@ -72,7 +72,7 @@ Returns the created file details
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id) {#put-files-id .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id) {#put-files-id .endpoint}
 
 Update a file. Only `name`, `is_public`, and `raw` can be updated. `PUT` and `PATCH` may be used.
 
@@ -151,7 +151,7 @@ Returns 204 on success
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id-content) {#put-files-id-content .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id-content) {#put-files-id-content .endpoint}
 
 Set a file placeholder's content.
 
@@ -179,7 +179,7 @@ Returns 204 on success
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#delete-files-id) {#delete-files-id .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#delete-files-id) {#delete-files-id .endpoint}
 
 Delete a file. This will not disassociate a file with any other objects (posts, messages...).
 

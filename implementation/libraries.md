@@ -38,7 +38,7 @@ Name|Description|Maintainer
 
 Name|Description|Maintainer
 -|-|-
-[PNUTpy](https://github.com/pnut-api/PNUTpy)|library|-
+[PNUTpy](https://github.com/pnut-api/PNUTpy)|library|[@thrrgilag](https://pnut.io/@thrrgilag)
 
 
 #### Swift

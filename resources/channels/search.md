@@ -3,7 +3,7 @@
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-get">GET</span> /channels/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-channels-search) {#get-channels-search .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-channels-search) {#get-channels-search .endpoint}
 
 Retrieve a list of channels filtered by the given criteria.
 

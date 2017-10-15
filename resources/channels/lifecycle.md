@@ -6,7 +6,7 @@ For details on how to use channels for private messaging, look at [How To Privat
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-post">POST</span> /channels [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-channels) {#post-channels .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> messages</span><span class="method method-post">POST</span> /channels [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-channels) {#post-channels .endpoint}
 
 Create a channel. `type` is necessary. ACLs must be valid. By default, all of it is editable after creating the channel! Be sure to restrict editing if you want to prevent it, and read [How to ACL](../../how-to/channels-acl).
 
@@ -135,7 +135,7 @@ Returns the created channel
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-channels-id) {#put-channels-id .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-channels-id) {#put-channels-id .endpoint}
 
 Update a channel. Channels are only editable if they have an ACL that is not `immutable`. Full-access users and the owner can edit a channel, but only the owner can change who is a full-access user. `PUT` and `PATCH` may be used.
 
@@ -259,7 +259,7 @@ Returns the updated channel
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#delete-channels-id) {#delete-channels-id .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#delete-channels-id) {#delete-channels-id .endpoint}
 
 Deactivate a channel. Only the owner of a channel can deactivate it. Deactivating a channel removes all subscriptions to the channel, but does nothing to the contents. It is irreversible. `io.pnut.core.pm`-type channels cannot be deactivated.
 

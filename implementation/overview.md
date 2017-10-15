@@ -1,11 +1,13 @@
 ## API
 
-#### Current Version: 0.7.2
+#### Current Version: 0.7.3
 #### API Root: `https://api.pnut.io/v0`
 
-*Last Updated 2017-09-30*
+*Last Updated 2017-10-14*
 
 Welcome to the documentation for the pnut.io API.
+
+__[Become a Developer](https://pnut.io/dev)__
 
 If this is your first time here, it is recommended that you become familiar with a few universal tools dictated here in the *Implementation* section, and then read through the areas of *Authentication* that you will want to use.
 
@@ -17,7 +19,7 @@ Note that user objects are included in JSON in the documentation frequently enou
 
 #### External Resources
 
-##### [Developer Chat](https://patter.chat/room.html?channel=18)
+##### [Developer Chat](https://patter.chat/room/18)
 
 You are welcome to talk over the API in the Developer Channel. Questions, requests, floating ideas--any development-related conversation is encouraged!
 
@@ -37,6 +39,6 @@ GitHub has a mirror of our API documentation. That is the recommended way to for
 A repository for object metadata to coordinate common channel and Raw types.
 
 
-##### [@testuser](https://pnut.io/@testuser)
+##### [@testuser](https://pnut.io/docs/dev_resources/testuser)
 
-If you are developing an app for iOS, PM [@pnutapi](https://pnut.io/@pnutapi) to get access to a testing account that Apple may review your app with.
+If you are developing an app for iOS, the @testuser account can be used for Apple Store reviewing.

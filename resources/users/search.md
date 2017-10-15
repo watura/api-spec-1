@@ -3,7 +3,7 @@
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> varies</span><span class="method method-get">GET</span> /users/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-users-search) {#get-users-search .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /users/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-users-search) {#get-users-search .endpoint}
 
 Retrieve a list of users filtered by the given criteria.
 

@@ -12,9 +12,16 @@ Unless otherwise specified, user identifiers can be any of the following:
 
 User IDs are preferred where convenient, because they take less effort and will never change (unlike usernames).
 
-Referring to usernames is not case-sensitive, but usernames will be returned from the API with the casing specified by the user when they created their account -- so comparisons should normalize them before comparing.
+Referring to usernames is not case-sensitive, but usernames will be returned from the API with the casing specified by the user -- so comparisons should normalize them before comparing.
 
 
+
+#### Canonical User Profiles
+
+Any user profile can be found at `https://pnut.io/@username`.
+
+
+#### Object
 
 ##### Click For Example [<i class="fa fa-paragraph" aria-hidden="true"></i>](#user) {#user .endpoint}
 
@@ -295,7 +302,7 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
     <tr>
         <td><code>name</code></td>
         <td>string</td>
-        <td>Optional user-supplied name. All Unicode characters allowed. Maximum length 50 characters.</td>
+        <td>Optional user-supplied name. All Unicode characters allowed. Maximum length 50 characters. <em>Be sure to escape if necessary.</em></td>
     </tr>
 
     <tr>
@@ -307,7 +314,7 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
     <tr>
         <td><code>type</code></td>
         <td>string</td>
-        <td>human, feed, or bot. See <a href="https://pnut.io/docs/resources/account_types">Account Types</a> to be sure of the implications.</td>
+        <td>human, feed, or bot. See <a href="https://pnut.io/docs/resources/account-types">Account Types</a> to be sure of the implications.</td>
     </tr>
 
     <tr>
