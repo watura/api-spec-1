@@ -17,7 +17,7 @@ If creating a complete file the Content-Type must be `multipart/form-data`, and 
 Name|Description
 -|-
 `content`|__Required__ (if uploading in a single step) Key of the uploaded file
-`kind`|__Required__ One of: `other`, `image` (for JPEG, GIF, PNG)
+`kind`|__Required__ One of: `other`, `image` (for JPEG, GIF, PNG), `audio` (for WAVE, MP3, FLAC. up to 52428800 bytes)
 `name`|__Required__ 256-character name or description (to be displayed and attached to the object; a random key will actually be assigned for the filename)
 `type`|__Required__ Reverse domain name-style identifier of the file type. E.g., `com.example.site`. Searchable
 `is_public`|If true, file is public
@@ -74,7 +74,7 @@ Returns the created file details
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id) {#put-files-id .endpoint}
 
-Update a file. Only `name`, `is_public`, and `raw` can be updated. `PUT` and `PATCH` may be used.
+Update a file's details. Only `name`, `is_public`, and `raw` can be updated. `PUT` and `PATCH` may be used.
 
 If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or for a while after via the cache. For this reason, never imply in an app that a public file might be made secure by making it private again.
 
@@ -153,7 +153,7 @@ Returns 204 on success
 
 #### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id-content) {#put-files-id-content .endpoint}
 
-Set a file placeholder's content.
+Set a file placeholder's content. You may only do this with an incomplete file.
 
 ##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-3) {#url-parameters-3}
 

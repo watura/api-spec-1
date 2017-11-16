@@ -4,7 +4,7 @@ Every call to the API sends three return headers informing the rate limit. These
 
 Authenticated requests are limited on a per-token basis. Uauthenticated calls (no valid token is used) are limited based on the IP address used.
 
-If a limit is hit, you must wait __600__ seconds before attempting again. The API will return an object with the seconds remaining in `['meta']['retry_in']`, until it resets.
+If a limit is hit, you must wait __600__ seconds before attempting again. The API will return an object with the seconds remaining in `meta.retry_in`, until it resets.
 
 Here are the three return headers:
 

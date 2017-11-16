@@ -15,11 +15,21 @@ If you want to retrieve data on behalf of your app, from a server, and not from 
 
 * [App Access Token](../authentication/app-access-token)
 
+### Fields
 
 #### Redirect URI
 
 Redirect URIs can be any valid URL, including IP addresses, with ports, etc.
 
-If a query string is included on the redirect URI you specify in the Developer management area for your client, then pnut will only authorize that specific redirect URI. If you do not specify a query parameter, any query parameter will be allowed.
+If a query string is included on the redirect URI you specify in the Developer management area for your client, then pnut will only authorize that specific redirect URI. If you do not specify a query parameter, any query parameters will be allowed.
 
-The special URI `urn:ietf:wg:oauth:2.0:oob` will redirect users to an HTML page  where they can retrieve the access token for development purposes, or to manually enter it into your app.
+The special URI `urn:ietf:wg:oauth:2.0:oob` will redirect users to an HTML page where they can retrieve the access token for development purposes, or to manually enter it into your app.
+
+
+#### Selective Revocation & Token Groups
+
+Users can deauthorize tokens for your app by the IP address used, the token group, or all tokens at once.
+
+Token groups are optional. To specify a name to group a new token with, include `?token_group={name}` in your authorization or authentication call in the web or password flows. If implementing this feature, you may want to allow users to specify the name themselves, or create a unique group name for your device, if you can determine the device to be the same.
+
+The name is limited to 64 bytes.

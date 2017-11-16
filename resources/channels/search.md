@@ -14,6 +14,7 @@ Name|Description
 `order`|One of activity or id. Default is by activity
 `categories`|Comma-separated list of: fun, lifestyle, profession, language, community, tech, event, general. Taken from `io.pnut.core.chat-settings` raw
 `channel_types`|Comma-separated list of channel types to include
+`raw_types`|Comma-separated list of attached raw types. Any matches returned
 `exclude_channel_types`|Comma-separated list of channel types to exclude
 `is_private`|If true, only include private channels
 `is_public`|If true, only include public-readable channels

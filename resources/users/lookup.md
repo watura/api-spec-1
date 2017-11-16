@@ -9,7 +9,7 @@ Retrieve a user object.
 
 Name|Description
 -|-
-`user_id`|*User ID or username with "@" symbol* of the user to retrieve
+`user_id`|User ID or username with "@" symbol of the user to retrieve
 
 ##### Example Call {.example-code}
 

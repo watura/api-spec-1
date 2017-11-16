@@ -1,4 +1,4 @@
-### Sys
+### System
 
 The System endpoint gives access to system-wide information.
 

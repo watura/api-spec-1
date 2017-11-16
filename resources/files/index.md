@@ -68,6 +68,33 @@
         <th>Type</th>
         <th>Description</th>
     </tr>
+    
+    <tr>
+        <td><code>audio_info</code></td>
+        <td>object</td>
+        <td>Included if <code>kind: audio</code>.
+
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+
+                <tr>
+                    <td><code>duration</code></td>
+                    <td>integer</td>
+                    <td>Length of audio in seconds.</td>
+                </tr>
+
+                <tr>
+                    <td><code>bitrate</code></td>
+                    <td>integer</td>
+                    <td>Bitrate in kbps.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 
     <tr>
         <td><code>created_at</code></td>
@@ -135,7 +162,7 @@
     <tr>
         <td><code>kind</code></td>
         <td>string</td>
-        <td>Valid options are <code>image</code> and <code>other</code>. <code>image</code>-type must have a Content-Type of <code>image/png</code>, <code>image/gif</code>, or <code>image/jpeg</code> or <code>image/jpg</code>.</td>
+        <td>Valid options are <code>audio</code>, <code>image</code>, and <code>other</code>. <code>audio</code> is currently limited to 52428800 byte files.</td>
     </tr>
 
     <tr>
@@ -159,7 +186,7 @@
     <tr>
         <td><code>mime_type</code></td>
         <td>string</td>
-        <td>The mime-encoding of the file.</td>
+        <td>Optional. Mime-encoding of the file. If the API doesn't see your file as a valid <code>kind</code>, you will have to set this. For <code>kind: image</code>: <code>image/png</code>, <code>image/gif</code>, <code>image/jpeg</code>, <code>image/jpg</code>. For <code>kind: audio</code>: <code>audio/mpeg</code>, <code>audio/wav</code>, <code>audio/x-wav</code>, <code>audio/wave</code>, <code>audio/flac</code>, <code>audio/x-flac</code>.</td>
     </tr>
 
     <tr>
@@ -221,7 +248,7 @@
     <tr>
         <td><code>derivative_files</code></td>
         <td>object</td>
-        <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> are reserved, though some are allowed if they match specified parameters. For example:
+        <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> are reserved. Reserved keys are allowed if they match specified parameters. For example:
             <table>
                 <tr>
                     <th>Field</th>
@@ -320,5 +347,6 @@ Name|Type|Description
 `include_incomplete`|integer (0 or 1)|Include incomplete files. Only applicable to the user's file stream. Defaults to true.
 `include_private`|integer (0 or 1)|Include private files. Only applicable to the user's file stream. Defaults to true.
 `file_types`|string|Comma-separated list of file types to retrieve. Only applicable to the user's file stream. If not included, will return any files the app is authorized to view.
+`exclude_file_types`|string|Comma-separated list of file types not to retrieve. Only applicable to the user's file stream. Ignored if `file_types` set.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_file_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all file objects. Defaults to false.

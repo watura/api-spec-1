@@ -2,7 +2,7 @@
 
 #### Canonical Thread view
 
-Posts can be viewed in their thread from `https://pnut.io/@username/{post_id}`, and a short redirect via `https://posts.pnut.io/{post_id}`.
+Posts can be viewed in their thread from `https://beta.pnut.io/@username/{post_id}`, and a short redirect via `https://posts.pnut.io/{post_id}`.
 
 
 #### Object

@@ -18,7 +18,7 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
 
 #### Canonical User Profiles
 
-Any user profile can be found at `https://pnut.io/@username`.
+Any user profile can be found at `https://beta.pnut.io/@username`.
 
 
 #### Object

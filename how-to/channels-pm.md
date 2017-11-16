@@ -27,9 +27,13 @@ curl "https://api.pnut.io/v0/channels/pm/messages" \
     -X POST
 ```
 
-    
-    
-In every other way, they can be treated like any other channels and messages. Note that the "owner's" ID will not be in the write-access ACL, but they will not function any differently from anyone else.  
+In every other way, they can be treated like any other channels and messages. Note that the "owner's" ID will not be in the write-access ACL, but they will not function any differently from anyone else.
+
+
+#### Existing PM Channels
+
+If you want to see a PM channel between specific users without sending a message, you can use the [Existing PM endpoint](../resources/channels/lookup#get-users-me-channels-existing_pm) to find the channel ID.
+
 
 #### ACL
     

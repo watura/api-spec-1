@@ -52,7 +52,7 @@ curl "https://api.pnut.io/v0/posts?include_post_raw=1" \
     \"type\": \"io.pnut.core.oembed\",
     \"value\": {
       \"+io.pnut.core.file\": {
-        \"file_id\": ${POST_ID},
+        \"file_id\": ${FILE_ID},
         \"file_token\": ${FILE_TOKEN},
         \"format\": \"oembed\"
       }

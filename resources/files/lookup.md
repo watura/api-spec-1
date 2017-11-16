@@ -1,6 +1,6 @@
 ### File Lookup
 
-To only retrieve files by certain types, include them in a comma-separated list in the query parameter like so: `file_types=com.butternutsquash.image,com.example.site`.
+
 
 
 

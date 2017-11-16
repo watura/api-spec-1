@@ -25,6 +25,7 @@ Name|Description|Maintainer
 [pnut.js](https://github.com/pnut-api/pnut.js)|library|-
 [pnut-to-markdown](https://github.com/kaiwood/pnut-to-markdown)|package to convert HTML content back to raw input text (pre-markdown rendering)|[@kwood](https://pnut.io/@kwood)
 [stpnut](https://github.com/shawnthroop/stpnut)|module for monitoring an App Stream|[@shawn](https://pnut.io/@shawn)
+[passport-pnut](https://github.com/33mhz/passport-pnut)|Passport.js strategy|[@33MHz](https://pnut.io/@kwood)
 
 
 #### PHP

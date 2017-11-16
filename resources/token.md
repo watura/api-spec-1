@@ -7,6 +7,8 @@ Interactions with the authenticated token
 
 Retrieve an object with the currently authenticated token, username, and user ID.
 
+Includes `data.email` if `email` scope is authorized.
+
 ##### Example Call {.example-code}
 
 ```bash

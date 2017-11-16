@@ -204,8 +204,8 @@ Any endpoint that returns message objects can be subject to these parameters.
 Name|Type|Description
 -|-|-
 `include_deleted`|integer (0 or 1)|Include deleted messages. Defaults to true.
+`include_html`|integer (0 or 1)|Should the message and user `html` field be included alongside the `text` field in the response objects? Defaults to true.
+`include_message_html`|integer (0 or 1)|Should the message `html` field be included alongside the `text` field in the response objects? Defaults to true. Note that `include_html` takes priority if present.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_message_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all message objects. Defaults to false.
-`include_html`|integer (0 or 1)|Should the post and user `html` field be included alongside the `text` field in the response objects? Defaults to true.
-`include_message_html`|integer (0 or 1)|Should the user `html` field be included alongside the `text` field in the response objects? Defaults to true. Note that `include_html` takes priority if present.
 `include_client`|integer (0 or 1)|Include the client object with the post. Defaults to true.

@@ -3,9 +3,9 @@
 
 Raw data is arbitrary data that can be attached to posts, users, channels, and messages. Clients can specify a `type` and a `value` for each item in the list of `raw` data.
 
-Only specified `type`s are verified by the server. Otherwise, clients will have to double-check the data to be sure clients that wrote them did so as expected.
+Only specified types are verified by the server. Otherwise, clients will have to double-check the data to be sure clients that wrote them did so as expected.
 
-The total contents of the `raw` serialized JSON object can be up to 8192 bytes. Because items may already exist on a user or channel, you must check to make sure you will have space before adding to the existing data.
+The total contents of the `raw` serialized JSON object can be up to 8192 bytes. Because items may already exist on mutable objects, you must check to make sure you will have space before adding to the existing data.
 
 The format of a `raw` JSON object is like so:
 
@@ -14,23 +14,54 @@ The format of a `raw` JSON object is like so:
   {
     "type": "TYPE_NAME",
     "value": {
-      ...
+      "YOUR_KEYS": "YOUR DATA"
     }
   }
 ]
 ```
 
+
+
 ### Inclusion
 
-By default across the network, `raw` is not included, and you must request it by setting query parameters:
+By default across the network, `raw` is not included on objects, and you must request it by setting query parameters:
 
 * `include_raw=1`
 * `include_user_raw=1`
 * `include_channel_raw=1`
 * `include_message_raw=1`
 * `include_post_raw=1`
+* `include_file_raw=1`
 
-If any relevant parameter is set to `1`, it will be included for the object and any children.
+If any relevant parameter is set to `1`, it will be included for the object and any children. It is preferable to not include something if you do not use it.
+
+
+
+### Mutability &amp; Duplicates
+
+Raw data attached to posts and messages is *immutable*. It must be attached on creation of the post or message, and cannot be changed afterwards. Because they are immutable, posts and messages can have multiple raw items of the same type, where channels, files, and users can only have one of a type.
+
+User, channel, and file objects have mutable raw data.
+
+
+
+### Deleting Mutable Items
+
+To delete a mutable item, include the `type` but do not include the `value`.
+
+
+
+### Core Types
+
+Any `type` starting with `io.pnut.core` is checked by the server for validity, to an extent. Be sure to match their requirements when creating core channel types or `raw` data types.
+
+If a submission is not valid, the whole post/message creation or channel/user update will be halted, and an error message will be returned in the `meta`.
+
+Community-defined types and core types can be referenced on our [object-metadata GitHub repository](https://github.com/pnut-api/object-metadata).
+
+
+
+### Example
 
 ##### Example Post Creation {.example-code}
 
@@ -59,7 +90,6 @@ curl "https://api.pnut.io/v0/posts?include_post_raw=1" \
   },
   "data": {
     "created_at": "2016-12-11T18:14:12Z",
-    "guid": "E0C85794-D8E8-44CA-90F2-E34D8CA1A96D",
     "id": "2384",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
@@ -93,84 +123,6 @@ curl "https://api.pnut.io/v0/posts?include_post_raw=1" \
         }
       }
     ]
-  }
-}
-```
-
-
-
-### Mutability &amp; Duplicates
-
-Raw data attached to posts and messages is *immutable*. It must be attached on creation of the post or message, and cannot be changed afterwards. Because they are immutable, posts and messages can have multiple raw items of the same type, where channels and users can only have one of a type.
-
-User and channel objects have mutable raw data.
-
-
-
-### Core Types
-
-Any `type` starting with `io.pnut.core` is checked by the server for validity, to an extent. Be sure to match their requirements when creating core channel types or `raw` data types.
-
-If a submission is not valid, the whole post/message creation or channel/user update will be halted, and an error message will be returned in the `meta`.
-
-Community-defined types can be referenced on our [object-metadata GitHub repository](https://github.com/pnut-api/object-metadata), and core types should will also be defined there over time.
-
-#### Samples of Core Channel Types
-
-Cover Image
-
-```json
-{
-  "type": "io.pnut.core.cover",
-  "value": {
-    "link": \'URL_TO_COVER_IMAGE\',
-    "width": 200,
-    "height": 200
-  }
-}
-```
-
-Chat Room (required on a `io.pnut.core.chat`-type channel)
-
-```json
-{
-  "type": "io.pnut.core.chat-settings",
-  "value": {
-    "name": "Frederick\'s Music Lounge",
-    "description": "A musical interlude.",
-    "categories": ["community"]
-  }
-}
-```
-
-
-
-
-#### Post &amp; Message Types
-
-io.pnut.core.language
-
-```json
-{
-  "type": "io.pnut.core.language",
-  "value": {
-    "language": "en"
-  }
-}
-```
-
-io.pnut.core.oembed
-
-```json
-{
-  "type": "io.pnut.core.oembed",
-  "value": {
-    "type": "photo",
-    "version": "1.0",
-    "width": "1959",
-    "height": "2048",
-    "url": "https://farm1.staticflickr.com/662/21926292752_b4ab223fcc_k_d.jpg",
-    "title": "Apollo 9 Hasselblad image from film magazine 20/E - Earth orbit, EVA"
   }
 }
 ```

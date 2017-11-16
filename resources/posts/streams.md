@@ -310,7 +310,7 @@ Returns a list of posts.
 
 Posts created by the specified user.
 
-If a user looks up a blocked or muted user, their posts will still be retrieved.
+If a user looks up a user they blocked or muted, the posts will still be retrieved.
 
 ##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-2) {#url-parameters-2}
 
@@ -499,7 +499,7 @@ Returns a list of posts.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /posts/tag/<span class="call-param">{tag}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-posts-tag-tag) {#get-posts-tag-tag .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /posts/tags/<span class="call-param">{tag}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-posts-tags-tag) {#get-posts-tags-tag .endpoint}
 
 A stream of all posts that include the specified `tag`.
 
@@ -512,7 +512,7 @@ Name|Description
 ##### Example Call {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/tag/MondayNightDanceParty?count=2" \
+curl "https://api.pnut.io/v0/posts/tags/MondayNightDanceParty?count=2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}"
 ```
 

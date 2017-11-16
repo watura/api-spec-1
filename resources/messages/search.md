@@ -27,6 +27,7 @@ Name|Description
 `reply_to`|Only include messages replying to this message
 `thread_id`|Only include messages in this thread
 `user_types`|Comma-separated list of user types of: human, feed, bot
+`raw_types`|Comma-separated list of attached raw types. Any matches returned
 
 ##### Example Call {.example-code}
 
