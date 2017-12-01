@@ -41,6 +41,10 @@ Current limitations:
 
 Sent when any post is created, reposted, revised, or deleted.
 
+Reposts will send the newly created or deleted repost.
+
+Newly revised posts will include `meta.revision`.
+
 ```json
 
 ```

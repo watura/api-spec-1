@@ -57,4 +57,6 @@ There are two special file scopes: `files:core_audio` gives access to all files 
 
 When the `email` scope is authorized, the user's tokens will include their email.
 
+`email` cannot be authorized for the first time through Password Flow.
+
 App Streams do not notify of E-mail address changes.

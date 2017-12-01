@@ -162,7 +162,7 @@
     <tr>
         <td><code>kind</code></td>
         <td>string</td>
-        <td>Valid options are <code>audio</code>, <code>image</code>, and <code>other</code>. <code>audio</code> is currently limited to 52428800 byte files.</td>
+        <td>Valid options are <code>audio</code>, <code>image</code>, and <code>other</code>. <code>audio</code> is currently limited to 52428800-byte files (32MiB). See <a href="#mime-types">Mime Types</a> for explanation.</td>
     </tr>
 
     <tr>
@@ -186,7 +186,7 @@
     <tr>
         <td><code>mime_type</code></td>
         <td>string</td>
-        <td>Optional. Mime-encoding of the file. If the API doesn't see your file as a valid <code>kind</code>, you will have to set this. For <code>kind: image</code>: <code>image/png</code>, <code>image/gif</code>, <code>image/jpeg</code>, <code>image/jpg</code>. For <code>kind: audio</code>: <code>audio/mpeg</code>, <code>audio/wav</code>, <code>audio/x-wav</code>, <code>audio/wave</code>, <code>audio/flac</code>, <code>audio/x-flac</code>.</td>
+        <td>Optional. Mime encoding of the file. See <a href="#mime-types">Mime Types</a> for details.</td>
     </tr>
 
     <tr>
@@ -350,3 +350,40 @@ Name|Type|Description
 `exclude_file_types`|string|Comma-separated list of file types not to retrieve. Only applicable to the user's file stream. Ignored if `file_types` set.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_file_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all file objects. Defaults to false.
+
+
+#### Mime Types [<i class="fa fa-paragraph" aria-hidden="true"></i>](#mime-types) {#mime-types}
+
+`kind` and `mime_type` must be coordinated.
+
+Both are optional when uploading a file in one step.
+
+If creating a file placeholder and uploading later, `kind` is required on creation, and `mime_type` is optional on file upload.
+
+* If you specify both, it will return an error if they do not match.
+* If you do not specify either, the API will interpret `mime_type` and assign `kind` based on what it finds.
+* If you only specify `kind`, the API will interpret `mime_type` and return an error if they do not match.
+* If you only specify `mime_type`, the API will assign `kind` based on `mime_type`.
+
+Multiple mime types are accepted for some file types, but they will be normalized and recorded as a single mime type listed in the charts below.
+
+##### Audio
+
+Files with `kind: audio` must have the following `mime_type`:
+
+File Type|`mime_type`|Also accepted
+-|-|-
+MP3|audio/mpeg|audio/mp3
+MP4|audio/mp4|audio/m4a, audio/x-m4a
+WAV|audio/wave|audio/wav, audio/x-wav, audio/x-pn-wav
+FLAC|audio/flac|audio/x-flac
+
+##### Image
+
+Files with `kind: image` must have the following `mime_type`:
+
+File Type|`mime_type`|Also accepted
+-|-|-
+PNG|image/png|
+JPEG|image/jpeg|image/jpg
+GIF|image/gif|

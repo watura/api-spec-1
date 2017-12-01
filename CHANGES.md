@@ -2,6 +2,7 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 
 ### <i class="fa fa-rss fa-lg" aria-hidden="true"></i> <span class="orange">Changes</span>
 
+* [0.7.5](#0.7.5)
 * [0.7.4](#0.7.4)
 * [0.7.3](#0.7.3)
 * [0.7.2](#0.7.2)
@@ -20,8 +21,33 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 * [0.3.0](#0.3.0)
 
 
-#### [2017-11-16](#0.7.4) v0.7.4 {#0.7.4}
 
+#### [2017-11-30](#0.7.5) v0.7.5 {#0.7.5}
+
+##### Features
+
+* Pnut.io account area translations
+* New Privacy page includes mutes, blocks, and new function to limit who can create new private message channels with you
+* Bookmark E-mail notifications option for pnut badge supporters
+* App Streams support `raw` by setting appropriate query parameters on the websocket link
+
+##### Changes
+
+* Developer client "tokens" are no longer a thing; instead, new clients can be made by developers after a certain period
+* `kind` is no longer required on file upload; you may juggle whether to specify `kind`, `mime_type`, neither, both
+* `locale` limited to smaller list; more locales should be added on demand and as supportable
+* `email` scope is not authorizable over Password Flow, to prevent possible privacy concern
+* Link entity parsing adjusted (now includes links preceded by parenthesis)
+* Message streams now allow negative `count` (`?count=-4`)
+* App Streams now can differentiate between revised, reposted, and newly created or deleted posts
+
+##### Fixes
+
+* Numerous possible edge cases with app streams returning partial objects
+
+
+
+#### [2017-11-16](#0.7.4) v0.7.4 {#0.7.4}
 
 ##### Features
 

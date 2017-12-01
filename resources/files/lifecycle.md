@@ -72,11 +72,11 @@ Returns the created file details
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id) {#put-files-id .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-patch">PATCH</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id) {#put-files-id .endpoint}
 
-Update a file's details. Only `name`, `is_public`, and `raw` can be updated. `PUT` and `PATCH` may be used.
+Update a file's details. Only `name`, `is_public`, and `raw` can be updated.
 
-If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or for a while after via the cache. For this reason, never imply in an app that a public file might be made secure by making it private again.
+If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or for a while after via the cache. To make a public file secure again, delete it and upload it again as a new file.
 
 ##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters) {#url-parameters}
 
