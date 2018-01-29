@@ -2,101 +2,15 @@
 
 #### Canonical Thread view
 
-Posts can be viewed in their thread from `https://beta.pnut.io/@username/{post_id}`, and a short redirect via `https://posts.pnut.io/{post_id}`.
+Posts can be viewed in their thread via a short redirect at `https://posts.pnut.io/{post_id}`.
 
 
 #### Object
 
-##### Click For Example [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post) {#post .endpoint}
-
-```json
-{
-  "created_at": "2016-11-20T01:17:57Z",
-  "id": "2301",
-  "source": {
-    "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
-    "link": "http://xyz.s3rv.com",
-    "name": "Broadsword"
-  },
-  "user": {
-    "id": "9",
-    "created_at": "2016-09-10T20:04:47Z",
-    "locale": "en_US",
-    "timezone": "America/Los_Angeles",
-    "type": "human",
-    "username": "thrrgilag",
-    "name": "Morgan McMillian",
-    "content": {
-      "text": "I usually just make software work but on occasion I\'ll make actual software. Links to my various social profiles are found on my homepage.\r\n\r\nxmpp: thrrgilag@monkeystew.net",
-      "html": "<span itemscope=\"https://pnut.io/schemas/Post\">I usually just make software work but on occasion I&#039;ll make actual software. Links to my various social profiles are found on my homepage.\r\n\r\nxmpp: thrrgilag@monkeystew.net</span>",
-      "entities": {
-        "links": [],
-        "mentions": [],
-        "tags": []
-      },
-      "avatar_image": {
-        "height": 178,
-        "width": 178,
-        "link": "https://d26y28lt6cxszo.cloudfront.net/avatar/QRICId7zjKVkwFxlZYwW9ER_cLvoyx1uuZ_9lgQSoPcZDITkPTCAAzGcJRHt84WrdgowKjgLIsz7shHcQyktzKKaNsHHhBxhaW6n8UHIsyZqDPmM_ljj5hnkiOYGrNZS1ncbbJS0cjCz",
-        "is_default": false
-      },
-      "cover_image": {
-        "height": 223,
-        "width": 960,
-        "link": "https://d26y28lt6cxszo.cloudfront.net/cover/222edb68f1eba7502b81571e3fedf53f7e87261b816cdfc485c71630f26204c7775bb36cf62c5744eacf2d48a18c6f0e2cfe196b4e7977f618dc8c3f0e03ba5dc27fab42c9ee",
-        "is_default": false
-      }
-    },
-    "counts": {
-      "bookmarks": 16,
-      "clients": 4,
-      "followers": 18,
-      "following": 23,
-      "posts": 399,
-      "users": 0
-    },
-    "verified": {
-      "domain": "monkeystew.org",
-      "link": "https://monkeystew.org"
-    },
-    "follows_you": true,
-    "you_blocked": false,
-    "you_follow": false,
-    "you_muted": false,
-    "you_can_follow": true
-  },
-  "reply_to": "2300",
-  "thread_id": "2297",
-  "counts": {
-    "bookmarks": 0,
-    "reposts": 0,
-    "replies": 1,
-    "threads": 0
-  },
-  "content": {
-    "text": "@33MHz hmmm, what if we just cut back on the pizza and just do beer?",
-    "html": "<span itemscope=\"https://pnut.io/schemas/Post\"><span data-mention-id=\"1\" data-mention-name=\"33MHz\" itemprop=\"mention\">@33MHz</span> hmmm, what if we just cut back on the pizza and just do beer?</span>",
-    "entities": {
-      "links": [],
-      "mentions": [
-        {
-          "id": "1",
-          "len": 6,
-          "pos": 0,
-          "text": "33MHz",
-          "is_leading": true
-        }
-      ],
-      "tags": []
-    }
-  },
-  "you_bookmarked": false,
-  "you_reposted": false
-}
-```
+[Use live API calls for an example of the object.](/docs/api/resources/posts/lookup#get-posts-id)
 
 
-#### Fields [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-fields) {#post-fields}
+#### Fields [<i class="fas fa-paragraph"></i>](#post-fields) {#post-fields}
 
 <table>
     <tr>
@@ -158,7 +72,7 @@ Posts can be viewed in their thread from `https://beta.pnut.io/@username/{post_i
     <tr>
         <td><code>user</code></td>
         <td>object</td>
-        <td>This is an embedded <a href="https://pnut.io/docs/api/resources/users">User</a> object. Note: In certain cases (e.g., when a user account has been deleted), this key may be omitted.</td>
+        <td>This is an embedded <a href="users">User</a> object. Note: In certain cases (e.g., when a user account has been deleted), this key may be omitted.</td>
     </tr>
 
     <tr>
@@ -245,7 +159,7 @@ Posts can be viewed in their thread from `https://beta.pnut.io/@username/{post_i
                 <tr>
                     <td><code>entities</code></td>
                     <td>object</td>
-                    <td>Rich text information for this post. See the <a href="https://pnut.io/docs/api/implementation/entities">Entities</a> documentation.</td>
+                    <td>Rich text information for this post. See the <a href="../implementation/entities">Entities</a> documentation.</td>
                 </tr>
 
                 <tr>
@@ -272,7 +186,7 @@ Posts can be viewed in their thread from `https://beta.pnut.io/@username/{post_i
 
 
 
-#### General Post Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#general-post-parameters) {#general-post-parameters}
+#### General Post Parameters [<i class="fas fa-paragraph"></i>](#general-post-parameters) {#general-post-parameters}
 
 Any endpoint that returns post objects can be subject to these parameters.
 

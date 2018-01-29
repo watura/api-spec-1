@@ -1,7 +1,9 @@
 Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi/posts)
 
-### <i class="fa fa-rss fa-lg" aria-hidden="true"></i> <span class="orange">Changes</span>
+### <i class="fas fa-rss fa-lg"></i> <span class="orange">Changes</span>
 
+* [0.7.7](#0.7.7)
+* [0.7.6](#0.7.6)
 * [0.7.5](#0.7.5)
 * [0.7.4](#0.7.4)
 * [0.7.3](#0.7.3)
@@ -19,6 +21,48 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 * [0.4.1](#0.4.1)
 * [0.4.0](#0.4.0)
 * [0.3.0](#0.3.0)
+
+
+
+#### [2018-01-14](#0.7.7) v0.7.7 {#0.7.7}
+
+##### Features
+
+* API Documentation app can be authorized, allowing you to make API calls from documentation and see the response live. The examples are editable on-page
+
+##### Changes
+
+* Link parsing improvements
+* Adjusted notification email timing
+* Post and message URI Templates must use `{object_id}` instead of `{post_id}` in links
+* Documentation includes type of access token required for endpoints (app vs user)
+
+##### Fixes
+
+* Failed login went to MFA login
+* `content.html` now begins with `<span itemscope itemtype="https://pnut.io/schemas/Post">` instead of `<span itemscope itemtype="https://pnut.io/schemas/Post">` to follow [microdata spec](http://schema.org/docs/gs.html#microdata_itemscope_itemtype)
+
+
+
+#### [2017-12-10](#0.7.6) v0.7.6 {#0.7.6}
+
+This is a bug fix update to pnut.io.
+
+##### Features
+
+* Option to require OTP passwords for password flow authentications
+
+##### Changes
+
+* One-Time Passwords now create a short random string for a name, instead of user input
+* More clarity on profile update form
+* MFA login now allows "Remember login" cookie but requires the TOTP code. A failed attempt or leaving the page will unset the "Remember login" cookie.
+* Web Flows and Password Flow return much more specific feedback when something is not set properly
+
+##### Fixes
+
+* Password form validation required a digit and uppercase, which is not supposed to be required anymore
+* Failed MFA login would redirect to the normal login without client authorization details, if they had been set
 
 
 

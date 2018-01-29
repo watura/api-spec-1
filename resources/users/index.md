@@ -2,7 +2,7 @@
 
 
 
-#### General User Identifiers [<i class="fa fa-paragraph" aria-hidden="true"></i>](#general-user-identifiers) {#general-user-identifiers}
+#### General User Identifiers [<i class="fas fa-paragraph"></i>](#general-user-identifiers) {#general-user-identifiers}
 
 Unless otherwise specified, user identifiers can be any of the following:
 
@@ -18,64 +18,15 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
 
 #### Canonical User Profiles
 
-Any user profile can be found at `https://beta.pnut.io/@username`.
+Any user profile can be found at `https://pnut.io/@username`.
 
 
 #### Object
 
-##### Click For Example [<i class="fa fa-paragraph" aria-hidden="true"></i>](#user) {#user .endpoint}
+[Use live API calls for an example of the object.](/docs/api/resources/users/lookup#get-users-id)
 
-```json
-{
-  "id": "2",
-  "created_at": "2016-09-10T12:41:21Z",
-  "locale": "en_US",
-  "timezone": "America/Chicago",
-  "type": "human",
-  "username": "Wife",
-  "name": "Anna",
-  "content": {
-    "text": "We\'re getting outta this madhouse",
-    "html": "<span itemscope=\"https://pnut.io/schemas/Post\">We\'re getting outta this madhouse</span>",
-    "entities": {
-      "links": [],
-      "mentions": [],
-      "tags": []
-    },
-    "avatar_image": {
-      "height": 1456,
-      "width": 1456,
-      "link": "https://d26y28lt6cxszo.cloudfront.net/avatar/rv0ORwZMYgadj74hz0eotcUuGZKKYy2O7CuplRFsrb3yo_T-TD1UYmo7j3brXq8K-VmRkv9pLRovHp1i25X7ZNO_Joo-ATXlcnIPmRehZLLyPC7LEuN5UGHetqV9qcYkHTcPzAVNgSIM",
-      "is_default": false
-    },
-    "cover_image": {
-      "height": 223,
-      "is_default": true,
-      "link": "https://d26y28lt6cxszo.cloudfront.net/cover/default_cover",
-      "width": 960
-    }
-  },
-  "counts": {
-    "bookmarks": 1,
-    "clients": 0,
-    "followers": 9,
-    "following": 18,
-    "posts": 19,
-    "users": 1
-  },
-  "badge": {
-    "id": "1",
-    "name": "Farmer"
-  },
-  "follows_you": false,
-  "you_blocked": false,
-  "you_follow": false,
-  "you_muted": false,
-  "you_can_follow": true
-}
-```
 
-#### User Fields [<i class="fa fa-paragraph" aria-hidden="true"></i>](#user-fields) {#user-fields}
+#### User Fields [<i class="fas fa-paragraph"></i>](#user-fields) {#user-fields}
 
 <table>
     <tr>
@@ -201,7 +152,7 @@ Any user profile can be found at `https://beta.pnut.io/@username`.
                 <tr>
                     <td><code>entities</code></td>
                     <td>object</td>
-                    <td>Rich text information for this user. See the <a href="https://pnut.io/docs/api/implementation/entities">Entities</a> documentation.</td>
+                    <td>Rich text information for this user. See the <a href="../implementation/entities">Entities</a> documentation.</td>
                 </tr>
 
                 <tr>
@@ -376,7 +327,7 @@ Any user profile can be found at `https://beta.pnut.io/@username`.
 
 
 
-#### General User Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#general-user-parameters) {#general-user-parameters}
+#### General User Parameters [<i class="fas fa-paragraph"></i>](#general-user-parameters) {#general-user-parameters}
 
 Any endpoint that returns user objects (including any that return post objects, message objects, etc.) can be subject to these parameters.
 
@@ -394,7 +345,7 @@ Name|Type|Description
 
 
 
-#### Locales [<i class="fa fa-paragraph" aria-hidden="true"></i>](#locales) {#locales}
+#### Locales [<i class="fas fa-paragraph"></i>](#locales) {#locales}
 
 Below is a list of accepted user locales. To have more supported, make a feature request to [the API GitHub repository](https://github.com/pnut-api/api-spec). We would like to have translations of all of these for pnut.io account management. You make make pull requests to https://github.com/pnut-api/pnutio-localizations.
 
@@ -404,7 +355,7 @@ ar_SA, bg_BG, cs_CZ, da_DK, de_DE, en_GB, en_US, es_ES, fi_FI, fr_FR, gl_ES, hu_
 
 
 
-#### Timezones [<i class="fa fa-paragraph" aria-hidden="true"></i>](#timezones) {#timezones}
+#### Timezones [<i class="fas fa-paragraph"></i>](#timezones) {#timezones}
 
 Below is a list of accepted user timezones.
 

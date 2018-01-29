@@ -3,11 +3,11 @@
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /users/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-users-search) {#get-users-search .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/search [<i class="fas fa-paragraph"></i>](#get-users-search) {#get-users-search .endpoint}
 
 Retrieve a list of users filtered by the given criteria.
 
-##### Query Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#query-parameters-1) {#query-parameters-1}
+##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-
@@ -17,15 +17,16 @@ Name|Description
 `timezone`|Timezone in tzinfo format
 `types`|Comma-separated list of user types of: human, feed, bot
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/users/search?q=news&types=feed" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}"
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1"
 ```
 
 Returns a list of users
 
 ```json
-
+"call for example 1"
 ```

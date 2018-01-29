@@ -1,19 +1,24 @@
 ## API
 
-#### Current Version: 0.7.5 [(Changes)](../changes)
-#### API Root: `https://api.pnut.io/v0`
+#### Current Version: 0.7.7 [(Changes)](../changes)
+#### API Root: https://api.pnut.io/v0
 
-*Last Updated 2017-11-30*
+*Last Updated 2018-01-14*
 
 Welcome to the documentation for the pnut.io API.
 
 __[Become a Developer](https://pnut.io/dev)__
 
-If this is your first time here, it is recommended that you become familiar with a few universal tools dictated here in the *Implementation* section, and then read through the areas of *Authentication* that you will want to use.
+If this is your first time here, it is recommended that you become familiar the *Implementation* section and then read *Authentication* and determine what scopes and strategy you will want to use.
 
-The *How To* section has some examples and explanation of more nuanced situations.
+The *How To* section has some examples and explanation of some common situations.
 
-Note that user objects are included in JSON in the documentation frequently enough that they are simply included as `{...}`, except in the user sections specifically requesting user objects.
+
+#### Notes on Examples
+
+cURL examples can be edited on-page (they have the HTML5 `contenteditable` property). To call the API from the docs and see the cURL responses live, you must log in and authorize the API Documentation app linked from each example.
+
+The button in the top-right of the page collapses and expands all endpoints. A page linked directly to a targetted endpoint will only have that endpoint expanded. When the page loads, all endpoints are locked in their expanded or collapsed display. Toggling the button will allow you to open and close endpoints by clicking their title.
 
 
 

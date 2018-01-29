@@ -4,7 +4,7 @@ For an explanation of how to attach files to other objects, read [How To File](.
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-post">POST</span> /files [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-files) {#post-files .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-post">POST</span> /files [<i class="fas fa-paragraph"></i>](#post-files) {#post-files .endpoint}
 
 Create a file placeholder or a complete file. `type`, `kind`, and `name` are necessary. By default, the file will be private.
 
@@ -12,7 +12,7 @@ If creating a file placeholder, it can be form data or a Content-Type of `applic
 
 If creating a complete file the Content-Type must be `multipart/form-data`, and the `content` key must be the file.
 
-##### POST Body Data [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-body-data-1) {#post-body-data-1}
+##### POST Body Data [<i class="fas fa-paragraph"></i>](#post-body-data-1) {#post-body-data-1}
 
 Name|Description
 -|-
@@ -27,7 +27,7 @@ Name|Description
 `{name}` + `_image_thumb_960r`|Key for custom derived thumbnail, within 640 width and 960 height. If an uploaded image has smaller proportions, one will not be created automatically.
 
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/files" \
@@ -38,53 +38,31 @@ curl "https://api.pnut.io/v0/files" \
   \"name\":\"That Thing!\",
   \"kind\":\"other\"
 }" \
-    -X POST
+    -X POST \
+    -H "X-Pretty-Json: 1"
 ```
 
 Returns the created file details
 
 ```json
-{
-  "meta": {
-    "code": 201
-  },
-  "data": {
-    "id": "72",
-    "is_public": false,
-    "created_at": "2017-07-25T15:14:42Z",
-    "name": "That Thing!",
-    "source": {
-      "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
-      "link": "https://broadsword.io",
-      "name": "Broadsword"
-    },
-    "type": "com.example.site",
-    "is_complete": false,
-    "kind": "other",
-    "user": {...},
-    "upload_parameters": {
-      "method": "POST",
-      "url": "https://api.pnut.io/v0/files/72/content"
-    }
-  }
-}
+"call for example 1"
 ```
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-patch">PATCH</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id) {#put-files-id .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-patch">PATCH</span> /files/<span class="call-param">{file_id}</span> [<i class="fas fa-paragraph"></i>](#put-files-id) {#put-files-id .endpoint}
 
 Update a file's details. Only `name`, `is_public`, and `raw` can be updated.
 
 If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or for a while after via the cache. To make a public file secure again, delete it and upload it again as a new file.
 
-##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters) {#url-parameters}
+##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
 `file_id`|ID of the file to update
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/files/73" \
@@ -93,75 +71,58 @@ curl "https://api.pnut.io/v0/files/73" \
     -d "{
   \"name\":\"butternut squash\"
 }" \
-    -X PUT
+    -X PUT \
+    -H "X-Pretty-Json: 1"
 ```
 
 Returns the updated file
 
 ```json
-{
-  "meta": {
-    "code": 200
-  },
-  "data": {
-    "id": "73",
-    "is_public": false,
-    "created_at": "2017-07-25T15:19:02Z",
-    "name": "butternut squash",
-    "source": {
-      "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
-      "link": "https://broadsword.io",
-      "name": "Broadsword"
-    },
-    "type": "com.example.site",
-    "is_complete": false,
-    "kind": "other",
-    "user": {...}
-  }
-}
+"call for example 2"
 ```
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content/<span class="call-param">{derived_key}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id-content-key) {#put-files-id-content-key .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content/<span class="call-param">{derived_key}</span> [<i class="fas fa-paragraph"></i>](#put-files-id-content-key) {#put-files-id-content-key .endpoint}
 
 Upload a new derivative file. You may only do this with an existing file placeholder (an incomplete file).
 
 This is particularly useful if you want to include alternative versions of a file, such as different sizes of images, custom thumbnails instead of auto-generated thumbnails, or different music or video formats of a file.
 
-##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-2) {#url-parameters-2}
+##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-
 `file_id`|ID of the file placeholder to create a derivative file for
 `derived_key`|Multipart key to the file. Keys starting with `core_` are reserved. `core_image_200s` and `core_image_960r` can be set, but have to be 200x200 pixels and within 640x960 respectively, and the same mime type as `file_id`.
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/files/69/content/core_image_200s" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}"
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1"
 ```
 
 Returns 204 on success
 
 ```json
-
+"call for example 3"
 ```
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [<i class="fa fa-paragraph" aria-hidden="true"></i>](#put-files-id-content) {#put-files-id-content .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [<i class="fas fa-paragraph"></i>](#put-files-id-content) {#put-files-id-content .endpoint}
 
 Set a file placeholder's content. You may only do this with an incomplete file.
 
-##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-3) {#url-parameters-3}
+##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-3) {#url-parameters-3}
 
 Name|Description
 -|-
 `file_id`|ID of the file to set contents for
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/files/75/content" \
@@ -179,46 +140,27 @@ Returns 204 on success
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> files</span><span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> [<i class="fa fa-paragraph" aria-hidden="true"></i>](#delete-files-id) {#delete-files-id .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> [<i class="fas fa-paragraph"></i>](#delete-files-id) {#delete-files-id .endpoint}
 
 Delete a file. This will not disassociate a file with any other objects (posts, messages...).
 
-##### URL Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#url-parameters-4) {#url-parameters-4}
+##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-4) {#url-parameters-4}
 
 Name|Description
 -|-
 `file_id`|ID of the file to delete
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/files/72" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-    -X DELETE
+    -X DELETE \
+    -H "X-Pretty-Json: 1"
 ```
 
 Returns the deactivated file
 
 ```json
-{
-  "meta": {
-    "code": 200
-  },
-  "data": {
-    "id": "72",
-    "is_public": false,
-    "created_at": "2017-07-25T15:14:42Z",
-    "name": "That Thing!",
-    "source": {
-      "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
-      "link": "https://broadsword.io",
-      "name": "Broadsword"
-    },
-    "type": "com.example.site",
-    "is_complete": false,
-    "kind": "other",
-    "user": {...},
-    "is_deleted": true
-  }
-}
+"call for example 4"
 ```

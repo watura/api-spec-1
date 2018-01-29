@@ -12,8 +12,6 @@ Channel creation is handled by pnut.io.
 
 To send a message to other users, you need to know all of the users you will be sending the message to, or the ID of an already-created channel. If you know the channel, you may create a message in it just like you would any other channel. If you do not, or it has not been created yet, you can create an `application/json`-encoded message with the `channel_id` of "pm", and a special list in the JSON of `destinations`, listing all users by "@username" or their user ID.
 
-##### Example Call {.example-code}
-
 ```bash
 curl "https://api.pnut.io/v0/channels/pm/messages" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -37,8 +35,6 @@ If you want to see a PM channel between specific users without sending a message
 
 #### ACL
     
-##### Example ACL {.example-code}
-
 ```json
 "acl":{
   "full":{

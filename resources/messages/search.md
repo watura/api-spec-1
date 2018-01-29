@@ -3,11 +3,11 @@
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/messages/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-channels-messages-search) {#get-channels-messages-search .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> none</span><span class="method method-get">GET</span> /channels/messages/search [<i class="fas fa-paragraph"></i>](#get-channels-messages-search) {#get-channels-messages-search .endpoint}
 
 Retrieve a list of messages filtered by the given criteria.
 
-##### Query Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#query-parameters-1) {#query-parameters-1}
+##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-
@@ -29,15 +29,16 @@ Name|Description
 `user_types`|Comma-separated list of user types of: human, feed, bot
 `raw_types`|Comma-separated list of attached raw types. Any matches returned
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/channels/messages/search?channel_ids=600,18" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}"
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1"
 ```
 
 Returns a list of messages
 
 ```json
-
+"call for example 1"
 ```

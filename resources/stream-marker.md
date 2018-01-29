@@ -19,7 +19,7 @@ Current markable streams/names:
 On creation of posts and messages, you can automatically update the "personal" and "channel" markers to the created ID by including `update_marker=1` in the query string.
     
     
-#### <span class="endpoint-meta"><i class="fa fa-lock" aria-hidden="true"></i> any</span><span class="method method-post">POST</span> /markers [<i class="fa fa-paragraph" aria-hidden="true"></i>](#post-markers) {#post-markers .endpoint}
+#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-post">POST</span> /markers [<i class="fas fa-paragraph"></i>](#post-markers) {#post-markers .endpoint}
 
 Post a list of marker objects. You may update up to 10 at once. `id` and `name` are required. You may include `percentage` for more accuracy.
     
@@ -32,6 +32,7 @@ For a channel to be marked "read", the marker `id` must be at or greater than th
 ```bash
 curl "https://api.pnut.io/v0/markers" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1" \
     -H "Content-Type: application/json" \
     -d "[
   {
@@ -45,19 +46,5 @@ curl "https://api.pnut.io/v0/markers" \
 Returns a list of the updated markers
         
 ```json
-{
-  "meta": {
-    "code": 200
-  },
-  "data": [
-    {
-      "id": "2593",
-      "last_read_id": "2593",
-      "percentage": 0,
-      "updated_at": "2016-11-24T15:56:13Z",
-      "version": "JakwHMlHlkJ3TA33tdyMlZ3R-XP",
-      "name": "channel:12"
-    }
-  ]
-}
+"call for example 1"
 ```

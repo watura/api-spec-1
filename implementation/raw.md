@@ -82,7 +82,9 @@ curl "https://api.pnut.io/v0/posts?include_post_raw=1" \
 }"
     -X POST`
 ```
-    
+
+Returns the new post.
+
 ```json
 {
   "meta": {

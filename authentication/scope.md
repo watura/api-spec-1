@@ -1,6 +1,6 @@
 ### Scopes
 
-`scope` is a space- or comma-separated list of which parts of the API your app can access on behalf of an authenticated user.
+`scope` is a comma-separated list of which parts of the API your app can access on behalf of an authenticated user.
 
 This is what a user is shown by pnut.io for each scope they are authorizing:
 
@@ -34,19 +34,19 @@ Your client can tell what scopes a user has authorized for your client by the `X
 
 ### App Tokens
 
-In the documentation, an <span class="endpoint-meta" style="float:none"><i class="fa fa-lock" aria-hidden="true"></i> app</span> scope indicates that an app token is required for the endpoint.
+In the documentation, an <span class="endpoint-meta" style="float:none"><i class="fas fa-lock"></i> app</span> scope indicates that an app token is required for the endpoint.
 
 
 ### Notes
 
 #### basic
 
-The `basic` scope only allows access to any endpoints in the API that require <span class="endpoint-meta" style="float:none"><i class="fa fa-lock" aria-hidden="true"></i> any</span> access token. If any other scope is authorized, `basic` is redundant.
+The `basic` scope only allows access to any endpoints in the API that require <span class="endpoint-meta" style="float:none"><i class="fas fa-lock"></i> any</span> access token. If any other scope is authorized, `basic` is redundant.
 
 
 #### files
 
-This scope is not needed for uploading files. It allows clients to update, attach, and delete files without `file_token`s.
+This scope is not needed for uploading files. It allows clients to update, attach, and delete files without including a `file_token`.
 
 ##### Special Extended File Scopes
 
@@ -57,6 +57,6 @@ There are two special file scopes: `files:core_audio` gives access to all files 
 
 When the `email` scope is authorized, the user's tokens will include their email.
 
-`email` cannot be authorized for the first time through Password Flow.
+`email` cannot be authorized by a user for the first time through Password Flow.
 
-App Streams do not notify of E-mail address changes.
+App Streams do not notify of email address changes.

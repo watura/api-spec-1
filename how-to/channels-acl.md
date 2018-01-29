@@ -1,7 +1,5 @@
 ### How To: ACL
 
-##### Example ACL {.example-code}
-
 ```json
 "acl":{
   "full":{

@@ -6,7 +6,6 @@ When polling with `since_id` set, the `meta` object on the stream will include l
 
 For example: my client is making the request `curl "https://api.pnut.io/v0/posts/streams/global?since_id=500"`, when `500` is the latest post in the stream. Someone deletes their post `244`. The next time my client requests global with `since_id=500`, this is what I get back:
 
-##### Example Response {.example-code}
 ```json
 {
   "meta": {

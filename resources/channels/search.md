@@ -3,11 +3,11 @@
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/search [<i class="fa fa-paragraph" aria-hidden="true"></i>](#get-channels-search) {#get-channels-search .endpoint}
+#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/search [<i class="fas fa-paragraph"></i>](#get-channels-search) {#get-channels-search .endpoint}
 
 Retrieve a list of channels filtered by the given criteria.
 
-##### Query Parameters [<i class="fa fa-paragraph" aria-hidden="true"></i>](#query-parameters-1) {#query-parameters-1}
+##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-
@@ -20,15 +20,16 @@ Name|Description
 `is_public`|If true, only include public-readable channels
 `owner_id`|Channels owned by the included user ID
 
-##### Example Call {.example-code}
+##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/channels/search?is_public=1&channel_types=io.pnut.core.chat&categories=fun" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}"
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1"
 ```
 
 Returns a list of channels
 
 ```json
-
+"call for example 1"
 ```
