@@ -16,12 +16,6 @@
     </tr>
 
     <tr>
-        <td><code>created_at</code></td>
-        <td>string</td>
-        <td>The time at which the channel was created in ISO 8601 format.</td>
-    </tr>
-
-    <tr>
         <td><code>id</code></td>
         <td>string</td>
         <td>Primary identifier for a channel. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Channel objects. There can be a Post and User with the same ID; no relation is implied.</td>
@@ -247,4 +241,4 @@ Name|Type|Description
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_channel_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all channel objects. Defaults to false.
 `include_recent_message`|integer (0 or 1)|Include the most recent message in the channel. Defaults to false.
-`include_limited_users`|integer (0 or 1)|Include limited user objects instead of user IDs in the ACL. Only on `/users/me/channels/subscribed` and `/channels/{channel_id}`. User objects include `username`, `id`, and `name` (if set). Defaults to false.
+`include_limited_users`|integer (0 or 1)|Include limited user objects instead of user IDs in the ACL. Only on `/users/me/channels/subscribed` and `/channels/{channel_id}`. User objects include `username`, `id`, `name` (if set), `avatar_image` (as URL only), and `presence` (if not offline). Defaults to false.

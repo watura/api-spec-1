@@ -1,15 +1,15 @@
 ## API
 
-#### Current Version: 0.7.7 [(Changes)](../changes)
+#### Current Version: 0.8.0 [(Changes)](../changes)
 #### API Root: https://api.pnut.io/v0
 
-*Last Updated 2018-01-14*
+*Last Updated 2018-03-24*
 
 Welcome to the documentation for the pnut.io API.
 
 __[Become a Developer](https://pnut.io/dev)__
 
-If this is your first time here, it is recommended that you become familiar the *Implementation* section and then read *Authentication* and determine what scopes and strategy you will want to use.
+If this is your first time here, it is recommended that you become familiar with the *Implementation* section and then read *Authentication* and determine what scopes and strategy you will want to use.
 
 The *How To* section has some examples and explanation of some common situations.
 

@@ -54,7 +54,7 @@ Reposts made before the revision will continue to point at the original post.
 
 Name|Description
 -|-
-`post_id`|ID of the post to retrieve
+`post_id`|ID of the post to revise
 
 The POST body can be the same as when creating a post. `is_nsfw` *can* be changed from an initial post to a revision.
 

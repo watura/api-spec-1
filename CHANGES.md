@@ -2,6 +2,7 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 
 ### <i class="fas fa-rss fa-lg"></i> <span class="orange">Changes</span>
 
+* [0.8.0](#0.8.0)
 * [0.7.7](#0.7.7)
 * [0.7.6](#0.7.6)
 * [0.7.5](#0.7.5)
@@ -21,6 +22,31 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 * [0.4.1](#0.4.1)
 * [0.4.0](#0.4.0)
 * [0.3.0](#0.3.0)
+
+
+
+#### [2018-03-24](#0.8.0) v0.8.0 {#0.8.0}
+
+##### Features
+
+* Polls
+* New users are highlighted on the Invites page
+
+##### Changes
+
+* Emails on account lock out and new recent IP login
+* Password Flow authorization emails now express what new scopes are authorized
+* Basic stats are public
+* `avatar_image` included in channels when `?include_limited_users=1` query parameter is set
+* Links with emoji in the domain are recognized as links
+* @xyz's app *Beta* now uses the subdomain https://beta.pnut.io and is encouraged as users' first app
+
+##### Fixes
+
+* Text file encoding was ignored on upload
+* File names used the file token for its name when downloaded, instead of original file names
+* Some instabilities with database handling/what happened if there was a bug
+* Users could make their own posts trend
 
 
 

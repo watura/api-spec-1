@@ -130,3 +130,11 @@ Sent when a user authorizes uploading a file, updates file details, uploads a fi
 ```json
 
 ```
+
+##### poll
+
+Sent when a user creates, deletes, or responds to a poll.
+
+```json
+
+```

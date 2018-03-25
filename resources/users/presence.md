@@ -1,6 +1,6 @@
 ### User Presence
 
-A user's presence is the recent status of that user. Each updated presence lasts for 5 minutes, or until another status is given. Users who do not have a current status show up as "offline".
+A user's presence is the recent status of that user. Each updated presence lasts for 15 minutes, or until another status is given. Users who do not have a current status show up as "offline".
 
 A user's status can be updated on *any* authenticated call by simply including the `update_presence` query parameter with a status for its value. If this method is attempted, the response's `meta.updated_presence` key will be set and `true`. If it fails to update, it will be `false`.
 
@@ -68,7 +68,7 @@ Name|Description
 
 Name|Description
 -|-
-`presence`|A string up to 64 unicode characters. If not set, or if it is set to `1`, it will be updated to `"online"`. A value of `"offline"` or `0` will delete the user's presence and remove them from the [list of users online](#get-presence).
+`presence`|A string up to 100 unicode characters. If not set, or if it is set to `1`, it will be updated to `"online"`. A value of `"offline"` or `0` will delete the user's presence and remove them from the [list of users online](#get-presence).
 
 ##### Example {.example-code}
 

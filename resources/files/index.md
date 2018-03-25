@@ -313,6 +313,18 @@ If creating a file placeholder and uploading later, `kind` is required on creati
 
 Multiple mime types are accepted for some file types, but they will be normalized and recorded as a single mime type listed in the charts below.
 
+##### File Encoding
+
+If the included `mime_type` matches any of the following, its text encoding will attempt to be detected by the server (i.e., for UTF-8 encoding):
+
+* `text/{anything}`
+* `application/msword`
+* `application/vnd.oasis.opendocument.text`
+* `application/rtf`
+* `application/xml`
+* `application/json`
+* `application/javascript`
+
 ##### Audio
 
 Files with `kind: audio` must have the following `mime_type`:
