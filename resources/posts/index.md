@@ -1,16 +1,16 @@
-### Posts
+# Posts
 
-#### Canonical Thread view
+## Canonical Thread view
 
 Posts can be viewed in their thread via a short redirect at `https://posts.pnut.io/{post_id}`.
 
 
-#### Object
+## Object
 
 [Use live API calls for an example of the object.](/docs/api/resources/posts/lookup#get-posts-id)
 
 
-#### Fields [<i class="fas fa-paragraph"></i>](#post-fields) {#post-fields}
+## Fields [&para;](#post-fields) {#post-fields}
 
 <table>
     <tr>
@@ -34,7 +34,31 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
     <tr>
         <td><code>is_deleted</code></td>
         <td>boolean</td>
-        <td>Only set if <code>true</code>.</td>
+        <td>Only set if <code>true</code>. Post is deleted. `content` will not be set.</td>
+    </tr>
+
+    <tr>
+        <td><code>is_nsfw</code></td>
+        <td>boolean</td>
+        <td>Only set if <code>true</code>. User marked the post as "Not Safe For Work".</td>
+    </tr>
+
+    <tr>
+        <td><code>is_revised</code></td>
+        <td>boolean</td>
+        <td>Only set if <code>true</code>. Post has been revised. Looking up the revised posts will return a result.</td>
+    </tr>
+
+    <tr>
+        <td><code>is_revised</code></td>
+        <td>boolean</td>
+        <td>Only set if <code>true</code>. The post has been revised.</td>
+    </tr>
+
+    <tr>
+        <td><code>revision</code></td>
+        <td>string</td>
+        <td>Only set if post is a "previous" version of a post. (i.e., from the <a href="posts/lookup#get-posts-id-revisions"><code>/posts/{post_id}/revisions</code></a> endpoint).</td>
     </tr>
 
     <tr>
@@ -186,11 +210,11 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
 
 
 
-#### General Post Parameters [<i class="fas fa-paragraph"></i>](#general-post-parameters) {#general-post-parameters}
+## General Post Parameters [&para;](#general-post-parameters) {#general-post-parameters}
 
 Any endpoint that returns post objects can be subject to these parameters.
 
-##### General Parameters
+### General Parameters
 
 Name|Type|Description
 -|-|-
@@ -202,7 +226,9 @@ Name|Type|Description
 `include_bookmarked_by`|integer (0 or 1)|Include `bookmarked_by`: a sampled list of users who bookmarked the post. Defaults to false.
 `include_reposted_by`|integer (0 or 1)|Include `reposted_by`: a sampled list of users who reposted the post. Defaults to false.
 `include_directed_posts`|integer (0 or 1)|Include posts with "leading mentions" of users you do not follow. Not applicable to all post streams. Defaults to true.
+`include_mention_posts`|integer (0 or 1)|If false, do not include posts with mentions
 `include_copy_mentions`|integer (0 or 1)|Include "copy mentions" in the `/users/{user_id}/mentions` endpoint. Defaults to true.
+`include_replies`|integer (0 or 1)|If false, do not include posts replying to other posts
 `include_muted`|integer (0 or 1)|Include posts from users you have muted. Defaults to false.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_post_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all post objects. Defaults to false.

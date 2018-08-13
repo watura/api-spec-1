@@ -1,6 +1,6 @@
-### Authentication Password Flow
+# Authentication Password Flow
 
-#### Setup
+## Setup
 
 Password flow must be explicitly approved on a per-client basis, by a pnut.io administrator.
 
@@ -13,7 +13,7 @@ Where another flow is practical, use it. For your own projects and single-instan
 __You must__ display the scopes that you will be authorizing, somewhere before users login, even if on a linked section of your app.
 
 
-#### Process
+## Process
 
 Retrieve the user's username or E-mail address, and password, directly from them.
 

@@ -1,13 +1,13 @@
-### User Blocking
+# User Blocking
 
 Blocking a user prevents the blocked user and the blocking user from seeing each other on the network except in a few necessary places.
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/blocked [<i class="fas fa-paragraph"></i>](#get-users-id-blocked) {#get-users-id-blocked .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/blocked [&para;](#get-users-id-blocked) {#get-users-id-blocked .endpoint}
 
 Retrieve a list of blocked users. Users may only see their own list of blocked users.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
@@ -28,11 +28,11 @@ Returns a list of users
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/block [<i class="fas fa-paragraph"></i>](#put-users-id-block) {#put-users-id-block .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/block [&para;](#put-users-id-block) {#put-users-id-block .endpoint}
 
 Block a user. Blocked users will not show up in future requests, the same as if they were muted. Blocked users also cannot retrieve this authorized user in their requests. Can do so even if the other user is blocking you (but will only return an ID of the blocked user).
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-
@@ -54,11 +54,11 @@ Returns the blocked user
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-delete">DELETE</span> /users/<span class="call-param">{user_id}</span>/block [<i class="fas fa-paragraph"></i>](#delete-users-id-block) {#delete-users-id-block .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-delete">DELETE</span> /users/<span class="call-param">{user_id}</span>/block [&para;](#delete-users-id-block) {#delete-users-id-block .endpoint}
 
 Unblock a user. Can do so even if the other user is blocking you (but will only return an ID of the blocked user).
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-3) {#url-parameters-3}
+### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
 
 Name|Description
 -|-

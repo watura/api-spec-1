@@ -1,4 +1,4 @@
-### Sticky Messages
+# Sticky Messages
 
 "Sticky" messages are like bookmarks for a channel, but they are per-channel, not per-user. They will have `is_sticky: true`.
 
@@ -6,13 +6,13 @@ Users with `full` access to a channel are able to sticky and un-sticky messages 
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/sticky_messages [<i class="fas fa-paragraph"></i>](#get-channels-id-sticky_messages) {#get-channels-id-sticky_messages .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/sticky_messages [&para;](#get-channels-id-sticky_messages) {#get-channels-id-sticky_messages .endpoint}
 
 Retrieve sticky messsages in a channel. The requesting user must have access to the channel.
 
 Note that the `pagination_id` and `min_id` and `max_id` will change as users sticky and un-sticky messages.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -34,11 +34,11 @@ Returns a list of messages.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky [<i class="fas fa-paragraph"></i>](#put-channels-id-messages-id-sticky) {#put-channels-id-messages-id-sticky .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky [&para;](#put-channels-id-messages-id-sticky) {#put-channels-id-messages-id-sticky .endpoint}
 
 Sticky a message.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
@@ -62,11 +62,11 @@ Returns the bookmarked post.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky [<i class="fas fa-paragraph"></i>](#delete-channels-id-messages-id-sticky) {#delete-channels-id-messages-id-sticky .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky [&para;](#delete-channels-id-messages-id-sticky) {#delete-channels-id-messages-id-sticky .endpoint}
 
 Un-sticky a message.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-

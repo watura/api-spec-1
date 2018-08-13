@@ -1,19 +1,20 @@
-### Post Search
+# Post Search
 
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> none</span><span class="method method-get">GET</span> /posts/search [<i class="fas fa-paragraph"></i>](#get-posts-search) {#get-posts-search .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> none</span><span class="method method-get">GET</span> /posts/search [&para;](#get-posts-search) {#get-posts-search .endpoint}
 
 Retrieve a list of posts filtered by the given criteria.
 
-##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
+### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-
 `order`|One of id or relevance. Default is by relevance
 `q`|List of words included in posts
 `tags`|Comma-separated list of tags. Any matches returned. Do not include `#`
+`has_mentions`|Whether to include posts with any mentions. Excludes other mentions filters below
 `mentions`|Comma-separated list of mentions. Any matches returned. Do not include `@`
 `leading_mentions`|Comma-separated list of mentions at the beginning of a post. Any matches returned. Do not include `@`
 `links`|Comma-separated list of URLs. Any matches returned

@@ -1,19 +1,19 @@
-### Post Actions
+# Post Actions
 
 Bookmarks, Replies, Reposts, and Follows.
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/actions [<i class="fas fa-paragraph"></i>](#get-posts-id-actions) {#get-posts-id-actions .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/actions [&para;](#get-posts-id-actions) {#get-posts-id-actions .endpoint}
 
 Retrieve actions executed against a post.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
 `post_id`|ID of the post to retrieve actions for
 
-##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
+### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-
@@ -35,11 +35,11 @@ Returns a list of actions.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-get">GET</span> /users/me/actions [<i class="fas fa-paragraph"></i>](#get-users-me-actions) {#get-users-me-actions .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-get">GET</span> /users/me/actions [&para;](#get-users-me-actions) {#get-users-me-actions .endpoint}
 
 Retrieve actions executed against the authenticated user and their posts.
 
-##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-2) {#query-parameters-2}
+### Query Parameters [&para;](#query-parameters-2) {#query-parameters-2}
 
 Name|Description
 -|-

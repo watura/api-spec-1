@@ -1,9 +1,9 @@
-### Message Lifecycle
+# Message Lifecycle
 
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages [<i class="fas fa-paragraph"></i>](#post-channels-id-messages) {#post-channels-id-messages .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages [&para;](#post-channels-id-messages) {#post-channels-id-messages .endpoint}
 
 Create a message in a channel.
 
@@ -13,7 +13,7 @@ For details on how to use channels for private messaging, look at [How To Privat
 
 Can be `application/json` Content-Type.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -37,13 +37,13 @@ Returns the message created.
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span> [<i class="fas fa-paragraph"></i>](#delete-channels-id-messages-id) {#delete-channels-id-messages-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span> [&para;](#delete-channels-id-messages-id) {#delete-channels-id-messages-id .endpoint}
 
 Delete a message in a channel. Creators of messages can delete their messages even if they no longer have access to the channel.
 
 Owners and full-access users may also delete others' messages in non-private message channels, which will also create a `deleted_by` field on those deleted messages.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-

@@ -1,8 +1,8 @@
-### Post Streams
+# Post Streams
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> stream</span><span class="method method-get">GET</span> /posts/streams/me [<i class="fas fa-paragraph"></i>](#get-posts-streams-me) {#get-posts-streams-me .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> stream</span><span class="method method-get">GET</span> /posts/streams/me [&para;](#get-posts-streams-me) {#get-posts-streams-me .endpoint}
 
 The authenticated user's stream of posts from their followers and themself.
 
@@ -21,7 +21,7 @@ Returns a list of posts.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> stream</span><span class="method method-get">GET</span> /posts/streams/unified [<i class="fas fa-paragraph"></i>](#get-posts-streams-unified) {#get-posts-streams-unified .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> stream</span><span class="method method-get">GET</span> /posts/streams/unified [&para;](#get-posts-streams-unified) {#get-posts-streams-unified .endpoint}
 
 A combined Personal Stream including the authenticated user's mentions.
 
@@ -40,11 +40,11 @@ Returns a list of posts.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/mentions [<i class="fas fa-paragraph"></i>](#get-users-id-mentions) {#get-users-id-mentions .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/mentions [&para;](#get-users-id-mentions) {#get-users-id-mentions .endpoint}
 
 Posts mentioning the specified user.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
@@ -65,13 +65,13 @@ Returns a list of posts.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/posts [<i class="fas fa-paragraph"></i>](#get-users-id-posts) {#get-users-id-posts .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/posts [&para;](#get-users-id-posts) {#get-users-id-posts .endpoint}
 
 Posts created by the specified user.
 
 If a user looks up a user they blocked or muted, the posts will still be retrieved.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-
@@ -92,7 +92,7 @@ Returns a list of posts.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/global [<i class="fas fa-paragraph"></i>](#get-posts-streams-global) {#get-posts-streams-global .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/global [&para;](#get-posts-streams-global) {#get-posts-streams-global .endpoint}
 
 A stream of all users' public posts.
 
@@ -111,11 +111,11 @@ Returns a list of posts.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/tags/<span class="call-param">{tag}</span> [<i class="fas fa-paragraph"></i>](#get-posts-tags-tag) {#get-posts-tags-tag .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/tags/<span class="call-param">{tag}</span> [&para;](#get-posts-tags-tag) {#get-posts-tags-tag .endpoint}
 
 A stream of all posts that include the specified `tag`.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-3) {#url-parameters-3}
+### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
 
 Name|Description
 -|-

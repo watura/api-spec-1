@@ -1,9 +1,9 @@
-### Explore Streams
+# Explore Streams
 
 Explore streams are basically pre-built searches with some simple criteria.
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/explore [<i class="fas fa-paragraph"></i>](#get-posts-streams-explore) {#get-posts-streams-explore .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/explore [&para;](#get-posts-streams-explore) {#get-posts-streams-explore .endpoint}
 
 Retrieve a list of explore streams.
 
@@ -22,11 +22,11 @@ Returns a list of explore streams.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/explore/<span class="call-param">{slug}</span> [<i class="fas fa-paragraph"></i>](#get-posts-streams-explore-slug) {#get-posts-streams-explore-slug .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/explore/<span class="call-param">{slug}</span> [&para;](#get-posts-streams-explore-slug) {#get-posts-streams-explore-slug .endpoint}
 
 Retrieve a list of posts in an explore stream.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-

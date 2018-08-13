@@ -1,4 +1,4 @@
-### Rate Limits
+# Rate Limits
 
 Every call to the API sends three return headers informing the rate limit. These limits vary based on whether the call is a `GET` or not and whether the call is authenticated or not.
 
@@ -8,7 +8,7 @@ If a limit is hit, you must wait __600__ seconds before attempting again. The AP
 
 Here are the three return headers:
 
-#### X-RateLimit-Limit
+## X-RateLimit-Limit
 
 The number of hits to the attempted authentication and method combination allowed before a reset. These are the associated limits:
 
@@ -17,12 +17,12 @@ The number of hits to the attempted authentication and method combination allowe
 * `POST`/`PUT`/`PATCH`/`DELETE`: 20
 
 
-#### X-RateLimit-Remaining
+## X-RateLimit-Remaining
 
 The total number of hits to the attempted authentication and method combination available before the next reset.
 
 
-#### X-RateLimit-Reset
+## X-RateLimit-Reset
 
 Seconds remaining before a reset.
 

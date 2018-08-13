@@ -1,11 +1,11 @@
-### Entities
+# Entities
 
 Entities are parsed on creation and update of objects.
 
 Lengths and positions are using multibyte (UTF-32) code points. Notably, NSString and Javascript will not easily map to the same indices.
 
 
-#### Links
+## Links
 
 Field|Type|Description
 -|-|-
@@ -22,7 +22,7 @@ Inline and markdown links are parsed by the API by default.
 To not parse markdown links, set `entities.parse_markdown_links=0` in the POSTed JSON object.
 To not parse inline links, set `entities.parse_links=0`.
 
-##### Markdown Links [<i class="fas fa-paragraph"></i>](#markdown-links) {#markdown-links}
+### Markdown Links [&para;](#markdown-links) {#markdown-links}
 
 This is the format for creating a markdown link:
 ```
@@ -37,7 +37,7 @@ and `html`:
 <a href="https://example.com" title="optional title">anchor text</a> [example.com]
 ```
 
-##### URI Templates [<i class="fas fa-paragraph"></i>](#uri-templates) {#uri-templates}
+### URI Templates [&para;](#uri-templates) {#uri-templates}
 
 When creating a post or message, you can signal to the API to replace the literal text `{object_id}` in links with the newly created post or message's ID.
 
@@ -51,7 +51,7 @@ link to this very post: https://posts.pnut.io/58399
 ```
 
 
-#### Mentions
+## Mentions
 
 Field|Type|Description
 -|-|-
@@ -62,7 +62,7 @@ Field|Type|Description
 `is_leading`|boolean|If the mention comes before anything else in the string.
 `is_copy`|boolean|If the mention comes immediately after a Forward Slash (`/`), or another mention that does. If so, it will be subject to the user's Copy Mention notification preference.
 
-##### Leading Mention Examples [<i class="fas fa-paragraph"></i>](#leading-mentions}) {#leading-mentions}
+### Leading Mention Examples [&para;](#leading-mentions}) {#leading-mentions}
 
 All of these are leading mentions:
 ```
@@ -75,7 +75,7 @@ All of these are leading mentions:
 >~-> @ugum1 yo!
 ```
 
-##### Copy Mentions [<i class="fas fa-paragraph"></i>](#copy-mentions) {#copy-mentions}
+### Copy Mentions [&para;](#copy-mentions) {#copy-mentions .paraph}
 
 A copy mention is a way of copying someone on a post without being as direct as a leading mention or even a regular mention. Usually a person will end their post with `/@user` to add it to their mentions, but without immediacy.
 
@@ -87,7 +87,7 @@ Our Community Wiki Patter Chat room is open! Submit ideas, suggestions, praise, 
 ```
 
 
-#### Tags
+## Tags
 
 Field|Type|Description
 -|-|-

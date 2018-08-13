@@ -1,11 +1,11 @@
-### App Streams
+# App Streams
 
 App streams are long-lasting connections between the API and your server, often for notifications and other applications that need instant updates.
 
-You will need an [app token](../authentication/app-access-token) to use them.
+You will need an [app token](../authentication/app-access-token) to use them. Look at [How To: App Streams](../how-to/app-streams) for details on usage.
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> app</span><span class="method method-get">GET</span> /streams [<i class="fas fa-paragraph"></i>](#get-streams) {#get-streams .endpoint}
+## <span class="endpoint-meta">app</span><span class="method method-get">GET</span> /streams [&para;](#get-streams) {#get-streams .endpoint}
 
 Get all app streams for the authenticated app.
 
@@ -25,11 +25,11 @@ Returns a list of streams.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> app</span><span class="method method-get">GET</span> /streams/<span class="call-param">{stream_key}</span> [<i class="fas fa-paragraph"></i>](#get-streams-id) {#get-streams-id .endpoint}
+## <span class="endpoint-meta">app</span><span class="method method-get">GET</span> /streams/<span class="call-param">{stream_key}</span> [&para;](#get-streams-id) {#get-streams-id .endpoint}
 
 Get a specific app stream by its key.
 
-##### URL Parameters
+### URL Parameters
 
 Name|Description
 -|-
@@ -51,13 +51,13 @@ Returns the requested stream.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> app</span><span class="method method-post">POST</span> /streams [<i class="fas fa-paragraph"></i>](#post-streams) {#post-streams .endpoint}
+## <span class="endpoint-meta">app</span><span class="method method-post">POST</span> /streams [&para;](#post-streams) {#post-streams .endpoint}
 
 Create an app stream for the authenticated app. Can create up to five (5) app streams.
 
 Must have a Content-Type of `application/json`.
 
-##### Post Parameters
+### Post Parameters
 
 Field|Type|Description
 -|-|-
@@ -90,13 +90,13 @@ Returns the created stream.
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> app</span><span class="method method-put">PUT</span> /streams/<span class="call-param">{stream_key}</span> [<i class="fas fa-paragraph"></i>](#put-streams-id) {#put-streams-id .endpoint}
+## <span class="endpoint-meta">app</span><span class="method method-put">PUT</span> /streams/<span class="call-param">{stream_key}</span> [&para;](#put-streams-id) {#put-streams-id .endpoint}
 
 Update an app stream. Note that, currently, any connected app streams will not be updated until the app disconnects and reconnects.
 
 The only changeable field currently is `object_types`.
 
-##### URL Parameters
+### URL Parameters
 
 Name|Description
 -|-
@@ -124,7 +124,7 @@ Returns the updated stream.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> app</span><span class="method method-delete">DELETE</span> /streams [<i class="fas fa-paragraph"></i>](#delete-streams) {#delete-streams .endpoint}
+## <span class="endpoint-meta">app</span><span class="method method-delete">DELETE</span> /streams [&para;](#delete-streams) {#delete-streams .endpoint}
 
 Delete all app streams for the authorized app.
 
@@ -144,11 +144,11 @@ Returns a list of deleted streams.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> app</span><span class="method method-delete">DELETE</span> /streams/<span class="call-param">{stream_key}</span> [<i class="fas fa-paragraph"></i>](#delete-streams-id) {#delete-streams-id .endpoint}
+## <span class="endpoint-meta">app</span><span class="method method-delete">DELETE</span> /streams/<span class="call-param">{stream_key}</span> [&para;](#delete-streams-id) {#delete-streams-id .endpoint}
 
 Delete a specific app stream by its key.
 
-##### URL Parameters
+### URL Parameters
 
 Name|Description
 -|-

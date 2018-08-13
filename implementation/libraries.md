@@ -1,23 +1,23 @@
-### Libraries
+# Libraries
 
 Libraries are easy ways to integrate with the pnut.io API from your language of choice. We will link to any we know from here, as well as other pnut-specific coding tools.
 
 
-#### C&#35;
+### C&#35;
 
 Name|Description|Maintainer
 -|-|-
 [pnutdotnet](https://github.com/dwmoeller1/pnutdotnet)|library|[@dmoeller](https://pnut.io/@dmoeller)
 
 
-#### Go
+### Go
 
 Name|Description|Maintainer
 -|-|-
 [peanuts](https://github.com/yukkurisinai/peanuts)|library|[@yukkuri_sinai](https://pnut.io/@yukkuri_sinai)
 
 
-#### Javascript/Node
+### Javascript/Node
 
 Name|Description|Maintainer
 -|-|-
@@ -28,23 +28,24 @@ Name|Description|Maintainer
 [passport-pnut](https://github.com/33mhz/passport-pnut)|Passport.js strategy|[@33MHz](https://pnut.io/@kwood)
 
 
-#### PHP
+### PHP
 
 Name|Description|Maintainer
 -|-|-
 [phpnut](https://github.com/pnut-api/phpnut)|library|-
 
 
-#### Python
+### Python
 
 Name|Description|Maintainer
 -|-|-
 [PNUTpy](https://github.com/pnut-api/PNUTpy)|library|[@thrrgilag](https://pnut.io/@thrrgilag)
 
 
-#### Swift
+### Swift
 
 Name|Description|Maintainer
 -|-|-
+[Peanut](https://github.com/shawnthroop/Peanut)|library|[@shawn](https://pnut.io/@shawn)
 [PnutKit](https://github.com/exsortis/PnutKit)|library|[@paulyhedral](https://pnut.io/@paulyhedral)
 [PnutAttributedString](https://github.com/ericdke/PnutAttributedString)|handling entity positioning|[@ericd](https://pnut.io/@ericd)

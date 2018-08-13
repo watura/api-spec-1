@@ -1,4 +1,4 @@
-### How To: Dynamic Polling Streams
+# How To: Dynamic Polling Streams
 
 When polling a stream of posts like the global feed, there is a way to catch updates on deleted and revised posts. This method works the same for polling a stream of messages in a channel.
 

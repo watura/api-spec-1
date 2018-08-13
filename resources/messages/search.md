@@ -1,13 +1,13 @@
-### Message Search
+# Message Search
 
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> none</span><span class="method method-get">GET</span> /channels/messages/search [<i class="fas fa-paragraph"></i>](#get-channels-messages-search) {#get-channels-messages-search .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> none</span><span class="method method-get">GET</span> /channels/messages/search [&para;](#get-channels-messages-search) {#get-channels-messages-search .endpoint}
 
 Retrieve a list of messages filtered by the given criteria.
 
-##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
+### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-

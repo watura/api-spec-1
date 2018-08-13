@@ -1,21 +1,21 @@
-### How To: File
+# How To: File
 
-Paid users are given 10GiB of file storage to upload to. Once files are uploaded, they can be attached to any object's Raw contents.
+Paid users are given 10GiB of file storage to upload to. Invited users are given 512MiB. Once files are uploaded, they can be attached to any object's Raw contents.
 
 
-#### Uploading a File
+## Uploading a File
 
 Files can be uploaded in one or two steps.
 
 * one `multipart/form-data` post including metadata and the file, or
 * an initial post with metadata, and a second post with the file
 
-##### A: Upload in a single step
+### A: Upload in a single step
 
 To set the metadata and upload the file all at once, you must have a Content-Type of `multipart/form-data`, and keys for `name`, `kind`, `type`, and `content` (the file). The most common use will be for uploading images. You would want `kind=image`, and `type` will usually be a reverse domain name-style signature of the application uploading it (this will be searchable in the future).
 
 
-##### B: Upload in two steps
+### B: Upload in two steps
 
 If you want to provision an upload and set the metadata before uploading the file, you may.
 
@@ -24,7 +24,7 @@ Make a `POST` to `/files` of either `application/json` or `multipart/form-data` 
 If you upload in this way, then the first `POST` to `/files` will also return an `upload_parameters` key on the file, with `method` and `url` parameters for how to upload the file contents.
 
 
-#### Derivative Images
+## Derivative Images
 
 When uploading GIF, JPEG, and PNG images, pnut will generate two standard resized images from your image: a 200x200 pixel thumbnail (`core_image_200s`) and a version that fits within 640 pixels wide by 960 tall, if the original image does not fit within those dimensions.
 
@@ -33,7 +33,7 @@ If you want to provide your own versions of those images, you can. To upload you
 [Read more about derivative files](../resources/files/lifecycle#put-files-id-content-key)
 
 
-#### Attaching Files to Objects
+## Attaching Files to Objects
 
 Once you have the ID of a completed image file, you can attach it to a post or message using the `io.pnut.core.oembed` *raw* type. You could fill in the oembed raw data as needed, but there are benefits to using a specialized "replacement" raw value for files, `+io.pnut.core.file`.
 
@@ -62,18 +62,18 @@ curl "https://api.pnut.io/v0/posts?include_post_raw=1" \
     -X POST
 ```
 
-##### Public
+### Public
 
 If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or until the file link expires, even if the file is later made private. For this reason, never imply in an app that a public file might be made secure by making it private again. Once someone has the file details, only deleting the file will restrict their access to it.
 
 
-#### Linking to Files
+## Linking to Files
 
-##### Objects
+### Objects
 
 On file objects themselves, `link` is a direct link to the file, and `link_short` redirects to the file, if it is a public file. `link` will expire after `link_expires_at`. To get a new link, GET `/files/{file_id}`, and it will have a new `link` and expiration time.
 
-##### oEmbeds
+### oEmbeds
 
 If a post or message has a pnut.io file in a photo-type oEmbed raw item, it will have `url` link, with an expiration time in `url_expires_at`. `url` is always the most recent direct link to the file. If `url_expires_at` is past, then the file needs to be gotten again with the file read token (`GET /files/{file_id}?file_token_read=[file read token]`) or simply with an access token authorized with the files scope. This will refresh any `url` references to the file. The URLs expire in years, so a new one should very seldom be needed.
 

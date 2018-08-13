@@ -1,4 +1,4 @@
-### Poll Lifecycle
+# Poll Lifecycle
 
 For an explanation of how to attach polls to other objects, read [How To File](../../how-to/file). Functionally they are almost identical: Create a poll and use the `+io.pnut.core.poll` replacement raw value on a `io.pnut.core.poll-notice` raw item.
 
@@ -6,13 +6,13 @@ You may also look at the [GitHub object-metadata](https://github.com/pnut-api/ob
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls,write_post</span><span class="method method-post">POST</span> /polls [<i class="fas fa-paragraph"></i>](#post-polls) {#post-polls .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls,write_post</span><span class="method method-post">POST</span> /polls [&para;](#post-polls) {#post-polls .endpoint}
 
 Create a poll placeholder or a complete poll. `type`, `prompt`, `options`, and `duration` or `closed_at` are necessary. By default, the poll will be private and anonymous.
 
 Content-Type of `application/json`.
 
-##### POST Body Data [<i class="fas fa-paragraph"></i>](#post-body-data-1) {#post-body-data-1}
+### POST Body Data [&para;](#post-body-data-1) {#post-body-data-1}
 
 Name|Description
 -|-
@@ -28,8 +28,8 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://test-api4.pnut.io/v0/polls" \
-    -H "Authorization: Bearer DOLORSITAmET2uikOZS2sftybCHC6lwFqjoVs4ufT-A-kkOWXkr9KlbEygapSgzGFYSrsaK4zrkKdN7cMuaKsaxo4QNJjA4Njv" \
+curl "https://api.pnut.io/v0/polls" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
   \"type\":\"com.example.site\",
@@ -57,11 +57,13 @@ Returns the created poll
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls,write_post</span><span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position} [<i class="fas fa-paragraph"></i>](#put-polls-id-response-position) {#put-polls-id-response-position .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls,write_post</span><span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position} [&para;](#put-polls-id-response-position) {#put-polls-id-response-position .endpoint}
 
 Respond to a poll.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+Only human-type accounts may respond to polls.
+
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-
@@ -73,10 +75,11 @@ Name|Description
 ```bash
 curl "https://api.pnut.io/v0/polls/1/response/2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-    -X PUT
+    -X PUT \
+    -H "X-Pretty-Json: 1"
 ```
 
-Returns 204 on success
+Returns poll on success
 
 ```json
 
@@ -85,11 +88,11 @@ Returns 204 on success
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls</span><span class="method method-delete">DELETE</span> /polls/<span class="call-param">{poll_id}</span> [<i class="fas fa-paragraph"></i>](#delete-polls-id) {#delete-polls-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls</span><span class="method method-delete">DELETE</span> /polls/<span class="call-param">{poll_id}</span> [&para;](#delete-polls-id) {#delete-polls-id .endpoint}
 
 Delete a poll. This will not disassociate a poll with any other objects (posts, messages...).
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-3) {#url-parameters-3}
+### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
 
 Name|Description
 -|-

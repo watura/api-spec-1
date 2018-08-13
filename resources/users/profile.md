@@ -1,7 +1,7 @@
-### User Profile
+# User Profile
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-put">PUT</span> /users/me [<i class="fas fa-paragraph"></i>](#put-users-me) {#put-users-me .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-put">PUT</span> /users/me [&para;](#put-users-me) {#put-users-me .endpoint}
 
 Replaces the authenticated user's profile. Anything not included is removed.
 
@@ -34,7 +34,7 @@ Returns the updated user object
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-patch">PATCH</span> /users/me [<i class="fas fa-paragraph"></i>](#patch-users-me) {#patch-users-me .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-patch">PATCH</span> /users/me [&para;](#patch-users-me) {#patch-users-me .endpoint}
 
 Updates only specified parts of the authenticated user's profile.
 
@@ -63,17 +63,17 @@ Returns the updated user object
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/avatar [<i class="fas fa-paragraph"></i>](#get-users-id-avatar) {#get-users-id-avatar .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/avatar [&para;](#get-users-id-avatar) {#get-users-id-avatar .endpoint}
 
 This endpoint will return an HTTP 302 redirect to the user’s current avatar image. It will include any query string parameters you pass to the endpoint.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
 `user_id`|ID of the user whose avatar to retrieve
 
-##### Query String Parameters [<i class="fas fa-paragraph"></i>](#query-string-parameters-1) {#query-string-parameters-1}
+### Query String Parameters [&para;](#query-string-parameters-1) {#query-string-parameters-1}
 
 Name|Description
 -|-
@@ -95,7 +95,7 @@ Returns a 302 redirect
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> update_profile</span><span class="method method-post">POST</span> /users/me/avatar [<i class="fas fa-paragraph"></i>](#post-users-me-avatar) {#post-users-me-avatar .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> update_profile</span><span class="method method-post">POST</span> /users/me/avatar [&para;](#post-users-me-avatar) {#post-users-me-avatar .endpoint}
 
 Uploads a new avatar image for the authenticated user.
 
@@ -120,17 +120,17 @@ Returns the updated user
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/cover [<i class="fas fa-paragraph"></i>](#get-users-id-cover) {#get-users-id-cover .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/cover [&para;](#get-users-id-cover) {#get-users-id-cover .endpoint}
 
 This endpoint will return an HTTP 302 redirect to the user’s current cover image. It will include any query string parameters you pass to the endpoint.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-
 `user_id`|ID of the user whose cover image to retrieve
 
-##### Query String Parameters [<i class="fas fa-paragraph"></i>](#query-string-parameters-2) {#query-string-parameters-2}
+### Query String Parameters [&para;](#query-string-parameters-2) {#query-string-parameters-2}
 
 Name|Description
 -|-
@@ -153,7 +153,7 @@ Returns a 302 redirect
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-post">POST</span> /users/me/cover [<i class="fas fa-paragraph"></i>](#post-users-me-cover) {#post-users-me-cover .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-post">POST</span> /users/me/cover [&para;](#post-users-me-cover) {#post-users-me-cover .endpoint}
 
 Uploads a new cover image for the authenticated user.
 

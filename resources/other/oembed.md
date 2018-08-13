@@ -1,4 +1,4 @@
-### oEmbed
+# oEmbed
 
 Pnut has basic oEmbed support.
 
@@ -7,16 +7,16 @@ Base URL: `https://api.pnut.io/v0/oembed`
 The only format supported is JSON.
 
 
-#### Posts
+## Posts
 
 To retrieve data for a post, include the query parameter `?url=https://posts.pnut.io/{post_id}`.
 
 
-#### Audio
+## Audio
 
 To retrieve data for an audio file, include the query parameter `?url=https://audio.pnut.io/{file_id}`.
 
 
-#### Image
+## Image
 
 To retrieve data for an image file, include the query parameter `?url=https://photos.pnut.io/{file_id}`.

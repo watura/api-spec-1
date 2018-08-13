@@ -1,13 +1,13 @@
-### Channel Search
+# Channel Search
 
 
 
 
-#### <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/search [<i class="fas fa-paragraph"></i>](#get-channels-search) {#get-channels-search .endpoint}
+## <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/search [&para;](#get-channels-search) {#get-channels-search .endpoint}
 
 Retrieve a list of channels filtered by the given criteria.
 
-##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
+### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-

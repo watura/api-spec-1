@@ -1,7 +1,8 @@
-## API
+# API
 
-#### Current Version: 0.8.0 [(Changes)](../changes)
-#### API Root: https://api.pnut.io/v0
+__Current Version: 0.9.0 [(Changes)](../changes)__
+
+API Root: https://api.pnut.io/v0
 
 *Last Updated 2018-03-24*
 
@@ -14,7 +15,7 @@ If this is your first time here, it is recommended that you become familiar with
 The *How To* section has some examples and explanation of some common situations.
 
 
-#### Notes on Examples
+### Notes on Examples
 
 cURL examples can be edited on-page (they have the HTML5 `contenteditable` property). To call the API from the docs and see the cURL responses live, you must log in and authorize the API Documentation app linked from each example.
 
@@ -22,7 +23,7 @@ The button in the top-right of the page collapses and expands all endpoints. A p
 
 
 
-#### External Resources
+## External Resources
 
 ##### [Developer Chat](https://patter.chat/room/18)
 
@@ -47,3 +48,8 @@ A repository for object metadata to coordinate common channel and Raw types.
 ##### [@testuser](https://pnut.io/docs/dev_resources/testuser)
 
 If you are developing an app for iOS, the @testuser account can be used for Apple Store reviewing.
+
+
+##### Backup API Root
+
+There is a backup API Root at https://api.pnut-api-1.org/v0. The same subdomains and endpoints are available with this domain. DNS issues are known to occur (especially internationally), and if one does not work, the other may.

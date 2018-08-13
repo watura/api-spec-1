@@ -1,14 +1,14 @@
-### How To: Private Message
+# How To: Private Message
 
 Private messages are special channels with the restricted `io.pnut.core.pm` channel type. They cannot be directly created or deactivated, and they're completely immutable. This makes the "owner" of the channel irrelevant.
 
 
-#### Creation
+## Creation
 
 Channel creation is handled by pnut.io.
 
 
-#### Sending a Message
+## Sending a Message
 
 To send a message to other users, you need to know all of the users you will be sending the message to, or the ID of an already-created channel. If you know the channel, you may create a message in it just like you would any other channel. If you do not, or it has not been created yet, you can create an `application/json`-encoded message with the `channel_id` of "pm", and a special list in the JSON of `destinations`, listing all users by "@username" or their user ID.
 
@@ -28,12 +28,12 @@ curl "https://api.pnut.io/v0/channels/pm/messages" \
 In every other way, they can be treated like any other channels and messages. Note that the "owner's" ID will not be in the write-access ACL, but they will not function any differently from anyone else.
 
 
-#### Existing PM Channels
+## Existing PM Channels
 
 If you want to see a PM channel between specific users without sending a message, you can use the [Existing PM endpoint](../resources/channels/lookup#get-users-me-channels-existing_pm) to find the channel ID.
 
 
-#### ACL
+## ACL
     
 ```json
 "acl":{

@@ -1,11 +1,11 @@
-### Post Threads
+# Post Threads
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/thread [<i class="fas fa-paragraph"></i>](#get-posts-id-thread) {#get-posts-id-thread .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/thread [&para;](#get-posts-id-thread) {#get-posts-id-thread .endpoint}
 
 Retrieve posts within a thread. Threads are separated by what root post all posts below it have replied to.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-

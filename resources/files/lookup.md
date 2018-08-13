@@ -1,14 +1,14 @@
-### File Lookup
+# File Lookup
 
 
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /files/<span class="call-param">{file_id}</span> [<i class="fas fa-paragraph"></i>](#get-files-id) {#get-files-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /files/<span class="call-param">{file_id}</span> [&para;](#get-files-id) {#get-files-id .endpoint}
 
 Retrieve a file object. If `link_expires_at` is passed, this will update the `link` and any embedded references to it.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -29,11 +29,13 @@ Returns the requested file details
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /files [<i class="fas fa-paragraph"></i>](#get-files) {#get-files .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /files [&para;](#get-files) {#get-files .endpoint}
 
 Retrieve a list of specified file objects. Only returns the first 200 found.
 
-##### Query String Parameters [<i class="fas fa-paragraph"></i>](#query-string-parameters) {#query-string-parameters}
+If the file need a `file_token_read` to access, you may include them with query parameters in the pattern `?file_token_read_{file_id}=xxx&file_token_read_{file_id}=xxx`.
+
+### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
 
 Name|Description
 -|-
@@ -54,7 +56,7 @@ Returns a list of files
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /users/me/files [<i class="fas fa-paragraph"></i>](#get-users-me-files) {#get-users-me-files .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /users/me/files [&para;](#get-users-me-files) {#get-users-me-files .endpoint}
 
 Retrieve a list of files created by the authenticated user.
 

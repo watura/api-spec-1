@@ -1,11 +1,11 @@
-### User Following
+# User Following
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/following [<i class="fas fa-paragraph"></i>](#get-users-id-following) {#get-users-id-following .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/following [&para;](#get-users-id-following) {#get-users-id-following .endpoint}
 
 Retrieve a list of user objects that the specified user is following.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
@@ -26,11 +26,11 @@ Returns a list of users
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/followers [<i class="fas fa-paragraph"></i>](#get-users-id-followers) {#get-users-id-followers .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/followers [&para;](#get-users-id-followers) {#get-users-id-followers .endpoint}
 
 Retrieve a list of user objects that are following the specified user.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-
@@ -52,11 +52,11 @@ Returns a list of users
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/follow [<i class="fas fa-paragraph"></i>](#put-users-id-follow) {#put-users-id-follow .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/follow [&para;](#put-users-id-follow) {#put-users-id-follow .endpoint}
 
 Follow a user.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-3) {#url-parameters-3}
+### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
 
 Name|Description
 -|-
@@ -79,11 +79,11 @@ Returns the followed user
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-delete">DELETE</span> /users/<span class="call-param">{user_id}</span>/follow [<i class="fas fa-paragraph"></i>](#delete-users-id-follow) {#delete-users-id-follow .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-delete">DELETE</span> /users/<span class="call-param">{user_id}</span>/follow [&para;](#delete-users-id-follow) {#delete-users-id-follow .endpoint}
 
 Unfollow a user.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-4) {#url-parameters-4}
+### URL Parameters [&para;](#url-parameters-4) {#url-parameters-4}
 
 Name|Description
 -|-

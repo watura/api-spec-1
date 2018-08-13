@@ -1,4 +1,4 @@
-### Report
+# Report
 
 The current reasons that will be honored for reporting are:
 
@@ -9,20 +9,20 @@ The current reasons that will be honored for reporting are:
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/report [<i class="fas fa-paragraph"></i>](#post-channels-id-messages-id-report) {#post-channels-id-messages-id-report .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/report [&para;](#post-channels-id-messages-id-report) {#post-channels-id-messages-id-report .endpoint}
 
 Report a message in a channel for abuse.
 
 To test this endpoint, report user @testuser.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
 `channel_id`|ID of the channel.
 `message_id`|ID of the message to report.
 
-##### POST Body Data [<i class="fas fa-paragraph"></i>](#post-body-data) {#post-body-data}
+### POST Body Data [&para;](#post-body-data) {#post-body-data}
 
 Name|Description
 -|-

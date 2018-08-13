@@ -1,12 +1,12 @@
-### Channels
+# Channels
 
 
-#### Object
+## Object
 
 [Use live API calls for an example of the object.](/docs/api/resources/channels/lookup#get-channels-id)
 
 
-#### Fields [<i class="fas fa-paragraph"></i>](#channel-fields) {#channel-fields}
+## Fields [&para;](#channel-fields) {#channel-fields}
 
 <table>
     <tr>
@@ -225,11 +225,11 @@
 </table>
 
 
-#### General Channel Parameters [<i class="fas fa-paragraph"></i>](#general-channel-parameters) {#general-channel-parameters}
+## General Channel Parameters [&para;](#general-channel-parameters) {#general-channel-parameters}
 
 Any endpoint that returns channel objects can be subject to these parameters.
 
-##### General Parameters
+### General Parameters
 
 Name|Type|Description
 -|-|-

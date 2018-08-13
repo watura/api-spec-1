@@ -1,9 +1,9 @@
-### Token
+# Token
 
 Interactions with the authenticated token
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /token [<i class="fas fa-paragraph"></i>](#get-token) {#get-token .endpoint}
+## <span class="endpoint-meta">any</span><span class="method method-get">GET</span> /token [&para;](#get-token) {#get-token .endpoint}
 
 Retrieve an object with the currently authenticated token, username, and user ID.
 
@@ -24,7 +24,7 @@ Returns the requested token
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-delete">DELETE</span> /token [<i class="fas fa-paragraph"></i>](#delete-token) {#delete-token .endpoint}
+## <span class="endpoint-meta">any</span><span class="method method-delete">DELETE</span> /token [&para;](#delete-token) {#delete-token .endpoint}
 
 Delete the currently authenticated token.
 

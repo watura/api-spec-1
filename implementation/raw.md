@@ -1,4 +1,4 @@
-### Raw
+# Raw
 
 
 Raw data is arbitrary data that can be attached to posts, users, channels, and messages. Clients can specify a `type` and a `value` for each item in the list of `raw` data.
@@ -22,7 +22,7 @@ The format of a `raw` JSON object is like so:
 
 
 
-### Inclusion
+## Inclusion
 
 By default across the network, `raw` is not included on objects, and you must request it by setting query parameters:
 
@@ -37,7 +37,7 @@ If any relevant parameter is set to `1`, it will be included for the object and 
 
 
 
-### Mutability &amp; Duplicates
+## Mutability &amp; Duplicates
 
 Raw data attached to posts and messages is *immutable*. It must be attached on creation of the post or message, and cannot be changed afterwards. Because they are immutable, posts and messages can have multiple raw items of the same type, where channels, files, and users can only have one of a type.
 
@@ -45,13 +45,13 @@ User, channel, and file objects have mutable raw data.
 
 
 
-### Deleting Mutable Items
+## Deleting Mutable Items
 
 To delete a mutable item, include the `type` but do not include the `value`.
 
 
 
-### Core Types
+## Core Types
 
 Any `type` starting with `io.pnut.core` is checked by the server for validity, to an extent. Be sure to match their requirements when creating core channel types or `raw` data types.
 
@@ -61,7 +61,7 @@ Community-defined types and core types can be referenced on our [object-metadata
 
 
 
-### Example
+## Example
 
 ##### Example Post Creation {.example-code}
 

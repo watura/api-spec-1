@@ -1,7 +1,7 @@
-### Post Lifecycle
+# Post Lifecycle
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-post">POST</span> /posts [<i class="fas fa-paragraph"></i>](#post-posts) {#post-posts .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-post">POST</span> /posts [&para;](#post-posts) {#post-posts .endpoint}
 
 Create a post.
 
@@ -11,7 +11,7 @@ Posts from the same human- or feed-type user cannot contain the same `text` with
 
 `JSON` in the body of the request is also allowed. Normal links and markdown links are parsed by the server by default.
 
-##### POST Body Data [<i class="fas fa-paragraph"></i>](#post-body-data-1) {#post-body-data-1}
+### POST Body Data [&para;](#post-body-data-1) {#post-body-data-1}
 
 Name|Description
 -|-
@@ -38,7 +38,7 @@ Returns the created post.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span> [<i class="fas fa-paragraph"></i>](#put-posts-id) {#put-posts-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span> [&para;](#put-posts-id) {#put-posts-id .endpoint}
 
 Edit or "revise" a post.
 
@@ -50,7 +50,7 @@ Once a revision has been made, the original post can still be retrieved from the
 
 Reposts made before the revision will continue to point at the original post.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
@@ -75,11 +75,11 @@ Returns the revised post.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span> [<i class="fas fa-paragraph"></i>](#delete-posts-id) {#delete-posts-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span> [&para;](#delete-posts-id) {#delete-posts-id .endpoint}
 
 Delete a post.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-

@@ -1,7 +1,8 @@
-Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi/posts)
+Follow Pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi/posts)
 
-### <i class="fas fa-rss fa-lg"></i> <span class="orange">Changes</span>
+# <span class="orange">Changes</span>
 
+* [0.9.0](#0.9.0)
 * [0.8.0](#0.8.0)
 * [0.7.7](#0.7.7)
 * [0.7.6](#0.7.6)
@@ -25,14 +26,50 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 
 
 
-#### [2018-03-24](#0.8.0) v0.8.0 {#0.8.0}
+## [2018-08-13](#0.9.0) v0.9.0 {#0.9.0}
 
-##### Features
+### Features
+
+* User Streams (user-specific websockets, like App Streams for individual users)
+* Invited users now have 512MiB of free storage, ensuring everyone has some free storage
+* Users may gift Pnut Badges to other users
+* Basic poll search
+* Get multiple polls by ID in a single call
+* Bookmarks may be saved with `note`, which is only visible to the user who bookmarked it, when retrieving their own bookmarks
+* Clients can limit what scopes can be authorized
+* `/sys/stats` now includes `counts.clients.public`, tracking clients that are "active/public" and usable by more than just a single user
+* Alternative API domain https://pnut-api-1.org
+* App Streams messages and posts now include `meta.suppress_notifications`, and `meta.subscribed_user_ids` to simplify notifications
+* `include_replies` and `include_mention_posts` query parameters for post streams
+* `has_mentions` post search filter
+
+### Changes
+
+* Requesting account deletion requires password verification
+* Only human account-types can respond to polls
+* `is_your_response` on poll options changed to `true` or `false` from `1` or `0`
+* App Streams now have connection- and subscription-level query parameters
+* App Streams objects are more consistent
+* User tokens return with `storage.total` in addition to `storage.available`.
+
+### Fixes
+
+* Some old avatars were not deleted
+* `/users/{id}/cover` was not redirecting properly
+* "Account locked out" was logged after single failed login attempt
+* `include_user=0` returned empty string instead of user's ID for embedded users on file objects
+* Following a user in rapid succession could cause multiple listings of a user in your follows or followings
+
+
+
+## [2018-03-24](#0.8.0) v0.8.0 {#0.8.0}
+
+### Features
 
 * Polls
 * New users are highlighted on the Invites page
 
-##### Changes
+### Changes
 
 * Emails on account lock out and new recent IP login
 * Password Flow authorization emails now express what new scopes are authorized
@@ -41,7 +78,7 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 * Links with emoji in the domain are recognized as links
 * @xyz's app *Beta* now uses the subdomain https://beta.pnut.io and is encouraged as users' first app
 
-##### Fixes
+### Fixes
 
 * Text file encoding was ignored on upload
 * File names used the file token for its name when downloaded, instead of original file names
@@ -50,58 +87,58 @@ Follow pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 
 
 
-#### [2018-01-14](#0.7.7) v0.7.7 {#0.7.7}
+## [2018-01-14](#0.7.7) v0.7.7 {#0.7.7}
 
-##### Features
+### Features
 
 * API Documentation app can be authorized, allowing you to make API calls from documentation and see the response live. The examples are editable on-page
 
-##### Changes
+### Changes
 
 * Link parsing improvements
 * Adjusted notification email timing
 * Post and message URI Templates must use `{object_id}` instead of `{post_id}` in links
 * Documentation includes type of access token required for endpoints (app vs user)
 
-##### Fixes
+### Fixes
 
 * Failed login went to MFA login
 * `content.html` now begins with `<span itemscope itemtype="https://pnut.io/schemas/Post">` instead of `<span itemscope itemtype="https://pnut.io/schemas/Post">` to follow [microdata spec](http://schema.org/docs/gs.html#microdata_itemscope_itemtype)
 
 
 
-#### [2017-12-10](#0.7.6) v0.7.6 {#0.7.6}
+## [2017-12-10](#0.7.6) v0.7.6 {#0.7.6}
 
 This is a bug fix update to pnut.io.
 
-##### Features
+### Features
 
 * Option to require OTP passwords for password flow authentications
 
-##### Changes
+### Changes
 
 * One-Time Passwords now create a short random string for a name, instead of user input
 * More clarity on profile update form
 * MFA login now allows "Remember login" cookie but requires the TOTP code. A failed attempt or leaving the page will unset the "Remember login" cookie.
 * Web Flows and Password Flow return much more specific feedback when something is not set properly
 
-##### Fixes
+### Fixes
 
 * Password form validation required a digit and uppercase, which is not supposed to be required anymore
 * Failed MFA login would redirect to the normal login without client authorization details, if they had been set
 
 
 
-#### [2017-11-30](#0.7.5) v0.7.5 {#0.7.5}
+## [2017-11-30](#0.7.5) v0.7.5 {#0.7.5}
 
-##### Features
+### Features
 
 * Pnut.io account area translations
 * New Privacy page includes mutes, blocks, and new function to limit who can create new private message channels with you
 * Bookmark E-mail notifications option for pnut badge supporters
 * App Streams support `raw` by setting appropriate query parameters on the websocket link
 
-##### Changes
+### Changes
 
 * Developer client "tokens" are no longer a thing; instead, new clients can be made by developers after a certain period
 * `kind` is no longer required on file upload; you may juggle whether to specify `kind`, `mime_type`, neither, both
@@ -111,15 +148,15 @@ This is a bug fix update to pnut.io.
 * Message streams now allow negative `count` (`?count=-4`)
 * App Streams now can differentiate between revised, reposted, and newly created or deleted posts
 
-##### Fixes
+### Fixes
 
 * Numerous possible edge cases with app streams returning partial objects
 
 
 
-#### [2017-11-16](#0.7.4) v0.7.4 {#0.7.4}
+## [2017-11-16](#0.7.4) v0.7.4 {#0.7.4}
 
-##### Features
+### Features
 
 * App directory "early access" and "bot" categories
 * Tokens can be assigned a "token group" on creation, and tokens can be revoked for an app based on IP address and token group
@@ -132,14 +169,14 @@ This is a bug fix update to pnut.io.
 * Post, channel, and message searches allow `?raw_types` parameter
 * `io.pnut.core.channel.avatar` and `io.pnut.core.channel.cover` raw types
 
-##### Changes
+### Changes
 
 * RSS moved from https://pnut.io/feed/rss/ to https://api.pnut.io/v0/feed/rss/ (old links redirect)
 * Canonical posts and user profiles direct to @xyz's [beta app](https://beta.pnut.io)
 * Notifications are silenced within 30 seconds of previous notifications of the same type, and channel notifications are silenced if the user has a stream marker ahead of the message
 * Developers can "remember" pnut.io login
 
-##### Fixes
+### Fixes
 
 * `raw` properly catches any improper values for `value`
 * Some cases where objects wouldn't be sent to app streams
@@ -150,12 +187,12 @@ This is a bug fix update to pnut.io.
 
 
 
-#### [2017-10-14](#0.7.3) v0.7.3 {#0.7.3}
+## [2017-10-14](#0.7.3) v0.7.3 {#0.7.3}
 
 This is a minor update to pnut.io.
 
 
-##### Changes
+### Changes
 
 * Users can now sign up for an account with a pnut badge if they don't have an invite
 * E-mail notifications happen instantaneously, then follow up with a digest of more of the same soon after
@@ -166,7 +203,7 @@ This is a minor update to pnut.io.
 * Enabling MFA requires a TOTP code up front, before enabling
 
 
-##### Fixes
+### Fixes
 
 * Password flow didn't allow extended scopes
 * `GET /users/me/channels` did not work with only extended scopes authorized
@@ -176,11 +213,11 @@ This is a minor update to pnut.io.
 
 
 
-#### [2017-09-30](#0.7.2) v0.7.2 {#0.7.2}
+## [2017-09-30](#0.7.2) v0.7.2 {#0.7.2}
 
 This is a minor feature update to pnut.io.
 
-##### Features
+### Features
 
 * App Directory reorganized into categories, multiple platforms
 * Apps can now be "recommended" by users
@@ -188,12 +225,12 @@ This is a minor feature update to pnut.io.
 * pnut badges added to profiles; supporting users may opt in to include `badge: {object}` on their user object
 
 
-##### Changes
+### Changes
 
 * pnut.io front page redesign
 
 
-##### Fixes
+### Fixes
 
 * `guid` was still included on some posts and users
 * Creating App Streams did not handle some errors clearly
@@ -201,18 +238,18 @@ This is a minor feature update to pnut.io.
 
 
 
-#### [2017-09-10](#0.7.1) v0.7.1 {#0.7.1}
+## [2017-09-10](#0.7.1) v0.7.1 {#0.7.1}
 
 This is a minor feature update to pnut.io.
 
-##### Features
+### Features
 
 * Personal data exports may be requested in the "Data" section of your account (*Currently does not include files)
 * Numerous new characteristics for developers to note about their apps, including pictures
 * API errors will often include referenceable `meta.error_id` on 500 responses
 
 
-##### Changes
+### Changes
 
 * `/users/me/actions` now combines multiple objects in the `objects` list for the same action commited by different users
 * Front page and app pages redesigned
@@ -220,25 +257,25 @@ This is a minor feature update to pnut.io.
 * Removed *all* GUID properties (posts, users, messages)
 
 
-##### Fixes
+### Fixes
 
 * RSS tag feeds of multibyte character tags would not load
 
 
 
 
-#### [2017-08-27](#0.7.0) v0.7.0 {#0.7.0}
+## [2017-08-27](#0.7.0) v0.7.0 {#0.7.0}
 
 This is a major feature update to pnut.io.
 
-##### Features
+### Features
 
 * User, post, channel, and message search
 * Derivative files
 * Auto-generated thumbnails for images
 
 
-##### Changes
+### Changes
 
 * File link expiration extended
 * `?include_directed_posts=0` does not exclude your own posts
@@ -249,7 +286,7 @@ This is a major feature update to pnut.io.
 * TOTP login authentication is available to everyone
 
 
-##### Fixes
+### Fixes
 
 * `/users/{user_id}/clients` not retrieving all active clients in some cases
 * TOTP authentication setup
@@ -261,11 +298,11 @@ This is a major feature update to pnut.io.
 
 
 
-#### [2017-07-25](#0.6.0) v0.6.0 {#0.6.0}
+## [2017-07-25](#0.6.0) v0.6.0 {#0.6.0}
 
 This is a major feature update to pnut.io.
 
-##### Features
+### Features
 
 * File API
 * Pay-what-you-want tier!
@@ -278,7 +315,7 @@ This is a major feature update to pnut.io.
 * Including `&simple_login=1` on web authentication flows now shows an embed-friendly page for oauth
 
 
-##### Changes
+### Changes
 
 * Consolidated some account management areas
 * Increased invite limit from 5 to 7
@@ -289,7 +326,7 @@ This is a major feature update to pnut.io.
 * pnut.io now reverses markdown when editing your profile
 
 
-##### Fixes
+### Fixes
 
 * Password recovery E-mail address was case-sensitive
 * "Users" count on user objects (number of users invited) was incorrect
@@ -301,11 +338,11 @@ Note that after a year, current developers will have to pay $10/year for develop
 
 
 
-#### [2017-04-30](#0.5.1) v0.5.1 {#0.5.1}
+## [2017-04-30](#0.5.1) v0.5.1 {#0.5.1}
 
 This is a minor feature and bug fix update to pnut.io.
 
-##### Features
+### Features
 
 * The first developer to authorize an extended scope can now customize a description of what it is used for, when users authorize the scope in the future ("Content Types" in dev area)
 * Users can change username once, and can change capitalization as often as they want, from pnut.io profile settings
@@ -314,12 +351,12 @@ This is a minor feature and bug fix update to pnut.io.
 * Including `?include_limited_users=1` on subscribed channel streams and individual channel calls will include users as limited objects in the ACL instead of user IDs only
 * "Missed Conversations" explore stream added (random posts that had no interactions)
 
-##### Changes
+### Changes
 
 * Activity log now includes administrative events (when an admin makes you a developer, suspends your account, etc.)
 * Bare links are now parsed differently, and will accept more valid links, including IPv4/6 addresses
 
-##### Fixes
+### Fixes
 
 * Emoji tag streams did not function on pnut.io
 * `/users/{user_id}/posts` now returns the user's posts even if an authorized user requests it after blocking or muting them
@@ -327,11 +364,11 @@ This is a minor feature and bug fix update to pnut.io.
 
 
 
-#### [2017-04-15](#0.5.0) v0.5.0 {#0.5.0}
+## [2017-04-15](#0.5.0) v0.5.0 {#0.5.0}
 
 This is a feature update to pnut.io.
 
-##### Features
+### Features
 
 * App tokens
 * App Streams
@@ -339,7 +376,7 @@ This is a feature update to pnut.io.
 * Logo
 * Many new documents, some vague
 
-##### Changes
+### Changes
 
 * Redirect URIs can now have query parameters and still validate
 * Link entities will not include redundant phishing protection
@@ -350,7 +387,7 @@ This is a feature update to pnut.io.
 * Mentions in a post are now more likely to be considered "leading mentions"
 * Messages do not include <code>counts.replies</code> at all (for now)
 
-##### Fixes
+### Fixes
 
 * Multiple manually submitted links would fail to be parsed
 * Invites were not calculated correctly (so were seldom given out)
@@ -359,11 +396,11 @@ This is a feature update to pnut.io.
 
 
 
-#### [2017-03-14](#0.4.5b) v0.4.5b {#0.4.5b}
+## [2017-03-14](#0.4.5b) v0.4.5b {#0.4.5b}
 
 This is a minor feature update to pnut.io.
 
-##### Features
+### Features
 
 * "Support Us" page has basic stats
 * New "Activity" account page, which shows the last 10 significant actions made in your account (logins, password changes, etc.)
@@ -371,11 +408,11 @@ This is a minor feature update to pnut.io.
 
 
 
-#### [2017-03-03](#0.4.5) v0.4.5 {#0.4.5}
+## [2017-03-03](#0.4.5) v0.4.5 {#0.4.5}
 
 This is a minor feature update to pnut.io.
 
-##### Features
+### Features
 
 * Invites are now created automatically
 * Each app in the directory now has its own simple page, with expanded description
@@ -387,7 +424,7 @@ This is a minor feature update to pnut.io.
 * Can now add "notes" to unused invites, to easily track what you're doing with them
 
 
-##### Changes
+### Changes
 
 * PM notifications are strictly indicators that you have unread PMs, and no longer contain the text of the messages
 * Better HTML version of the mention notification E-mail
@@ -396,7 +433,7 @@ This is a minor feature update to pnut.io.
 * Clients now require approval before being published to the app directory
 
 
-##### Fixes
+### Fixes
 
 * Deauthorizing a client that doesn't have any tokens now deauthorizes its scopes properly
 * Deleted posts should no longer show up in older threads/streams (as well as other bleeding possibilities)
@@ -407,25 +444,25 @@ This is a minor feature update to pnut.io.
 
 
 
-#### [2017-02-04](#0.4.4) v0.4.4 {#0.4.4}
+## [2017-02-04](#0.4.4) v0.4.4 {#0.4.4}
 
 This is a minor update to pnut.io.
 
-##### Features
+### Features
 
 * All non-developers now have the ability to create one client that only they can authorize
 * Users who reposted or bookmarked posts can be included by including query parameters `include_reposted_by` and `include_bookmarked_by`
 * Basic view of tags at `https://pnut.io/tags/tag` and RSS for them at `https://pnut.io/feed/rss/posts/tags/tag`
 
 
-##### Changes
+### Changes
 
 * Non-markdown non-client-supplied links are restricted to known TLDs
 * Mentions are allowed at the end of word breaks (think: `"@`, `'@`, `(@`)
 * Improved pnut.io user profiles and threads
 
 
-##### Fixes
+### Fixes
 
 * Suspended and deleted accounts no longer retrievable from pnut.io
 * `public_messages` and `messages` being authorized could result in only `public_messages` access
@@ -434,15 +471,15 @@ This is a minor update to pnut.io.
 
 
 
-#### [2017-01-25](#0.4.3) v0.4.3 {#0.4.3}
+## [2017-01-25](#0.4.3) v0.4.3 {#0.4.3}
 
 This is a minor update to pnut.io.
 
-##### Features
+### Features
 
 * `include_marker=1` option available on all stream marker-capable endpoints
 
-##### Changes
+### Changes
 
 * "-" was not handled correctly in link entities
 * Mutes were making messages and post actions appear multiple times
@@ -450,22 +487,22 @@ This is a minor update to pnut.io.
 
 
 
-#### [2017-01-23](#0.4.2) v0.4.2 {#0.4.2}
+## [2017-01-23](#0.4.2) v0.4.2 {#0.4.2}
 
 This is a minor update to pnut.io.
 
-##### Features
+### Features
 
 Submitting `entities.links` on posts, messages, and users works (it is incongruously entities.links on posts and messages, but content.entities.links on users)
 Markers are always included on `GET /channels/{channel_id}/messages` and can be included on `GET /channels/{channel_id}` with `include_marker=1` in the query
 
 
-##### Changes
+### Changes
 
 Deactivating accounts is more straight-forward and consistent
 
 
-##### Fixes
+### Fixes
 
 Unicode `pos` and `len` on entities was not handled properly
 Tags inside markdown were parsed, breaking html/text
@@ -475,11 +512,11 @@ Tags inside markdown were parsed, breaking html/text
 
 
 
-#### [2017-01-15](#0.4.1) v0.4.1 {#0.4.1}
+## [2017-01-15](#0.4.1) v0.4.1 {#0.4.1}
 
 This is a minor update to pnut.io.
 
-##### Fixes
+### Fixes
 
 * Usernames were case-sensitive in password_flow
 * `io.pnut.core.chat`-type channels were not creatable
@@ -490,11 +527,11 @@ This is a minor update to pnut.io.
 
 
 
-#### [2017-01-07](#0.4.0) v0.4.0 {#0.4.0}
+## [2017-01-07](#0.4.0) v0.4.0 {#0.4.0}
 
 This is a major update to pnut.io. The following is notable.
 
-##### Features
+### Features
 
 * `raw` data on posts, messages, users, and channels
 * Stream markers can be updated to the latest ID on post or message creation
@@ -502,13 +539,13 @@ This is a major update to pnut.io. The following is notable.
 * Channel thread endpoint
 
 
-##### Changes
+### Changes
 
 * Revising posts saves the complete original post, where it used to only preserve the original `text` and `html`
 * `X-API-Version` header changed to a major.minor.bugfix format, though in 0.x.x, all are minor or bugfix changes
 
 
-##### Fixes
+### Fixes
 
 * Avatars/covers not showing on pnut.io profiles
 * `/users/me/channels/subscribed` was ordered by ID only, now by most recent message or most recent creation, with clarifying `pagination_id`
@@ -519,11 +556,11 @@ This is a major update to pnut.io. The following is notable.
 
 
 
-#### [2016-11-24](#0.3.0) v0.3.0 {#0.3.0}
+## [2016-11-24](#0.3.0) v0.3.0 {#0.3.0}
 
 This is a major update to pnut.io. The following is notable.
 
-##### Features
+### Features
 
 * More capable app directory
 * Mutes and blocks management from pnut.io
@@ -532,7 +569,7 @@ This is a major update to pnut.io. The following is notable.
 * Client secret reset option
 
 
-##### Changes
+### Changes
 
 * `pagination_id` added to user, post, message, and channel objects in paginated responses
 * Following, followers, muted, and blocked user lists are now paginated
@@ -547,7 +584,7 @@ This is a major update to pnut.io. The following is notable.
 * Moved `/system/configuration` and `/system/statistics` to `/sys/config` and `/sys/stats`
 
 
-##### Fixes
+### Fixes
 
 * Inviting a user now creates a "follow" action when they auto-follow the inviter
 * Blocks are missing fewer edge cases

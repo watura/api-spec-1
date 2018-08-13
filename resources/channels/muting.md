@@ -1,10 +1,10 @@
-### Channel Muting
+# Channel Muting
 
 Muting a channel prevents other users from being able to auto-subscribe you to that channel.
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/channels/muted [<i class="fas fa-paragraph"></i>](#get-users-me-channels-muted) {#get-users-me-channels-muted .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/channels/muted [&para;](#get-users-me-channels-muted) {#get-users-me-channels-muted .endpoint}
 
 Retrieve a list of channels the authenticated user has muted.
 
@@ -24,11 +24,11 @@ Returns a list of muted channels.
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/mute [<i class="fas fa-paragraph"></i>](#put-channels-id-mute) {#put-channels-id-mute .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/mute [&para;](#put-channels-id-mute) {#put-channels-id-mute .endpoint}
 
 Mute subscriptions for a channel. Muting unsubscribes, if you were subscribed.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -52,11 +52,11 @@ Returns the muted channel.
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/mute [<i class="fas fa-paragraph"></i>](#delete-channels-id-mute) {#delete-channels-id-mute .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/mute [&para;](#delete-channels-id-mute) {#delete-channels-id-mute .endpoint}
 
 Delete a subscription mute for a channel.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-

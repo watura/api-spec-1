@@ -1,12 +1,14 @@
-### Post Bookmarks
+# Post Bookmarks
 
 Bookmarking is an action for users to keep track of posts. You can see others' bookmarks as well.
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/bookmarks [<i class="fas fa-paragraph"></i>](#get-users-id-bookmarks) {#get-users-id-bookmarks .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/bookmarks [&para;](#get-users-id-bookmarks) {#get-users-id-bookmarks .endpoint}
 
 Retrieve a list of bookmarks made by the specified user.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+Returned posts may include a `note` string field if looking up bookmarks made by the authorized user.
+
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -27,15 +29,21 @@ Returns a list of posts.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span>/bookmark [<i class="fas fa-paragraph"></i>](#put-posts-id-bookmark) {#put-posts-id-bookmark .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span>/bookmark [&para;](#put-posts-id-bookmark) {#put-posts-id-bookmark .endpoint}
 
 Bookmark a post.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
 `post_id`|Post to bookmark
+
+### PUT Body Data [&para;](#put-body-data-1) {#put-body-data-1}
+
+Name|Description
+-|-
+`note`|Optional 128-character note that will only be visible when a user retrieves their own bookmarks
 
 ##### Example {.example-code}
 
@@ -53,11 +61,11 @@ Returns the bookmarked post.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span>/bookmark [<i class="fas fa-paragraph"></i>](#delete-posts-id-bookmark) {#delete-posts-id-bookmark .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span>/bookmark [&para;](#delete-posts-id-bookmark) {#delete-posts-id-bookmark .endpoint}
 
 Delete a bookmark.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-

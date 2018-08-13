@@ -1,13 +1,13 @@
-### User Search
+# User Search
 
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/search [<i class="fas fa-paragraph"></i>](#get-users-search) {#get-users-search .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/search [&para;](#get-users-search) {#get-users-search .endpoint}
 
 Retrieve a list of users filtered by the given criteria.
 
-##### Query Parameters [<i class="fas fa-paragraph"></i>](#query-parameters-1) {#query-parameters-1}
+### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
 
 Name|Description
 -|-

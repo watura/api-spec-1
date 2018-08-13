@@ -1,11 +1,11 @@
-### Responses
+# Responses
 
 All API endpoints listed under Resources, whether successful or not, will be returned in the same type of envelope structure.
 
 *The [authentication endpoints](../authentication/overview) return a slightly different format that follows the OAuth2 specification.*
 
 
-#### Response Envelope
+## Response Envelope
 
 The top-level response is an object containing two keys. The first key, `data`, corresponds to the actual response item requested. This may either be an object itself or a list of objects. The particular data returned is described in each endpoint's documentation. If the request is unsuccessful (results in an error), no `data` key will be present.
 
@@ -33,19 +33,19 @@ The second key present, `meta`, corresponds to an object containing additional i
 ```
 
 
-#### CORS
+## CORS
 
 [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) is supported for authenticated cross-domain API requests direct from browsers. Be sure to carefully consider how your app will handle access tokens for CORS requests.
 
 
 
-#### X-Pretty-Json Header
+## X-Pretty-Json Header
 
 The examples in the documentation include the `X-Pretty-Json` header. This prints the JSON with more readable spacing, for testing. In production there's no reason to include it. If it is set at all, the JSON will be returned that way.
 
 
 
-#### Errors
+## Errors
 
 If the request was unsuccessful, no `data` key will be returned. `code` and `error_message` keys will indicate what error occurred. There may also be a uniquely-identifying `error_id` present that can be helpful when talking to pnut.io support.
 
@@ -53,7 +53,7 @@ The API will respond with some accuracy for almost all issues. There are two uns
 
 
 
-#### HTTP status codes
+## HTTP status codes
 
 Pnut.io uses the HTTP status code to indicate if an API request was a success or failure. For environments that can't access the raw HTTP response directly, this value is also duplicated in the `meta.code` value. The following table lists all currently used HTTP status codes. If you get a status code that is not documented below, please [open an issue](https://github.com/pnut-api/api-spec/issues).
 

@@ -1,6 +1,6 @@
-### App Access Token
+# App Access Token
 
-#### Setup
+## Setup
 
 App access tokens can only be retrieved by developers' apps.
 
@@ -9,7 +9,7 @@ All that is required is the `client_id` and `client_secret`.
 App tokens are only to be used server-side, in ways that will protect the data. They can retrieve any data that any authorized users of the app can access, so you must take care to respect users' blocks and mutes yourself.
 
 
-#### Process
+## Process
 
 Make a <span class="method method-post">POST</span> call like so:
 

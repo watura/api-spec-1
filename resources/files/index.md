@@ -1,12 +1,12 @@
-### Files
+# Files
 
 
-#### Object
+## Object
 
 [Use live API calls for an example of the object.](/docs/api/resources/files/lookup#get-files-id)
 
 
-#### Fields [<i class="fas fa-paragraph"></i>](#file-fields) {#file-fields}
+## Fields [&para;](#file-fields) {#file-fields}
 
 <table>
     <tr>
@@ -282,11 +282,11 @@
 </table>
 
 
-#### General File Parameters [<i class="fas fa-paragraph"></i>](#general-file-parameters) {#general-file-parameters}
+## General File Parameters [&para;](#general-file-parameters) {#general-file-parameters}
 
 Any endpoint that returns file objects can be subject to these parameters.
 
-##### General Parameters
+### General Parameters
 
 Name|Type|Description
 -|-|-
@@ -298,7 +298,7 @@ Name|Type|Description
 `include_file_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all file objects. Defaults to false.
 
 
-#### Mime Types [<i class="fas fa-paragraph"></i>](#mime-types) {#mime-types}
+## Mime Types [&para;](#mime-types) {#mime-types}
 
 `kind` and `mime_type` must be coordinated.
 
@@ -313,7 +313,7 @@ If creating a file placeholder and uploading later, `kind` is required on creati
 
 Multiple mime types are accepted for some file types, but they will be normalized and recorded as a single mime type listed in the charts below.
 
-##### File Encoding
+### File Encoding
 
 If the included `mime_type` matches any of the following, its text encoding will attempt to be detected by the server (i.e., for UTF-8 encoding):
 
@@ -325,7 +325,7 @@ If the included `mime_type` matches any of the following, its text encoding will
 * `application/json`
 * `application/javascript`
 
-##### Audio
+### Audio
 
 Files with `kind: audio` must have the following `mime_type`:
 
@@ -336,7 +336,7 @@ MP4|audio/mp4|audio/m4a, audio/x-m4a
 WAV|audio/wave|audio/wav, audio/x-wav, audio/x-pn-wav
 FLAC|audio/flac|audio/x-flac
 
-##### Image
+### Image
 
 Files with `kind: image` must have the following `mime_type`:
 

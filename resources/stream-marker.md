@@ -1,4 +1,4 @@
-### Stream Marker
+# Stream Marker
 
 Stream markers provide a way to save a user's spot in a stream of posts or messages; a lightweight way to sync between clients, or pick up where you left off without otherwise saving it.
     
@@ -19,7 +19,7 @@ Current markable streams/names:
 On creation of posts and messages, you can automatically update the "personal" and "channel" markers to the created ID by including `update_marker=1` in the query string.
     
     
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-post">POST</span> /markers [<i class="fas fa-paragraph"></i>](#post-markers) {#post-markers .endpoint}
+## <span class="endpoint-meta">any</span><span class="method method-post">POST</span> /markers [&para;](#post-markers) {#post-markers .endpoint}
 
 Post a list of marker objects. You may update up to 10 at once. `id` and `name` are required. You may include `percentage` for more accuracy.
     

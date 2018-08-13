@@ -1,9 +1,9 @@
-### System
+# System
 
 The System endpoint gives access to system-wide information.
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /sys/config [<i class="fas fa-paragraph"></i>](#get-sys-config) {#get-sys-config .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /sys/config [&para;](#get-sys-config) {#get-sys-config .endpoint}
 
 Retrieve a list of parameters for interacting with the API.
 
@@ -23,7 +23,7 @@ Returns a catalog of parameters
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /sys/stats [<i class="fas fa-paragraph"></i>](#get-sys-stats) {#get-sys-stats .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /sys/stats [&para;](#get-sys-stats) {#get-sys-stats .endpoint}
 
 Retrieve basic statistics for the network.
 

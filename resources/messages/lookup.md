@@ -1,12 +1,12 @@
-### Messages Lookup
+# Messages Lookup
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span> [<i class="fas fa-paragraph"></i>](#get-channels-id-messages-id) {#get-channels-id-messages-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span> [&para;](#get-channels-id-messages-id) {#get-channels-id-messages-id .endpoint}
 
 Retrieve a message from a channel. The requesting user must have access to the channel or have created the message.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -30,11 +30,11 @@ Returns the requested message.
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/thread [<i class="fas fa-paragraph"></i>](#get-channels-id-messages-id-thread) {#get-channels-id-messages-id-thread .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/thread [&para;](#get-channels-id-messages-id-thread) {#get-channels-id-messages-id-thread .endpoint}
 
 Retrieve messages in the same thread of a channel. All messages will have the same `thread_id` (they are all replies to the same post, or is not a reply to any post). The requesting user must have access to the channel.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -58,11 +58,11 @@ Returns a list of messages.
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/messages [<i class="fas fa-paragraph"></i>](#get-messages) {#get-messages .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/messages [&para;](#get-messages) {#get-messages .endpoint}
 
 Retrieve a list of specified messages. Will only return the first 200 found.
 
-##### Query String Parameters [<i class="fas fa-paragraph"></i>](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
 
 Name|Description
 -|-
@@ -83,11 +83,11 @@ Returns a list of the messages found.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/messages [<i class="fas fa-paragraph"></i>](#get-channels-id-messages) {#get-channels-id-messages .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/messages [&para;](#get-channels-id-messages) {#get-channels-id-messages .endpoint}
 
 Retrieve paginated messages from a channel.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
@@ -108,7 +108,7 @@ Returns a list of messages from the channel.
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/messages [<i class="fas fa-paragraph"></i>](#get-users-me-messages) {#get-users-me-messages .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/messages [&para;](#get-users-me-messages) {#get-users-me-messages .endpoint}
 
 Retrieve a paginated list of messages created by the authenticated user.
 

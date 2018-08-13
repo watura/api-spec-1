@@ -1,13 +1,13 @@
-### Clients
+# Clients
 
 Client name can contain any Unicode characters. *Be sure to escape it if necessary.*
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/clients [<i class="fas fa-paragraph"></i>](#get-users-id-clients) {#get-users-id-clients .endpoint}
+## <span class="endpoint-meta">any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/clients [&para;](#get-users-id-clients) {#get-users-id-clients .endpoint}
 
 Retrieve a list of active clients created by a user.
 
-##### URL Parameters
+### URL Parameters
 
 Name|Description
 -|-
@@ -28,11 +28,11 @@ Returns a list of clients
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /clients/<span class="call-param">{client_id}</span> [<i class="fas fa-paragraph"></i>](#get-clients-id) {#get-clients-id .endpoint}
+## <span class="endpoint-meta">any</span><span class="method method-get">GET</span> /clients/<span class="call-param">{client_id}</span> [&para;](#get-clients-id) {#get-clients-id .endpoint}
 
 Retrieve details on a public client, by client ID.
 
-##### URL Parameters
+### URL Parameters
 
 Name|Description
 -|-

@@ -1,4 +1,4 @@
-### Authentication
+# Authentication
 
 *Any user may create one client that only they can authorize (for all intents and purposes, only they can use it).*
 
@@ -15,18 +15,18 @@ If you want to retrieve data on behalf of your app, from a server, and not from 
 
 * [App Access Token](../authentication/app-access-token)
 
-### Fields
+## Fields
 
-#### Redirect URI
+### Redirect URI
 
-Redirect URIs can be any valid URL, including IP addresses, with ports, etc.
+Redirect URIs can be any valid URL, including IP addresses, with ports, etc. It cannot contain a fragment.
 
 If a query string is included on the redirect URI you specify in the Developer management area for your client, then pnut will only authorize that specific redirect URI. If you do not specify a query parameter, any query parameters will be allowed.
 
 The special URI `urn:ietf:wg:oauth:2.0:oob` will redirect users to an HTML page where they can retrieve the access token for development purposes, or to manually enter it into your app.
 
 
-#### Selective Revocation & Token Groups
+### Selective Revocation & Token Groups
 
 Users can deauthorize tokens for your app by the IP address used, the token group, or all tokens at once.
 

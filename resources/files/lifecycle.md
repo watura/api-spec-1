@@ -1,10 +1,10 @@
-### File Lifecycle
+# File Lifecycle
 
 For an explanation of how to attach files to other objects, read [How To File](../../how-to/file).
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-post">POST</span> /files [<i class="fas fa-paragraph"></i>](#post-files) {#post-files .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-post">POST</span> /files [&para;](#post-files) {#post-files .endpoint}
 
 Create a file placeholder or a complete file. `type`, `kind`, and `name` are necessary. By default, the file will be private.
 
@@ -12,7 +12,7 @@ If creating a file placeholder, it can be form data or a Content-Type of `applic
 
 If creating a complete file the Content-Type must be `multipart/form-data`, and the `content` key must be the file.
 
-##### POST Body Data [<i class="fas fa-paragraph"></i>](#post-body-data-1) {#post-body-data-1}
+### POST Body Data [&para;](#post-body-data-1) {#post-body-data-1}
 
 Name|Description
 -|-
@@ -50,13 +50,13 @@ Returns the created file details
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-patch">PATCH</span> /files/<span class="call-param">{file_id}</span> [<i class="fas fa-paragraph"></i>](#put-files-id) {#put-files-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-patch">PATCH</span> /files/<span class="call-param">{file_id}</span> [&para;](#put-files-id) {#put-files-id .endpoint}
 
 Update a file's details. Only `name`, `is_public`, and `raw` can be updated.
 
 If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or for a while after via the cache. To make a public file secure again, delete it and upload it again as a new file.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters) {#url-parameters}
+### URL Parameters [&para;](#url-parameters) {#url-parameters}
 
 Name|Description
 -|-
@@ -83,13 +83,13 @@ Returns the updated file
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content/<span class="call-param">{derived_key}</span> [<i class="fas fa-paragraph"></i>](#put-files-id-content-key) {#put-files-id-content-key .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content/<span class="call-param">{derived_key}</span> [&para;](#put-files-id-content-key) {#put-files-id-content-key .endpoint}
 
 Upload a new derivative file. You may only do this with an existing file placeholder (an incomplete file).
 
 This is particularly useful if you want to include alternative versions of a file, such as different sizes of images, custom thumbnails instead of auto-generated thumbnails, or different music or video formats of a file.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-
@@ -112,11 +112,11 @@ Returns 204 on success
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [<i class="fas fa-paragraph"></i>](#put-files-id-content) {#put-files-id-content .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [&para;](#put-files-id-content) {#put-files-id-content .endpoint}
 
 Set a file placeholder's content. You may only do this with an incomplete file.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-3) {#url-parameters-3}
+### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
 
 Name|Description
 -|-
@@ -140,11 +140,11 @@ Returns 204 on success
 
 
 
-#### <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> [<i class="fas fa-paragraph"></i>](#delete-files-id) {#delete-files-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> [&para;](#delete-files-id) {#delete-files-id .endpoint}
 
 Delete a file. This will not disassociate a file with any other objects (posts, messages...).
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-4) {#url-parameters-4}
+### URL Parameters [&para;](#url-parameters-4) {#url-parameters-4}
 
 Name|Description
 -|-

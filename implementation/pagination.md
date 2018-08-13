@@ -1,4 +1,4 @@
-### Pagination
+# Pagination
 
 
 Paginated calls will include a `pagination_id` on the paginated objects.
@@ -16,7 +16,7 @@ Negative `before_id` and `since_id` can be used on most post streams, but not ch
 Pagination parameters can be used in conjunction with [stream markers](../resources/stream-marker) on some calls.
 
 
-#### Examples
+## Examples
 
 In these examples, `8` is the most recent post ID.
 

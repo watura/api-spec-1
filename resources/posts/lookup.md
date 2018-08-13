@@ -1,11 +1,11 @@
-### Post Lookup
+# Post Lookup
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span> [<i class="fas fa-paragraph"></i>](#get-posts-id) {#get-posts-id .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span> [&para;](#get-posts-id) {#get-posts-id .endpoint}
 
 Retrieve a post object.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-1) {#url-parameters-1}
+### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
 
 Name|Description
 -|-
@@ -26,11 +26,11 @@ Returns a post
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts [<i class="fas fa-paragraph"></i>](#get-posts) {#get-posts .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts [&para;](#get-posts) {#get-posts .endpoint}
 
 Retrieve a list of specified post objects. Only retrieves the first 200 found.
 
-##### Query String Parameters [<i class="fas fa-paragraph"></i>](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
 
 Name|Description
 -|-
@@ -51,11 +51,11 @@ Returns a list of posts
 ```
 
 
-#### <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/revisions [<i class="fas fa-paragraph"></i>](#get-posts-id-revisions) {#get-posts-id-revisions .endpoint}
+## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/revisions [&para;](#get-posts-id-revisions) {#get-posts-id-revisions .endpoint}
 
 Retrieve a list of [previous versions](lifecycle#put-posts-id) of a post, not including the most recent. Currently a post can only have one previous version.
 
-##### URL Parameters [<i class="fas fa-paragraph"></i>](#url-parameters-2) {#url-parameters-2}
+### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
 
 Name|Description
 -|-

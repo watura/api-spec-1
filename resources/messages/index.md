@@ -1,12 +1,12 @@
-### Messages
+# Messages
 
 
-#### Object
+## Object
 
 [Use live API calls for an example of the object.](/docs/api/resources/messages/lookup#get-channels-id-messages-id)
 
 
-#### Fields [<i class="fas fa-paragraph"></i>](#message-fields) {#message-fields}
+## Fields [&para;](#message-fields) {#message-fields}
 
 <table>
     <tr>
@@ -125,11 +125,11 @@
 </table>
 
 
-#### General Message Parameters [<i class="fas fa-paragraph"></i>](#general-message-parameters) {#general-message-parameters}
+## General Message Parameters [&para;](#general-message-parameters) {#general-message-parameters}
 
 Any endpoint that returns message objects can be subject to these parameters.
 
-##### General Parameters
+### General Parameters
 
 Name|Type|Description
 -|-|-

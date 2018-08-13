@@ -1,4 +1,7 @@
-### How To: ACL
+# How To: ACL
+
+Channels have three groups that determine who can read, write, and manage the channel. Users can only be within one of the three groups, and the higher-access groups inherit the lower functionality as well. Someone who can manage a channel can write and read, and someone who can write, can read. The user who creates the channel automatically and irrevocably has `full` access, but is as the `owner`, not in the ACL proper.
+
 
 ```json
 "acl":{
@@ -23,38 +26,32 @@
 }
 ```
 
-Channels have three Access Control Lists that determine who can read, write, and manage the channel. Users can only be within one of the three groups, and the higher-access groups inherit the lower functionality as well. Someone who can manage a channel can write and read, and someone who can write, can read. The user who creates the channel automatically and irrevocably has `full` access, but is not listed there.
+## Permissions
+
+### owner
+
+* Deactivate the channel.
+* Edit `full` access group.
 
 
+### full
 
-#### owner
-
-*- Deactivate the channel.*
-
-
-
-#### full
-
-*- Edit the channel, including the `read` and `write` ACLs (cannot edit who has `full` access).*
-
-*- Delete messages from the channel.*
+* Edit the channel and the `read` and `write` ACLs
+* Delete any messages from the channel.
 
 
+### write
 
-#### write
-
-*- Write messages to the channel.*
-
+* Write messages to the channel.
 
 
-#### read
+### read
 
-*- Read and subscribe to the channel and messages in it.*
+* Read and subscribe to the channel and messages in it.
 
 
-
-#### immutable
+## Immutability
 
 By default, all ACLs are "mutable". They can change. Once set "*im*mutable", they can no longer be changed. The exception to this is `any_user` on `read`. If `any_user` on `write` changes from false to true, `read`'s `any_user` will still inherit it.
 
-Be sure when you create a channel not to specify immutability to `true` if you think you will want to change the ACL afterwards.
+Be sure when you create a channel not to make an ACL immutable if you think you will want to change it later.
