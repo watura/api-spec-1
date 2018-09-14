@@ -14,21 +14,21 @@ The second key present, `meta`, corresponds to an object containing additional i
 ##### Sample Response Envelope
 ```json
 {
-    "data": "the data you requested",
-    "meta": {
-        "more": true,
-        "max_id": "2703",
-        "min_id": "2702",
-        "marker": {
-            "id": "2593",
-            "last_read_id": "5719",
-            "percentage": "0",
-            "updated_at": "2017-12-26T15:26:19Z",
-            "version": "YM-fTQk8_0nsdlI01kcUCGvyvHN",
-            "name": "global"
-        },
-        "code": 200
-    }
+  "data": "the data you requested",
+  "meta": {
+    "more": true,
+    "max_id": "2703",
+    "min_id": "2702",
+    "marker": {
+      "id": "2593",
+      "last_read_id": "5719",
+      "percentage": "0",
+      "updated_at": "2017-12-26T15:26:19Z",
+      "version": "YM-fTQk8_0nsdlI01kcUCGvyvHN",
+      "name": "global"
+    },
+    "code": 200
+  }
 }
 ```
 

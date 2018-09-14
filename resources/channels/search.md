@@ -1,9 +1,13 @@
 # Channel Search
 
+Endpoints:
+
+* [Search channels](#get-channels-search)
 
 
+## <span class="method method-get">GET</span> /channels/search {#get-channels-search .endpoint}
 
-## <span class="endpoint-meta"><i class="fa fa-unlock" aria-hidden="true"></i> none</span><span class="method method-get">GET</span> /channels/search [&para;](#get-channels-search) {#get-channels-search .endpoint}
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of channels filtered by the given criteria.
 

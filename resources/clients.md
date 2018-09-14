@@ -2,8 +2,15 @@
 
 Client name can contain any Unicode characters. *Be sure to escape it if necessary.*
 
+Endpoints:
 
-## <span class="endpoint-meta">any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/clients [&para;](#get-users-id-clients) {#get-users-id-clients .endpoint}
+* [Get a user's clients](#get-users-id-clients)
+* [Get a client](#get-clients-id)
+
+
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/clients {#get-users-id-clients .endpoint}
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of active clients created by a user.
 
@@ -24,11 +31,24 @@ curl "https://api.pnut.io/v0/users/8/clients" \
 Returns a list of clients
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {
+            "id": "String",
+            "link": "https://example.com",
+            "name": "String"
+        }
+    ]
+}
 ```
 
 
-## <span class="endpoint-meta">any</span><span class="method method-get">GET</span> /clients/<span class="call-param">{client_id}</span> [&para;](#get-clients-id) {#get-clients-id .endpoint}
+## <span class="method method-get">GET</span> /clients/<span class="call-param">{client_id}</span> {#get-clients-id .endpoint}
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve details on a public client, by client ID.
 
@@ -49,5 +69,26 @@ curl "https://api.pnut.io/v0/clients/3PFPMSet53RutGINA8e5HWqYg_UCDHad" \
 Returns the detailed client object
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "created_at": "ISO-8601",
+        "created_by": {"...User Object..."},
+        "id": "String",
+        "link": "https://example.com",
+        "name": "String",
+        "posts": 0,
+        "content": {
+            "text": "String",
+            "html": "<span itemscope=\"https://pnut.io/schemas/Post\">String</span>",
+            "entities": {
+                "links": [],
+                "mentions": [],
+                "tags": []
+            }
+        }
+    }
+}
 ```

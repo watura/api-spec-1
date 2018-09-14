@@ -7,9 +7,16 @@ The current reasons that will be honored for reporting are:
 * `nsfw`: unflagged mature material according to [the community guidelines](https://pnut.io/docs/resources/mature-content)
 * `user_abuse`: use of the API or network to abuse another user
 
+Endpoints:
+
+* [Report a message](#post-channels-id-messages-id-report)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/report [&para;](#post-channels-id-messages-id-report) {#post-channels-id-messages-id-report .endpoint}
+## <span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/report {#post-channels-id-messages-id-report .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Report a message in a channel for abuse.
 

@@ -1,10 +1,17 @@
 # File Lookup
 
+Endpoints:
+
+* [Get a file](#get-files-id)
+* [Get multiple files](#get-files)
+* [Get the authenticated user's files](#get-users-me-files)
 
 
+## <span class="method method-get">GET</span> /files/<span class="call-param">{file_id}</span> {#get-files-id .endpoint}
 
+Token: <span class="endpoint-meta">user</span>
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /files/<span class="call-param">{file_id}</span> [&para;](#get-files-id) {#get-files-id .endpoint}
+Scope: <span class="endpoint-meta">files</span>
 
 Retrieve a file object. If `link_expires_at` is passed, this will update the `link` and any embedded references to it.
 
@@ -29,7 +36,11 @@ Returns the requested file details
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /files [&para;](#get-files) {#get-files .endpoint}
+## <span class="method method-get">GET</span> /files {#get-files .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
 
 Retrieve a list of specified file objects. Only returns the first 200 found.
 
@@ -56,7 +67,11 @@ Returns a list of files
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-get">GET</span> /users/me/files [&para;](#get-users-me-files) {#get-users-me-files .endpoint}
+## <span class="method method-get">GET</span> /users/me/files {#get-users-me-files .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
 
 Retrieve a list of files created by the authenticated user.
 

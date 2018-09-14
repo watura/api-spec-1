@@ -1,8 +1,20 @@
 # Post Streams
 
+Endpoints:
+
+* [Get a user's personal stream](#get-posts-streams-me)
+* [Get a user's unified personal stream](#get-posts-streams-unified)
+* [Get mentions of a user](#get-users-id-mentions)
+* [Get posts by a user](#get-users-id-posts)
+* [Get the global stream](#get-posts-streams-global)
+* [Get posts with a tag](#get-posts-tags-tag)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> stream</span><span class="method method-get">GET</span> /posts/streams/me [&para;](#get-posts-streams-me) {#get-posts-streams-me .endpoint}
+## <span class="method method-get">GET</span> /posts/streams/me {#get-posts-streams-me .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">stream</span>
 
 The authenticated user's stream of posts from their followers and themself.
 
@@ -21,7 +33,11 @@ Returns a list of posts.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> stream</span><span class="method method-get">GET</span> /posts/streams/unified [&para;](#get-posts-streams-unified) {#get-posts-streams-unified .endpoint}
+## <span class="method method-get">GET</span> /posts/streams/unified {#get-posts-streams-unified .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">stream</span>
 
 A combined Personal Stream including the authenticated user's mentions.
 
@@ -40,7 +56,9 @@ Returns a list of posts.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/mentions [&para;](#get-users-id-mentions) {#get-users-id-mentions .endpoint}
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/mentions {#get-users-id-mentions .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Posts mentioning the specified user.
 
@@ -65,7 +83,9 @@ Returns a list of posts.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/posts [&para;](#get-users-id-posts) {#get-users-id-posts .endpoint}
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/posts {#get-users-id-posts .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Posts created by the specified user.
 
@@ -92,7 +112,9 @@ Returns a list of posts.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/global [&para;](#get-posts-streams-global) {#get-posts-streams-global .endpoint}
+## <span class="method method-get">GET</span> /posts/streams/global {#get-posts-streams-global .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 A stream of all users' public posts.
 
@@ -111,7 +133,9 @@ Returns a list of posts.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/tags/<span class="call-param">{tag}</span> [&para;](#get-posts-tags-tag) {#get-posts-tags-tag .endpoint}
+## <span class="method method-get">GET</span> /posts/tags/<span class="call-param">{tag}</span> {#get-posts-tags-tag .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 A stream of all posts that include the specified `tag`.
 

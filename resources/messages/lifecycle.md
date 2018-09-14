@@ -1,9 +1,16 @@
 # Message Lifecycle
 
+Endpoints:
+
+* [Create a message](#post-channels-id-messages)
+* [Delete a message](#delete-channels-id-messages-id)
 
 
+## <span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages {#post-channels-id-messages .endpoint}
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages [&para;](#post-channels-id-messages) {#post-channels-id-messages .endpoint}
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Create a message in a channel.
 
@@ -37,7 +44,11 @@ Returns the message created.
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span> [&para;](#delete-channels-id-messages-id) {#delete-channels-id-messages-id .endpoint}
+## <span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span> {#delete-channels-id-messages-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Delete a message in a channel. Creators of messages can delete their messages even if they no longer have access to the channel.
 

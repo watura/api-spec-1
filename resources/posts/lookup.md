@@ -1,7 +1,15 @@
 # Post Lookup
 
+Endpoints:
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span> [&para;](#get-posts-id) {#get-posts-id .endpoint}
+* [Get a post](#get-posts-id)
+* [Get multiple posts](#get-posts)
+* [Get post revisions](#get-posts-id-revisions)
+
+
+## <span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span> {#get-posts-id .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a post object.
 
@@ -26,7 +34,9 @@ Returns a post
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts [&para;](#get-posts) {#get-posts .endpoint}
+## <span class="method method-get">GET</span> /posts {#get-posts .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of specified post objects. Only retrieves the first 200 found.
 
@@ -51,7 +61,9 @@ Returns a list of posts
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/revisions [&para;](#get-posts-id-revisions) {#get-posts-id-revisions .endpoint}
+## <span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/revisions {#get-posts-id-revisions .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of [previous versions](lifecycle#put-posts-id) of a post, not including the most recent. Currently a post can only have one previous version.
 

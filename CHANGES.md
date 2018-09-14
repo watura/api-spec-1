@@ -1,7 +1,8 @@
-Follow Pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi/posts)
+Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/posts" rel="alternate" type="application/rss+xml">via RSS</a>
 
 # <span class="orange">Changes</span>
 
+* [0.9.1](#0.9.1)
 * [0.9.0](#0.9.0)
 * [0.8.0](#0.8.0)
 * [0.7.7](#0.7.7)
@@ -24,6 +25,31 @@ Follow Pnut API updates [via RSS](https://api.pnut.io/v0/feed/rss/users/@pnutapi
 * [0.4.0](#0.4.0)
 * [0.3.0](#0.3.0)
 
+
+## [2018-09-13](#0.9.1) v0.9.1 {#0.9.1}
+
+### Features
+
+* Badge directory, earning, assigning, and setting by clients
+* Added `mime_types` filter to files
+* Added `+io.pnut.core.user` raw replacement value
+* Post search and channel message endpoints are accessible from RSS
+* New `poll_response` interaction when someone responds to your poll
+* New `/users/me/polls/responses` endpoint
+
+### Changes
+
+* Improved documentation
+* Alternative `/users/me/interactions` and `/posts/{post_id}/interactions` endpoints
+* Tweaked post search
+* Small performance improvements to all POST calls
+
+### Fixes
+
+* Audio file attached via oEmbed had faulty `url_expires_at`
+* Server-side flow didn't preserve `state` parameter
+* Could not delete polls
+* Deleted messages didn't send over user and app streams
 
 
 ## [2018-08-13](#0.9.0) v0.9.0 {#0.9.0}

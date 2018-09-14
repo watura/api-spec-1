@@ -17,9 +17,17 @@ Current markable streams/names:
 * [channels](channels/lookup#get-channels-id): "channel:{id}"
     
 On creation of posts and messages, you can automatically update the "personal" and "channel" markers to the created ID by including `update_marker=1` in the query string.
+
+Endpoints:
+
+* [Set a list of stream markers](#post-markers)
     
     
-## <span class="endpoint-meta">any</span><span class="method method-post">POST</span> /markers [&para;](#post-markers) {#post-markers .endpoint}
+## <span class="method method-post">POST</span> /markers {#post-markers .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Post a list of marker objects. You may update up to 10 at once. `id` and `name` are required. You may include `percentage` for more accuracy.
     
@@ -46,5 +54,19 @@ curl "https://api.pnut.io/v0/markers" \
 Returns a list of the updated markers
         
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {
+            "id": "0",
+            "last_read_id": "0",
+            "percentage": 0,
+            "updated_at": "ISO-8601",
+            "version": "String",
+            "name": "String"
+        }
+    ]
+}
 ```

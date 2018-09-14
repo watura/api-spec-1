@@ -2,9 +2,19 @@
 
 Subscribed channels act like an "inbox" of channels ordered by their most recent messages.
 
+Endpoints:
+
+* [Get the authenticated user's subscribed channels](#get-users-me-channels-subscribed)
+* [Get users subscribed to a channel](#get-channels-id-subscribers)
+* [Subscribe to a channel](#put-channels-id-subscribe)
+* [Unsubscribe from a channel](#delete-channels-id-subscribe)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/channels/subscribed [&para;](#get-users-me-channels-subscribed) {#get-users-me-channels-subscribed .endpoint}
+## <span class="method method-get">GET</span> /users/me/channels/subscribed {#get-users-me-channels-subscribed .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of channels the authenticated user is subscribed to.
 
@@ -24,7 +34,9 @@ Returns a list of subscribed channels.
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/subscribers [&para;](#get-channels-id-subscribers) {#get-channels-id-subscribers .endpoint}
+## <span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/subscribers {#get-channels-id-subscribers .endpoint}
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of users subscribed to a channel.
 
@@ -51,7 +63,11 @@ Returns a list of users.
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/subscribe [&para;](#put-channels-id-subscribe) {#put-channels-id-subscribe .endpoint}
+## <span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/subscribe {#put-channels-id-subscribe .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Subscribe to updates from a channel. Subscribing unmutes it, if you were muting it.
 
@@ -79,7 +95,11 @@ Returns the subscribed channel.
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/subscribe [&para;](#delete-channels-id-subscribe) {#delete-channels-id-subscribe .endpoint}
+## <span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/subscribe {#delete-channels-id-subscribe .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Delete a subscription for a channel. Unsubscribing also deletes any existing stream marker for the channel.
 

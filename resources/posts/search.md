@@ -1,9 +1,13 @@
 # Post Search
 
+Endpoints:
+
+* [Search posts](#get-posts-search)
 
 
+## <span class="method method-get">GET</span> /posts/search {#get-posts-search .endpoint}
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> none</span><span class="method method-get">GET</span> /posts/search [&para;](#get-posts-search) {#get-posts-search .endpoint}
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of posts filtered by the given criteria.
 

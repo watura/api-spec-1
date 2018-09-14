@@ -4,9 +4,18 @@
 
 Users with `full` access to a channel are able to sticky and un-sticky messages in the channel.
 
+Endpoints:
+
+* [Get sticky messages in a channel](#get-channels-id-sticky_messages)
+* [Sticky a message](#put-channels-id-messages-id-sticky)
+* [Unsticky a message](#delete-channels-id-messages-id-sticky)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/sticky_messages [&para;](#get-channels-id-sticky_messages) {#get-channels-id-sticky_messages .endpoint}
+## <span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/sticky_messages {#get-channels-id-sticky_messages .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve sticky messsages in a channel. The requesting user must have access to the channel.
 
@@ -34,7 +43,11 @@ Returns a list of messages.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky [&para;](#put-channels-id-messages-id-sticky) {#put-channels-id-messages-id-sticky .endpoint}
+## <span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky {#put-channels-id-messages-id-sticky .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Sticky a message.
 
@@ -62,7 +75,11 @@ Returns the bookmarked post.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky [&para;](#delete-channels-id-messages-id-sticky) {#delete-channels-id-messages-id-sticky .endpoint}
+## <span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/sticky {#delete-channels-id-messages-id-sticky .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Un-sticky a message.
 

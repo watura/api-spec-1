@@ -4,9 +4,18 @@ For an explanation of how to attach polls to other objects, read [How To File](.
 
 You may also look at the [GitHub object-metadata](https://github.com/pnut-api/object-metadata/blob/master/raw-replacement-values/%2Bio.pnut.core.poll.md).
 
+Endpoints:
+
+* [Create a poll](#post-polls)
+* [Respond to a poll](#put-polls-id-response-position)
+* [Delete a poll](#delete-polls-id)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls,write_post</span><span class="method method-post">POST</span> /polls [&para;](#post-polls) {#post-polls .endpoint}
+## <span class="method method-post">POST</span> /polls {#post-polls .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">polls,write_post</span>
 
 Create a poll placeholder or a complete poll. `type`, `prompt`, `options`, and `duration` or `closed_at` are necessary. By default, the poll will be private and anonymous.
 
@@ -57,7 +66,11 @@ Returns the created poll
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls,write_post</span><span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position} [&para;](#put-polls-id-response-position) {#put-polls-id-response-position .endpoint}
+## <span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position} {#put-polls-id-response-position .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">polls,write_post</span>
 
 Respond to a poll.
 
@@ -88,7 +101,11 @@ Returns poll on success
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls</span><span class="method method-delete">DELETE</span> /polls/<span class="call-param">{poll_id}</span> [&para;](#delete-polls-id) {#delete-polls-id .endpoint}
+## <span class="method method-delete">DELETE</span> /polls/<span class="call-param">{poll_id}</span> {#delete-polls-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">polls</span>
 
 Delete a poll. This will not disassociate a poll with any other objects (posts, messages...).
 

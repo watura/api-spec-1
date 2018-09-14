@@ -1,7 +1,20 @@
 # User Profile
 
+Endpoints:
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-put">PUT</span> /users/me [&para;](#put-users-me) {#put-users-me .endpoint}
+* [Completely update a user](#put-users-me)
+* [Partially update a user](#patch-users-me)
+* [Get user avatar](#get-users-id-avatar)
+* [Update user avatar](#post-users-me-avatar)
+* [Get user cover](#get-users-id-cover)
+* [Update user cover](#post-users-me-cover)
+
+
+## <span class="method method-put">PUT</span> /users/me {#put-users-me .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">update_profile</span>
 
 Replaces the authenticated user's profile. Anything not included is removed.
 
@@ -30,11 +43,22 @@ curl "https://api.pnut.io/v0/users/me" \
 Returns the updated user object
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "...User Object..."
+    }
+}
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-patch">PATCH</span> /users/me [&para;](#patch-users-me) {#patch-users-me .endpoint}
+## <span class="method method-patch">PATCH</span> /users/me {#patch-users-me .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">update_profile</span>
 
 Updates only specified parts of the authenticated user's profile.
 
@@ -59,11 +83,20 @@ curl "https://api.pnut.io/v0/users/me" \
 Returns the updated user object
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "....User Object..."
+    }
+}
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/avatar [&para;](#get-users-id-avatar) {#get-users-id-avatar .endpoint}
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/avatar {#get-users-id-avatar .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 This endpoint will return an HTTP 302 redirect to the user’s current avatar image. It will include any query string parameters you pass to the endpoint.
 
@@ -95,7 +128,11 @@ Returns a 302 redirect
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> update_profile</span><span class="method method-post">POST</span> /users/me/avatar [&para;](#post-users-me-avatar) {#post-users-me-avatar .endpoint}
+## <span class="method method-post">POST</span> /users/me/avatar {#post-users-me-avatar .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">update_profile</span>
 
 Uploads a new avatar image for the authenticated user.
 
@@ -116,11 +153,20 @@ curl "https://api.pnut.io/v0/users/me/avatar" \
 Returns the updated user
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "...User Object.."
+    }
+}
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/cover [&para;](#get-users-id-cover) {#get-users-id-cover .endpoint}
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/cover {#get-users-id-cover .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 This endpoint will return an HTTP 302 redirect to the user’s current cover image. It will include any query string parameters you pass to the endpoint.
 
@@ -148,12 +194,16 @@ curl "https://api.pnut.io/v0/users/12/cover" \
 Returns a 302 redirect
 
 ```json
-
+--
 ```
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> update_profile</span><span class="method method-post">POST</span> /users/me/cover [&para;](#post-users-me-cover) {#post-users-me-cover .endpoint}
+## <span class="method method-post">POST</span> /users/me/cover {#post-users-me-cover .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">update_profile</span>
 
 Uploads a new cover image for the authenticated user.
 
@@ -176,5 +226,12 @@ curl "https://api.pnut.io/v0/users/me/cover" \
 Returns the updated user
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "...User Object...."
+    }
+}
 ```

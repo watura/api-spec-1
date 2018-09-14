@@ -1,7 +1,16 @@
 # User Following
 
+Endpoints:
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/following [&para;](#get-users-id-following) {#get-users-id-following .endpoint}
+* [Get followed users](#get-users-id-following)
+* [Get a user's followers](#get-users-id-followers)
+* [Follow a user](#put-users-id-follow)
+* [Unfollow a user](#delete-users-id-follow)
+
+
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/following {#get-users-id-following .endpoint}
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of user objects that the specified user is following.
 
@@ -26,7 +35,9 @@ Returns a list of users
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/followers [&para;](#get-users-id-followers) {#get-users-id-followers .endpoint}
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/followers {#get-users-id-followers .endpoint}
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of user objects that are following the specified user.
 
@@ -52,7 +63,11 @@ Returns a list of users
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/follow [&para;](#put-users-id-follow) {#put-users-id-follow .endpoint}
+## <span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/follow {#put-users-id-follow .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">follow</span>
 
 Follow a user.
 
@@ -79,7 +94,11 @@ Returns the followed user
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> follow</span><span class="method method-delete">DELETE</span> /users/<span class="call-param">{user_id}</span>/follow [&para;](#delete-users-id-follow) {#delete-users-id-follow .endpoint}
+## <span class="method method-delete">DELETE</span> /users/<span class="call-param">{user_id}</span>/follow {#delete-users-id-follow .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">follow</span>
 
 Unfollow a user.
 

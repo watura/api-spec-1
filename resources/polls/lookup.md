@@ -1,10 +1,18 @@
 # Poll Lookup
 
+Endpoints:
+
+* [Get a poll](#get-polls-id)
+* [Get multiple polls](#get-polls)
+* [Get the authenticated user's polls](#get-users-me-polls)
+* [Get responses to the authenticated user's polls](#get-users-me-polls-responses)
 
 
+## <span class="method method-get">GET</span> /polls/<span class="call-param">{poll_id}</span> {#get-polls-id .endpoint}
 
+Token: <span class="endpoint-meta">user</span>
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls</span><span class="method method-get">GET</span> /polls/<span class="call-param">{poll_id}</span> [&para;](#get-polls-id) {#get-polls-id .endpoint}
+Scope: <span class="endpoint-meta">polls</span>
 
 Retrieve a poll object.
 
@@ -30,7 +38,11 @@ Returns the requested poll details
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls</span><span class="method method-get">GET</span> /polls [&para;](#get-polls) {#get-polls .endpoint}
+## <span class="method method-get">GET</span> /polls {#get-polls .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">polls</span>
 
 Retrieve a list of specified poll objects. Only returns the first 100 found.
 
@@ -58,7 +70,11 @@ Returns a list of polls
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> polls</span><span class="method method-get">GET</span> /users/me/polls [&para;](#get-users-me-polls) {#get-users-me-polls .endpoint}
+## <span class="method method-get">GET</span> /users/me/polls {#get-users-me-polls .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">polls</span>
 
 Retrieve a list of polls created by the authenticated user.
 
@@ -74,4 +90,33 @@ Returns a list of polls
 
 ```json
 "call for example 3"
+```
+
+
+## <span class="method method-get">GET</span> /users/me/polls/responses {#get-users-me-polls-responses .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">polls</span>
+
+Retrieve a list of responses to polls created by the authenticated user. This is a parallel to the `poll_response` user interaction.
+
+### Query String Parameters [&para;](#query-string-parameters-1) {#query-string-parameters-1}
+
+Name|Description
+-|-
+`ids`|Optional comma-separated list of poll IDs. If included, only poll responses to these polls will be returned
+
+##### Example {.example-code}
+
+```bash
+curl "https://api.pnut.io/v0/users/me/polls/responses" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1"
+```
+
+Returns a list of polls
+
+```json
+"call for example 4"
 ```

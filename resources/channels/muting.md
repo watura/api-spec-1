@@ -2,9 +2,18 @@
 
 Muting a channel prevents other users from being able to auto-subscribe you to that channel.
 
+Endpoints:
+
+* [Get the authenticated user's muted channels](#get-users-me-channels-muted)
+* [Mute a channel](#put-channels-id-mute)
+* [Unmute a channel](#delete-channels-id-mute)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/channels/muted [&para;](#get-users-me-channels-muted) {#get-users-me-channels-muted .endpoint}
+## <span class="method method-get">GET</span> /users/me/channels/muted {#get-users-me-channels-muted .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of channels the authenticated user has muted.
 
@@ -24,7 +33,11 @@ Returns a list of muted channels.
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/mute [&para;](#put-channels-id-mute) {#put-channels-id-mute .endpoint}
+## <span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span>/mute {#put-channels-id-mute .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Mute subscriptions for a channel. Muting unsubscribes, if you were subscribed.
 
@@ -52,7 +65,11 @@ Returns the muted channel.
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/mute [&para;](#delete-channels-id-mute) {#delete-channels-id-mute .endpoint}
+## <span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span>/mute {#delete-channels-id-mute .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Delete a subscription mute for a channel.
 

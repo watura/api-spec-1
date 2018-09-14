@@ -292,6 +292,7 @@ Name|Type|Description
 -|-|-
 `include_incomplete`|integer (0 or 1)|Include incomplete files. Only applicable to the user's file stream. Defaults to true.
 `include_private`|integer (0 or 1)|Include private files. Only applicable to the user's file stream. Defaults to true.
+`mime_types`|list|Comma-separated list of mime types to retrieve. Only applicable to the user's file stream.
 `file_types`|string|Comma-separated list of file types to retrieve. Only applicable to the user's file stream. If not included, will return any files the app is authorized to view.
 `exclude_file_types`|string|Comma-separated list of file types not to retrieve. Only applicable to the user's file stream. Ignored if `file_types` set.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
@@ -342,6 +343,6 @@ Files with `kind: image` must have the following `mime_type`:
 
 File Type|`mime_type`|Also accepted
 -|-|-
-PNG|image/png|
+PNG|image/png|-
 JPEG|image/jpeg|image/jpg
-GIF|image/gif|
+GIF|image/gif|-

@@ -1,9 +1,13 @@
 # Poll Search
 
+Endpoints:
+
+* [Search polls](#get-polls-search)
 
 
+## <span class="method method-get">GET</span> /polls/search {#get-polls-search .endpoint}
 
-## <span class="endpoint-meta">varied | none</span><span class="method method-get">GET</span> /polls/search [&para;](#get-polls-search) {#get-polls-search .endpoint}
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of polls filtered by the given criteria.
 

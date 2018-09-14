@@ -1,9 +1,13 @@
 # Message Search
 
+Endpoints:
+
+* [Search messages](#get-channels-messages-search)
 
 
+## <span class="method method-get">GET</span> /channels/messages/search {#get-channels-messages-search .endpoint}
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> none</span><span class="method method-get">GET</span> /channels/messages/search [&para;](#get-channels-messages-search) {#get-channels-messages-search .endpoint}
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of messages filtered by the given criteria.
 

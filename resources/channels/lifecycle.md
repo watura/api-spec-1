@@ -4,9 +4,18 @@ Note that channels will appear "unread" if there is no stream marker for the use
 
 For details on how to use channels for private messaging, look at [How To Private Message](../../how-to/channels-pm).
 
+Endpoints:
+
+* [Create a channel](#post-channels)
+* [Update a channel](#put-channels-id)
+* [Delete a channel](#delete-channels-id)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-post">POST</span> /channels [&para;](#post-channels) {#post-channels .endpoint}
+## <span class="method method-post">POST</span> /channels {#post-channels .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Create a channel. `type` is necessary. ACLs must be valid. By default, all of it is editable after creating the channel! Be sure to restrict editing if you want to prevent it, and read [How to ACL](../../how-to/channels-acl).
 
@@ -42,7 +51,11 @@ Returns the created channel
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span> [&para;](#put-channels-id) {#put-channels-id .endpoint}
+## <span class="method method-put">PUT</span> /channels/<span class="call-param">{channel_id}</span> {#put-channels-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Update a channel. Channels are only editable if they have an ACL that is not `immutable`. Full-access users and the owner can edit a channel, but only the owner can change who is a full-access user. `PUT` and `PATCH` may be used.
 
@@ -74,7 +87,11 @@ Returns the updated channel
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span> [&para;](#delete-channels-id) {#delete-channels-id .endpoint}
+## <span class="method method-delete">DELETE</span> /channels/<span class="call-param">{channel_id}</span> {#delete-channels-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Deactivate a channel. Only the owner of a channel can deactivate it. Deactivating a channel removes all subscriptions to the channel, but does nothing to the contents. It is irreversible. `io.pnut.core.pm`-type channels cannot be deactivated.
 

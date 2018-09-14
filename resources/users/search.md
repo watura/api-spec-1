@@ -1,9 +1,13 @@
 # User Search
 
+Endpoints:
+
+* [Search users](#get-users-search)
 
 
+## <span class="method method-get">GET</span> /users/search {#get-users-search .endpoint}
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/search [&para;](#get-users-search) {#get-users-search .endpoint}
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of users filtered by the given criteria.
 
@@ -28,5 +32,16 @@ curl "https://api.pnut.io/v0/users/search?q=news&types=feed" \
 Returns a list of users
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...User Object..."},
+        {"...User Object..."}
+    ]
+}
 ```

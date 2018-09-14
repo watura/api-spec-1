@@ -1,7 +1,17 @@
 # Post Lifecycle
 
+Endpoints:
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-post">POST</span> /posts [&para;](#post-posts) {#post-posts .endpoint}
+* [Create a post](#post-posts)
+* [Revise a post](#put-posts-id)
+* [Delete a post](#delete-posts-id)
+
+
+## <span class="method method-post">POST</span> /posts {#post-posts .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">write_post</span>
 
 Create a post.
 
@@ -38,7 +48,11 @@ Returns the created post.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span> [&para;](#put-posts-id) {#put-posts-id .endpoint}
+## <span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span> {#put-posts-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">write_post</span>
 
 Edit or "revise" a post.
 
@@ -75,7 +89,11 @@ Returns the revised post.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span> [&para;](#delete-posts-id) {#delete-posts-id .endpoint}
+## <span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span> {#delete-posts-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">write_post</span>
 
 Delete a post.
 

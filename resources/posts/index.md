@@ -50,12 +50,6 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
     </tr>
 
     <tr>
-        <td><code>is_revised</code></td>
-        <td>boolean</td>
-        <td>Only set if <code>true</code>. The post has been revised.</td>
-    </tr>
-
-    <tr>
         <td><code>revision</code></td>
         <td>string</td>
         <td>Only set if post is a "previous" version of a post. (i.e., from the <a href="posts/lookup#get-posts-id-revisions"><code>/posts/{post_id}/revisions</code></a> endpoint).</td>

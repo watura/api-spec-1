@@ -1,7 +1,16 @@
 # User Lookup
 
+Endpoints:
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span> [&para;](#get-users-id) {#get-users-id .endpoint}
+* [Get a user](#get-users-id)
+* [Get multiple users](#get-users)
+* [Get app user IDs](#get-apps-me-users-ids)
+* [Get app user tokens](#get-apps-me-users-tokens)
+
+
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span> {#get-users-id .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a user object.
 
@@ -22,11 +31,20 @@ curl "https://api.pnut.io/v0/users/1" \
 Returns the user object
 
 ```json
-"call for example 1"
+{
+  "meta": {
+    "code": 200
+  },
+  "data": {
+    "...User Object..."
+  }
+}
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /users [&para;](#get-users) {#get-users .endpoint}
+## <span class="method method-get">GET</span> /users {#get-users .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of specified user objects. Only retrieves the first 200 found.
 
@@ -47,11 +65,21 @@ curl "https://api.pnut.io/v0/users?ids=4,12,1000" \
 Returns a list of users
 
 ```json
-"call for example 2"
+{
+  "meta": {
+    "code": 200
+  },
+  "data": [
+    {"...User Object..."},
+    {"...User Object..."}
+  ]
+}
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-server"></i> app</span><span class="method method-get">GET</span> /apps/me/users/ids [&para;](#get-apps-me-users-ids) {#get-apps-me-users-ids .endpoint}
+## <span class="method method-get">GET</span> /apps/me/users/ids {#get-apps-me-users-ids .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Retrieve a list of all user IDs that authorize the requesting app. It is not paginated.
 
@@ -68,11 +96,22 @@ curl "https://api.pnut.io/v0/apps/me/users/ids" \
 Returns a list of user IDs
 
 ```json
-"call for example 3"
+{
+  "meta": {
+    "code": 200
+  },
+  "data": [
+    "user_id",
+    "user_id",
+    "user_id"
+  ]
+}
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-server"></i> app</span><span class="method method-get">GET</span> /apps/me/users/tokens [&para;](#get-apps-me-users-tokens) {#get-apps-me-users-tokens .endpoint}
+## <span class="method method-get">GET</span> /apps/me/users/tokens {#get-apps-me-users-tokens .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Retrieve a list of all user token objects that authorize the requesting app. Not currently paginated.
 
@@ -89,5 +128,14 @@ curl "https://api.pnut.io/v0/apps/me/users/tokens" \
 Returns a list of user tokens
 
 ```json
-"call for example 4"
+{
+  "meta": {
+    "code": 200
+  },
+  "data": [
+    {"..User Token..."},
+    {"..User Token..."},
+    {"..User Token..."}
+  ]
+}
 ```

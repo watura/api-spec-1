@@ -1,7 +1,13 @@
 # Post Threads
 
+Endpoints:
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/thread [&para;](#get-posts-id-thread) {#get-posts-id-thread .endpoint}
+* [Get posts in a thread](#get-posts-id-thread)
+
+
+## <span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/thread {#get-posts-id-thread .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve posts within a thread. Threads are separated by what root post all posts below it have replied to.
 

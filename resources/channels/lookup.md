@@ -2,9 +2,19 @@
 
 To only retrieve channels by certain types, include them in a comma-separated list in the query parameter like so: `channel_types=io.pnut.core.pm,com.example.site`.
 
+Endpoints:
+
+* [Get a channel](#get-channels-id)
+* [Get multiple channels](#get-channels)
+* [Get the authenticated user's created channels](#get-users-me-channels)
+* [Get a PM channel between users](#get-users-me-channels-existing_pm)
+* [Get the number of PM channels unread by the authenticated user](#get-users-me-channels-num_unread-pm)
+* [Set all PM channels 'read'](#delete-users-me-channels-num_unread-pm)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span> [&para;](#get-channels-id) {#get-channels-id .endpoint}
+## <span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span> {#get-channels-id .endpoint}
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a channel object.
 
@@ -29,7 +39,9 @@ Returns the requested channel
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> messages</span><span class="method method-get">GET</span> /channels [&para;](#get-channels) {#get-channels .endpoint}
+## <span class="method method-get">GET</span> /channels {#get-channels .endpoint}
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of specified channel objects. Only returns the first 200 found.
 
@@ -54,7 +66,11 @@ Returns a list of channels
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/channels [&para;](#get-users-me-channels) {#get-users-me-channels .endpoint}
+## <span class="method method-get">GET</span> /users/me/channels {#get-users-me-channels .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of channels created by the authenticated user.
 
@@ -74,7 +90,11 @@ Returns a list of channels
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/channels/existing_pm [&para;](#get-users-me-channels-existing_pm) {#get-users-me-channels-existing_pm .endpoint}
+## <span class="method method-get">GET</span> /users/me/channels/existing_pm {#get-users-me-channels-existing_pm .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a Private Message channel for a set of users, if one exists.
 
@@ -101,7 +121,11 @@ Returns a channel.
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-get">GET</span> /users/me/channels/num_unread/pm [&para;](#get-users-me-channels-num_unread-pm) {#get-users-me-channels-num_unread-pm .endpoint}
+## <span class="method method-get">GET</span> /users/me/channels/num_unread/pm {#get-users-me-channels-num_unread-pm .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve the number of unread private messages for the authenticated user.
 
@@ -120,7 +144,11 @@ Returns the number of unread channels
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> messages</span><span class="method method-delete">DELETE</span> /users/me/channels/num_unread/pm [&para;](#delete-users-me-channels-num_unread-pm) {#delete-users-me-channels-num_unread-pm .endpoint}
+## <span class="method method-delete">DELETE</span> /users/me/channels/num_unread/pm {#delete-users-me-channels-num_unread-pm .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">messages</span>
 
 Mark all unread private messages as read for the authenticated user.
 

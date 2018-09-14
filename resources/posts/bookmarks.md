@@ -2,7 +2,18 @@
 
 Bookmarking is an action for users to keep track of posts. You can see others' bookmarks as well.
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/bookmarks [&para;](#get-users-id-bookmarks) {#get-users-id-bookmarks .endpoint}
+Endpoints:
+
+* [Get a user's bookmarks](#get-users-id-bookmarks)
+* [Bookmark a post](#put-posts-id-bookmark)
+* [Delete a bookmark](#delete-posts-id-bookmark)
+
+
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/bookmarks {#get-users-id-bookmarks .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of bookmarks made by the specified user.
 
@@ -29,7 +40,11 @@ Returns a list of posts.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span>/bookmark [&para;](#put-posts-id-bookmark) {#put-posts-id-bookmark .endpoint}
+## <span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span>/bookmark {#put-posts-id-bookmark .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">write_post</span>
 
 Bookmark a post.
 
@@ -61,7 +76,11 @@ Returns the bookmarked post.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span>/bookmark [&para;](#delete-posts-id-bookmark) {#delete-posts-id-bookmark .endpoint}
+## <span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span>/bookmark {#delete-posts-id-bookmark .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">write_post</span>
 
 Delete a bookmark.
 

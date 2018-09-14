@@ -2,9 +2,20 @@
 
 For an explanation of how to attach files to other objects, read [How To File](../../how-to/file).
 
+Endpoints:
+
+* [Create a file or placeholder](#post-files)
+* [Update file metadata](#put-files-id)
+* [Upload derivatives of a file](#put-files-id-content-key)
+* [Complete a placeholder file](#put-files-id-content)
+* [Delete a file](#delete-files-id)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-post">POST</span> /files [&para;](#post-files) {#post-files .endpoint}
+## <span class="method method-post">POST</span> /files {#post-files .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
 
 Create a file placeholder or a complete file. `type`, `kind`, and `name` are necessary. By default, the file will be private.
 
@@ -50,7 +61,11 @@ Returns the created file details
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-patch">PATCH</span> /files/<span class="call-param">{file_id}</span> [&para;](#put-files-id) {#put-files-id .endpoint}
+## <span class="method method-patch">PATCH</span> /files/<span class="call-param">{file_id}</span> {#put-files-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
 
 Update a file's details. Only `name`, `is_public`, and `raw` can be updated.
 
@@ -83,7 +98,11 @@ Returns the updated file
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content/<span class="call-param">{derived_key}</span> [&para;](#put-files-id-content-key) {#put-files-id-content-key .endpoint}
+## <span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content/<span class="call-param">{derived_key}</span> {#put-files-id-content-key .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
 
 Upload a new derivative file. You may only do this with an existing file placeholder (an incomplete file).
 
@@ -112,7 +131,11 @@ Returns 204 on success
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content [&para;](#put-files-id-content) {#put-files-id-content .endpoint}
+## <span class="method method-put">PUT</span> /files/<span class="call-param">{file_id}</span>/content {#put-files-id-content .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
 
 Set a file placeholder's content. You may only do this with an incomplete file.
 
@@ -140,7 +163,11 @@ Returns 204 on success
 
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> files</span><span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> [&para;](#delete-files-id) {#delete-files-id .endpoint}
+## <span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> {#delete-files-id .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
 
 Delete a file. This will not disassociate a file with any other objects (posts, messages...).
 

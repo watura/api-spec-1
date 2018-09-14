@@ -2,7 +2,17 @@
 
 Reposting is a special action. Reposts act as complete posts in themselves, with the "original" post embedded as an additional object. Unlike normal posts, actions (reply, repost, bookmark) cannot be executed against a repost.
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span>/repost [&para;](#put-posts-id-repost) {#put-posts-id-repost .endpoint}
+Endpoints:
+
+* [Create a Repost](#put-posts-id-repost)
+* [Delete a repost](#delete-posts-id-repost)
+
+
+## <span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span>/repost {#put-posts-id-repost .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">write_post</span>
 
 Repost another post. The repost will show up in followers' streams if they have not seen another repost of the same within the last week, and if the reposted post is not in their recent stream. It is created in its own thread, not the thread of the original post. This increments a user's post count.
 
@@ -28,7 +38,11 @@ Returns the reposted post.
 ```    
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> write_post</span><span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span>/repost [&para;](#delete-posts-id-repost) {#delete-posts-id-repost .endpoint}
+## <span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span>/repost {#delete-posts-id-repost .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">write_post</span>
 
 Delete a repost. The actual repost is completely deleted; it does not leave behind a thread or deleted post to look up.
 

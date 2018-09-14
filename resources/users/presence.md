@@ -4,9 +4,18 @@ A user's presence is the recent status of that user. Each updated presence lasts
 
 A user's status can be updated on *any* authenticated call by simply including the `update_presence` query parameter with a status for its value. If this method is attempted, the response's `meta.updated_presence` key will be set and `true`. If it fails to update, it will be `false`.
 
+Endpoints:
+
+* [Get present users](#get-presence)
+* [Get a user's presence](#get-users-id-presence)
+* [Update user presence](#put-users-id-presence)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-get">GET</span> /presence [&para;](#get-presence) {#get-presence .endpoint}
+## <span class="method method-get">GET</span> /presence {#get-presence .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve all users' presence statuses that are not "offline".
 
@@ -25,7 +34,11 @@ Returns a list of users' presences.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> any</span><span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/presence [&para;](#get-users-id-presence) {#get-users-id-presence .endpoint}
+## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/presence {#get-users-id-presence .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a user's presence.
 
@@ -52,7 +65,11 @@ Returns a user's current presence.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> presence</span><span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/presence [&para;](#put-users-id-presence) {#put-users-id-presence .endpoint}
+## <span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/presence {#put-users-id-presence .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">presence</span>
 
 Update a user's presence.
 

@@ -2,8 +2,15 @@
 
 Explore streams are basically pre-built searches with some simple criteria.
 
+Endpoints:
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/explore [&para;](#get-posts-streams-explore) {#get-posts-streams-explore .endpoint}
+* [Get a list of explore streams](#get-posts-streams-explore)
+* [Get an explore stream](#get-posts-streams-explore-slug)
+
+
+## <span class="method method-get">GET</span> /posts/streams/explore {#get-posts-streams-explore .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of explore streams.
 
@@ -22,7 +29,9 @@ Returns a list of explore streams.
 ```
 
 
-## <span class="endpoint-meta"><i class="fas fa-unlock"></i> none</span><span class="method method-get">GET</span> /posts/streams/explore/<span class="call-param">{slug}</span> [&para;](#get-posts-streams-explore-slug) {#get-posts-streams-explore-slug .endpoint}
+## <span class="method method-get">GET</span> /posts/streams/explore/<span class="call-param">{slug}</span> {#get-posts-streams-explore-slug .endpoint}
+
+Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of posts in an explore stream.
 

@@ -2,8 +2,17 @@
 
 Interactions with the authenticated token
 
+Endpoints:
 
-## <span class="endpoint-meta">any</span><span class="method method-get">GET</span> /token [&para;](#get-token) {#get-token .endpoint}
+* [Get the current token](#get-token)
+* [Delete the current token](#delete-token)
+
+
+## <span class="method method-get">GET</span> /token {#get-token .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Retrieve an object with the currently authenticated token, username, and user ID.
 
@@ -20,11 +29,36 @@ curl "https://api.pnut.io/v0/token" \
 Returns the requested token
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "app": {
+            "id": "String",
+            "link": "https://example.com",
+            "name": "String"
+        },
+        "scopes": [
+            "String",
+            "String",
+            "String"
+        ],
+        "user": {"...User Object..."},
+        "storage": {
+            "available": 0,
+            "total": 0
+        }
+    }
+}
 ```
 
 
-## <span class="endpoint-meta">any</span><span class="method method-delete">DELETE</span> /token [&para;](#delete-token) {#delete-token .endpoint}
+## <span class="method method-delete">DELETE</span> /token {#delete-token .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Delete the currently authenticated token.
 
@@ -42,5 +76,26 @@ curl "https://api.pnut.io/v0/token" \
 Returns the deleted token
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "app": {
+            "id": "String",
+            "link": "https://example.com",
+            "name": "String"
+        },
+        "scopes": [
+            "String",
+            "String",
+            "String"
+        ],
+        "user": {"...User Object..."},
+        "storage": {
+            "available": 0,
+            "total": 0
+        }
+    }
+}
 ```

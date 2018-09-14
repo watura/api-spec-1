@@ -207,7 +207,10 @@ Sent when any user who has authorized your app subscribes to or unsubscribes fro
     "id": "22",
     "type": "channel_subscription"
   },
-  "data": "...channel object..."
+  "data": {
+    "user": "...user subscribing to channel...",
+    "channel": "...channel object..."
+  }
 }
 ```
 

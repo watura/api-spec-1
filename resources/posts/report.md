@@ -1,15 +1,22 @@
 # Report
 
-The current reasons that will be honored for reporting are:
+These are the current reasons that will be honored for reporting:
 
 * `soliciting`: unwelcome soliciting
 * `account_type`: posting in a behavior counter to the purposes of [account types](https://pnut.io/docs/resources/account-types)
 * `nsfw`: unflagged mature material according to [the community guidelines](https://pnut.io/docs/resources/mature-content)
 * `user_abuse`: use of the API or network to abuse another user
 
+Endpoints:
+
+* [Report a post](#post-posts-id-report)
 
 
-## <span class="endpoint-meta"><i class="fas fa-lock"></i> | <i class="fas fa-user"></i> any</span><span class="method method-post">POST</span> /posts/<span class="call-param">{post_id}</span>/report [&para;](#post-posts-id-report) {#post-posts-id-report .endpoint}
+## <span class="method method-post">POST</span> /posts/<span class="call-param">{post_id}</span>/report {#post-posts-id-report .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">any</span>
 
 Report a post for abuse.
 

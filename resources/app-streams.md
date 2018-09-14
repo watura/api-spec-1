@@ -4,8 +4,19 @@ App streams are long-lasting connections between the API and your server, often 
 
 You will need an [app token](../authentication/app-access-token) to use them. Look at [How To: App Streams](../how-to/app-streams) for details on usage.
 
+Endpoints:
 
-## <span class="endpoint-meta">app</span><span class="method method-get">GET</span> /streams [&para;](#get-streams) {#get-streams .endpoint}
+* [Get all streams](#get-streams)
+* [Get a stream](#get-streams-id)
+* [Create a stream](#post-streams)
+* [Update a stream](#put-streams-id)
+* [Delete all streams](#delete-streams)
+* [Delete a stream](#delete-streams-id)
+
+
+## <span class="method method-get">GET</span> /streams {#get-streams .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Get all app streams for the authenticated app.
 
@@ -21,11 +32,29 @@ curl "https://api.pnut.io/v0/streams" \
 Returns a list of streams.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {
+            "key": "String",
+            "object_types": [
+                "String",
+                "String",
+                "String"
+            ],
+            "endpoint": "wss://stream.pnut.io/v0/app",
+            "type": "long_poll"
+        }
+    ]
+}
 ```
 
 
-## <span class="endpoint-meta">app</span><span class="method method-get">GET</span> /streams/<span class="call-param">{stream_key}</span> [&para;](#get-streams-id) {#get-streams-id .endpoint}
+## <span class="method method-get">GET</span> /streams/<span class="call-param">{stream_key}</span> {#get-streams-id .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Get a specific app stream by its key.
 
@@ -47,11 +76,27 @@ curl "https://api.pnut.io/v0/streams/4" \
 Returns the requested stream.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "key": "String",
+        "object_types": [
+            "String",
+            "String",
+            "String"
+        ],
+        "endpoint": "wss://stream.pnut.io/v0/app",
+        "type": "long_poll"
+    }
+}
 ```
 
 
-## <span class="endpoint-meta">app</span><span class="method method-post">POST</span> /streams [&para;](#post-streams) {#post-streams .endpoint}
+## <span class="method method-post">POST</span> /streams {#post-streams .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Create an app stream for the authenticated app. Can create up to five (5) app streams.
 
@@ -85,12 +130,28 @@ curl "https://api.pnut.io/v0/streams" \
 Returns the created stream.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "key": "String",
+        "object_types": [
+            "String",
+            "String",
+            "String"
+        ],
+        "endpoint": "wss://stream.pnut.io/v0/app",
+        "type": "long_poll"
+    }
+}
 ```
 
 
 
-## <span class="endpoint-meta">app</span><span class="method method-put">PUT</span> /streams/<span class="call-param">{stream_key}</span> [&para;](#put-streams-id) {#put-streams-id .endpoint}
+## <span class="method method-put">PUT</span> /streams/<span class="call-param">{stream_key}</span> {#put-streams-id .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Update an app stream. Note that, currently, any connected app streams will not be updated until the app disconnects and reconnects.
 
@@ -120,11 +181,25 @@ curl "https://api.pnut.io/v0/streams/butterball" \
 Returns the updated stream.
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "key": "String",
+        "object_types": [
+            "String"
+        ],
+        "endpoint": "wss://stream.pnut.io/v0/app",
+        "type": "long_poll"
+    }
+}
 ```
 
 
-## <span class="endpoint-meta">app</span><span class="method method-delete">DELETE</span> /streams [&para;](#delete-streams) {#delete-streams .endpoint}
+## <span class="method method-delete">DELETE</span> /streams {#delete-streams .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Delete all app streams for the authorized app.
 
@@ -140,11 +215,29 @@ curl "https://api.pnut.io/v0/streams" \
 Returns a list of deleted streams.
 
 ```json
-"call for example 5"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {
+            "key": "String",
+            "object_types": [
+                "String",
+                "String"
+            ],
+            "endpoint": "wss://stream.pnut.io/v0/app",
+            "type": "long_poll",
+            "is_deleted": true
+        }
+    ]
+}
 ```
 
 
-## <span class="endpoint-meta">app</span><span class="method method-delete">DELETE</span> /streams/<span class="call-param">{stream_key}</span> [&para;](#delete-streams-id) {#delete-streams-id .endpoint}
+## <span class="method method-delete">DELETE</span> /streams/<span class="call-param">{stream_key}</span> {#delete-streams-id .endpoint}
+
+Token: <span class="endpoint-meta">app</span>
 
 Delete a specific app stream by its key.
 
@@ -166,5 +259,20 @@ curl "https://api.pnut.io/v0/streams/butterball" \
 Returns the deleted stream.
 
 ```json
-"call for example 6"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "key": "String",
+        "object_types": [
+            "String",
+            "String",
+            "String"
+        ],
+        "endpoint": "wss://stream.pnut.io/v0/app",
+        "type": "long_poll",
+        "is_deleted": true
+    }
+}
 ```
