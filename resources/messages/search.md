@@ -11,13 +11,25 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of messages filtered by the given criteria.
 
-### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
+### Query Parameters
+
+#### Search
+
+Name|Description
+-|-
+`q`|List of words included in messages
+
+#### Sort
+
+Name|Description
+-|-
+`order`|One of id or relevance. Default is by relevance
+
+#### Filter
 
 Name|Description
 -|-
 `channel_ids`|REQUIRED "pm" to search all accessible private messages, or comma-separated list of channel IDs
-`order`|One of id or relevance. Default is by relevance
-`q`|List of words included in messages
 `tags`|Comma-separated list of tags. Any matches returned. Do not include `#`
 `mentions`|Comma-separated list of mentions. Any matches returned. Do not include `@`
 `leading_mentions`|Comma-separated list of mentions at the beginning of a message. Any matches returned. Do not include `@`
@@ -44,5 +56,15 @@ curl "https://api.pnut.io/v0/channels/messages/search?channel_ids=600,18" \
 Returns a list of messages
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Message Object..."}
+    ]
+}
 ```

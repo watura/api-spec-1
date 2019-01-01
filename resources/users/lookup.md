@@ -14,7 +14,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a user object.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -48,7 +48,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of specified user objects. Only retrieves the first 200 found.
 
-### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -101,9 +101,9 @@ Returns a list of user IDs
     "code": 200
   },
   "data": [
-    "user_id",
-    "user_id",
-    "user_id"
+    "0",
+    "0",
+    "0"
   ]
 }
 ```

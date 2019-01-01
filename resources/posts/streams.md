@@ -29,7 +29,18 @@ curl "https://api.pnut.io/v0/posts/streams/me?count=2" \
 Returns a list of posts.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object..."},
+        {"...Post Object..."}
+    ]
+}
 ```
 
 
@@ -44,7 +55,7 @@ A combined Personal Stream including the authenticated user's mentions.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/streams/unified" \
+curl "https://api.pnut.io/v0/posts/streams/unified?count=1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -52,7 +63,17 @@ curl "https://api.pnut.io/v0/posts/streams/unified" \
 Returns a list of posts.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object..."}
+    ]
+}
 ```
 
 
@@ -62,7 +83,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 Posts mentioning the specified user.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -79,7 +100,18 @@ curl "https://api.pnut.io/v0/users/9/mentions?count=2" \
 Returns a list of posts.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"....Post Object..."},
+        {"....Post Object..."}
+    ]
+}
 ```
 
 
@@ -91,7 +123,7 @@ Posts created by the specified user.
 
 If a user looks up a user they blocked or muted, the posts will still be retrieved.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -108,7 +140,18 @@ curl "https://api.pnut.io/v0/users/9/posts?count=2" \
 Returns a list of posts.
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object...."},
+        {"...Post Object...."}
+    ]
+}
 ```
 
 
@@ -129,7 +172,18 @@ curl "https://api.pnut.io/v0/posts/streams/global?count=2" \
 Returns a list of posts.
 
 ```json
-"call for example 5"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object.."},
+        {"...Post Object.."}
+    ]
+}
 ```
 
 
@@ -139,7 +193,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 A stream of all posts that include the specified `tag`.
 
-### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
+### URL Parameters
 
 Name|Description
 -|-
@@ -156,5 +210,16 @@ curl "https://api.pnut.io/v0/posts/tags/MondayNightDanceParty?count=2" \
 Returns a list of posts.
 
 ```json
-"call for example 6"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"....Post Object...."},
+        {"....Post Object...."}
+    ]
+}
 ```

@@ -32,6 +32,7 @@ By default across the network, `raw` is not included on objects, and you must re
 * `include_message_raw=1`
 * `include_post_raw=1`
 * `include_file_raw=1`
+* `include_poll_raw=1`
 
 If any relevant parameter is set to `1`, it will be included for the object and any children. It is preferable to not include something if you do not use it.
 
@@ -98,7 +99,7 @@ Returns the new post.
       "link": "http://xyz.s3rv.com",
       "name": "Broadsword"
     },
-    "user": {...},
+    "user": {"...User Object..."},
     "thread_id": "2384",
     "counts": {
       "bookmarks": 0,

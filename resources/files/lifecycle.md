@@ -23,12 +23,12 @@ If creating a file placeholder, it can be form data or a Content-Type of `applic
 
 If creating a complete file the Content-Type must be `multipart/form-data`, and the `content` key must be the file.
 
-### POST Body Data [&para;](#post-body-data-1) {#post-body-data-1}
+### POST Body Data
 
 Name|Description
 -|-
 `content`|__Required__ (if uploading in a single step) Key of the uploaded file
-`kind`|__Required__ One of: `other`, `image` (for JPEG, GIF, PNG), `audio` (for WAVE, MP3, FLAC. up to 52428800 bytes)
+`kind`|__Required__ One of: `other`, `image` (for JPEG, GIF, PNG), `audio` (for WAVE, MP3, FLAC. up to 52428800 bytes). If the file extension is known and `kind=other`, the file extension will override `other` appropriately.
 `name`|__Required__ 256-character name or description (to be displayed and attached to the object; a random key will actually be assigned for the filename)
 `type`|__Required__ Reverse domain name-style identifier of the file type. E.g., `com.example.site`. Searchable
 `is_public`|If true, file is public
@@ -56,7 +56,12 @@ curl "https://api.pnut.io/v0/files" \
 Returns the created file details
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 201
+    },
+    "data": {"...File Object..."}
+}
 ```
 
 
@@ -71,7 +76,7 @@ Update a file's details. Only `name`, `is_public`, and `raw` can be updated.
 
 If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or for a while after via the cache. To make a public file secure again, delete it and upload it again as a new file.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -93,7 +98,12 @@ curl "https://api.pnut.io/v0/files/73" \
 Returns the updated file
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...File Object..."}
+}
 ```
 
 
@@ -108,7 +118,7 @@ Upload a new derivative file. You may only do this with an existing file placeho
 
 This is particularly useful if you want to include alternative versions of a file, such as different sizes of images, custom thumbnails instead of auto-generated thumbnails, or different music or video formats of a file.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -126,7 +136,7 @@ curl "https://api.pnut.io/v0/files/69/content/core_image_200s" \
 Returns 204 on success
 
 ```json
-"call for example 3"
+-
 ```
 
 
@@ -139,7 +149,7 @@ Scope: <span class="endpoint-meta">files</span>
 
 Set a file placeholder's content. You may only do this with an incomplete file.
 
-### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
+### URL Parameters
 
 Name|Description
 -|-
@@ -171,7 +181,7 @@ Scope: <span class="endpoint-meta">files</span>
 
 Delete a file. This will not disassociate a file with any other objects (posts, messages...).
 
-### URL Parameters [&para;](#url-parameters-4) {#url-parameters-4}
+### URL Parameters
 
 Name|Description
 -|-
@@ -189,5 +199,10 @@ curl "https://api.pnut.io/v0/files/72" \
 Returns the deactivated file
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....File Object..."}
+}
 ```

@@ -2,7 +2,7 @@
 
 `scope` is a comma-separated list of which parts of the API your app can access on behalf of an authenticated user.
 
-This is what a user is shown by pnut.io for each scope they are authorizing:
+This is what a user is shown by Pnut for each scope they are authorizing:
 
 * **basic** - see basic information about you
 * **stream** - read your post streams
@@ -42,7 +42,9 @@ In the documentation, an <span class="endpoint-meta" style="float:none">app</spa
 
 ### basic
 
-The `basic` scope only allows access to any endpoints in the API that require <span class="endpoint-meta" style="float:none">any</span> access token. If any other scope is authorized, `basic` is redundant.
+The `basic` scope only allows access to any endpoints in the API that require <span class="endpoint-meta" style="float:none">any</span> access token.
+
+If any other scope is authorized, `basic` is redundant.
 
 
 ### files

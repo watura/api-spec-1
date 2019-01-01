@@ -11,12 +11,24 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of users filtered by the given criteria.
 
-### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
+### Query Parameters
+
+#### Search
 
 Name|Description
 -|-
 `q`|REQUIRED List of words included in user profiles or names
+
+#### Sort
+
+Name|Description
+-|-
 `order`|One of id or relevance. Default is by relevance
+
+#### Filter
+
+Name|Description
+-|-
 `locale`|An ISO formatted locale; e.g., `en_US`
 `timezone`|Timezone in tzinfo format
 `types`|Comma-separated list of user types of: human, feed, bot

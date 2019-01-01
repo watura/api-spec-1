@@ -16,7 +16,7 @@ Scope: <span class="endpoint-meta">polls</span>
 
 Retrieve a poll object.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -33,7 +33,12 @@ curl "https://api.pnut.io/v0/polls/1" \
 Returns the requested poll details
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Poll Object..."}
+}
 ```
 
 
@@ -48,7 +53,7 @@ Retrieve a list of specified poll objects. Only returns the first 100 found.
 
 If the polls need a `poll_token` to access, you may include them with query parameters in the pattern `?poll_token_{poll_id}=xxx&poll_token_{poll_id}=xxx`.
 
-### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -65,7 +70,15 @@ curl "https://api.pnut.io/v0/polls?ids=1,12" \
 Returns a list of polls
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {"...Poll Object..."},
+        {"...Poll Object..."}
+    ]
+}
 ```
 
 
@@ -89,7 +102,18 @@ curl "https://api.pnut.io/v0/users/me/polls" \
 Returns a list of polls
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "more": false,
+        "code": 200,
+        "min_id": "0",
+        "max_id": "0"
+    },
+    "data": [
+        {"...Poll Object..."},
+        {"...Poll Object..."}
+    ]
+}
 ```
 
 
@@ -101,7 +125,7 @@ Scope: <span class="endpoint-meta">polls</span>
 
 Retrieve a list of responses to polls created by the authenticated user. This is a parallel to the `poll_response` user interaction.
 
-### Query String Parameters [&para;](#query-string-parameters-1) {#query-string-parameters-1}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -118,5 +142,16 @@ curl "https://api.pnut.io/v0/users/me/polls/responses" \
 Returns a list of polls
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "more": false,
+        "code": 200,
+        "min_id": "0",
+        "max_id": "0"
+    },
+    "data": [
+        {"...Abbreviated Poll Object..."},
+        {"...Abbreviated Poll Object..."}
+    ]
+}
 ```

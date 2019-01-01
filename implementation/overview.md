@@ -1,12 +1,10 @@
 # API
 
-__Current Version: 0.9.1 [(Changes)](../changes)__
+__Current Version: 0.9.2 [(Changes)](../changes)__
 
 API Root: https://api.pnut.io/v0
 
-The most recent major version can also be accessed with root https://api.pnut.io.
-
-*Last Updated 2018-09-13*
+*Last Updated 2018-12-31*
 
 Welcome to the documentation for the Pnut API.
 
@@ -17,12 +15,9 @@ If this is your first time here, it is recommended that you become familiar with
 The *How To* section has some examples and explanation of some common situations.
 
 
-### Notes on Examples
+#### Interactive Examples
 
-cURL examples can be edited on-page (they have the HTML5 `contenteditable` property). To call the API from the docs and see the cURL responses live, you must log in and authorize the API Documentation app linked from each example.
-
-The button in the top-right of the page collapses and expands all endpoints. A page linked directly to a targetted endpoint will only have that endpoint expanded. When the page loads, all endpoints are locked in their expanded or collapsed display. Toggling the button will allow you to open and close endpoints by clicking their title.
-
+cURL examples can be edited on-page (they have the HTML5 `contenteditable` property). To call the API from the docs and see the cURL responses live, you must log in and authorize the API Documentation app linked to from the examples. The API Documentation app doesn't work with a few PUT, PATCH, and POST examples because of their complexity.
 
 
 ## External Resources

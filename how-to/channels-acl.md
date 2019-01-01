@@ -1,6 +1,6 @@
 # How To: ACL
 
-Channels have three groups that determine who can read, write, and manage the channel. Users can only be within one of the three groups, and the higher-access groups inherit the lower functionality as well. Someone who can manage a channel can write and read, and someone who can write, can read. The user who creates the channel automatically and irrevocably has `full` access, but is as the `owner`, not in the ACL proper.
+Channels have three groups that determine who can read, write, and manage the channel. Users can't be in multiple groups. The higher-access groups inherit the lower functionality as well; someone who can manage a channel can write and read, and someone who can write, can read. The user who creates the channel automatically and irrevocably has `full` access, but is the `owner` user in the channel object, not in the ACL proper.
 
 
 ```json
@@ -54,4 +54,4 @@ Channels have three groups that determine who can read, write, and manage the ch
 
 By default, all ACLs are "mutable". They can change. Once set "*im*mutable", they can no longer be changed. The exception to this is `any_user` on `read`. If `any_user` on `write` changes from false to true, `read`'s `any_user` will still inherit it.
 
-Be sure when you create a channel not to make an ACL immutable if you think you will want to change it later.
+When you create a channel, be sure not to make an ACL immutable if you think you will want to change it later.

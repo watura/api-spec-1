@@ -19,24 +19,25 @@ On creation, you can automatically update the "personal" [stream marker](../stre
 
 Posts from the same human- or feed-type user cannot contain the same `text` within 120 seconds.
 
-`JSON` in the body of the request is also allowed. Normal links and markdown links are parsed by the server by default.
+An `application/json` Content-Type is preferred over form. Normal links and markdown links are parsed by the server by default.
 
-### POST Body Data [&para;](#post-body-data-1) {#post-body-data-1}
+### POST Body Data
 
 Name|Description
 -|-
-`text`|256 character-limited string
-`reply_to`|Optional ID of another post to reply to
-`is_nsfw`|Optional boolean whether the post should be marked as "NSFW" (Not Safe For Work/mature/offensive)
-`entities.parse_links`|Optional boolean whether the links should be parsed by the server. Default `true`
-`entities.parse_markdown_links`|Optional boolean whether the markdown links should be parsed by the server. Default `true`
+`text`|__Required__ 256 character-limited string
+`reply_to`|ID of another post to reply to
+`is_nsfw`|Boolean whether the post should be marked as "NSFW" (Not Safe For Work/mature/offensive). Including the tag `#nsfw` in the post body will mark a post NSFW unless overridden by this.
+`entities.parse_links`|Boolean whether the links should be parsed by the server. Default `true`
+`entities.parse_markdown_links`|Boolean whether the markdown links should be parsed by the server. Default `true`
 
 ##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/posts" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-    -d "text=The people here are not shy." \
+    -H "Content-Type: application/json" \
+    -d "{\"text\": \"The people here are not shy.\"}" \
     -X POST \
     -H "X-Pretty-Json: 1"
 ```
@@ -44,7 +45,12 @@ curl "https://api.pnut.io/v0/posts" \
 Returns the created post.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 201
+    },
+    "data": {"...Post Object..."}
+}
 ```
 
 
@@ -64,7 +70,7 @@ Once a revision has been made, the original post can still be retrieved from the
 
 Reposts made before the revision will continue to point at the original post.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -77,7 +83,8 @@ The POST body can be the same as when creating a post. `is_nsfw` *can* be change
 ```bash
 curl "https://api.pnut.io/v0/posts/2392" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-    -d "text=#system of a down" \
+    -H "Content-Type: application/json" \
+    -d "{\"text\": \"system of a down\"}" \
     -X PUT \
     -H "X-Pretty-Json: 1"
 ```
@@ -85,7 +92,12 @@ curl "https://api.pnut.io/v0/posts/2392" \
 Returns the revised post.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 201
+    },
+    "data": {"...Post Object..."}
+}
 ```
 
 
@@ -97,7 +109,7 @@ Scope: <span class="endpoint-meta">write_post</span>
 
 Delete a post.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -115,5 +127,10 @@ curl "https://api.pnut.io/v0/posts/2392" \
 Returns the deleted post.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Post Object..."}
+}
 ```

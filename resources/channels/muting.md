@@ -28,7 +28,17 @@ curl "https://api.pnut.io/v0/users/me/channels/muted" \
 Returns a list of muted channels.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "min_id": "0",
+        "max_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Channel Object..."}
+    ]
+}
 ```
 
 
@@ -41,7 +51,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Mute subscriptions for a channel. Muting unsubscribes, if you were subscribed.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -60,7 +70,12 @@ curl "https://api.pnut.io/v0/channels/2/mute" \
 Returns the muted channel.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Channel Object..."}
+}
 ```
 
 
@@ -73,7 +88,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Delete a subscription mute for a channel.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -92,5 +107,10 @@ curl "https://api.pnut.io/v0/channels/4/mute" \
 Returns the unmuted channel.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....Channel Object..."}
+}
 ```

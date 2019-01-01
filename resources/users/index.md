@@ -2,7 +2,7 @@
 
 
 
-## General User Identifiers [&para;](#general-user-identifiers) {#general-user-identifiers}
+## General User Identifiers {#general-user-identifiers}
 
 Unless otherwise specified, user identifiers can be any of the following:
 
@@ -26,7 +26,7 @@ Any user profile can be found at `https://pnut.io/@username`.
 [Use live API calls for an example of the object.](/docs/api/resources/users/lookup#get-users-id)
 
 
-## User Fields [&para;](#user-fields) {#user-fields}
+## User Fields {#user-fields}
 
 <table>
     <tr>
@@ -327,7 +327,7 @@ Any user profile can be found at `https://pnut.io/@username`.
 
 
 
-## General User Parameters [&para;](#general-user-parameters) {#general-user-parameters}
+## General User Parameters {#general-user-parameters}
 
 Any endpoint that returns user objects (including any that return post objects, message objects, etc.) can be subject to these parameters.
 
@@ -345,7 +345,7 @@ Name|Type|Description
 
 
 
-## Locales [&para;](#locales) {#locales}
+## Locales {#locales}
 
 Below is a list of accepted user locales. To have more supported, make a feature request to [the API GitHub repository](https://github.com/pnut-api/api-spec). We would like to have translations of all of these for pnut.io account management. You make make pull requests to https://github.com/pnut-api/pnutio-localizations.
 
@@ -355,7 +355,7 @@ ar_SA, bg_BG, cs_CZ, da_DK, de_DE, en_GB, en_US, es_ES, fi_FI, fr_FR, gl_ES, hu_
 
 
 
-## Timezones [&para;](#timezones) {#timezones}
+## Timezones {#timezones}
 
 Below is a list of accepted user timezones.
 

@@ -5,17 +5,18 @@ Paid users are given 10GiB of file storage to upload to. Invited users are given
 
 ## Uploading a File
 
-Files can be uploaded in one or two steps.
-
-* one `multipart/form-data` post including metadata and the file, or
-* an initial post with metadata, and a second post with the file
+Files can be uploaded in one or two steps:
 
 ### A: Upload in a single step
+
+This takes one `multipart/form-data` POST including metadata and the file.
 
 To set the metadata and upload the file all at once, you must have a Content-Type of `multipart/form-data`, and keys for `name`, `kind`, `type`, and `content` (the file). The most common use will be for uploading images. You would want `kind=image`, and `type` will usually be a reverse domain name-style signature of the application uploading it (this will be searchable in the future).
 
 
 ### B: Upload in two steps
+
+This takes an initial POST with metadata, and a second POST with the file.
 
 If you want to provision an upload and set the metadata before uploading the file, you may.
 
@@ -26,7 +27,7 @@ If you upload in this way, then the first `POST` to `/files` will also return an
 
 ## Derivative Images
 
-When uploading GIF, JPEG, and PNG images, pnut will generate two standard resized images from your image: a 200x200 pixel thumbnail (`core_image_200s`) and a version that fits within 640 pixels wide by 960 tall, if the original image does not fit within those dimensions.
+When uploading GIF, JPEG, and PNG images, Pnut will generate two standard resized images from your image: a 200x200 pixel thumbnail (`core_image_200s`) and a version that fits within 640 pixels wide by 960 tall, if the original image does not fit within those dimensions.
 
 If you want to provide your own versions of those images, you can. To upload your own 200x200 pixel thumbnail, include it with the `core_image_200s` key, and be sure it is 200x200 pixels and GIF, JPEG, or PNG mime type. Likewise, upload a version with the key `core_image_960r`.
 
@@ -35,7 +36,7 @@ If you want to provide your own versions of those images, you can. To upload you
 
 ## Attaching Files to Objects
 
-Once you have the ID of a completed image file, you can attach it to a post or message using the `io.pnut.core.oembed` *raw* type. You could fill in the oembed raw data as needed, but there are benefits to using a specialized "replacement" raw value for files, `+io.pnut.core.file`.
+Once you have the ID of a completed image file, you can attach it to a post or message using the `io.pnut.core.oembed` *raw* type. You could fill in the oembed raw data manually as needed, but it's highly recommended that you use a specialized "replacement" raw value for files, `+io.pnut.core.file`.
 
 Here is an example of attaching a file to a post. The file has been uploaded, and returned the file object.
 

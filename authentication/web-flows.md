@@ -1,12 +1,14 @@
 # Authentication Web Flows
 
-## Setup
 
-Set up at least one redirect URI in the Developer area for your client.
+## Setup
 
 Client-side flow is generally used for Javascript and other situations where the code could be inspected by a 3rd party, and they could see your `client_secret`.
 
 If you are working with mobile clients, or otherwise are embedding the web page in the app, you may want to add `&simple_login=1` to your endpoint URI, which removes the navigation and extraneous links from the authorization page.
+
+To start, set at least one redirect URI in the developer area for your client. This restricts what server or app can receive the access token at the end of the process.
+
 
 ## Server-side flow
 
@@ -22,7 +24,7 @@ https://pnut.io/oauth/authenticate
 
 *To always prompt the user for authorization of scopes, even if they already have, use the `https://pnut.io/oauth/authorize` endpoint instead.*
 
-This will direct the user to a page to authorize your client for the given scopes. If they approve that, it will redirect them to your redirect URI with `/?code=[CODE]` appended.
+This will direct the user to a page to authorize your client for the given scopes. If they approve, it will redirect them to your redirect URI with `/?code=[CODE]` appended.
 
 If the user decides *not* to authorize your client, they will be redirected to your <code>redirect URI</code> with `/?error_message=resource+owner+denied+your+app+access&error=access_denied` appended.
 

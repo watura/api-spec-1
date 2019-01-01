@@ -6,7 +6,7 @@
 [Use live API calls for an example of the object.](/docs/api/resources/files/lookup#get-files-id)
 
 
-## Fields [&para;](#file-fields) {#file-fields}
+## Fields {#file-fields}
 
 <table>
     <tr>
@@ -282,7 +282,7 @@
 </table>
 
 
-## General File Parameters [&para;](#general-file-parameters) {#general-file-parameters}
+## General File Parameters {#general-file-parameters}
 
 Any endpoint that returns file objects can be subject to these parameters.
 
@@ -299,7 +299,7 @@ Name|Type|Description
 `include_file_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all file objects. Defaults to false.
 
 
-## Mime Types [&para;](#mime-types) {#mime-types}
+## Mime Types {#mime-types}
 
 `kind` and `mime_type` must be coordinated.
 

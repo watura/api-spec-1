@@ -1,11 +1,11 @@
 # How To: Private Message
 
-Private messages are special channels with the restricted `io.pnut.core.pm` channel type. They cannot be directly created or deactivated, and they're completely immutable. This makes the "owner" of the channel irrelevant.
+Private messages are special channels with the restricted `io.pnut.core.pm` channel type. They cannot be directly created or deactivated, and they're completely immutable (you cannot change who is included in the channel). This makes the "owner" of the channel irrelevant.
 
 
 ## Creation
 
-Channel creation is handled by pnut.io.
+Channel creation is handled by Pnut.
 
 
 ## Sending a Message
@@ -25,7 +25,7 @@ curl "https://api.pnut.io/v0/channels/pm/messages" \
     -X POST
 ```
 
-In every other way, they can be treated like any other channels and messages. Note that the "owner's" ID will not be in the write-access ACL, but they will not function any differently from anyone else.
+In every other way, they can be treated like other channels and messages. Note that the "owner's" ID will not be in the write-access ACL, but they will not function any differently from anyone else.
 
 
 ## Existing PM Channels

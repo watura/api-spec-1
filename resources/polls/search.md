@@ -11,11 +11,18 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of polls filtered by the given criteria.
 
-### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
+### Query Parameters
+
+#### Sort
 
 Name|Description
 -|-
 `order`|One of id or created_at. Default is by ID
+
+#### Filter
+
+Name|Description
+-|-
 `is_public`|If true, only include public polls
 `is_anonymous`|Only include anonymous polls
 `you_responded`|If true, only include polls you have responded to
@@ -36,5 +43,15 @@ curl "https://api.pnut.io/v0/polls/search?is_public=1&you_responded=0&is_closed=
 Returns a list of polls
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "code": 200,
+        "min_id": "0",
+        "max_id": "0"
+    },
+    "data": [
+        {"...Poll Object..."}
+    ]
+}
 ```

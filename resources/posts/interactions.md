@@ -1,6 +1,6 @@
 # Post Interactions
 
-Bookmarks, Replies, and Reposts.
+This endpoint mirrors [User Interactions](/docs/api/resources/users/interactions), but for a single post, instead of a user, and it does not include `objects`.
 
 Endpoints:
 
@@ -13,13 +13,13 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve actions executed against a post.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
 `post_id`|ID of the post to retrieve actions for
 
-### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
+### Query Parameters
 
 Name|Description
 -|-
@@ -37,5 +37,22 @@ curl "https://api.pnut.io/v0/posts/83/interactions" \
 Returns a list of interactions.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {
+            "pagination_id": "0",
+            "event_date": "ISO 8601",
+            "action": "String",
+            "users": [
+                {"...User Object..."}
+            ]
+        }
+    ]
+}
 ```

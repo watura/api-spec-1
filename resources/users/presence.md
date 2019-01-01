@@ -8,7 +8,7 @@ Endpoints:
 
 * [Get present users](#get-presence)
 * [Get a user's presence](#get-users-id-presence)
-* [Update user presence](#put-users-id-presence)
+* [Update the authenticated user's presence](#put-users-me-presence)
 
 
 ## <span class="method method-get">GET</span> /presence {#get-presence .endpoint}
@@ -30,7 +30,12 @@ curl "https://api.pnut.io/v0/presence" \
 Returns a list of users' presences.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": []
+}
 ```
 
 
@@ -44,7 +49,7 @@ Retrieve a user's presence.
 
 If the user has never set a presence, `last_seen_at` will not be set.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -61,11 +66,20 @@ curl "https://api.pnut.io/v0/users/1/presence" \
 Returns a user's current presence.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "id": "0",
+        "last_seen_at": "ISO 8601",
+        "presence": "String"
+    }
+}
 ```
 
 
-## <span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/presence {#put-users-id-presence .endpoint}
+## <span class="method method-put">PUT</span> /users/me/presence {#put-users-me-presence .endpoint}
 
 Token: <span class="endpoint-meta">user</span>
 
@@ -75,13 +89,7 @@ Update a user's presence.
 
 If the `update_presence` query parameter is set on this call, it will override this call. It will not occur twice.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
-
-Name|Description
--|-
-`user_id`|ID of the user presence to update
-
-### PUT Parameters [&para;](#put-parameters-1) {#put-parameters-1}
+### PUT Parameters
 
 Name|Description
 -|-
@@ -97,8 +105,17 @@ curl "https://api.pnut.io/v0/users/me/presence" \
     -H "X-Pretty-Json: 1"
 ```
 
-
+Returns the updated user presence.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "id": "0", 
+        "last_seen_at": "ISO 8601",
+        "presence": "String"
+    }
+}
 ```

@@ -100,13 +100,13 @@ Scope: <span class="endpoint-meta">none</span>
 
 This endpoint will return an HTTP 302 redirect to the user’s current avatar image. It will include any query string parameters you pass to the endpoint.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
 `user_id`|ID of the user whose avatar to retrieve
 
-### Query String Parameters [&para;](#query-string-parameters-1) {#query-string-parameters-1}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -170,13 +170,13 @@ Scope: <span class="endpoint-meta">none</span>
 
 This endpoint will return an HTTP 302 redirect to the user’s current cover image. It will include any query string parameters you pass to the endpoint.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
 `user_id`|ID of the user whose cover image to retrieve
 
-### Query String Parameters [&para;](#query-string-parameters-2) {#query-string-parameters-2}
+### Query String Parameters
 
 Name|Description
 -|-

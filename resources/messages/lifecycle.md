@@ -18,20 +18,31 @@ On creation, you can automatically update the stream marker to the most recent I
 
 For details on how to use channels for private messaging, look at [How To Private Message](../../how-to/channels-pm).
 
-Can be `application/json` Content-Type.
+Must be `application/json` Content-Type.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
 `channel_id`|ID of the channel to create a message in.
 
+### POST Body Data
+
+Name|Description
+-|-
+`text`|__Required__ 2048 character-limited string
+`reply_to`|ID of another message to reply to
+`is_nsfw`|Boolean whether the message should be marked as "NSFW" (Not Safe For Work/mature/offensive). Including the tag `#nsfw` in the message body will mark a message NSFW unless overridden by this.
+`entities.parse_links`|Boolean whether the links should be parsed by the server. Default `true`
+`entities.parse_markdown_links`|Boolean whether the markdown links should be parsed by the server. Default `true`
+
 ##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/channels/5/messages" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}"
-    -d "text=This is a message!"
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d "{\"text\": \"This is a message!\"}" \
     -X POST \
     -H "X-Pretty-Json: 1"
 ```
@@ -39,7 +50,12 @@ curl "https://api.pnut.io/v0/channels/5/messages" \
 Returns the message created.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 201
+    },
+    "data": {"...Message Object..."}
+}
 ```
 
 
@@ -54,7 +70,7 @@ Delete a message in a channel. Creators of messages can delete their messages ev
 
 Owners and full-access users may also delete others' messages in non-private message channels, which will also create a `deleted_by` field on those deleted messages.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -74,5 +90,10 @@ curl "https://api.pnut.io/v0/channels/5/messages/12" \
 Returns the deleted message.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Message Object..."}
+}
 ```

@@ -2,11 +2,11 @@
 
 *Any user may create one client that only they can authorize (for all intents and purposes, only they can use it).*
 
-pnut.io implements parts of the [OAuth 2.0 standard](https://oauth.net/2/) to secure access between clients, users, and the API.
+Pnut implements parts of the [OAuth 2.0 standard](https://oauth.net/2/) to secure access between clients, users, and the API.
 
 To authenticate and retrieve an app token or a token on behalf of a user, you will need to have an active client.
 
-Once you have created a client from the [Develop frontpage](https://pnut.io/dev), read through the implementation details and choose what [Scopes](../authentication/scope) you will need to authorize, and an appropriate Flow to authorize them with:
+Once you have created a client from the [developer area](https://pnut.io/dev), read through the implementation details and choose what [Scopes](../authentication/scope) you will need to authorize, and an appropriate Flow to authorize them with:
 
 * [Web Flows](../authentication/web-flows)
 * [Password Flow](../authentication/password-flow)

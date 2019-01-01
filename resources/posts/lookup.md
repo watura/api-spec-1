@@ -13,7 +13,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a post object.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -30,7 +30,12 @@ curl "https://api.pnut.io/v0/posts/20" \
 Returns a post
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Post Object..."}
+}
 ```
 
 
@@ -40,7 +45,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of specified post objects. Only retrieves the first 200 found.
 
-### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -57,7 +62,16 @@ curl "https://api.pnut.io/v0/posts?ids=20,21,4" \
 Returns a list of posts
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {"...Post Object..."},
+        {"...Post Object..."},
+        {"...Post Object..."}
+    ]
+}
 ```
 
 
@@ -67,7 +81,9 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of [previous versions](lifecycle#put-posts-id) of a post, not including the most recent. Currently a post can only have one previous version.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+Revisions returned will have `revision` as a String number indicating which version of the post it is. Revisions start at `"0"`.
+
+### URL Parameters
 
 Name|Description
 -|-
@@ -84,5 +100,12 @@ curl "https://api.pnut.io/v0/posts/2392/revisions" \
 Returns a list of posts
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {"....Post Object..."}
+    ]
+}
 ```

@@ -16,7 +16,7 @@ Scope: <span class="endpoint-meta">write_post</span>
 
 Repost another post. The repost will show up in followers' streams if they have not seen another repost of the same within the last week, and if the reposted post is not in their recent stream. It is created in its own thread, not the thread of the original post. This increments a user's post count.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -34,7 +34,12 @@ curl "https://api.pnut.io/v0/posts/2370/repost" \
 Returns the reposted post.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 201
+    },
+    "data": {"...Post object..."}
+}
 ```    
 
 
@@ -46,9 +51,9 @@ Scope: <span class="endpoint-meta">write_post</span>
 
 Delete a repost. The actual repost is completely deleted; it does not leave behind a thread or deleted post to look up.
 
-Users can also delete their own reposts even if they no longer have access to the original post (e.g., they were blocked). In that case, the returned post in the `data` field is simply `{"id":POST_ID,"you_reposted":false}`.
+Users can also delete their own reposts even if they no longer have access to the original reposted post (e.g., they were blocked). In that case, the returned post in the `data` field is simply `{"id":POST_ID,"you_reposted":false}`.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -66,5 +71,10 @@ curl "https://api.pnut.io/v0/posts/2370/repost" \
 Returns the previously reposted post.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Post object..."}
+}
 ```

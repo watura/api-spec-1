@@ -15,7 +15,7 @@ Scope: <span class="endpoint-meta">files</span>
 
 Retrieve a file object. If `link_expires_at` is passed, this will update the `link` and any embedded references to it.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -32,7 +32,12 @@ curl "https://api.pnut.io/v0/files/69" \
 Returns the requested file details
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...File Object..."}
+}
 ```
 
 
@@ -46,7 +51,7 @@ Retrieve a list of specified file objects. Only returns the first 200 found.
 
 If the file need a `file_token_read` to access, you may include them with query parameters in the pattern `?file_token_read_{file_id}=xxx&file_token_read_{file_id}=xxx`.
 
-### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -63,7 +68,14 @@ curl "https://api.pnut.io/v0/files?ids=69,71" \
 Returns a list of files
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {"...File Object..."}
+    ]
+}
 ```
 
 
@@ -86,5 +98,15 @@ curl "https://api.pnut.io/v0/users/me/files" \
 Returns a list of files
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200,
+        "more": false,
+        "max_id": "0",
+        "min_id": "0"
+    },
+    "data": [
+        {"...File Object..."}
+    ]
+}
 ```

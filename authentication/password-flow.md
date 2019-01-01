@@ -2,13 +2,13 @@
 
 ## Setup
 
-Password flow must be explicitly approved on a per-client basis, by a pnut.io administrator.
+Password flow must be explicitly approved on a per-client basis, by a Pnut administrator.
 
-Request access by E-mailing [support@pnut.io](mailto:support@pnut.io), telling what platform the app runs on, and the client ID. If access is granted, you will be able to get your `password_grant_secret` from the client settings in the Developer area.
+Request access by E-mailing [support@pnut.io](mailto:support@pnut.io), telling what platform the app runs on, and the client ID. If access is granted, you will be able to get your `password_grant_secret` from the client settings in the developer area.
 
 __Do not save the user's password.__ You should take every measure to respect the user's security.
 
-Where another flow is practical, use it. For your own projects and single-instance clients, you can authorize and retrieve a token for yourself directly from the client's Developer page, or you can use web flows.
+Where another flow is practical, use it. For your own projects and single-instance clients, you can authorize and retrieve a token for yourself directly from the client's developer page, or you can use web flows.
 
 __You must__ display the scopes that you will be authorizing, somewhere before users login, even if on a linked section of your app.
 

@@ -15,7 +15,7 @@ Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of blocked users. Users may only see their own list of blocked users.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -32,7 +32,15 @@ curl "https://api.pnut.io/v0/users/me/blocked" \
 Returns a list of users
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "code": 200
+    },
+    "data": [
+        {"...User Object..."}
+    ]
+}
 ```
 
 
@@ -44,7 +52,7 @@ Scope: <span class="endpoint-meta">follow</span>
 
 Block a user. Blocked users will not show up in future requests, the same as if they were muted. Blocked users also cannot retrieve this authorized user in their requests. Can do so even if the other user is blocking you (but will only return an ID of the blocked user).
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -62,7 +70,12 @@ curl "https://api.pnut.io/v0/users/@testuser/block" \
 Returns the blocked user
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...User Object..."}
+}
 ```
 
 
@@ -74,7 +87,7 @@ Scope: <span class="endpoint-meta">follow</span>
 
 Unblock a user. Can do so even if the other user is blocking you (but will only return an ID of the blocked user).
 
-### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
+### URL Parameters
 
 Name|Description
 -|-
@@ -92,5 +105,10 @@ curl "https://api.pnut.io/v0/users/@testuser/block" \
 Returns the unblocked user
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....User Object..."}
+}
 ```

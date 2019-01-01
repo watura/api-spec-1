@@ -11,11 +11,18 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of channels filtered by the given criteria.
 
-### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
+### Query Parameters
+
+#### Sort
 
 Name|Description
 -|-
 `order`|One of activity or id. Default is by activity
+
+#### Filter
+
+Name|Description
+-|-
 `categories`|Comma-separated list of: fun, lifestyle, profession, language, community, tech, event, general. Taken from `io.pnut.core.chat-settings` raw
 `channel_types`|Comma-separated list of channel types to include
 `raw_types`|Comma-separated list of attached raw types. Any matches returned
@@ -35,5 +42,15 @@ curl "https://api.pnut.io/v0/channels/search?is_public=1&channel_types=io.pnut.c
 Returns a list of channels
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Channel Object..."}
+    ]
+}
 ```

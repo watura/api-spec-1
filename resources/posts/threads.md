@@ -11,7 +11,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve posts within a thread. Threads are separated by what root post all posts below it have replied to.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -28,5 +28,15 @@ curl "https://api.pnut.io/v0/posts/18/thread" \
 Returns a list of posts from the thread.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object..."}
+    ]
+}
 ```

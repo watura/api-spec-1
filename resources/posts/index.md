@@ -10,7 +10,7 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
 [Use live API calls for an example of the object.](/docs/api/resources/posts/lookup#get-posts-id)
 
 
-## Fields [&para;](#post-fields) {#post-fields}
+## Fields {#post-fields}
 
 <table>
     <tr>
@@ -107,7 +107,7 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
 
     <tr>
         <td><code>repost_of</code></td>
-        <td>string</td>
+        <td>object</td>
         <td>Optional embedded post object being reposted.</td>
     </tr>
 
@@ -204,7 +204,7 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
 
 
 
-## General Post Parameters [&para;](#general-post-parameters) {#general-post-parameters}
+## General Post Parameters {#general-post-parameters}
 
 Any endpoint that returns post objects can be subject to these parameters.
 

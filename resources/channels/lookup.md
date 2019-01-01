@@ -18,7 +18,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a channel object.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -35,7 +35,12 @@ curl "https://api.pnut.io/v0/channels/5" \
 Returns the requested channel
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Channel Object..."}
+}
 ```
 
 
@@ -45,7 +50,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of specified channel objects. Only returns the first 200 found.
 
-### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -62,7 +67,16 @@ curl "https://api.pnut.io/v0/channels?ids=3,4,16" \
 Returns a list of channels
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {"...Channel Object..."},
+        {"...Channel Object..."},
+        {"...Channel Object..."}
+    ]
+}
 ```
 
 
@@ -85,7 +99,17 @@ curl "https://api.pnut.io/v0/users/me/channels" \
 Returns a list of channels
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "more": false,
+        "min_id": "0",
+        "max_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Channel Object..."}
+    ]
+}
 ```
 
 
@@ -98,7 +122,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a Private Message channel for a set of users, if one exists.
 
-### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -116,7 +140,12 @@ curl "https://api.pnut.io/v0/users/me/channels/existing_pm?ids=2" \
 Returns a channel.
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....Channel Object..."}
+}
 ```
 
 
@@ -140,7 +169,12 @@ curl "https://api.pnut.io/v0/users/me/channels/num_unread/pm" \
 Returns the number of unread channels
 
 ```json
-"call for example 5"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": 0
+}
 ```
 
 
@@ -164,5 +198,10 @@ curl "https://api.pnut.io/v0/users/me/channels/num_unread/pm" \
 Returns the number of unread channels (`0`)
 
 ```json
-"call for example 6"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": 0
+}
 ```

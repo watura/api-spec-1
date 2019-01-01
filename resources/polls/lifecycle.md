@@ -21,7 +21,7 @@ Create a poll placeholder or a complete poll. `type`, `prompt`, `options`, and `
 
 Content-Type of `application/json`.
 
-### POST Body Data [&para;](#post-body-data-1) {#post-body-data-1}
+### POST Body Data
 
 Name|Description
 -|-
@@ -61,7 +61,12 @@ curl "https://api.pnut.io/v0/polls" \
 Returns the created poll
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 201
+    },
+    "data": {"...Poll Object..."}
+}
 ```
 
 
@@ -76,7 +81,7 @@ Respond to a poll.
 
 Only human-type accounts may respond to polls.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -95,7 +100,12 @@ curl "https://api.pnut.io/v0/polls/1/response/2" \
 Returns poll on success
 
 ```json
-
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Poll Object..."}
+}
 ```
 
 
@@ -109,7 +119,7 @@ Scope: <span class="endpoint-meta">polls</span>
 
 Delete a poll. This will not disassociate a poll with any other objects (posts, messages...).
 
-### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
+### URL Parameters
 
 Name|Description
 -|-
@@ -127,5 +137,10 @@ curl "https://api.pnut.io/v0/polls/72" \
 Returns the deleted poll
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....Poll Object..."}
+}
 ```

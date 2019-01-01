@@ -32,7 +32,7 @@ stpnut|module for monitoring an App Stream|[@shawn](https://pnut.io/@shawn)|[Git
 
 Name|Description|Maintainer|Source
 -|-|-|-
-[phpnut](https://packagist.org/packages/pnut-api/phpnut)|library|-|[GitHub](https://github.com/pnut-api/phpnut)
+[phpnut](https://packagist.org/packages/pnut-api/phpnut)|library|You?|[GitHub](https://github.com/pnut-api/phpnut)
 
 
 ### Python

@@ -15,7 +15,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a message from a channel. The requesting user must have access to the channel or have created the message.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -34,7 +34,12 @@ curl "https://api.pnut.io/v0/channels/5/messages/11" \
 Returns the requested message.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Message Object..."}
+}
 ```
 
 
@@ -47,7 +52,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve messages in the same thread of a channel. All messages will have the same `thread_id` (they are all replies to the same post, or is not a reply to any post). The requesting user must have access to the channel.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -66,7 +71,17 @@ curl "https://api.pnut.io/v0/channels/5/messages/13/thread" \
 Returns a list of messages.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Message Object..."}
+    ]
+}
 ```
 
 
@@ -77,7 +92,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of specified messages. Will only return the first 200 found.
 
-### Query String Parameters [&para;](#query-string-parameters) {#query-string-parameters}
+### Query String Parameters
 
 Name|Description
 -|-
@@ -94,7 +109,16 @@ curl "https://api.pnut.io/v0/channels/messages?ids=4,11,12" \
 Returns a list of the messages found.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {"...Message Object..."},
+        {"...Message Object..."},
+        {"...Message Object..."}
+    ]
+}
 ```
 
 
@@ -104,7 +128,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve paginated messages from a channel.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -121,7 +145,20 @@ curl "https://api.pnut.io/v0/channels/2/messages" \
 Returns a list of messages from the channel.
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "marker": {
+            "name": "channel:0"
+        },
+        "code": 200
+    },
+    "data": [
+        {"...Message Object..."}
+    ]
+}
 ```
 
 
@@ -142,5 +179,15 @@ curl "https://api.pnut.io/v0/users/me/messages" \
 Returns a list of messages.
 
 ```json
-"call for example 5"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Message Object..."}
+    ]
+}
 ```

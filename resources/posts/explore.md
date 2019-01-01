@@ -25,7 +25,19 @@ curl "https://api.pnut.io/v0/posts/streams/explore" \
 Returns a list of explore streams.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {
+            "description": "String",
+            "link": "https://example.com",
+            "slug": "String",
+            "title": "String"
+        }
+    ]
+}
 ```
 
 
@@ -35,7 +47,7 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of posts in an explore stream.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -52,5 +64,15 @@ curl "https://api.pnut.io/v0/posts/streams/explore/conversations?count=1" \
 Returns a list of posts.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object..."}
+    ]
+}
 ```

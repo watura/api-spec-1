@@ -2,6 +2,7 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 
 # <span class="orange">Changes</span>
 
+* [0.9.2](#0.9.2)
 * [0.9.1](#0.9.1)
 * [0.9.0](#0.9.0)
 * [0.8.0](#0.8.0)
@@ -24,6 +25,39 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * [0.4.1](#0.4.1)
 * [0.4.0](#0.4.0)
 * [0.3.0](#0.3.0)
+
+
+## [2018-12-31](#0.9.2) v0.9.2 {#0.9.2}
+
+### Features
+
+* Allow `/text/process` to render messages instead of posts, with a query parameter
+* File `kind` can be inferred from file extension
+* `io.pnut.core.channel-invite` raw now attaches the related channel's `name`, if a "chat" channel
+* Markdown links with titles will show `title` on the object, not just embedded in `html`
+* Users can specify link template used in notification E-mails
+
+### Changes
+
+* Improved documentation for searches, and templatized API example responses
+* Known file extensions will be normalized lowercase
+* Ellipsis (`…`) is ignored at the end of inline links
+* Improved duplicate post handling
+* Links handle parentheses more naturally
+* Repost and bookmark E-mail notifications include the post's text
+* Developer accounts are now a one-time fee of $42, instead of an annual subscription
+* Tags can still include underscores in text and html, but lookups ignore them
+
+### Fixes
+
+* Account data page wouldn't show usage for non-Badge-holders
+* Newly invited users did not register following the inviter
+* oEmbed `raw` was accepting strings and non-Integer numbers for image width and height
+* Gifted Pnut badges weren't accepted for one case
+* Authorizing new client email included an empty client name
+* `redirect_uri`s with special schemes (not "https") weren't recognized
+* Post and message length was calculated with an approximation, now it uses the same calculation as in actual rendering
+* Post search failed for some lookup combinations
 
 
 ## [2018-09-13](#0.9.1) v0.9.1 {#0.9.1}

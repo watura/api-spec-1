@@ -29,7 +29,20 @@ curl "https://api.pnut.io/v0/users/me/channels/subscribed" \
 Returns a list of subscribed channels.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "unread_counts": {
+            "io.pnut.core.pm": 0
+        },
+        "code": 200
+    },
+    "data": [
+        {"...Channel Object..."}
+    ]
+}
 ```
 
 
@@ -40,7 +53,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of users subscribed to a channel.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -58,7 +71,14 @@ curl "https://api.pnut.io/v0/channels/18/subscribers" \
 Returns a list of users.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": [
+        {"...User Object..."}
+    ]
+}
 ```
 
 
@@ -71,7 +91,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Subscribe to updates from a channel. Subscribing unmutes it, if you were muting it.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -90,7 +110,12 @@ curl "https://api.pnut.io/v0/channels/18/subscribe" \
 Returns the subscribed channel.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Channel Object..."}
+}
 ```
 
 
@@ -103,7 +128,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Delete a subscription for a channel. Unsubscribing also deletes any existing stream marker for the channel.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -122,5 +147,10 @@ curl "https://api.pnut.io/v0/channels/18/subscribe" \
 Returns the unsubscribed channel.
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....Channel Object..."}
+}
 ```

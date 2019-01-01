@@ -21,7 +21,7 @@ Retrieve sticky messsages in a channel. The requesting user must have access to 
 
 Note that the `pagination_id` and `min_id` and `max_id` will change as users sticky and un-sticky messages.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -39,7 +39,17 @@ curl "https://api.pnut.io/v0/channels/5/sticky_messages" \
 Returns a list of messages.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Message Object..."}
+    ]
+}
 ```
 
 
@@ -51,7 +61,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Sticky a message.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
@@ -68,10 +78,15 @@ curl "https://api.pnut.io/v0/channels/5/messages/13/sticky" \
     -H "X-Pretty-Json: 1"
 ```
 
-Returns the bookmarked post.
+Returns the stickied message.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Message Object..."}
+}
 ```
 
 
@@ -83,7 +98,7 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Un-sticky a message.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -99,8 +114,13 @@ curl "https://api.pnut.io/v0/channels/5/messages/13/sticky" \
     -H "X-Pretty-Json: 1"
 ```
 
-Returns the message.
+Returns the un-stickied message.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....Message Object..."}
+}
 ```

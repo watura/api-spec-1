@@ -11,12 +11,24 @@ Scope: <span class="endpoint-meta">none</span>
 
 Retrieve a list of posts filtered by the given criteria.
 
-### Query Parameters [&para;](#query-parameters-1) {#query-parameters-1}
+### Query Parameters
+
+#### Search
+
+Name|Description
+-|-
+`q`|List of words included in posts
+
+#### Sort
 
 Name|Description
 -|-
 `order`|One of id or relevance. Default is by relevance
-`q`|List of words included in posts
+
+#### Filter
+
+Name|Description
+-|-
 `tags`|Comma-separated list of tags. Any matches returned. Do not include `#`
 `has_mentions`|Whether to include posts with any mentions. Excludes other mentions filters below
 `mentions`|Comma-separated list of mentions. Any matches returned. Do not include `@`
@@ -45,5 +57,16 @@ curl "https://api.pnut.io/v0/posts/search?tags=mndp,MondayNightDanceParty" \
 Returns a list of posts
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": true,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object..."},
+        {"...Post Object..."}
+    ]
+}
 ```

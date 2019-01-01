@@ -6,7 +6,7 @@
 [Use live API calls for an example of the object.](/docs/api/resources/polls/lookup#get-polls-id)
 
 
-## Fields [&para;](#poll-fields) {#poll-fields}
+## Fields {#poll-fields}
 
 <table>
     <tr>
@@ -122,7 +122,7 @@
 </table>
 
 
-## General Poll Parameters [&para;](#general-poll-parameters) {#general-poll-parameters}
+## General Poll Parameters {#general-poll-parameters}
 
 Any endpoint that returns poll objects can be subject to these parameters.
 

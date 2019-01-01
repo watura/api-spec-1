@@ -14,27 +14,35 @@ Endpoints:
 Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of muted users. Users may only see their own list of muted users.
-    
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+
+### URL Parameters
 
 Name|Description
 -|-
 `user_id`|ID of the user whose list of muted users to retrieve
     
 ##### Example {.example-code}
-    
+
 ```bash
 curl "https://api.pnut.io/v0/users/me/muted" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
-            
+
 Returns a list of users
-            
+
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "code": 200
+    },
+    "data": [
+        {"...User Object..."}
+    ]
+}
 ```
-    
+
 
 ## <span class="method method-put">PUT</span> /users/<span class="call-param">{user_id}</span>/mute {#put-users-id-mute .endpoint}
 
@@ -44,7 +52,7 @@ Scope: <span class="endpoint-meta">follow</span>
 
 Mute a user. Muted users will not appear in future requests.
     
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -62,7 +70,12 @@ curl "https://api.pnut.io/v0/users/@testuser/mute" \
 Returns the muted user
             
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...User Object..."}
+}
 ```
     
     
@@ -74,7 +87,7 @@ Scope: <span class="endpoint-meta">follow</span>
 
 Unmute a user.
     
-### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
+### URL Parameters
 
 Name|Description
 -|-
@@ -92,5 +105,10 @@ curl "https://api.pnut.io/v0/users/@testuser/mute" \
 Returns the unmuted user
             
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....User Object..."}
+}
 ```

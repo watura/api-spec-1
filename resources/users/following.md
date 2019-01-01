@@ -14,7 +14,7 @@ Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of user objects that the specified user is following.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters {#url-parameters-1}
 
 Name|Description
 -|-
@@ -31,7 +31,17 @@ curl "https://api.pnut.io/v0/users/3/following?count=2" \
 Returns a list of users
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...User Object..."}
+    ]
+}
 ```
 
 
@@ -41,7 +51,7 @@ Scope: <span class="endpoint-meta">any</span>
 
 Retrieve a list of user objects that are following the specified user.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters {#url-parameters-2}
 
 Name|Description
 -|-
@@ -59,7 +69,18 @@ curl "https://api.pnut.io/v0/users/@shawn/followers?count=2" \
 Returns a list of users
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...User Object..."},
+        {"...User Object..."}
+    ]
+}
 ```
 
 
@@ -71,7 +92,7 @@ Scope: <span class="endpoint-meta">follow</span>
 
 Follow a user.
 
-### URL Parameters [&para;](#url-parameters-3) {#url-parameters-3}
+### URL Parameters {#url-parameters-3}
 
 Name|Description
 -|-
@@ -90,7 +111,12 @@ curl "https://api.pnut.io/v0/users/246/follow" \
 Returns the followed user
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...User Object..."}
+}
 ```
 
 
@@ -102,7 +128,7 @@ Scope: <span class="endpoint-meta">follow</span>
 
 Unfollow a user.
 
-### URL Parameters [&para;](#url-parameters-4) {#url-parameters-4}
+### URL Parameters {#url-parameters-4}
 
 Name|Description
 -|-
@@ -120,5 +146,10 @@ curl "https://api.pnut.io/v0/users/246/follow" \
 Returns the unfollowed user
 
 ```json
-"call for example 4"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....User Object..."}
+}
 ```

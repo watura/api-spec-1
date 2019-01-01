@@ -1,6 +1,6 @@
 # How To: User Streams
 
-User streams are constant connections between the API and user-facing clients, for near-realtime interaction. They are similar to [App Streams](../resources/app-streams) but for individual users. 
+User streams are long-lasting websocket connections between the API and user-facing clients, for near-realtime interaction. They are similar to [App Streams](../resources/app-streams) but for individual users. 
 
 
 ## Create a Connection
@@ -51,7 +51,7 @@ Returns the normal response from the endpoint, with `meta.subscription_id`.
 
 Currently, streams auto-delete themselves on disconnect. If you lose connection, you will have to rebuild it with subscriptions again.
 
-A connection may have up to 16 subscriptions. A connection may subscribe to an endpoint more than once, so be sure to prevent that if it isn't helpful to you.
+A connection may have up to 16 subscriptions. A connection may subscribe to an endpoint more than once (with or without different parameters), so be sure to prevent that if it isn't helpful to you.
 
 
 ## Miscellaney

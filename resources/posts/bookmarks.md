@@ -19,7 +19,7 @@ Retrieve a list of bookmarks made by the specified user.
 
 Returned posts may include a `note` string field if looking up bookmarks made by the authorized user.
 
-### URL Parameters [&para;](#url-parameters) {#url-parameters}
+### URL Parameters
 
 Name|Description
 -|-
@@ -36,7 +36,17 @@ curl "https://api.pnut.io/v0/users/1/bookmarks" \
 Returns a list of posts.
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...Post Object..."}
+    ]
+}
 ```
 
 
@@ -48,23 +58,25 @@ Scope: <span class="endpoint-meta">write_post</span>
 
 Bookmark a post.
 
-### URL Parameters [&para;](#url-parameters-1) {#url-parameters-1}
+### URL Parameters
 
 Name|Description
 -|-
 `post_id`|Post to bookmark
 
-### PUT Body Data [&para;](#put-body-data-1) {#put-body-data-1}
+### PUT Body Data
 
 Name|Description
 -|-
-`note`|Optional 128-character note that will only be visible when a user retrieves their own bookmarks
+`note`|Optional 128-character note that will only be visible when a user retrieves their own bookmarks. It is not escaped.
 
 ##### Example {.example-code}
 
 ```bash
 curl "https://api.pnut.io/v0/posts/2375/bookmark" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d "{\"note\": \"Robert has great posts.\"}" \
     -X PUT \
     -H "X-Pretty-Json: 1"
 ```
@@ -72,7 +84,12 @@ curl "https://api.pnut.io/v0/posts/2375/bookmark" \
 Returns the bookmarked post.
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Post Object..."}
+}
 ```
 
 
@@ -84,7 +101,7 @@ Scope: <span class="endpoint-meta">write_post</span>
 
 Delete a bookmark.
 
-### URL Parameters [&para;](#url-parameters-2) {#url-parameters-2}
+### URL Parameters
 
 Name|Description
 -|-
@@ -102,5 +119,10 @@ curl "https://api.pnut.io/v0/posts/2375/bookmark" \
 Returns the post a bookmark was removed from.
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....Post Object..."}
+}
 ```

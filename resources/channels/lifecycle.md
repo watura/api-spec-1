@@ -46,7 +46,12 @@ curl "https://api.pnut.io/v0/channels" \
 Returns the created channel
 
 ```json
-"call for example 1"
+{
+    "meta": {
+        "code": 201
+    },
+    "data": {"...Channel Object..."}
+}
 ```
 
 
@@ -81,7 +86,12 @@ curl "https://api.pnut.io/v0/channels/13" \
 Returns the updated channel
 
 ```json
-"call for example 2"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Channel Object..."}
+}
 ```
 
 
@@ -107,5 +117,10 @@ curl "https://api.pnut.io/v0/channels/13" \
 Returns the deactivated channel
 
 ```json
-"call for example 3"
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"....Channel Object..."}
+}
 ```
