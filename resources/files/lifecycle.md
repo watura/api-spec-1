@@ -32,10 +32,13 @@ Name|Description
 `name`|__Required__ 256-character name or description (to be displayed and attached to the object; a random key will actually be assigned for the filename)
 `type`|__Required__ Reverse domain name-style identifier of the file type. E.g., `com.example.site`. Searchable
 `is_public`|If true, file is public
-`sha256`|API will check the file's SHA256 checksum against this, and return an error if they do not match
+`sha256`*|API will check the file's SHA256 checksum against this, and return an error if they do not match
 `mime_type`|If the API cannot determine mime_type, it will use this
 `{name}` + `_image_thumb_200s`|Key for custom derived thumbnail, 200 by 200 pixels, resized and cropped. If not included, API will try to create one, for images.
 `{name}` + `_image_thumb_960r`|Key for custom derived thumbnail, within 640 width and 960 height. If an uploaded image has smaller proportions, one will not be created automatically.
+`process_image_exif`*|If uploading a JPEG image with EXIF, and this is set to `0`, the API will not re-orient the image automatically.
+
+*If the API automatically rotates an image, the returned `sha256` will be different from the uploaded file.
 
 
 ##### Example {.example-code}

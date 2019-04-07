@@ -61,7 +61,7 @@ A connection may have up to 16 subscriptions. A connection may subscribe to an e
 * /users/me/posts
 * /users/me/mentions
 * /posts/:post_id/thread
-* /posts/streams/personal
+* /posts/streams/me
 * /posts/streams/unified
 * /users/me/following
 * /users/me/followers

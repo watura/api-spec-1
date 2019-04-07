@@ -22,6 +22,12 @@ Name|Description
 -|-
 `poll_id`|ID of the requested poll
 
+### Query Parameters
+
+Name|Description
+-|-
+`poll_token`|Required on private polls when you don't know or aren't guaranteed access
+
 ##### Example {.example-code}
 
 ```bash

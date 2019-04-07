@@ -50,7 +50,7 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">messages</span>
 
-Retrieve messages in the same thread of a channel. All messages will have the same `thread_id` (they are all replies to the same post, or is not a reply to any post). The requesting user must have access to the channel.
+Retrieve messages in the same thread of a channel. All messages will have the same `thread_id` (they are all replies to the same message, or is not a reply to any message). The requesting user must have access to the channel.
 
 ### URL Parameters
 

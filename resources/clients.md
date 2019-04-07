@@ -78,6 +78,7 @@ Returns the detailed client object
         "created_by": {"...User Object..."},
         "id": "String",
         "link": "https://example.com",
+        "logo_image": "https://example.com/logo.png",
         "name": "String",
         "posts": 0,
         "content": {

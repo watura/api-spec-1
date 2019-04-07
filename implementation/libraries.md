@@ -14,7 +14,7 @@ pnutdotnet|library|[@dmoeller](https://pnut.io/@dmoeller)|[GitHub](https://githu
 
 Name|Description|Maintainer|Source
 -|-|-|-
-peanuts|library|[@yukkuri_sinai](https://pnut.io/@yukkuri_sinai)|[GitHub](https://github.com/yukkurisinai/peanuts)
+woodstock|library|[@thrrgilag](https://pnut.io/@thrrgilag)|[GitLab](https://gitlab.dreamfall.space/thrrgilag/woodstock)
 
 
 ### Javascript/Node
@@ -32,7 +32,7 @@ stpnut|module for monitoring an App Stream|[@shawn](https://pnut.io/@shawn)|[Git
 
 Name|Description|Maintainer|Source
 -|-|-|-
-[phpnut](https://packagist.org/packages/pnut-api/phpnut)|library|You?|[GitHub](https://github.com/pnut-api/phpnut)
+[phpnut](https://packagist.org/packages/pnut-api/phpnut)|library|--|[GitHub](https://github.com/pnut-api/phpnut)
 
 
 ### Python

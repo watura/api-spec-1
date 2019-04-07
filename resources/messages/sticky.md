@@ -4,6 +4,8 @@
 
 Users with `full` access to a channel are able to sticky and un-sticky messages in the channel.
 
+In Private Message channels (type `io.pnut.core.pm`), anyone can stick and un-sticky messages.
+
 Endpoints:
 
 * [Get sticky messages in a channel](#get-channels-id-sticky_messages)

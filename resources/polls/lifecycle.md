@@ -81,12 +81,22 @@ Respond to a poll.
 
 Only human-type accounts may respond to polls.
 
+If a poll is private, you must inherently have access to the poll to respond, or include a `poll_token` in the query string. Polls attached to posts, for example, always include `poll_token` in the raw data. Since you might not know if a poll is public or private in such a case, you should always include the poll token when you have it.
+
+Responses can be changed until the poll closes.
+
 ### URL Parameters
 
 Name|Description
 -|-
 `poll_id`|ID of the poll to respond to
 `position`|Position of the position to respond with
+
+### Query Parameters
+
+Name|Description
+-|-
+`poll_token`|Required on private polls when you don't know or aren't guaranteed access
 
 ##### Example {.example-code}
 
