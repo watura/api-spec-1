@@ -95,3 +95,121 @@ A connection may have up to 16 subscriptions. A connection may subscribe to an e
 * include_muted
 * include_deleted
 * include_directed_posts
+
+
+## Example Objects
+
+### post
+
+Sent when any post is created, reposted, revised, or deleted.
+
+Reposts will send the newly created or deleted repost and include `repost_of` in the post object.
+
+Newly revised posts will include `meta.revision`.
+
+Newly deleted posts will include `meta.is_deleted`.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534019640,
+    "id": "2834",
+    "subscription_ids": [
+      "gJ1EUufwPXrK9N34ulTRcx5NHco6D7FE"
+    ]
+  },
+  "data": [
+    "...post object..."
+  ]
+}
+```
+
+
+### follow
+
+Sent when any user follows or unfollows another user. Currently only a "stub", notifying you that someone followed or unfollowed, but nothing else.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534017586,
+    "subscription_ids": [
+      "JUnEC5cmqiJY7Wu5uKNAmNH-AXVP6GAo"
+    ]
+  }
+}
+```
+
+
+### message
+
+Sent when a message is created or deleted from a channel.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534019721,
+    "channel_type": "io.pnut.core.pm",
+    "id": "71",
+    "subscription_ids": [
+      "LklDY7v5zAhPYNEUZlzb01oZA_3BnYvH",
+      "u7F6LFhFfTrVMBDQRkIXYPGca_I-__EW"
+    ]
+  },
+  "data": [
+    "...message object..."
+  ]
+}
+```
+
+
+### channel subscription
+
+Sent when a user subscribes to or unsubscribes from a channel. Currently only includes the channel object, not the user whose subscription changed.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534020228,
+    "id": "22",
+    "subscription_ids": [
+      "_CGQ8XARMPMNqqQUaLl7GI3Utr4Bmkec"
+    ]
+  },
+  "data": "...channel object..."
+}
+```
+
+
+### token
+
+Sent when you authorize a new token, or update your user object. Currently only a "stub", indicating the profile was updated, but not its details.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534020401,
+    "id": "1",
+    "subscription_ids": [
+      "d2Zn0uypyWVf0WCIHyLIXW0YDTtKuNOV"
+    ]
+  }
+}
+```
+
+
+### file
+
+Sent when a user uploads a file, updates file details, uploads a file, or deletes a file. Currently only a "stub", indicating that the file was uploaded, but not its details.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534020233,
+    "id": "349",
+    "subscription_ids": [
+      "rqDNgxAQASRCIBqHZ5Dek71SBar-wPjX"
+    ]
+  }
+}
+```

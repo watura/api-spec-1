@@ -46,6 +46,12 @@
     </tr>
 
     <tr>
+        <td><code>max_options</code></td>
+        <td>integer</td>
+        <td>How many options can be selected at once by responders. Default is <code>1</code>.</td>
+    </tr>
+
+    <tr>
         <td><code>options</code></td>
         <td>object</td>
         <td>A list of 2 to 10 responses for the poll.

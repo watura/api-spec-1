@@ -21,6 +21,15 @@ The format of a `raw` JSON object is like so:
 ```
 
 
+## Core Types
+
+Any `type` starting with `io.pnut.core` is checked by the server for validity, to an extent. Be sure to match their requirements when creating core channel types or `raw` data types.
+
+If a submission is not valid, the whole post/message creation or channel/user update will be halted, and an error message will be returned in the `meta`.
+
+Community-defined types and core types can be referenced on our [object-metadata GitHub repository](https://github.com/pnut-api/object-metadata).
+
+
 
 ## Inclusion
 
@@ -49,16 +58,6 @@ User, channel, and file objects have mutable raw data.
 ## Deleting Mutable Items
 
 To delete a mutable item, include the `type` but do not include the `value`.
-
-
-
-## Core Types
-
-Any `type` starting with `io.pnut.core` is checked by the server for validity, to an extent. Be sure to match their requirements when creating core channel types or `raw` data types.
-
-If a submission is not valid, the whole post/message creation or channel/user update will be halted, and an error message will be returned in the `meta`.
-
-Community-defined types and core types can be referenced on our [object-metadata GitHub repository](https://github.com/pnut-api/object-metadata).
 
 
 

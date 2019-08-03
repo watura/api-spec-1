@@ -164,7 +164,7 @@ Any user profile can be found at `https://pnut.io/@username`.
                 <tr>
                     <td><code>markdown_text</code></td>
                     <td>string</td>
-                    <td><code>text</code>, with the original markdown links preserved. Only included when looking up the authenticated user's profile.</td>
+                    <td><code>text</code>, with the original markdown links preserved. Only included when looking up the authenticated user's profile or <code>GET /token</code>.</td>
                 </tr>
 
                 <tr>

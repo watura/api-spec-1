@@ -17,13 +17,14 @@ Retrieve a list of channels filtered by the given criteria.
 
 Name|Description
 -|-
-`order`|One of activity or id. Default is by activity
+`order`|One of activity (most recent message), id (most recently created), or popularity (how many messages have been made). Default is by activity.
 
 #### Filter
 
 Name|Description
 -|-
-`categories`|Comma-separated list of: fun, lifestyle, profession, language, community, tech, event, general. Taken from `io.pnut.core.chat-settings` raw
+`q`|Basic text string searched for in `name`s and `description`s in a channel's `io.pnut.core.chat-settings` raw.
+`categories`|Comma-separated list of: fun, lifestyle, profession, language, community, tech, event, general. Taken from `io.pnut.core.chat-settings` raw.
 `channel_types`|Comma-separated list of channel types to include
 `raw_types`|Comma-separated list of attached raw types. Any matches returned
 `exclude_channel_types`|Comma-separated list of channel types to exclude

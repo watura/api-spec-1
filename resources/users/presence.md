@@ -71,9 +71,12 @@ Returns a user's current presence.
         "code": 200
     },
     "data": {
+        "avatar_image": "String",
         "id": "0",
         "last_seen_at": "ISO 8601",
-        "presence": "String"
+        "name": "String",
+        "presence": "String",
+        "username": "String"
     }
 }
 ```
@@ -113,9 +116,12 @@ Returns the updated user presence.
         "code": 200
     },
     "data": {
-        "id": "0", 
+        "avatar_image": "String",
+        "id": "0",
         "last_seen_at": "ISO 8601",
-        "presence": "String"
+        "name": "String",
+        "presence": "String",
+        "username": "String"
     }
 }
 ```

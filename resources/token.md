@@ -16,7 +16,7 @@ Scope: <span class="endpoint-meta">any</span>
 
 Retrieve an object with the currently authenticated token, username, and user ID.
 
-Includes `data.email` if `email` scope is authorized.
+Includes `data.email` if `email` scope is authorized. Includes `markdown_text` in user object.
 
 ##### Example {.example-code}
 

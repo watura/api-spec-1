@@ -10,7 +10,7 @@ Lengths and positions are using multibyte (UTF-32) code points. Notably, NSStrin
 Field|Type|Description
 -|-|-
 `amended_len`|integer|The length of the `text` with the link's domain appended in brackets (only included on markdown links)
-`link`|string|The URL. If http/s was not specified, http will have been added.
+`link`|string|The URL. If a protocol was not specified, http will have been added. Accepted protocols are http/s, ftp, and gopher.
 `text`|string|The anchor text
 `len`|integer|Length of the text
 `pos`|integer|Position of text within the string

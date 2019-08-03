@@ -32,6 +32,7 @@ Name|Description
 `duration`|__Required__ (if `closed_at` not set) number of minutes the poll should be open, minimum of 1 and maximum of 20160
 `is_public`|If true, poll is public
 `is_anonymous`|If false, user IDs will be identified in the final poll
+`max_options`|Number of options a user can respond with, between 1 and one less than number of `options`
 
 
 ##### Example {.example-code}
@@ -71,7 +72,65 @@ Returns the created poll
 
 
 
-## <span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position} {#put-polls-id-response-position .endpoint}
+## <span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response {#put-polls-id-response .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">polls,write_post</span>
+
+Respond to a poll.
+
+Only human-type accounts may respond to polls.
+
+If a poll is private, you must inherently have access to the poll to respond, or include a `poll_token` in the query string. Polls attached to posts, for example, always include `poll_token` in the raw data. Since you might not know if a poll is public or private in such a case, you should always include the poll token when you have it.
+
+Responses can be changed until the poll closes.
+
+### URL Parameters
+
+Name|Description
+-|-
+`poll_id`|ID of the poll to respond to
+
+### Query Parameters
+
+Name|Description
+-|-
+`poll_token`|Required on private polls when you don't know or aren't guaranteed access
+
+### POST Body Data
+
+Name|Description
+-|-
+`positions`|Positions of the options to respond with
+
+##### Example {.example-code}
+
+```bash
+curl "https://api.pnut.io/v0/polls/1/response" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -d "{\"positions\": [1,3]}" \
+    -X PUT \
+    -H "X-Pretty-Json: 1"
+```
+
+Returns poll on success
+
+```json
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {"...Poll Object..."}
+}
+```
+
+
+
+## <span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position}</span> {#put-polls-id-response-position .endpoint}
+
+__Deprecated__: Please use the above multiple-option response endpoint.
 
 Token: <span class="endpoint-meta">user</span>
 

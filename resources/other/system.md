@@ -104,7 +104,8 @@ Returns a list of statistics
             "users": {
                 "created": 0,
                 "disabled": 0,
-                "present": 0
+                "present": 0,
+                "today": 0
             },
             "polls": {
                 "created": 0

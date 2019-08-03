@@ -2,6 +2,7 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 
 # <span class="orange">Changes</span>
 
+* [0.9.4](#0.9.4)
 * [0.9.3](#0.9.3)
 * [0.9.2](#0.9.2)
 * [0.9.1](#0.9.1)
@@ -26,6 +27,35 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * [0.4.1](#0.4.1)
 * [0.4.0](#0.4.0)
 * [0.3.0](#0.3.0)
+
+
+## [2019-08-03](#0.9.4) v0.9.4 {#0.9.4}
+
+### Features
+
+* `GET /sys/stats` includes `data.counts.users.today`, which is unique account IDs accessed in the current UTC day
+* Entities now include `gopher://` links in addition to `http://`, `https://`, and `ftp://`
+* Polls can optionally allow users to select multiple options, up to `max_options`
+* Channel search can be ordered by `popularity`--how many messages have been made in the channel
+* Channel search includes a basic text query of chat room names and descriptions
+* `io.pnut.core.fallback_url` added to `raw` elements
+
+### Changes
+
+* Reposts include their reposted posts' `raw`
+* `GET /users/{id}/presence` and `GET /presence` return limited users including avatar image, username, name
+* `GET /token` now includes `markdown_text`
+* Account badge and payment pages have been reorganized
+
+### Fixes
+
+* E-mail notifications for polls closing occurred regardless of notification setting
+* Notification custom links not recognized
+* Unmuting from Pnut.io
+* First-time authorization after TOTP login failing to return Oauth state
+* Post search and user file retrieval edge cases
+* Documentation includes examples for user streams
+* `markdown_text` on `GET /users/me` parsed some links improperly
 
 
 ## [2019-04-07](#0.9.3) v0.9.3 {#0.9.3}
