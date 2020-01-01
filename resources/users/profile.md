@@ -6,8 +6,10 @@ Endpoints:
 * [Partially update a user](#patch-users-me)
 * [Get user avatar](#get-users-id-avatar)
 * [Update user avatar](#post-users-me-avatar)
+* [Delete user avatar](#delete-users-me-avatar)
 * [Get user cover](#get-users-id-cover)
 * [Update user cover](#post-users-me-cover)
+* [Delete user cover](#delete-users-me-cover)
 
 
 ## <span class="method method-put">PUT</span> /users/me {#put-users-me .endpoint}
@@ -100,6 +102,8 @@ Scope: <span class="endpoint-meta">none</span>
 
 This endpoint will return an HTTP 302 redirect to the user’s current avatar image. It will include any query string parameters you pass to the endpoint.
 
+*This endpoint is rate limited like the rest of the API and returns a redirect, so if your app has access to the user's current avatar URL, use that instead.*
+
 ### URL Parameters
 
 Name|Description
@@ -164,11 +168,46 @@ Returns the updated user
 ```
 
 
+
+## <span class="method method-delete">DELETE</span> /users/me/avatar {#delete-users-me-avatar .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">update_profile</span>
+
+This endpoint will delete the existing user avatar (if not already `is_default`), and revert to their default personalized identicon.
+
+##### Example {.example-code}
+
+```bash
+curl "https://api.pnut.io/v0/users/me/avatar" \
+    -X DELETE \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -L
+```
+
+Returns the updated user
+
+```json
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "...User Object...."
+    }
+}
+```
+
+
+
 ## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/cover {#get-users-id-cover .endpoint}
 
 Scope: <span class="endpoint-meta">none</span>
 
 This endpoint will return an HTTP 302 redirect to the user’s current cover image. It will include any query string parameters you pass to the endpoint.
+
+*This endpoint is rate limited like the rest of the API and returns a redirect, so if your app has access to the user's current cover URL, use that instead.*
 
 ### URL Parameters
 
@@ -221,6 +260,38 @@ curl "https://api.pnut.io/v0/users/me/cover" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -F "cover=@image.jpg" \
     -H "X-Pretty-Json: 1"
+```
+
+Returns the updated user
+
+```json
+{
+    "meta": {
+        "code": 200
+    },
+    "data": {
+        "...User Object...."
+    }
+}
+```
+
+
+
+## <span class="method method-delete">DELETE</span> /users/me/cover {#delete-users-me-cover .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">update_profile</span>
+
+This endpoint will delete the existing user cover (if not already `is_default`), and revert to the default white cover.
+
+##### Example {.example-code}
+
+```bash
+curl "https://api.pnut.io/v0/users/me/cover" \
+    -X DELETE \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -L
 ```
 
 Returns the updated user

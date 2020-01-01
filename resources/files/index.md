@@ -34,6 +34,12 @@
                 </tr>
 
                 <tr>
+                    <td><code>duration_string</code></td>
+                    <td>string</td>
+                    <td>Length of audio in hour:minute:second format. Only included on files since API 0.9.5.</td>
+                </tr>
+
+                <tr>
                     <td><code>bitrate</code></td>
                     <td>integer</td>
                     <td>Bitrate in kbps.</td>
@@ -108,7 +114,7 @@
     <tr>
         <td><code>kind</code></td>
         <td>string</td>
-        <td>Valid options are <code>audio</code>, <code>image</code>, and <code>other</code>. <code>audio</code> is currently limited to 52428800-byte files (32MiB). See <a href="#mime-types">Mime Types</a> for explanation.</td>
+        <td>Valid options are <code>audio</code>, <code>video</code>, <code>image</code>, and <code>other</code>. <code>audio</code> is currently limited to 52428800-byte files (32MiB). See <a href="#mime-types">Mime Types</a> for explanation.</td>
     </tr>
 
     <tr>
@@ -279,6 +285,51 @@
         <td>object</td>
         <td>This is an embedded User object. In certain cases, this key may be omitted.</td>
     </tr>
+
+    <tr>
+        <td><code>video_info</code></td>
+        <td>object</td>
+        <td>Included if <code>kind: video</code>.
+
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+
+                <tr>
+                    <td><code>duration</code></td>
+                    <td>integer</td>
+                    <td>Length of video in seconds.</td>
+                </tr>
+
+                <tr>
+                    <td><code>duration_string</code></td>
+                    <td>string</td>
+                    <td>Length of video in hour:minute:second format.</td>
+                </tr>
+
+                <tr>
+                    <td><code>bitrate</code></td>
+                    <td>integer</td>
+                    <td>Bitrate in kbps.</td>
+                </tr>
+
+                <tr>
+                    <td><code>height</code></td>
+                    <td>integer</td>
+                    <td>Height of the video.</td>
+                </tr>
+
+                <tr>
+                    <td><code>width</code></td>
+                    <td>integer</td>
+                    <td>Width of the video.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 </table>
 
 
@@ -334,8 +385,17 @@ File Type|`mime_type`|Also accepted
 -|-|-
 MP3|audio/mpeg|audio/mp3
 MP4|audio/mp4|audio/m4a, audio/x-m4a
-WAV|audio/wave|audio/wav, audio/x-wav, audio/x-pn-wav
+WAVE|audio/wave|audio/wav, audio/x-wav, audio/x-pn-wav
 FLAC|audio/flac|audio/x-flac
+
+### Video
+
+Files with `kind: video` must have the following `mime_type`:
+
+File Type|`mime_type`|Also accepted
+-|-|-
+MP4|video/mpeg|video/quicktime, video/m4v, video/x-m4v, video/mp4
+WEBM|video/webm|-
 
 ### Image
 

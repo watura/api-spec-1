@@ -2,6 +2,7 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 
 # <span class="orange">Changes</span>
 
+* [0.9.5](#0.9.5)
 * [0.9.4](#0.9.4)
 * [0.9.3](#0.9.3)
 * [0.9.2](#0.9.2)
@@ -27,6 +28,37 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * [0.4.1](#0.4.1)
 * [0.4.0](#0.4.0)
 * [0.3.0](#0.3.0)
+
+
+## [2020-01-01](#0.9.5) v0.9.5 {#0.9.5}
+
+### Features
+
+* New `video` file standardization, on file uploads and oembeds
+* Revert user images to defaults (`DELETE /users/me/cover` and `DELETE /users/me/avatar`)
+* Invites now include a link to a QR code image of the invite, in addition to the copyable link and E-mail options
+* When authorizing an app, users can directly uncheck requested permissions they do not want to allow
+* The website defaults to light-mode, and uses CSS preferences for showing dark-mode
+* Channel Search endpoint as RSS feed
+
+### Changes
+
+* `io.pnut.core.crosspost`-type raw items expanded with options for external user representation
+* `embeddable_url` in oEmbeds now can use template URIs (`{object_id}`)
+* `max_options` on polls can now be the total number of options, instead of one less than the total
+* File `name` can be inferred from the uploaded file's name, if not included in the POST
+* When a user no longer has any access tokens for an app, the app's scopes will be revoked, and the user will have to re-authorize scopes the next time a token is created
+* Sending a message to User or App streams (websockets) will return a "pong" response
+* User and App streams require a "ping" every 60 seconds, instead of every 50 seconds
+
+### Fixes
+
+* Personal data export files in zip file are now encoded properly for UTF-8
+* `https://photos.pnut.io/{post_id}/{image_placement_order}` and `https://photos.pnut.io/{file_id}` oembed links now temporarily redirect to post threads on Beta
+* Poll notifications could fire multiple times for a single participant
+* Saving Invite notes redirected to a 404
+* Upgrading to developer account failed
+* Some complex channel searches would fail
 
 
 ## [2019-08-03](#0.9.4) v0.9.4 {#0.9.4}

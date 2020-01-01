@@ -10,6 +10,13 @@ Name|Description|Maintainer|Source
 pnutdotnet|library|[@dmoeller](https://pnut.io/@dmoeller)|[GitHub](https://github.com/dwmoeller1/pnutdotnet)
 
 
+### Elixir
+
+Name|Description|Maintainer|Source
+-|-|-|-
+[ex_pnut](https://hex.pm/packages/ex_pnut)|library|[@lechindianer](https://pnut.io/@lechindianer)|[GitHub](https://github.com/Lechindianer/ex_pnut)
+
+
 ### Go
 
 Name|Description|Maintainer|Source
@@ -32,7 +39,7 @@ stpnut|module for monitoring an App Stream|[@shawn](https://pnut.io/@shawn)|[Git
 
 Name|Description|Maintainer|Source
 -|-|-|-
-[phpnut](https://packagist.org/packages/pnut-api/phpnut)|library|--|[GitHub](https://github.com/pnut-api/phpnut)
+[phpnut](https://packagist.org/packages/pnut-api/phpnut)|library|[@33MHz](https://pnut.io/@33mhz)|[GitHub](https://github.com/pnut-api/phpnut)
 
 
 ### Python

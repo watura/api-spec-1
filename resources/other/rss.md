@@ -23,3 +23,8 @@ The API exposes [tagged posts](../posts/streams#get-posts-tag-tag) as RSS at `ht
 [Messages](../messages/lookup#get-channels-id-messages) are exposed as RSS at `https://api.pnut.io/v0/feed/rss/channels/{id}/messages`.
 
 Note that `?access_token={token}` will have to be appended to non-public channels.
+
+
+## Channel Search
+
+[Channel search results](../channels/search#get-channels-search) are exposed as RSS at `https://api.pnut.io/v0/feed/rss/channels/search`.

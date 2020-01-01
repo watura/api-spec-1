@@ -37,7 +37,7 @@ On successful connection, the API will send a message with a connection ID and t
 }
 ```
 
-The app stream will expect to receive a message sent from your server every 50 seconds or less, to keep the connection open. If it disconnects, you will simply have to reconnect and either track your position before a disconnect and backfill with regular API calls, or skip what was missed in between.
+The app stream will expect to receive a message sent from your server every 60 seconds or less, to keep the connection open. If it disconnects, you will simply have to reconnect and either track your position before a disconnect and backfill with regular API calls, or skip what was missed in between.
 
 Streams "fire and forget"; they do not guarantee you will receive every message, or receive them in chronological order.
 

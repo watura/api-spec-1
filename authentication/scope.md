@@ -26,9 +26,16 @@ It's encouraged that you use extended scopes whenever reasonable, as it will red
 Channels, Files, and Polls currently allow extended scopes. Extended scopes allow you to only authorize use of the channel types that your app needs access to. For example, if you only will be dealing with private messages, you should request the `messages:io.pnut.core.pm` scope. If your app has its own public-only channel type, you could request the `public_messages:com.example.site` scope. Or if it only needs to view and delete files for itself, you could request `files:com.example.site` access.
 
 
+### Choosing Scopes
+
+When authorizing scopes, users will have the choice of not authorizing all new scopes. This is an example of what they might see:
+
+<img src="/static/images/docs/Screenshot_Authenticate_App.png" style="border:1px solid #333" alt="Choosing scopes"/>
+
+
 ### Changing Scopes
 
-If the scopes you initially requested have changed, your users may have authorized some, but not all, of those scopes. If so, you can send them back through the authorization flow and it will ask for the new scopes to be allowed.
+If the scopes you initially requested have changed, or your users may have otherwise authorized some but not all of those scopes, you can send them back through the authorization flow and it will ask for the new scopes to be allowed.
 
 Your client can tell what scopes a user has authorized for your client by the `X-OAuth-Scopes` return header on a request, or by directly requesting their [Token](../resources/token#get-token).
 

@@ -28,9 +28,9 @@ If creating a complete file the Content-Type must be `multipart/form-data`, and 
 Name|Description
 -|-
 `content`|__Required__ (if uploading in a single step) Key of the uploaded file
-`kind`|__Required__ One of: `other`, `image` (for JPEG, GIF, PNG), `audio` (for WAVE, MP3, FLAC. up to 52428800 bytes). If the file extension is known and `kind=other`, the file extension will override `other` appropriately.
-`name`|__Required__ 256-character name or description (to be displayed and attached to the object; a random key will actually be assigned for the filename)
 `type`|__Required__ Reverse domain name-style identifier of the file type. E.g., `com.example.site`. Searchable
+`name`|256-character name or description (to be displayed and attached to the object; a random key will actually be assigned for the filename). If not included, name of file uploaded will be used
+`kind`|One of: `other`, `image` (for JPEG, GIF, PNG), `audio` (for WAVE, MP3, FLAC. up to 52428800 bytes), `video` (for MP4, MOV, M4V, WEBM). If the file extension is known and `kind=other`, the file extension will override `other` appropriately.
 `is_public`|If true, file is public
 `sha256`*|API will check the file's SHA256 checksum against this, and return an error if they do not match
 `mime_type`|If the API cannot determine mime_type, it will use this
@@ -38,7 +38,7 @@ Name|Description
 `{name}` + `_image_thumb_960r`|Key for custom derived thumbnail, within 640 width and 960 height. If an uploaded image has smaller proportions, one will not be created automatically.
 `process_image_exif`*|If uploading a JPEG image with EXIF, and this is set to `0`, the API will not re-orient the image automatically.
 
-*If the API automatically rotates an image, the returned `sha256` will be different from the uploaded file.
+* If the API automatically rotates an image, the returned `sha256` will be different from the uploaded file.
 
 
 ##### Example {.example-code}

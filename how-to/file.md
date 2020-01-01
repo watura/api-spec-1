@@ -20,7 +20,7 @@ This takes an initial POST with metadata, and a second POST with the file.
 
 If you want to provision an upload and set the metadata before uploading the file, you may.
 
-Make a `POST` to `/files` of either `application/json` or `multipart/form-data` including a `name`, `kind`, and `type`. You may submit other [optional File parameters](../resources/files/lifecycle#post-files), as well. Then make a second `PUT` call using the created file's ID, to `/files/{file_id}/content`, with a `multipart/form-data` and a key set to `content` for the file.
+Make a `POST` to `/files` of either `application/json` or `multipart/form-data` including a `kind` and `type`. You may submit other [optional File parameters](../resources/files/lifecycle#post-files), as well. Then make a second `PUT` call using the created file's ID, to `/files/{file_id}/content`, with a `multipart/form-data` and a key set to `content` for the file.
 
 If you upload in this way, then the first `POST` to `/files` will also return an `upload_parameters` key on the file, with `method` and `url` parameters for how to upload the file contents.
 
@@ -82,3 +82,18 @@ If a post or message has a pnut.io file in a photo-type oEmbed raw item, it will
 * Fetch the file with the `file_read_token` if it has expired. You will now have the `link` and `link_expires_at` from the file call, and can use that. Future requests to the file will be updated with the new link.
 
 Non-photo oEmbed items have HTML elements rendered specific to the item.
+
+#### Video oEmbed
+
+The API supports a Pnut-specific video-type oEmbed. When a file is submitted with `kind: video` it will be checked and certain parameters will be included in the oEmbed.
+
+`.mov`, `.mp4`, `.m4p`, `.m4v`, or `.webm` extensions are expected, with `mime_type`s of `video/mp4`, `video/quicktime`, `video/x-msvideo`, or `video/webm`.
+
+Provided metadata:
+
+* __Always__ width
+* __Always__ height
+* __Always__ duration
+* encoding (mov, mp4, webm...)
+* frame_rate
+* video_bitrate

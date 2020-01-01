@@ -7,7 +7,7 @@ You may also look at the [GitHub object-metadata](https://github.com/pnut-api/ob
 Endpoints:
 
 * [Create a poll](#post-polls)
-* [Respond to a poll](#put-polls-id-response-position)
+* [Respond to a poll](#put-polls-id-response)
 * [Delete a poll](#delete-polls-id)
 
 
@@ -32,7 +32,7 @@ Name|Description
 `duration`|__Required__ (if `closed_at` not set) number of minutes the poll should be open, minimum of 1 and maximum of 20160
 `is_public`|If true, poll is public
 `is_anonymous`|If false, user IDs will be identified in the final poll
-`max_options`|Number of options a user can respond with, between 1 and one less than number of `options`
+`max_options`|Number of options a user can respond with, from 1 to the total number of `options`
 
 
 ##### Example {.example-code}
@@ -130,7 +130,7 @@ Returns poll on success
 
 ## <span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position}</span> {#put-polls-id-response-position .endpoint}
 
-__Deprecated__: Please use the above multiple-option response endpoint.
+__Deprecated__: Please use the above multiple-option response endpoint. This will continue working for backwards compatibility.
 
 Token: <span class="endpoint-meta">user</span>
 

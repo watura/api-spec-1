@@ -49,6 +49,8 @@ Returns the normal response from the endpoint, with `meta.subscription_id`.
 }
 ```
 
+The user stream will expect to receive a message sent from your server every 60 seconds or less, to keep the connection open.
+
 Currently, streams auto-delete themselves on disconnect. If you lose connection, you will have to rebuild it with subscriptions again.
 
 A connection may have up to 16 subscriptions. A connection may subscribe to an endpoint more than once (with or without different parameters), so be sure to prevent that if it isn't helpful to you.
