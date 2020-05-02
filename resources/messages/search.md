@@ -36,7 +36,7 @@ Name|Description
 `links`|Comma-separated list of URLs. Any matches returned
 `link_domains`|Comma-separated list of domains. Any matches returned. Do not include `http://` or `www` in front of domain
 `is_nsfw`|If false, does not include NSFW messages
-`is_reply`|If true, only include replies
+`is_reply`|If set, only include messages that are or are not replies
 `is_sticky`|If true, only include sticky messages
 `client_id`|Only include messages created by this client ID
 `creator_id`|Only include messages created by this user ID

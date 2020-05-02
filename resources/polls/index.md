@@ -1,12 +1,11 @@
 # Polls
 
 
-## Object
+* [Poll Fields](#poll-fields)
+* [General Poll Parameters](#general-poll-parameters)
 
-[Use live API calls for an example of the object.](/docs/api/resources/polls/lookup#get-polls-id)
 
-
-## Fields {#poll-fields}
+## Poll Fields {#poll-fields}
 
 <table>
     <tr>
@@ -124,6 +123,29 @@
         <td><code>user</code></td>
         <td>object</td>
         <td>This is an embedded User object. In certain cases, this key may be omitted.</td>
+    </tr>
+    <tr>
+        <td><code>raw</code></td>
+        <td>object</td>
+        <td>The raw items attached to this object. Only included if query parameter specified.
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>type</code></td>
+                    <td>string</td>
+                    <td>The type of raw item this is.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>object</td>
+                    <td>The values and fields you specify for this raw item.</td>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>
 

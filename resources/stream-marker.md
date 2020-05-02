@@ -48,7 +48,7 @@ curl "https://api.pnut.io/v0/markers" \
     \"id\": \"2593\"
   }
 ]"
-    -X POST`
+    -X POST
 ```
     
 Returns a list of the updated markers

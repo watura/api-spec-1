@@ -1,12 +1,11 @@
 # Channels
 
 
-## Object
+* [Channel Fields](#channel-fields)
+* [General Channel Parameters](#general-channel-parameters)
 
-[Use live API calls for an example of the object.](/docs/api/resources/channels/lookup#get-channels-id)
 
-
-## Fields {#channel-fields}
+## Channel Fields {#channel-fields}
 
 <table>
     <tr>
@@ -193,6 +192,29 @@
         <td><code>has_unread</code></td>
         <td>boolean</td>
         <td>Your stream marker is not updated to the latest message in the channel.</td>
+    </tr>
+    <tr>
+        <td><code>raw</code></td>
+        <td>object</td>
+        <td>The raw items attached to this object. Only included if query parameter specified.
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>type</code></td>
+                    <td>string</td>
+                    <td>The type of raw item this is.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>object</td>
+                    <td>The values and fields you specify for this raw item.</td>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>
 

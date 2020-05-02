@@ -35,6 +35,18 @@ and `html`:
 <a href="https://example.com" title="optional title">anchor text</a> [example.com]
 ```
 
+#### Markdown link length calculation
+
+When markdown links are included in a Post or Message, the "length" of the Post or Message is calculated taking these things into consideration:
+
+* The `text` length of the link (inside the brackets) is counted against the total text length
+* The `link` and `title` lengths (inside the parentheses) do not count against the total length
+* When the `text` is the same as the *host/domain* of the `link`, the domain is not appended after the link
+ * `[pnut.io](pnut.io/docs)` becomes `<a href="http://pnut.io/docs">pnut.io</a>` with a length of `7`
+* When the domain *is* appended after the link, the domain does not count against the total length.
+ * `[text](pnut.io/docs)` becomes `<a href="http://pnut.io/docs">text</a> [pnut.io]` with a length of `4`
+
+
 ### URI Templates {#uri-templates}
 
 When creating a post or message, you can signal to the API to replace the literal text `{object_id}` in links with the newly created post or message's ID.

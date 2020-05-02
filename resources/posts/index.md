@@ -1,16 +1,15 @@
 # Posts
 
-## Canonical Thread view
+* [Canonical Thread view](#canonical-thread-view)
+* [Post Fields](#post-fields)
+* [General Post Parameters](#general-post-parameters)
+
+## Canonical Thread view {#canonical-thread-view}
 
 Posts can be viewed in their thread via a short redirect at `https://posts.pnut.io/{post_id}`.
 
 
-## Object
-
-[Use live API calls for an example of the object.](/docs/api/resources/posts/lookup#get-posts-id)
-
-
-## Fields {#post-fields}
+## Post Fields {#post-fields}
 
 <table>
     <tr>
@@ -199,6 +198,29 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
         <td><code>you_reposted</code></td>
         <td>boolean</td>
         <td>(Optional) True if authenticated user reposted the post</td>
+    </tr>
+    <tr>
+        <td><code>raw</code></td>
+        <td>object</td>
+        <td>The raw items attached to this object. Only included if query parameter specified.
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>type</code></td>
+                    <td>string</td>
+                    <td>The type of raw item this is.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>object</td>
+                    <td>The values and fields you specify for this raw item.</td>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>
 

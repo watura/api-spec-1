@@ -1,12 +1,12 @@
 # Files
 
 
-## Object
+* [File Fields](#file-fields)
+* [General File Parameters](#general-file-parameters)
+* [Mime Types](#mime-types)
 
-[Use live API calls for an example of the object.](/docs/api/resources/files/lookup#get-files-id)
 
-
-## Fields {#file-fields}
+## File Fields {#file-fields}
 
 <table>
     <tr>
@@ -326,6 +326,29 @@
                     <td><code>width</code></td>
                     <td>integer</td>
                     <td>Width of the video.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td><code>raw</code></td>
+        <td>object</td>
+        <td>The raw items attached to this object. Only included if query parameter specified.
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>type</code></td>
+                    <td>string</td>
+                    <td>The type of raw item this is.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>object</td>
+                    <td>The values and fields you specify for this raw item.</td>
                 </tr>
             </table>
         </td>

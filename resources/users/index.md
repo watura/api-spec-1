@@ -1,6 +1,13 @@
 # Users
 
 
+* [General User Identifiers](#general-user-identifiers)
+* [Canonical User Profiles](#canonical-user-profiles)
+* [User Fields](#user-fields)
+* [General User Parameters](#general-user-parameters)
+* [Locales](#locales)
+* [Timezones](#timezones)
+
 
 ## General User Identifiers {#general-user-identifiers}
 
@@ -16,14 +23,9 @@ Referring to usernames is not case-sensitive, but usernames will be returned fro
 
 
 
-## Canonical User Profiles
+## Canonical User Profiles {#canonical-user-profiles}
 
-Any user profile can be found at `https://pnut.io/@username`.
-
-
-## Object
-
-[Use live API calls for an example of the object.](/docs/api/resources/users/lookup#get-users-id)
+Any user profile can be found at `https://pnut.io/@username`, which will redirect to the user profile.
 
 
 ## User Fields {#user-fields}
@@ -319,6 +321,29 @@ Any user profile can be found at `https://pnut.io/@username`.
                     <td><code>link</code></td>
                     <td>string</td>
                     <td>Optional URL verified to be owned by the user</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td><code>raw</code></td>
+        <td>object</td>
+        <td>The raw items attached to this object. Only included if query parameter specified.
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>type</code></td>
+                    <td>string</td>
+                    <td>The type of raw item this is.</td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>object</td>
+                    <td>The values and fields you specify for this raw item.</td>
                 </tr>
             </table>
         </td>

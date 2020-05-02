@@ -21,7 +21,7 @@ Name|Description|Maintainer|Source
 
 Name|Description|Maintainer|Source
 -|-|-|-
-woodstock|library|[@thrrgilag](https://pnut.io/@thrrgilag)|[GitLab](https://gitlab.dreamfall.space/thrrgilag/woodstock)
+woodstock|library|[@thrrgilag](https://pnut.io/@thrrgilag)|[sourcehut](https://git.sr.ht/~thrrgilag/woodstock)
 
 
 ### Javascript/Node

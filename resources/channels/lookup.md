@@ -8,8 +8,8 @@ Endpoints:
 * [Get multiple channels](#get-channels)
 * [Get the authenticated user's created channels](#get-users-me-channels)
 * [Get a PM channel between users](#get-users-me-channels-existing_pm)
-* [Get the number of PM channels unread by the authenticated user](#get-users-me-channels-num_unread-pm)
-* [Set all PM channels 'read'](#delete-users-me-channels-num_unread-pm)
+* [Get the number of channels unread by the authenticated user](#get-users-me-channels-num_unread)
+* [Set all channels 'read'](#delete-users-me-channels-num_unread)
 
 
 ## <span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span> {#get-channels-id .endpoint}
@@ -150,35 +150,43 @@ Returns a channel.
 
 
 
-## <span class="method method-get">GET</span> /users/me/channels/num_unread/pm {#get-users-me-channels-num_unread-pm .endpoint}
+## <span class="method method-get">GET</span> /users/me/channels/num_unread {#get-users-me-channels-num_unread .endpoint}
 
 Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">messages</span>
 
-Retrieve the number of unread private messages for the authenticated user.
+Retrieve the number of unread messages for the authenticated user.
+
+### Query String Parameters
+
+Name|Description
+-|-
+`channel_types`|Comma-separated list of channel types to look up. Up to 4 at a time.
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels/num_unread/pm" \
+curl "https://api.pnut.io/v0/users/me/channels/num_unread?channel_types=io.pnut.core.pm" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
 
-Returns the number of unread channels
+Returns an array of all the channel types requested, with their corresponding number of unread messages.
 
 ```json
 {
     "meta": {
         "code": 200
     },
-    "data": 0
+    "data": {
+    	"io.pnut.core.pm": 2
+    }
 }
 ```
 
 
-## <span class="method method-delete">DELETE</span> /users/me/channels/num_unread/pm {#delete-users-me-channels-num_unread-pm .endpoint}
+## <span class="method method-delete">DELETE</span> /users/me/channels/num_unread {#delete-users-me-channels-num_unread .endpoint}
 
 Token: <span class="endpoint-meta">user</span>
 
@@ -186,22 +194,30 @@ Scope: <span class="endpoint-meta">messages</span>
 
 Mark all unread private messages as read for the authenticated user.
 
+### Query String Parameters
+
+Name|Description
+-|-
+`channel_types`|Comma-separated list of channel types to mark as read. Up to 4 at a time.
+
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels/num_unread/pm" \
+curl "https://api.pnut.io/v0/users/me/channels/num_unread?channel_types=io.pnut.core.pm" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"
 ```
 
-Returns the number of unread channels (`0`)
+Returns an array of the channel types and their new count of `0`.
 
 ```json
 {
     "meta": {
         "code": 200
     },
-    "data": 0
+    "data": {
+    	"io.pnut.core.pm": 0
+    }
 }
 ```

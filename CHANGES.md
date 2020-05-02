@@ -2,35 +2,36 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 
 # <span class="orange">Changes</span>
 
-* [0.9.5](#0.9.5)
-* [0.9.4](#0.9.4)
-* [0.9.3](#0.9.3)
-* [0.9.2](#0.9.2)
-* [0.9.1](#0.9.1)
-* [0.9.0](#0.9.0)
-* [0.8.0](#0.8.0)
-* [0.7.7](#0.7.7)
-* [0.7.6](#0.7.6)
-* [0.7.5](#0.7.5)
-* [0.7.4](#0.7.4)
-* [0.7.3](#0.7.3)
-* [0.7.2](#0.7.2)
-* [0.7.1](#0.7.1)
-* [0.7.0](#0.7.0)
-* [0.6.0](#0.6.0)
-* [0.5.1](#0.5.1)
-* [0.5.0](#0.5.0)
-* [0.4.5b](#0.4.5b)
-* [0.4.5](#0.4.5)
-* [0.4.4](#0.4.4)
-* [0.4.3](#0.4.3)
-* [0.4.2](#0.4.2)
-* [0.4.1](#0.4.1)
-* [0.4.0](#0.4.0)
-* [0.3.0](#0.3.0)
+
+## [v0.9.6](/docs/api/changes/0.9.6) {#0.9.6}
+
+### Features
+
+* Used invites view
+* Simple QR code invite
+* Chat room E-mail notifications
+* RSS feed URI templates
+* MFA backup code
+* E-mail notification link presets
+
+### Changes
+
+* "API changes" documentation
+* Markdown link length calculation documentation
+* Marking all of a channel type as "read"
+* Unread chat room count on subscribed channels
+* Message search "replies" flag
+* More flexible user messages scopes
+
+### Fixes
+
+* Localizations
+* Poll search order
+
+*Released 2020-05-02*
 
 
-## [2020-01-01](#0.9.5) v0.9.5 {#0.9.5}
+## [v0.9.5](/docs/api/changes/0.9.5) {#0.9.5}
 
 ### Features
 
@@ -60,8 +61,10 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * Upgrading to developer account failed
 * Some complex channel searches would fail
 
+*Released 2020-01-01*
 
-## [2019-08-03](#0.9.4) v0.9.4 {#0.9.4}
+
+## [v0.9.4](/docs/api/changes/0.9.4) {#0.9.4}
 
 ### Features
 
@@ -89,8 +92,10 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * Documentation includes examples for user streams
 * `markdown_text` on `GET /users/me` parsed some links improperly
 
+*Released 2019-08-03*
 
-## [2019-04-07](#0.9.3) v0.9.3 {#0.9.3}
+
+## [v0.9.3](/docs/api/changes/0.9.3) {#0.9.3}
 
 ### Features
 
@@ -110,8 +115,10 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 
 * Error updating user badges
 
+*Released 2019-04-07*
 
-## [2018-12-31](#0.9.2) v0.9.2 {#0.9.2}
+
+## [v0.9.2](/docs/api/changes/0.9.2) {#0.9.2}
 
 ### Features
 
@@ -143,8 +150,10 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * Post and message length was calculated with an approximation, now it uses the same calculation as in actual rendering
 * Post search failed for some lookup combinations
 
+*Released 2018-12-31*
 
-## [2018-09-13](#0.9.1) v0.9.1 {#0.9.1}
+
+## [v0.9.1](/docs/api/changes/0.9.1) {#0.9.1}
 
 ### Features
 
@@ -169,8 +178,10 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * Could not delete polls
 * Deleted messages didn't send over user and app streams
 
+*Released 2018-09-13*
 
-## [2018-08-13](#0.9.0) v0.9.0 {#0.9.0}
+
+## [v0.9.0](/docs/api/changes/0.9.0) {#0.9.0}
 
 ### Features
 
@@ -204,9 +215,11 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * `include_user=0` returned empty string instead of user's ID for embedded users on file objects
 * Following a user in rapid succession could cause multiple listings of a user in your follows or followings
 
+*Released 2018-08-13*
 
 
-## [2018-03-24](#0.8.0) v0.8.0 {#0.8.0}
+
+## [v0.8.0](/docs/api/changes/0.8.0) {#0.8.0}
 
 ### Features
 
@@ -229,9 +242,11 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * Some instabilities with database handling/what happened if there was a bug
 * Users could make their own posts trend
 
+*Released 2018-03-24*
 
 
-## [2018-01-14](#0.7.7) v0.7.7 {#0.7.7}
+
+## [v0.7.7](/docs/api/changes/0.7.7) {#0.7.7}
 
 ### Features
 
@@ -249,9 +264,11 @@ Follow Pnut API updates <a href="https://api.pnut.io/v0/feed/rss/users/@pnutapi/
 * Failed login went to MFA login
 * `content.html` now begins with `<span itemscope itemtype="https://pnut.io/schemas/Post">` instead of `<span itemscope itemtype="https://pnut.io/schemas/Post">` to follow [microdata spec](http://schema.org/docs/gs.html#microdata_itemscope_itemtype)
 
+*Released 2018-01-14*
 
 
-## [2017-12-10](#0.7.6) v0.7.6 {#0.7.6}
+
+## [v0.7.6](/docs/api/changes/0.7.6) {#0.7.6}
 
 This is a bug fix update to pnut.io.
 
@@ -271,9 +288,11 @@ This is a bug fix update to pnut.io.
 * Password form validation required a digit and uppercase, which is not supposed to be required anymore
 * Failed MFA login would redirect to the normal login without client authorization details, if they had been set
 
+*Released 2017-12-10*
 
 
-## [2017-11-30](#0.7.5) v0.7.5 {#0.7.5}
+
+## [v0.7.5](/docs/api/changes/0.7.5) {#0.7.5}
 
 ### Features
 
@@ -296,9 +315,11 @@ This is a bug fix update to pnut.io.
 
 * Numerous possible edge cases with app streams returning partial objects
 
+*Released 2017-11-30*
 
 
-## [2017-11-16](#0.7.4) v0.7.4 {#0.7.4}
+
+## [v0.7.4](/docs/api/changes/0.7.4) {#0.7.4}
 
 ### Features
 
@@ -329,9 +350,11 @@ This is a bug fix update to pnut.io.
 * Bot and feed users' mentions did not correctly go to mention streams
 * `?include_message_html=0` was ignored
 
+*Released 2017-11-16*
 
 
-## [2017-10-14](#0.7.3) v0.7.3 {#0.7.3}
+
+## [v0.7.3](/docs/api/changes/0.7.3) {#0.7.3}
 
 This is a minor update to pnut.io.
 
@@ -353,11 +376,13 @@ This is a minor update to pnut.io.
 * `GET /users/me/channels` did not work with only extended scopes authorized
 * No longer authorizes an extended scope if its basic scope has already been authorized
 
+*Released 2017-10-14*
 
 
 
 
-## [2017-09-30](#0.7.2) v0.7.2 {#0.7.2}
+
+## [v0.7.2](/docs/api/changes/0.7.2) {#0.7.2}
 
 This is a minor feature update to pnut.io.
 
@@ -379,10 +404,12 @@ This is a minor feature update to pnut.io.
 * `guid` was still included on some posts and users
 * Creating App Streams did not handle some errors clearly
 
+*Released 2017-09-30*
 
 
 
-## [2017-09-10](#0.7.1) v0.7.1 {#0.7.1}
+
+## [v0.7.1](/docs/api/changes/0.7.1) {#0.7.1}
 
 This is a minor feature update to pnut.io.
 
@@ -405,10 +432,12 @@ This is a minor feature update to pnut.io.
 
 * RSS tag feeds of multibyte character tags would not load
 
+*Released 2017-09-10*
 
 
 
-## [2017-08-27](#0.7.0) v0.7.0 {#0.7.0}
+
+## [v0.7.0](/docs/api/changes/0.7.0) {#0.7.0}
 
 This is a major feature update to pnut.io.
 
@@ -439,10 +468,12 @@ This is a major feature update to pnut.io.
 * Complex tags in posts not rendered as links on pnut.io
 * `redirect_uri` did not work with an edge case
 
+*Released 2017-08-27*
 
 
 
-## [2017-07-25](#0.6.0) v0.6.0 {#0.6.0}
+
+## [v0.6.0](/docs/api/changes/0.6.0) {#0.6.0}
 
 This is a major feature update to pnut.io.
 
@@ -479,10 +510,12 @@ This is a major feature update to pnut.io.
 
 Note that after a year, current developers will have to pay $10/year for developer access.
 
+*Released 2017-07-25*
 
 
 
-## [2017-04-30](#0.5.1) v0.5.1 {#0.5.1}
+
+## [v0.5.1](/docs/api/changes/0.5.1) {#0.5.1}
 
 This is a minor feature and bug fix update to pnut.io.
 
@@ -505,10 +538,12 @@ This is a minor feature and bug fix update to pnut.io.
 * Emoji tag streams did not function on pnut.io
 * `/users/{user_id}/posts` now returns the user's posts even if an authorized user requests it after blocking or muting them
 
+*Released 2017-04-30*
 
 
 
-## [2017-04-15](#0.5.0) v0.5.0 {#0.5.0}
+
+## [v0.5.0](/docs/api/changes/0.5.0) {#0.5.0}
 
 This is a feature update to pnut.io.
 
@@ -537,10 +572,12 @@ This is a feature update to pnut.io.
 * Invites were not calculated correctly (so were seldom given out)
 * Redirecting after login and related edge cases are improved around OAuth
 
+*Released 2017-04-15*
 
 
 
-## [2017-03-14](#0.4.5b) v0.4.5b {#0.4.5b}
+
+## [v0.4.5b](/docs/api/changes/0.4.5b) {#0.4.5b}
 
 This is a minor feature update to pnut.io.
 
@@ -549,10 +586,12 @@ This is a minor feature update to pnut.io.
 * "Support Us" page has basic stats
 * New "Activity" account page, which shows the last 10 significant actions made in your account (logins, password changes, etc.)
 
+*Released 2017-03-14*
 
 
 
-## [2017-03-03](#0.4.5) v0.4.5 {#0.4.5}
+
+## [v0.4.5](/docs/api/changes/0.4.5) {#0.4.5}
 
 This is a minor feature update to pnut.io.
 
@@ -585,10 +624,12 @@ This is a minor feature update to pnut.io.
 * `count=-**n**` now works as expected on post streams
 * Text with E-mail addresses in it should not be parsed as links or mentions
 
+*Released 2017-03-03*
 
 
 
-## [2017-02-04](#0.4.4) v0.4.4 {#0.4.4}
+
+## [v0.4.4](/docs/api/changes/0.4.4) {#0.4.4}
 
 This is a minor update to pnut.io.
 
@@ -612,10 +653,12 @@ This is a minor update to pnut.io.
 * `public_messages` and `messages` being authorized could result in only `public_messages` access
 * User RSS handles reposts properly
 
+*Released 2017-02-04*
 
 
 
-## [2017-01-25](#0.4.3) v0.4.3 {#0.4.3}
+
+## [v0.4.3](/docs/api/changes/0.4.3) {#0.4.3}
 
 This is a minor update to pnut.io.
 
@@ -628,10 +671,12 @@ This is a minor update to pnut.io.
 * "-" was not handled correctly in link entities
 * Mutes were making messages and post actions appear multiple times
 
+*Released 2017-01-25*
 
 
 
-## [2017-01-23](#0.4.2) v0.4.2 {#0.4.2}
+
+## [v0.4.2](/docs/api/changes/0.4.2) {#0.4.2}
 
 This is a minor update to pnut.io.
 
@@ -653,10 +698,12 @@ Tags inside markdown were parsed, breaking html/text
 `GET /users?ids=` can now be @-usernames and user IDs
 `is_nsfw` was not consistently handled (and sometimes ignored)
 
+*Released 2017-01-23*
 
 
 
-## [2017-01-15](#0.4.1) v0.4.1 {#0.4.1}
+
+## [v0.4.1](/docs/api/changes/0.4.1) {#0.4.1}
 
 This is a minor update to pnut.io.
 
@@ -668,10 +715,12 @@ This is a minor update to pnut.io.
 * Deleting channel messages sometimes did not work
 * `/users/me/actions` not returning follow actions under some circumstances
 
+*Released 2017-01-15*
 
 
 
-## [2017-01-07](#0.4.0) v0.4.0 {#0.4.0}
+
+## [v0.4.0](/docs/api/changes/0.4.0) {#0.4.0}
 
 This is a major update to pnut.io. The following is notable.
 
@@ -697,10 +746,12 @@ This is a major update to pnut.io. The following is notable.
 * New user creation did not properly handle the created "follow" action
 * Calls for user avatars/covers were not forwarding query parameters
 
+*Released 2017-01-07*
 
 
 
-## [2016-11-24](#0.3.0) v0.3.0 {#0.3.0}
+
+## [v0.3.0](/docs/api/changes/0.3.0) {#0.3.0}
 
 This is a major update to pnut.io. The following is notable.
 
@@ -734,3 +785,5 @@ This is a major update to pnut.io. The following is notable.
 * Blocks are missing fewer edge cases
 * Revising a post parsing markdown links and normal links improperly
 * Users' list of actions executed against them could only filter by one type; now any number
+
+*Released 2016-11-24*

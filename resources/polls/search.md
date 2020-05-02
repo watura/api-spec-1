@@ -17,7 +17,7 @@ Retrieve a list of polls filtered by the given criteria.
 
 Name|Description
 -|-
-`order`|One of id or created_at. Default is by ID
+`order`|One of id or closed_at. Default is by ID
 
 #### Filter
 

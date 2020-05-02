@@ -56,7 +56,7 @@ Currently, streams auto-delete themselves on disconnect. If you lose connection,
 A connection may have up to 16 subscriptions. A connection may subscribe to an endpoint more than once (with or without different parameters), so be sure to prevent that if it isn't helpful to you.
 
 
-## Miscellaney
+## Miscellany
 
 #### Subscribable Endpoints
 

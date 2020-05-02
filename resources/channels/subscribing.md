@@ -35,6 +35,7 @@ Returns a list of subscribed channels.
         "max_id": "0",
         "min_id": "0",
         "unread_counts": {
+            "io.pnut.core.chat": 0,
             "io.pnut.core.pm": 0
         },
         "code": 200

@@ -10,7 +10,7 @@ This is the process of setting up an app stream:
 
 To connect to a websocket, you must put a valid app access token in the query string or the Authorization header, and app stream key in the query string.
 
-```
+```bash
 wss://stream.pnut.io/v0/app
   ?access_token=[App Access Token]
   &key=[App Stream Key]
@@ -56,6 +56,33 @@ Current limitations:
 Messages include `meta.subscribed_user_ids`, which shows the users subscribed to that channel.
 
 You may use the `meta.suppress_notifications` key included on posts and messages to be sure not to notify users of muted or blocked users.
+
+## Miscellany
+
+### Connection Query Parameters
+
+* include_raw
+* include_post_raw
+* include_user_raw
+* include_file_raw
+* include_channel_raw
+* include_message_raw
+* include_bookmarked_by
+* include_reposted_by
+* include_marker
+* include_recent_message
+* include_html
+
+### Subscription Query Parameters
+
+* include_incomplete *(files)*
+* include_private *(files)*
+* channel_types
+* file_types
+* include_read
+* include_muted
+* include_deleted
+* include_directed_posts
 
 ## Example Objects
 
