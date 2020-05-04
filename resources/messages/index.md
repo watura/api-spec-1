@@ -14,6 +14,11 @@
         <th>Description</th>
     </tr>
     <tr>
+        <td><code>channel_id</code></td>
+        <td>string</td>
+        <td>Primary identifier for the channel this message is a part of. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Channel objects.</td>
+    </tr>
+    <tr>
         <td><code>created_at</code></td>
         <td>string</td>
         <td>The time at which the message was created in ISO 8601 format.</td>

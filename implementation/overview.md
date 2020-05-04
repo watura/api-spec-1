@@ -42,7 +42,7 @@ GitHub has a mirror of our API documentation. That is the recommended way to for
 A repository for object metadata to coordinate common channel and Raw types.
 
 
-##### [@testuser](https://pnut.io/docs/dev_resources/testuser)
+##### [@testuser](https://pnut.io/docs/resources/testuser)
 
 If you are developing an app for iOS, the @testuser account can be used for Apple Store reviewing.
 

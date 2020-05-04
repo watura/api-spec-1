@@ -1,6 +1,6 @@
 # Badges
 
-Badges are accessible to users who are [current badge holders](https://pnut.io/docs/resources/sign-up).
+Badges are accessible to users who are [current badge holders](https://pnut.io/about/resources/sign-up).
 
 A user can set what badge to display on their profile [from their account](https://pnut.io/account/badge), or a client can update it [by updating the user](https://docs.pnut.io/resources/users/profile).
 

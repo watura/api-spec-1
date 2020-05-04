@@ -2,8 +2,8 @@
 
 The current reasons that will be honored for reporting are:
 
-* `account_type`: posting in a behavior counter to the purposes of [account types](https://pnut.io/docs/resources/account-types)
-* `nsfw`: unflagged mature material according to [the community guidelines](https://pnut.io/docs/resources/mature-content)
+* `account_type`: posting in a behavior counter to the purposes of [account types](https://pnut.io/about/resources/account-types)
+* `nsfw`: unflagged mature material according to [the community guidelines](https://pnut.io/about/resources/mature-content)
 * `soliciting`: unwelcome soliciting
 * `user_abuse`: use of the API or network to abuse another user
 
@@ -20,7 +20,7 @@ Scope: <span class="endpoint-meta">any</span>
 
 Report a message in a channel for abuse.
 
-To test this endpoint, report a message by user [@testuser](/docs/dev_resources/testuser).
+To test this endpoint, report a message by user [@testuser](/docs/resources/testuser).
 
 ### URL Parameters
 
