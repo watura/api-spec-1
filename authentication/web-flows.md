@@ -14,12 +14,12 @@ To start, set at least one redirect URI in the developer area for your client. T
 
 Start by making this <span class="method method-get">GET</span> call:
 
-```
+```markdown
 https://pnut.io/oauth/authenticate
-?client_id=[client ID]
-&redirect_uri=[redirect URI]
-&scope=[comma-delimited scopes]
-&response_type=code
+  ?client_id=[client ID]
+  &redirect_uri=[redirect URI]
+  &scope=[comma-delimited scopes]
+  &response_type=code
 ```
 
 *To always prompt the user for authorization of scopes, even if they already have, use the `https://pnut.io/oauth/authorize` endpoint instead.*
@@ -31,7 +31,7 @@ If the user decides *not* to authorize your client, they will be redirected to y
 Now make a <span class="method method-post">POST</span> call with what you now have in the URL-encoded body (with a `Content-Type` of `application/x-www-form-urlencoded`):
 
 ```bash
-curl "https://api.pnut.io/v0/oauth/access_token" \
+curl "https://api.pnut.io/v1/oauth/access_token" \
 -d "client_id=${CLIENT_ID}" \
 -d "client_secret=${CLIENT_SECRET}" \
 -d "code=${CODE}" \
@@ -43,7 +43,7 @@ curl "https://api.pnut.io/v0/oauth/access_token" \
 A JSON response will be returned in the form of:
 
 ```json
-{"access_token":ACCESS_TOKEN, "token":{...}, "user_id":USER_ID, "username":USERNAME}
+{"access_token":ACCESS_TOKEN, "token":{"...Token object..."}, "user_id":USER_ID, "username":USERNAME}
 ```
 
 
@@ -53,7 +53,7 @@ A JSON response will be returned in the form of:
 
 Start with this <span class="method method-get">GET</span>:
 
-```
+```bash
 https://pnut.io/oauth/authenticate
   ?client_id=[client ID]
   &redirect_uri=[redirect URI]

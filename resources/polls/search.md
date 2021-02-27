@@ -23,19 +23,22 @@ Name|Description
 
 Name|Description
 -|-
-`is_public`|If true, only include public polls
-`is_anonymous`|Only include anonymous polls
-`you_responded`|If true, only include polls you have responded to
-`is_closed`|Only include closed polls
-`poll_types`|Comma-separated list of poll types to include
+`created_after`|ISO 8601-formatted timestamp after which polls were created
+`created_before`|ISO 8601-formatted timestamp before which polls were created
+`creator_id`|Only include polls created by this user ID
 `exclude_poll_types`|Comma-separated list of poll types to exclude
+`file_id`|Matches with this file attached
+`is_anonymous`|Whether to include anonymous polls
+`is_closed`|Whether to include closed polls
+`is_public`|Whether to include public polls
+`poll_types`|Comma-separated list of poll types to include
 `raw_types`|Comma-separated list of attached raw types. Any matches returned
-`user_id`|Only include polls created by this user ID
+`you_responded`|If true, only include polls you have responded to
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/polls/search?is_public=1&you_responded=0&is_closed=0" \
+curl "https://api.pnut.io/v1/polls/search?is_public=1&you_responded=0&is_closed=0" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

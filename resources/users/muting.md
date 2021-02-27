@@ -24,7 +24,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/muted" \
+curl "https://api.pnut.io/v1/users/me/muted" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -61,7 +61,7 @@ Name|Description
 ##### Example {.example-code}
         
 ```bash
-curl "https://api.pnut.io/v0/users/@testuser/mute" \
+curl "https://api.pnut.io/v1/users/@testuser/mute" \
     -X PUT \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
@@ -96,7 +96,7 @@ Name|Description
 ##### Example {.example-code}
         
 ```bash
-curl "https://api.pnut.io/v0/users/@testuser/mute" \
+curl "https://api.pnut.io/v1/users/@testuser/mute" \
     -X DELETE \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"

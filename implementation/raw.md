@@ -1,23 +1,22 @@
 # Raw
 
 
-Raw data is arbitrary data that can be attached to posts, users, channels, and messages. Clients can specify a `type` and a `value` for each item in the list of `raw` data.
+Raw data is arbitrary data that can be attached to posts, users, channels, messages, files, and polls. Clients can specify a `type` and a value for each item in the list of `raw` data.
 
-Only specified types are verified by the server. Otherwise, clients will have to double-check the data to be sure clients that wrote them did so as expected.
+Only specified types are verified by the server. Otherwise, clients will have to double-check the data to be sure clients that wrote them did so as expected. Any client can create any type of raw data, but as a developer, you can define a specification for your own type, and publicize what that is, so that other clients can also interpret it.
 
 The total contents of the `raw` serialized JSON object can be up to 8192 bytes. Because items may already exist on mutable objects, you must check to make sure you will have space before adding to the existing data.
 
-The format of a `raw` JSON object is like so:
+This is the format of a `raw` JSON object with a single item:
 
 ```json
-"raw": [
-  {
-    "type": "TYPE_NAME",
-    "value": {
-      "YOUR_KEYS": "YOUR DATA"
+"raw": {
+  "TYPE_NAME": [
+    {
+      "YOUR_KEYS": "YOUR_DATA"
     }
-  }
-]
+  ]
+}
 ```
 
 
@@ -25,7 +24,7 @@ The format of a `raw` JSON object is like so:
 
 Any `type` starting with `io.pnut.core` is checked by the server for validity, to an extent. Be sure to match their requirements when creating core channel types or `raw` data types.
 
-If a submission is not valid, the whole post/message creation or channel/user update will be halted, and an error message will be returned in the `meta`.
+If a submission is not valid, the whole operation will be prevented, and an error message will be returned in the `meta`.
 
 Community-defined types and core types can be referenced on our [object-metadata GitHub repository](https://github.com/pnut-api/object-metadata).
 
@@ -49,15 +48,15 @@ If any relevant parameter is set to `1`, it will be included for the object and 
 
 ## Mutability &amp; Duplicates
 
-Raw data attached to posts and messages is *immutable*. It must be attached on creation of the post or message, and cannot be changed afterwards. Because they are immutable, posts and messages can have multiple raw items of the same type, where channels, files, and users can only have one of a type.
+Raw data attached to __posts__, __messages__, and __polls__ is *immutable*. It must be attached on creation of the object, and cannot be changed afterwards. Because they are immutable, they can have multiple raw items of the same type.
 
-User, channel, and file objects have mutable raw data.
+Channels, files, and users are mutable, and can only have one of a particular type. The `raw` data is still formed the same way, as a list for each type, even though there will only be a single item in the list, if it exists.
 
 
 
 ## Deleting Mutable Items
 
-To delete a mutable item, include the `type` but do not include the `value`.
+To delete a mutable item, include the `type` with an empty list, `[]`.
 
 
 
@@ -66,19 +65,18 @@ To delete a mutable item, include the `type` but do not include the `value`.
 ##### Example Post Creation {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts?include_post_raw=1" \
+curl "https://api.pnut.io/v1/posts?include_post_raw=1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
   \"text\": \"I want everyone to know this is in English.\",
-  \"raw\": [
-    {
-      \"type\": \"io.pnut.core.language\",
-      \"value\": {
+  \"raw\": {
+    [
+      {
         \"language\": \"en\"
       }
-    }
-  ]
+    ]
+  }
 }"
     -X POST`
 ```
@@ -117,14 +115,13 @@ Returns the new post.
     },
     "you_bookmarked": false,
     "you_reposted": false,
-    "raw": [
-      {
-        "type": "io.pnut.core.language",
-        "value": {
+    "raw": {
+      "io.pnut.core.language": [
+        {
           "language": "en"
         }
-      }
-    ]
+      ]
+    }
   }
 }
 ```

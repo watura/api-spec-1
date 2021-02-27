@@ -17,99 +17,35 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
         <th>Type</th>
         <th>Description</th>
     </tr>
-
     <tr>
-        <td><code>created_at</code></td>
-        <td>string</td>
-        <td>The time at which the post was created in ISO 8601 format.</td>
-    </tr>
-
-    <tr>
-        <td><code>id</code></td>
-        <td>string</td>
-        <td>Primary identifier for a post. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Post objects. There can be a Post and User with the same ID; no relation is implied.</td>
-    </tr>
-
-    <tr>
-        <td><code>is_deleted</code></td>
-        <td>boolean</td>
-        <td>Only set if <code>true</code>. Post is deleted. `content` will not be set.</td>
-    </tr>
-
-    <tr>
-        <td><code>is_nsfw</code></td>
-        <td>boolean</td>
-        <td>Only set if <code>true</code>. User marked the post as "Not Safe For Work".</td>
-    </tr>
-
-    <tr>
-        <td><code>is_revised</code></td>
-        <td>boolean</td>
-        <td>Only set if <code>true</code>. Post has been revised. Looking up the revised posts will return a result.</td>
-    </tr>
-
-    <tr>
-        <td><code>revision</code></td>
-        <td>string</td>
-        <td>Only set if post is a "previous" version of a post. (i.e., from the <a href="posts/lookup#get-posts-id-revisions"><code>/posts/{post_id}/revisions</code></a> endpoint).</td>
-    </tr>
-
-    <tr>
-        <td><code>source</code></td>
+        <td><code>content</code></td>
         <td>object</td>
         <td>
+            <p class="text-explanation">NOTE: Not included if the post has been deleted.</p>
             <table>
                 <tr>
                     <th>Field</th>
                     <th>Type</th>
                     <th>Description</th>
                 </tr>
-
                 <tr>
-                    <td><code>name</code></td>
-                    <td>string</td>
-                    <td>Description of the API consumer that created this post.</td>
+                    <td><code>entities</code></td>
+                    <td>object</td>
+                    <td>Rich text information for this post. See the <a href="../implementation/entities">Entities</a> documentation.</td>
                 </tr>
-
                 <tr>
-                    <td><code>link</code></td>
+                    <td><code>html</code></td>
                     <td>string</td>
-                    <td>Link provided by the API consumer that created this post.</td>
+                    <td>Server-generated annotated HTML rendering of post text.</td>
                 </tr>
-
                 <tr>
-                    <td><code>id</code></td>
+                    <td><code>text</code></td>
                     <td>string</td>
-                    <td>The public client id of the API consumer ("app") that created this post.</td>
+                    <td>User supplied text of the post. All Unicode characters allowed. Maximum length 256 characters. The maximum length can be retrieved from the Configuration endpoint.</td>
                 </tr>
             </table>
         </td>
     </tr>
-
-    <tr>
-        <td><code>user</code></td>
-        <td>object</td>
-        <td>This is an embedded <a href="users">User</a> object. Note: In certain cases (e.g., when a user account has been deleted), this key may be omitted.</td>
-    </tr>
-
-    <tr>
-        <td><code>thread_id</code></td>
-        <td>string</td>
-        <td>The id of the post at the root of the thread that this post is a part of. If <code>thread_id==id</code> then this property does not guarantee that the thread has > 1 post. Please see <code>replies</code> count.</td>
-    </tr>
-
-    <tr>
-        <td><code>reply_to</code></td>
-        <td>string</td>
-        <td>Optional id of the post this post is replying to.</td>
-    </tr>
-
-    <tr>
-        <td><code>repost_of</code></td>
-        <td>object</td>
-        <td>Optional embedded post object being reposted.</td>
-    </tr>
-
     <tr>
         <td><code>counts</code></td>
         <td>object</td>
@@ -120,25 +56,21 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
                     <th>Type</th>
                     <th>Description</th>
                 </tr>
-
                 <tr>
                     <td><code>bookmarks</code></td>
                     <td>integer</td>
                     <td>The number of users who have bookmarked this post.</td>
                 </tr>
-
                 <tr>
                     <td><code>replies</code></td>
                     <td>integer</td>
                     <td>The number of posts created in reply to this post.</td>
                 </tr>
-
                 <tr>
                     <td><code>reposts</code></td>
                     <td>integer</td>
                     <td>The number of users who have reposted this post.</td>
                 </tr>
-
                 <tr>
                     <td><code>threads</code></td>
                     <td>integer</td>
@@ -147,57 +79,30 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
             </table>
         </td>
     </tr>
-
     <tr>
-        <td><code>content</code></td>
-        <td>object</td>
-        <td>
-            <p class="text-explanation">NOTE: Not included if the post has been deleted.</p>
-
-            <table>
-                <tr>
-                    <th>Field</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-
-                <tr>
-                    <td><code>text</code></td>
-                    <td>string</td>
-                    <td>User supplied text of the post. All Unicode characters allowed. Maximum length 256 characters. The maximum length can be retrieved from the Configuration endpoint.</td>
-                </tr>
-
-                <tr>
-                    <td><code>html</code></td>
-                    <td>string</td>
-                    <td>Server-generated annotated HTML rendering of post text.</td>
-                </tr>
-
-                <tr>
-                    <td><code>entities</code></td>
-                    <td>object</td>
-                    <td>Rich text information for this post. See the <a href="../implementation/entities">Entities</a> documentation.</td>
-                </tr>
-
-                <tr>
-                    <td><code>links_not_parsed</code></td>
-                    <td>boolean</td>
-                    <td>If set, the server has not yet attempted to retrieve a title and description for link entities in this post.</td>
-                </tr>
-            </table>
-        </td>
+        <td><code>created_at</code></td>
+        <td>string</td>
+        <td>The time at which the post was created in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</td>
     </tr>
-
     <tr>
-        <td><code>you_bookmarked</code></td>
-        <td>boolean</td>
-        <td>(Optional) True if authenticated user bookmarked the post</td>
+        <td><code>id</code></td>
+        <td>string</td>
+        <td>Primary identifier for a post. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Post objects. There can be a Post and User with the same ID; no relation is implied.</td>
     </tr>
-
     <tr>
-        <td><code>you_reposted</code></td>
+        <td><code>is_deleted</code></td>
         <td>boolean</td>
-        <td>(Optional) True if authenticated user reposted the post</td>
+        <td>Only set if <code>true</code>. Post is deleted. `content` will not be set.</td>
+    </tr>
+    <tr>
+        <td><code>is_nsfw</code></td>
+        <td>boolean</td>
+        <td>Only set if <code>true</code>. User marked the post as "Not Safe For Work".</td>
+    </tr>
+    <tr>
+        <td><code>is_revised</code></td>
+        <td>boolean</td>
+        <td>Only set if <code>true</code>. Post has been revised. Looking up the revised posts will return a result.</td>
     </tr>
     <tr>
         <td><code>raw</code></td>
@@ -210,17 +115,80 @@ Posts can be viewed in their thread via a short redirect at `https://posts.pnut.
                     <th>Description</th>
                 </tr>
                 <tr>
-                    <td><code>type</code></td>
-                    <td>string</td>
-                    <td>The type of raw item this is.</td>
-                </tr>
-                <tr>
-                    <td><code>value</code></td>
-                    <td>object</td>
-                    <td>The values and fields you specify for this raw item.</td>
+                    <td><code>{type name}</code></td>
+                    <td>list</td>
+                    <td>A list of objects of this type.</td>
                 </tr>
             </table>
         </td>
+    </tr>
+    <tr>
+        <td><code>reply_to</code></td>
+        <td>string</td>
+        <td>Optional id of the post this post is replying to.</td>
+    </tr>
+    <tr>
+        <td><code>repost_of</code></td>
+        <td>object</td>
+        <td>Optional embedded post object being reposted.</td>
+    </tr>
+    <tr>
+        <td><code>revision</code></td>
+        <td>integer</td>
+        <td>Only set if post is a "previous" version of a post. (i.e., from the <a href="posts/lookup#get-posts-id-revisions"><code>/posts/{post_id}/revisions</code></a> endpoint).</td>
+    </tr>
+    <tr>
+        <td><code>source</code></td>
+        <td>object</td>
+        <td>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>string</td>
+                    <td>The public client id of the API consumer ("app") that created this post.</td>
+                </tr>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>Description of the API consumer that created this post.</td>
+                </tr>
+                <tr>
+                    <td><code>url</code></td>
+                    <td>string</td>
+                    <td>Link provided by the API consumer that created this post.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td><code>thread_id</code></td>
+        <td>string</td>
+        <td>The id of the post at the root of the thread that this post is a part of. If <code>thread_id==id</code> then this property does not guarantee that the thread has > 1 post. Please see <code>replies</code> count.</td>
+    </tr>
+    <tr>
+        <td><code>user</code></td>
+        <td>object</td>
+        <td>This is an embedded <a href="users">User</a> object. Note: In certain cases (e.g., when a user account has been deleted), this key may be omitted.</td>
+    </tr>
+    <tr>
+        <td><code>user_id</code></td>
+        <td>string</td>
+        <td>Primary identifier for the user who created the channel. This is only included if the <code>user</code> above is omitted.</td>
+    </tr>
+    <tr>
+        <td><code>you_bookmarked</code></td>
+        <td>boolean</td>
+        <td>(Optional) True if authenticated user bookmarked the post</td>
+    </tr>
+    <tr>
+        <td><code>you_reposted</code></td>
+        <td>boolean</td>
+        <td>(Optional) True if authenticated user reposted the post</td>
     </tr>
 </table>
 

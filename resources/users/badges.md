@@ -1,6 +1,6 @@
 # Badges
 
-Badges are accessible to users who are [current badge holders](https://pnut.io/about/resources/sign-up).
+Badges are accessible to users who are [current badge holders](https://pnut.io/about/sign-up).
 
 A user can set what badge to display on their profile [from their account](https://pnut.io/account/badge), or a client can update it [by updating the user](https://docs.pnut.io/resources/users/profile).
 
@@ -20,7 +20,7 @@ Retrieve a badge object.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/badges/1" \
+curl "https://api.pnut.io/v1/badges/1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -50,7 +50,7 @@ Retrieve a list of all badges. It is not paginated.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/badges" \
+curl "https://api.pnut.io/v1/badges" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -84,7 +84,7 @@ Retrieve a list of all badges for the authenticated user. It is not paginated.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/badges" \
+curl "https://api.pnut.io/v1/users/me/badges" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

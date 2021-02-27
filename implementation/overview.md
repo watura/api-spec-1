@@ -1,16 +1,16 @@
 # API
 
-__Current Version: 0.9.6 [(Changes)](../changes)__
+__Current Version: 1.0.0 [(Changes)](../changes)__
 
-API Root: https://api.pnut.io/v0
+API Root: https://api.pnut.io/v1
 
-*Last Updated 2020-05-02*
+*Last Updated 2021-02-27*
 
 Welcome to the documentation for the Pnut API.
 
 __[Become a Developer](https://pnut.io/dev)__
 
-If this is your first time here, it is recommended that you become familiar with the *Implementation* section and then read *Authentication* and determine what scopes and strategy you will want to use.
+If this is your first time here, it is recommended that you become familiar with the *Implementation* section and read through *Authentication* to determine what scopes and strategy you will want to use.
 
 The *How To* section has some examples and explanation of some common situations.
 
@@ -22,7 +22,7 @@ cURL examples can be edited on-page (they have the HTML5 `contenteditable` prope
 
 ## External Resources
 
-##### [Developer Chat](https://patter.chat/room/18)
+##### [Developer Chat](https://patter.chat/18)
 
 You are welcome to talk over the API in the Developer Channel. Questions, requests, floating ideas--any development-related conversation is encouraged!
 
@@ -42,11 +42,11 @@ GitHub has a mirror of our API documentation. That is the recommended way to for
 A repository for object metadata to coordinate common channel and Raw types.
 
 
-##### [@testuser](https://pnut.io/docs/resources/testuser)
+##### [@testuser](https://pnut.io/docs/testuser)
 
 If you are developing an app for iOS, the @testuser account can be used for Apple Store reviewing.
 
 
 ##### Backup API Root
 
-There is a backup API Root at https://api.pnut-api-1.org/v0. The same subdomains and endpoints are available with this domain. DNS issues are known to occur (especially internationally), and if one does not work, the other may.
+There is a backup API Root at https://api.pnut-api-1.org/v1. The same subdomains and endpoints are available with this domain. DNS issues are known to occur (especially internationally), and if one does not work, the other may.

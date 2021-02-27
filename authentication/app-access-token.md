@@ -14,7 +14,7 @@ App tokens are only to be used server-side, in ways that will protect the data. 
 Make a <span class="method method-post">POST</span> call like so:
 
 ```bash
-curl "https://api.pnut.io/v0/oauth/access_token" \
+curl "https://api.pnut.io/v1/oauth/access_token" \
   -d "client_id=[client ID]" \
   -d "client_secret=[client secret]" \
   -d "grant_type=client_credentials" \
@@ -24,7 +24,7 @@ curl "https://api.pnut.io/v0/oauth/access_token" \
 A JSON response will be returned in the form of:
 
 ```json
-{"access_token":ACCESS_TOKEN, "token":{...}}
+{"access_token":ACCESS_TOKEN, "token":{"...Token object..."}}
 ```
 
 

@@ -21,7 +21,7 @@ Delete a user stream.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/streams/${CONNECTION_ID}" \
+curl "https://api.pnut.io/v1/users/me/streams/${CONNECTION_ID}" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X GET \
     -H "X-Pretty-Json: 1"
@@ -45,7 +45,7 @@ Delete a subscription for a user stream.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/streams/${CONNECTION_ID}/${SUBSCRIPTION_ID}" \
+curl "https://api.pnut.io/v1/users/me/streams/${CONNECTION_ID}/${SUBSCRIPTION_ID}" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X GET \
     -H "X-Pretty-Json: 1"

@@ -23,7 +23,7 @@ Name|Description
 ##### Example Call {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/8/clients" \
+curl "https://api.pnut.io/v1/users/8/clients" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -38,8 +38,8 @@ Returns a list of clients
     "data": [
         {
             "id": "String",
-            "link": "https://example.com",
-            "name": "String"
+            "name": "String",
+            "url": "https://example.com"
         }
     ]
 }
@@ -61,7 +61,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/clients/3PFPMSet53RutGINA8e5HWqYg_UCDHad" \
+curl "https://api.pnut.io/v1/clients/3PFPMSet53RutGINA8e5HWqYg_UCDHad" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -75,9 +75,9 @@ Returns the detailed client object
     },
     "data": {
         "created_at": "ISO-8601",
-        "created_by": {"...User Object..."},
+        "user": {"...User Object..."},
         "id": "String",
-        "link": "https://example.com",
+        "url": "https://example.com",
         "logo_image": "https://example.com/logo.png",
         "name": "String",
         "posts": 0,

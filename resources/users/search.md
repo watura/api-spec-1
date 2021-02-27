@@ -17,7 +17,7 @@ Retrieve a list of users filtered by the given criteria.
 
 Name|Description
 -|-
-`q`|REQUIRED List of words included in user profiles or names
+`q`|List of words included in user profiles or names
 
 #### Sort
 
@@ -29,14 +29,16 @@ Name|Description
 
 Name|Description
 -|-
-`locale`|An ISO formatted locale; e.g., `en_US`
-`timezone`|Timezone in tzinfo format
-`types`|Comma-separated list of user types of: human, feed, bot
+`created_after`|ISO 8601-formatted timestamp after which users were created
+`created_before`|ISO 8601-formatted timestamp before which users were created
+`locale`|[Valid user locale](../users#locales) e.g., `en_US`
+`timezone`|[Valid user timezone](../users#timezones) e.g., `America/Chicago`
+`user_types`|Comma-separated list of user types of: human, feed, bot
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/search?q=news&types=feed" \
+curl "https://api.pnut.io/v1/users/search?q=news&user_types=feed" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

@@ -1,14 +1,14 @@
 # Explore Streams
 
-Explore streams are basically pre-built searches with some simple criteria.
+Explore streams are pre-built searches with some simple criteria.
 
 Endpoints:
 
-* [Get a list of explore streams](#get-posts-streams-explore)
-* [Get an explore stream](#get-posts-streams-explore-slug)
+* [Get a list of explore streams](#get-channels-streams-explore)
+* [Get an explore stream](#get-channels-streams-explore-slug)
 
 
-## <span class="method method-get">GET</span> /posts/streams/explore {#get-posts-streams-explore .endpoint}
+## <span class="method method-get">GET</span> /channels/streams/explore {#get-channels-streams-explore .endpoint}
 
 Scope: <span class="endpoint-meta">none</span>
 
@@ -17,7 +17,7 @@ Retrieve a list of explore streams.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v1/posts/streams/explore" \
+curl "https://api.pnut.io/v1/channels/streams/explore" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -41,27 +41,27 @@ Returns a list of explore streams.
 ```
 
 
-## <span class="method method-get">GET</span> /posts/streams/explore/<span class="call-param">{slug}</span> {#get-posts-streams-explore-slug .endpoint}
+## <span class="method method-get">GET</span> /channels/streams/explore/<span class="call-param">{slug}</span> {#get-channels-streams-explore-slug .endpoint}
 
 Scope: <span class="endpoint-meta">none</span>
 
-Retrieve a list of posts in an explore stream.
+Retrieve a list of channels in an explore stream.
 
 ### URL Parameters
 
 Name|Description
 -|-
-`slug`|Slug of the stream to retrieve posts from. Retrieve slugs to use from the previous call.
+`slug`|Slug of the stream to retrieve channels from. Retrieve slugs to use from the previous call.
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v1/posts/streams/explore/conversations?count=1" \
+curl "https://api.pnut.io/v1/channels/streams/explore/conversations?count=1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
 
-Returns a list of posts.
+Returns a list of channels.
 
 ```json
 {
@@ -72,7 +72,7 @@ Returns a list of posts.
         "code": 200
     },
     "data": [
-        {"...Post Object..."}
+        {"...Channel Object..."}
     ]
 }
 ```

@@ -17,7 +17,7 @@ Retrieve a list of parameters for interacting with the API.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/sys/config" \
+curl "https://api.pnut.io/v1/sys/config" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -30,18 +30,22 @@ Returns a catalog of parameters
         "code": 200
     },
     "data": {
+        "file": {
+            "audio_max_size_bytes": 52428800,
+            "max_size_bytes": 104857600
+        },
         "message": {
             "max_length": 2048
         },
         "post": {
             "max_length": 256,
-            "repost_max_length": 256,
-            "seconds_between_duplicates": 60
+            "seconds_between_duplicates": 60,
+            "seconds_for_revision": 300
         },
         "rate_limit": {
             "anonymous": {
                 "reads": 40,
-                "seconds_between_reset": 60
+                "read_reset_seconds": 60
             },
             "authorized": {
                 "reads": 5000,
@@ -56,7 +60,9 @@ Returns a catalog of parameters
         },
         "user": {
             "description_max_length": 256,
-            "username_max_length": 50
+            "name_max_length": 50,
+            "presence_max_length": 100,
+            "username_max_length": 20
         }
     }
 }
@@ -73,7 +79,7 @@ Retrieve basic statistics for the network.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/sys/stats" \
+curl "https://api.pnut.io/v1/sys/stats" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -86,30 +92,30 @@ Returns a list of statistics
         "code": 200
     },
     "data": {
-        "counts": {
-            "clients": {
-                "created": 0,
-                "public": 0
+        "clients": {
+            "created": 0,
+            "public": 0
+        },
+        "days": 0,
+        "files": {
+            "created": 0
+        },
+        "messages": {
+            "created": 0
+        },
+        "polls": {
+            "created": 0
+        },
+        "posts": {
+            "created": 0
+        },
+        "users": {
+            "active": {
+                "YYYY-MM-DD": 0
             },
-            "days": 0,
-            "files": {
-                "created": 0
-            },
-            "messages": {
-                "created": 0
-            },
-            "posts": {
-                "created": 0
-            },
-            "users": {
-                "created": 0,
-                "disabled": 0,
-                "present": 0,
-                "today": 0
-            },
-            "polls": {
-                "created": 0
-            }
+            "created": 0,
+            "disabled": 0,
+            "present": 0
         }
     }
 }

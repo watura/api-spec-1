@@ -20,7 +20,7 @@ Retrieve a list of channels the authenticated user has muted.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels/muted" \
+curl "https://api.pnut.io/v1/users/me/channels/muted" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -61,7 +61,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/2/mute" \
+curl "https://api.pnut.io/v1/channels/2/mute" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X PUT \
     -H "X-Pretty-Json: 1"
@@ -98,7 +98,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/4/mute" \
+curl "https://api.pnut.io/v1/channels/4/mute" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"

@@ -23,7 +23,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/1" \
+curl "https://api.pnut.io/v1/users/1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -52,12 +52,12 @@ Retrieve a list of specified user objects. Only retrieves the first 200 found.
 
 Name|Description
 -|-
-`ids`|Comma-separated list of user IDs. IDs are required; no other identifiers are allowed.
+`ids`|Comma-separated list of user IDs or usernames with "@" symbol
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users?ids=4,12,1000" \
+curl "https://api.pnut.io/v1/users?ids=4,@ludolphus,1000" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -88,7 +88,7 @@ Requires an app token.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/apps/me/users/ids" \
+curl "https://api.pnut.io/v1/apps/me/users/ids" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -120,7 +120,7 @@ Requires an app token.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/apps/me/users/tokens" \
+curl "https://api.pnut.io/v1/apps/me/users/tokens" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

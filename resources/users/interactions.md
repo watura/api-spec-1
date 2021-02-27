@@ -12,7 +12,7 @@ Action|Objects
 `follow`|User
 `poll_response`|Poll
 
-The poll included from a `poll_response` action is static and abbreviated like that included embedded in `io.pnut.core.poll` raw. If the poll is anonymous, `users` will not be included.
+The poll included from a `poll_response` action is static and abbreviated like it is when included embedded in `io.pnut.core.poll` raw. If the poll is anonymous, `users` will not be included.
 
 Endpoints:
 
@@ -35,7 +35,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/interactions" \
+curl "https://api.pnut.io/v1/users/me/interactions" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

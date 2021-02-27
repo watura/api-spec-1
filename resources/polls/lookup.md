@@ -31,7 +31,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/polls/1" \
+curl "https://api.pnut.io/v1/polls/1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -68,7 +68,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/polls?ids=1,12" \
+curl "https://api.pnut.io/v1/polls?ids=1,12" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -100,7 +100,7 @@ Retrieve a list of polls created by the authenticated user.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/polls" \
+curl "https://api.pnut.io/v1/users/me/polls" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -140,7 +140,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/polls/responses" \
+curl "https://api.pnut.io/v1/users/me/polls/responses" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

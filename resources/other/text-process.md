@@ -9,7 +9,7 @@ Endpoints:
 
 ## <span class="method method-post">POST</span> /text/process {#post-text-process .endpoint}
 
-Scopes: <span class="endpoint-meta">any</span>
+Scope: <span class="endpoint-meta">any</span>
 
 Submit a Content-Type of `application/json` body as if creating a post. Returns an object containing the parsed text with entities.
 
@@ -22,7 +22,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/text/process" \
+curl "https://api.pnut.io/v1/text/process" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{\"text\":\"This is a test mentioning @thrrgilag.\"}" \

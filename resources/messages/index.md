@@ -19,9 +19,27 @@
         <td>Primary identifier for the channel this message is a part of. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Channel objects.</td>
     </tr>
     <tr>
+        <td><code>counts</code></td>
+        <td>object</td>
+        <td>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>replies</code></td>
+                    <td>integer</td>
+                    <td>The number of messages created in reply to this message.</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
         <td><code>created_at</code></td>
         <td>string</td>
-        <td>The time at which the message was created in ISO 8601 format.</td>
+        <td>The time at which the message was created in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</td>
     </tr>
     <tr>
         <td><code>id</code></td>
@@ -54,14 +72,14 @@
                     <td>Description of the API consumer that created this message.</td>
                 </tr>
                 <tr>
-                    <td><code>link</code></td>
-                    <td>string</td>
-                    <td>Link provided by the API consumer that created this message.</td>
-                </tr>
-                <tr>
                     <td><code>id</code></td>
                     <td>string</td>
                     <td>The public client id of the API consumer that created this message.</td>
+                </tr>
+                <tr>
+                    <td><code>url</code></td>
+                    <td>string</td>
+                    <td>Link provided by the API consumer that created this message.</td>
                 </tr>
             </table>
         </td>
@@ -80,6 +98,11 @@
         <td><code>user</code></td>
         <td>object</td>
         <td>This is an embedded <a href="users">User</a> object. Note: In certain cases (e.g., when a user account has been deleted), this key may be omitted.</td>
+    </tr>
+    <tr>
+        <td><code>user_id</code></td>
+        <td>string</td>
+        <td>Primary identifier for the user who created the message. This is only included if the <code>user</code> above is omitted.</td>
     </tr>
     <tr>
         <td><code>content</code></td>
@@ -121,14 +144,9 @@
                     <th>Description</th>
                 </tr>
                 <tr>
-                    <td><code>type</code></td>
-                    <td>string</td>
-                    <td>The type of raw item this is.</td>
-                </tr>
-                <tr>
-                    <td><code>value</code></td>
-                    <td>object</td>
-                    <td>The values and fields you specify for this raw item.</td>
+                    <td><code>{type name}</code></td>
+                    <td>list</td>
+                    <td>A list of objects of this type.</td>
                 </tr>
             </table>
         </td>

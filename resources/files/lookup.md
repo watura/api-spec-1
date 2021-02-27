@@ -13,7 +13,7 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">files</span>
 
-Retrieve a file object. If `link_expires_at` is passed, this will update the `link` and any embedded references to it.
+Retrieve a file object. If `url_expires_at` has expired, this will update the `url` and any embedded references to it.
 
 ### URL Parameters
 
@@ -24,7 +24,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/files/69" \
+curl "https://api.pnut.io/v1/files/69" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -49,7 +49,7 @@ Scope: <span class="endpoint-meta">files</span>
 
 Retrieve a list of specified file objects. Only returns the first 200 found.
 
-If the file need a `file_token_read` to access, you may include them with query parameters in the pattern `?file_token_read_{file_id}=xxx&file_token_read_{file_id}=xxx`.
+If the file needs a `file_token_read` to access, you may include them with query parameters in the pattern `?file_token_read_{file_id}=xxx&file_token_read_{file_id}=xxx`.
 
 ### Query String Parameters
 
@@ -60,7 +60,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/files?ids=69,71" \
+curl "https://api.pnut.io/v1/files?ids=69,71" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -90,7 +90,7 @@ Retrieve a list of files created by the authenticated user.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/files" \
+curl "https://api.pnut.io/v1/users/me/files" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

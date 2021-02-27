@@ -29,16 +29,28 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">any</span>
 
-Post a list of marker objects. You may update up to 10 at once. `id` and `name` are required. You may include `percentage` for more accuracy.
-    
-`id` indicates the current position of the marker. `last_read_id` indicates the *last* item in the stream that has ever been consumed by the marker. To move that in reverse, you must include the query parameter `reset_read_id=1`.
-    
+Post a list of marker objects. You may update up to 10 at once.
+
 For a channel to be marked "read", the marker `id` must be at or greater than the current most-recent message in it.
-    
+
+### URL Parameters
+
+Name|Description
+-|-
+`reset_read_id`|`id` indicates the current position of the marker. `last_read_id` indicates the *last* item in the stream that has ever been consumed by the marker. To move that in reverse, this must be set True
+
+### POST Body Data
+
+Name|Description
+-|-
+`id`|__Required__ The ID of the object in the stream you want to mark as having read most recently
+`name`|__Required__ What marker to update for a user. E.g., the global stream is `global`, or a channel would be `channel:{id}`
+`percentage`|Can specify 1-100 percent of the current `id` has been read or positioned in a stream.
+
 ##### Example Call {.example-code}
         
 ```bash
-curl "https://api.pnut.io/v0/markers" \
+curl "https://api.pnut.io/v1/markers" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1" \
     -H "Content-Type: application/json" \

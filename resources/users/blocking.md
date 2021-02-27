@@ -24,7 +24,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/blocked" \
+curl "https://api.pnut.io/v1/users/me/blocked" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -50,7 +50,7 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">follow</span>
 
-Block a user. Blocked users will not show up in future requests, the same as if they were muted. Blocked users also cannot retrieve this authorized user in their requests. Can do so even if the other user is blocking you (but will only return an ID of the blocked user).
+Block a user. Blocked users will not show up in future requests, the same as if they were muted. Blocked users also cannot retrieve this authorized user in their requests. A user can block another user even if the other user is blocking them (but will only return an ID of the blocked user).
 
 ### URL Parameters
 
@@ -61,7 +61,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/@testuser/block" \
+curl "https://api.pnut.io/v1/users/@testuser/block" \
     -X PUT \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
@@ -74,7 +74,7 @@ Returns the blocked user
     "meta": {
         "code": 200
     },
-    "data": {"...User Object..."}
+    "data": {"....User Object..."}
 }
 ```
 
@@ -85,7 +85,7 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">follow</span>
 
-Unblock a user. Can do so even if the other user is blocking you (but will only return an ID of the blocked user).
+Unblock a user. A user can unblock another user even if the other user is blocking them (but will only return an ID of the unblocked user).
 
 ### URL Parameters
 
@@ -96,7 +96,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/@testuser/block" \
+curl "https://api.pnut.io/v1/users/@testuser/block" \
     -X DELETE \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
@@ -109,6 +109,6 @@ Returns the unblocked user
     "meta": {
         "code": 200
     },
-    "data": {"....User Object..."}
+    "data": {"...User Object...."}
 }
 ```

@@ -1,6 +1,20 @@
 # Reposts
 
-Reposting is a special action. Reposts act as complete posts in themselves, with the "original" post embedded as an additional object. Unlike normal posts, actions (reply, repost, bookmark) cannot be executed against a repost.
+Reposts are special posts. You cannot reply to, repost, or bookmark a repost, but the API will instead reply to, repost, or bookmark the original post that was reposted.
+
+Even if a post is revised, existing reposts will still reflect the acted-on post's original contents, not the revision.
+
+__Contents__
+
+Reposts act as complete posts in themselves, with the "original" post embedded as an additional object in the `repost_of` field. The `contents`, `counts`, `raw`, `is_revised`, and `is_nsfw` fields of the post will mirror the acted-on post.
+
+__Deletion__
+
+When a repost is deleted, it will henceforth return a `404 Not Found`, instead of returning a normal post with `is_deleted: true`. When the acted-on post is deleted, all reposts of it will also be deleted.
+
+__Return Values__
+
+When creating or deleting a repost, the API returns the acted-on post, not the newly created post. This is the same as when bookmarking a post.
 
 Endpoints:
 
@@ -16,22 +30,30 @@ Scope: <span class="endpoint-meta">write_post</span>
 
 Repost another post. The repost will show up in followers' streams if they have not seen another repost of the same within the last week, and if the reposted post is not in their recent stream. It is created in its own thread, not the thread of the original post. This increments a user's post count.
 
+Reposts can be marked as NSFW just like a normal post, but will always identify as NSFW if the embedded original post was marked as NSFW. The "repost" will be marked NSFW, but the embedded original post will be embedded however it was created. So a client can see that difference if it is useful.
+
 ### URL Parameters
 
 Name|Description
 -|-
 `post_id`|ID of the post to repost
 
+### POST Body Data
+
+Name|Description
+-|-
+`is_nsfw`|If true, the post will be marked as "NSFW" (Not Safe For Work/mature/offensive).
+
 ##### Example {.example-code}
         
 ```bash
-curl "https://api.pnut.io/v0/posts/2370/repost" \
+curl "https://api.pnut.io/v1/posts/2370/repost" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X PUT \
     -H "X-Pretty-Json: 1"
 ```
 
-Returns the reposted post.
+Returns the original post that has been reposted.
 
 ```json
 {
@@ -62,19 +84,19 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/2370/repost" \
+curl "https://api.pnut.io/v1/posts/2370/repost" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"
 ```
 
-Returns the previously reposted post.
+Returns the original post that was previously reposted.
 
 ```json
 {
     "meta": {
         "code": 200
     },
-    "data": {"...Post object..."}
+    "data": {"....Post object..."}
 }
 ```

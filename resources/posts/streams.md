@@ -21,7 +21,7 @@ The authenticated user's stream of posts from their followers and themself.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/streams/me?count=2" \
+curl "https://api.pnut.io/v1/posts/streams/me?count=2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -55,7 +55,7 @@ A combined Personal Stream including the authenticated user's mentions.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/streams/unified?count=1" \
+curl "https://api.pnut.io/v1/posts/streams/unified?count=1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -92,7 +92,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/9/mentions?count=2" \
+curl "https://api.pnut.io/v1/users/9/mentions?count=2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -132,7 +132,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/9/posts?count=2" \
+curl "https://api.pnut.io/v1/users/9/posts?count=2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -159,12 +159,12 @@ Returns a list of posts.
 
 Scope: <span class="endpoint-meta">none</span>
 
-A stream of all users' public posts.
+A stream of all `human`-type users' public posts.
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/streams/global?count=2" \
+curl "https://api.pnut.io/v1/posts/streams/global?count=2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -202,7 +202,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/tags/MondayNightDanceParty?count=2" \
+curl "https://api.pnut.io/v1/posts/tags/MondayNightDanceParty?count=2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

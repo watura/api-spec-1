@@ -17,7 +17,7 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">polls,write_post</span>
 
-Create a poll placeholder or a complete poll. `type`, `prompt`, `options`, and `duration` or `closed_at` are necessary. By default, the poll will be private and anonymous.
+Create a poll. By default, the poll will be private and anonymous.
 
 Content-Type of `application/json`.
 
@@ -25,20 +25,20 @@ Content-Type of `application/json`.
 
 Name|Description
 -|-
-`prompt`|__Required__ 256-character explanation or question for the `options` (to be displayed and attached to the object)
-`type`|__Required__ Reverse domain name-style identifier of the poll type. E.g., `com.example.site`
-`options`|__Required__ List of 2 to 10 options must be specified, each with `text` and optional `position` (if you want to specify their order)
 `closed_at`|__Required__ (if `duration` not set) ISO 8601 timestamp at least 1 minute and no more than 2 weeks in the future, after which no one can respond to it
 `duration`|__Required__ (if `closed_at` not set) number of minutes the poll should be open, minimum of 1 and maximum of 20160
-`is_public`|If true, poll is public
+`options`|__Required__ List of 2 to 10 options must be specified, each with `text` and optional `position` (if you want to specify their order)
+`prompt`|__Required__ 256-character explanation or question for the `options` (to be displayed and attached to the object)
+`type`|__Required__ Reverse domain name-style identifier of the poll type. E.g., `com.example.site`
 `is_anonymous`|If false, user IDs will be identified in the final poll
-`max_options`|Number of options a user can respond with, from 1 to the total number of `options`
+`is_public`|If true, poll is public
+`max_options`|Number of options a user can respond with, from 1 to the total number of `options`. Default is 1
 
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/polls" \
+curl "https://api.pnut.io/v1/polls" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
@@ -80,11 +80,13 @@ Scope: <span class="endpoint-meta">polls,write_post</span>
 
 Respond to a poll.
 
-Only human-type accounts may respond to polls.
+Only `human`-type accounts may respond to polls.
 
 If a poll is private, you must inherently have access to the poll to respond, or include a `poll_token` in the query string. Polls attached to posts, for example, always include `poll_token` in the raw data. Since you might not know if a poll is public or private in such a case, you should always include the poll token when you have it.
 
 Responses can be changed until the poll closes.
+
+An empty positions will indicate to clear any responses for the user, but they will still be notified by E-mail when the poll closes, if they have the option enabled on https://pnut.io.
 
 ### URL Parameters
 
@@ -97,17 +99,18 @@ Name|Description
 Name|Description
 -|-
 `poll_token`|Required on private polls when you don't know or aren't guaranteed access
+`positions`|Instead of including `positions` as POST body data, you can include it as a query parameter, either as array or a comma-separated string of IDs
 
 ### POST Body Data
 
 Name|Description
 -|-
-`positions`|Positions of the options to respond with
+`positions`|Positions of the options to respond with, if not including `positions` as a query parameter
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/polls/1/response" \
+curl "https://api.pnut.io/v1/polls/1/response" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{\"positions\": [1,3]}" \
@@ -122,61 +125,9 @@ Returns poll on success
     "meta": {
         "code": 200
     },
-    "data": {"...Poll Object..."}
+    "data": {"....Poll Object..."}
 }
 ```
-
-
-
-## <span class="method method-put">PUT</span> /polls/<span class="call-param">{poll_id}</span>/response/<span class="call-param">{position}</span> {#put-polls-id-response-position .endpoint}
-
-__Deprecated__: Please use the above multiple-option response endpoint. This will continue working for backwards compatibility.
-
-Token: <span class="endpoint-meta">user</span>
-
-Scope: <span class="endpoint-meta">polls,write_post</span>
-
-Respond to a poll.
-
-Only human-type accounts may respond to polls.
-
-If a poll is private, you must inherently have access to the poll to respond, or include a `poll_token` in the query string. Polls attached to posts, for example, always include `poll_token` in the raw data. Since you might not know if a poll is public or private in such a case, you should always include the poll token when you have it.
-
-Responses can be changed until the poll closes.
-
-### URL Parameters
-
-Name|Description
--|-
-`poll_id`|ID of the poll to respond to
-`position`|Position of the position to respond with
-
-### Query Parameters
-
-Name|Description
--|-
-`poll_token`|Required on private polls when you don't know or aren't guaranteed access
-
-##### Example {.example-code}
-
-```bash
-curl "https://api.pnut.io/v0/polls/1/response/2" \
-    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
-    -X PUT \
-    -H "X-Pretty-Json: 1"
-```
-
-Returns poll on success
-
-```json
-{
-    "meta": {
-        "code": 200
-    },
-    "data": {"...Poll Object..."}
-}
-```
-
 
 
 
@@ -197,7 +148,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/polls/72" \
+curl "https://api.pnut.io/v1/polls/72" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"
@@ -210,6 +161,6 @@ Returns the deleted poll
     "meta": {
         "code": 200
     },
-    "data": {"....Poll Object..."}
+    "data": {"...Poll Object...."}
 }
 ```

@@ -17,7 +17,7 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">files</span>
 
-Create a file placeholder or a complete file. `type`, `kind`, and `name` are necessary. By default, the file will be private.
+Create a file placeholder or a complete file. By default, the file will be private.
 
 If creating a file placeholder, it can be form data or a Content-Type of `application/json`.
 
@@ -31,20 +31,21 @@ Name|Description
 `type`|__Required__ Reverse domain name-style identifier of the file type. E.g., `com.example.site`. Searchable
 `name`|256-character name or description (to be displayed and attached to the object; a random key will actually be assigned for the filename). If not included, name of file uploaded will be used
 `kind`|One of: `other`, `image` (for JPEG, GIF, PNG), `audio` (for WAVE, MP3, FLAC. up to 52428800 bytes), `video` (for MP4, MOV, M4V, WEBM). If the file extension is known and `kind=other`, the file extension will override `other` appropriately.
-`is_public`|If true, file is public
+`is_public`|If true, file is public. Default false
 `sha256`*|API will check the file's SHA256 checksum against this, and return an error if they do not match
 `mime_type`|If the API cannot determine mime_type, it will use this
 `{name}` + `_image_thumb_200s`|Key for custom derived thumbnail, 200 by 200 pixels, resized and cropped. If not included, API will try to create one, for images.
 `{name}` + `_image_thumb_960r`|Key for custom derived thumbnail, within 640 width and 960 height. If an uploaded image has smaller proportions, one will not be created automatically.
 `process_image_exif`*|If uploading a JPEG image with EXIF, and this is set to `0`, the API will not re-orient the image automatically.
+`raw`|Embedded [raw values](/docs/implementation/raw).
 
-* If the API automatically rotates an image, the returned `sha256` will be different from the uploaded file.
+* *If the API automatically rotates an image, the returned `sha256` will be different from the uploaded file.*
 
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/files" \
+curl "https://api.pnut.io/v1/files" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
@@ -75,9 +76,17 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">files</span>
 
-Update a file's details. Only `name`, `is_public`, and `raw` can be updated.
+Update a file's details.
 
-If a file is ever made public, it could be accessed by others indefinitely using an embedded `file_token_read`, or for a while after via the cache. To make a public file secure again, delete it and upload it again as a new file.
+If a file is ever made public, it could be accessed by others indefinitely using a previously-exposed `file_token_read`, or for a while after via the cache. To make a public file relatively secure again, delete it and upload it again as a new file.
+
+### POST Body Data
+
+Name|Description
+-|-
+`name`|256-character name or description (to be displayed and attached to the object)
+`is_public`|True or false
+`raw`|Embedded [raw values](/docs/implementation/raw). Not deleted unless explicitly set to empty values for each type.
 
 ### URL Parameters
 
@@ -88,7 +97,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/files/73" \
+curl "https://api.pnut.io/v1/files/73" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
@@ -131,7 +140,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/files/69/content/core_image_200s" \
+curl "https://api.pnut.io/v1/files/69/content/core_image_200s" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -161,7 +170,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/files/75/content" \
+curl "https://api.pnut.io/v1/files/75/content" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -F "content=@somethingtoupload.jpg" \
     -X PUT
@@ -193,7 +202,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/files/72" \
+curl "https://api.pnut.io/v1/files/72" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"

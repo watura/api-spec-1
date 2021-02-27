@@ -1,6 +1,6 @@
 # Channel Lookup
 
-To only retrieve channels by certain types, include them in a comma-separated list in the query parameter like so: `channel_types=io.pnut.core.pm,com.example.site`.
+*To only retrieve channels by certain types, include them in a comma-separated list in the query parameter like so: `channel_types=io.pnut.core.pm,com.example.site`.*
 
 Endpoints:
 
@@ -27,7 +27,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/5" \
+curl "https://api.pnut.io/v1/channels/5" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -59,7 +59,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels?ids=3,4,16" \
+curl "https://api.pnut.io/v1/channels?ids=3,4,16" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -91,7 +91,7 @@ Retrieve a list of channels created by the authenticated user.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels" \
+curl "https://api.pnut.io/v1/users/me/channels" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -132,7 +132,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels/existing_pm?ids=2" \
+curl "https://api.pnut.io/v1/users/me/channels/existing_pm?ids=2" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -162,12 +162,12 @@ Retrieve the number of unread messages for the authenticated user.
 
 Name|Description
 -|-
-`channel_types`|Comma-separated list of channel types to look up. Up to 4 at a time.
+`channel_types`|Comma-separated list of channel types to look up. Up to 4 at a time. Defaults to `io.pnut.core.pm`
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels/num_unread?channel_types=io.pnut.core.pm" \
+curl "https://api.pnut.io/v1/users/me/channels/num_unread?channel_types=io.pnut.core.pm" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -192,18 +192,18 @@ Token: <span class="endpoint-meta">user</span>
 
 Scope: <span class="endpoint-meta">messages</span>
 
-Mark all unread private messages as read for the authenticated user.
+Mark all unread messages as read for the specified channel types for the authenticated user.
 
 ### Query String Parameters
 
 Name|Description
 -|-
-`channel_types`|Comma-separated list of channel types to mark as read. Up to 4 at a time.
+`channel_types`|Comma-separated list of channel types to mark as read. Up to 4 at a time. Defaults to `io.pnut.core.pm`
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels/num_unread?channel_types=io.pnut.core.pm" \
+curl "https://api.pnut.io/v1/users/me/channels/num_unread?channel_types=io.pnut.core.pm" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"

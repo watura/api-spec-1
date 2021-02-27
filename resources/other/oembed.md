@@ -2,7 +2,7 @@
 
 Pnut has basic oEmbed support.
 
-Base URL: `https://api.pnut.io/v0/oembed`
+Base URL: `https://api.pnut.io/v1/oembed`
 
 The only format supported is JSON.
 

@@ -21,7 +21,7 @@ Retrieve a list of channels the authenticated user is subscribed to.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/channels/subscribed" \
+curl "https://api.pnut.io/v1/users/me/channels/subscribed" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -64,7 +64,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/18/subscribers" \
+curl "https://api.pnut.io/v1/channels/18/subscribers" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -102,7 +102,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/18/subscribe" \
+curl "https://api.pnut.io/v1/channels/18/subscribe" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X PUT \
     -H "X-Pretty-Json: 1"
@@ -139,7 +139,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/18/subscribe" \
+curl "https://api.pnut.io/v1/channels/18/subscribe" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"

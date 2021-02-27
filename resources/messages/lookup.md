@@ -26,7 +26,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/5/messages/11" \
+curl "https://api.pnut.io/v1/channels/5/messages/11" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -63,7 +63,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/5/messages/13/thread" \
+curl "https://api.pnut.io/v1/channels/5/messages/13/thread" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -101,7 +101,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/messages?ids=4,11,12" \
+curl "https://api.pnut.io/v1/channels/messages?ids=4,11,12" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -137,7 +137,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/2/messages" \
+curl "https://api.pnut.io/v1/channels/2/messages" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -171,7 +171,7 @@ Retrieve a paginated list of messages created by the authenticated user.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/messages" \
+curl "https://api.pnut.io/v1/users/me/messages" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

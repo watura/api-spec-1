@@ -1,6 +1,6 @@
 # Sticky Messages
 
-"Sticky" messages are like bookmarks for a channel, but they are per-channel, not per-user. They will have `is_sticky: true`.
+"Sticky" messages are like bookmarks for a channel, but they are per-channel, not per-user. They will have `is_sticky: true`. The channel also has an indicator, `channel.has_sticky_messages` that will tell if the channel has sticky messages.
 
 Users with `full` access to a channel are able to sticky and un-sticky messages in the channel.
 
@@ -33,7 +33,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/5/sticky_messages" \
+curl "https://api.pnut.io/v1/channels/5/sticky_messages" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -74,7 +74,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/5/messages/13/sticky" \
+curl "https://api.pnut.io/v1/channels/5/messages/13/sticky" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X PUT \
     -H "X-Pretty-Json: 1"
@@ -110,7 +110,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/channels/5/messages/13/sticky" \
+curl "https://api.pnut.io/v1/channels/5/messages/13/sticky" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"

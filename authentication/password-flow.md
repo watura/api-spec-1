@@ -20,7 +20,7 @@ Retrieve the user's username or E-mail address, and password, directly from them
 Now make a <span class="method method-post">POST</span> call with what you now have:
 
 ```bash
-curl "https://api.pnut.io/v0/oauth/access_token" \
+curl "https://api.pnut.io/v1/oauth/access_token" \
   -d "client_id=[client ID]" \
   -d "password_grant_secret=[stand-in for the client secret]" \
   -d "username=[username or E-mail address]" \
@@ -33,7 +33,7 @@ curl "https://api.pnut.io/v0/oauth/access_token" \
 A JSON response will be returned in the form of:
 
 ```json
-{"access_token":ACCESS_TOKEN, "token":{...}, "user_id":USER_ID, "username":USERNAME}
+{"access_token":ACCESS_TOKEN, "token":{"...Token object..."}, "user_id":USER_ID, "username":USERNAME}
 ```
 
 Every time a user is authorized using the password flow, they are sent an E-mail saying what client they were authorized for and what scopes.

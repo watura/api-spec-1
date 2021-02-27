@@ -26,15 +26,16 @@ An `application/json` Content-Type is preferred over form. Normal links and mark
 Name|Description
 -|-
 `text`|__Required__ 256 character-limited string
-`reply_to`|ID of another post to reply to
-`is_nsfw`|Boolean whether the post should be marked as "NSFW" (Not Safe For Work/mature/offensive). Including the tag `#nsfw` in the post body will mark a post NSFW unless overridden by this.
 `entities.parse_links`|Boolean whether the links should be parsed by the server. Default `true`
 `entities.parse_markdown_links`|Boolean whether the markdown links should be parsed by the server. Default `true`
+`is_nsfw`|Boolean whether the post should be marked as "NSFW" (Not Safe For Work/mature/offensive). Including the tag `#nsfw` in the post body will mark a post NSFW unless overridden by this.
+`raw`|Embedded [raw values](/docs/implementation/raw).
+`reply_to`|ID of another post to reply to
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts" \
+curl "https://api.pnut.io/v1/posts" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{\"text\": \"The people here are not shy.\"}" \
@@ -49,7 +50,7 @@ Returns the created post.
     "meta": {
         "code": 201
     },
-    "data": {"...Post Object..."}
+    "data": {"....Post Object..."}
 }
 ```
 
@@ -81,7 +82,7 @@ The POST body can be the same as when creating a post. `is_nsfw` *can* be change
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/2392" \
+curl "https://api.pnut.io/v1/posts/2392" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{\"text\": \"system of a down\"}" \
@@ -118,7 +119,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/2392" \
+curl "https://api.pnut.io/v1/posts/2392" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"
@@ -131,6 +132,6 @@ Returns the deleted post.
     "meta": {
         "code": 200
     },
-    "data": {"...Post Object..."}
+    "data": {"...Post Object...."}
 }
 ```

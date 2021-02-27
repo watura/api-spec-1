@@ -28,7 +28,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/1/bookmarks" \
+curl "https://api.pnut.io/v1/users/1/bookmarks" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -73,7 +73,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/2375/bookmark" \
+curl "https://api.pnut.io/v1/posts/2375/bookmark" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{\"note\": \"Robert has great posts.\"}" \
@@ -110,7 +110,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/2375/bookmark" \
+curl "https://api.pnut.io/v1/posts/2375/bookmark" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"

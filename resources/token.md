@@ -21,7 +21,7 @@ Includes `data.email` if `email` scope is authorized. Includes `markdown_text` i
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/token" \
+curl "https://api.pnut.io/v1/token" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -36,7 +36,7 @@ Returns the requested token
     "data": {
         "app": {
             "id": "String",
-            "link": "https://example.com",
+            "url": "https://example.com",
             "name": "String"
         },
         "scopes": [
@@ -62,12 +62,12 @@ Scope: <span class="endpoint-meta">any</span>
 
 Delete the currently authenticated token.
 
-Note that this only deletes the currently authenticated token, and the user will still not be required to reauthorize scopes in the future that have been authorized. For the user to revoke all access tokens for the client, they must do so manually from their account on pnut.io.
+Note that this only deletes the currently authenticated token, and the user will still not be required to reauthorize scopes in the future that have been authorized. For the user to revoke all access tokens for the client, they must do so manually from their account on pnut.io, or all of their tokens for the client must be deleted to reset scopes.
 
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/token" \
+curl "https://api.pnut.io/v1/token" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1" \
     -X DELETE
@@ -83,7 +83,7 @@ Returns the deleted token
     "data": {
         "app": {
             "id": "String",
-            "link": "https://example.com",
+            "url": "https://example.com",
             "name": "String"
         },
         "scopes": [
@@ -91,7 +91,7 @@ Returns the deleted token
             "String",
             "String"
         ],
-        "user": {"...User Object..."},
+        "user": {"...User Object...."},
         "storage": {
             "available": 0,
             "total": 0

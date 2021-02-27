@@ -22,7 +22,7 @@ Retrieve all users' presence statuses that are not "offline".
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/presence" \
+curl "https://api.pnut.io/v1/presence" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -58,7 +58,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/1/presence" \
+curl "https://api.pnut.io/v1/users/1/presence" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```
@@ -101,7 +101,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/users/me/presence" \
+curl "https://api.pnut.io/v1/users/me/presence" \
     -X PUT \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -d "presence=keeping my stick on the ice" \
@@ -118,7 +118,7 @@ Returns the updated user presence.
     "data": {
         "avatar_image": "String",
         "id": "0",
-        "last_seen_at": "ISO 8601",
+        "last_seen_at": "ISO 8601", 
         "name": "String",
         "presence": "String",
         "username": "String"

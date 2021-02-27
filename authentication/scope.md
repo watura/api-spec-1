@@ -4,17 +4,20 @@
 
 This is what a user is shown by Pnut for each scope they are authorizing:
 
-* **basic** - see basic information about you
-* **stream** - read your post streams
-* **write_post** - create and interact with your posts
+* [**basic**](#basic) - see basic information about you
+* [**email**](#email) - access your email address
+* [**files**](#files) - manage your files
 * **follow** - add and remove follows, mutes, and blocks for you
-* **update_profile** - update your name and other profile information
-* **presence** - update your presence
 * **messages** - send and receive public and private messages
   * **public_messages** - send and receive public messages
-* **files** - manage your files
-* **polls** - manage your polls
-* **email** - access your email address
+* [**polls**](#polls) - manage your polls
+* **presence** - update your presence
+* **stream** - read your post streams
+* **update_profile** - update your name and other profile information
+* [**write_post**](#write_post) - create and interact with your posts
+
+
+
 
 
 ## Usage
@@ -39,6 +42,8 @@ If the scopes you initially requested have changed, or your users may have other
 
 Your client can tell what scopes a user has authorized for your client by the `X-OAuth-Scopes` return header on a request, or by directly requesting their [Token](../resources/token#get-token).
 
+If your app needs to *remove* scopes for a user, you will have to delete all of the user's tokens individually. You can [request all tokens authorized for your app](../resources/users/lookup#get-apps-me-users-tokens), and [delete](../resources/token#delete-token) all of them for a user. Once all tokens are removed, the user will have to completely re-authenticate the app, and you can request different scopes.
+
 
 ## App Tokens
 
@@ -47,31 +52,61 @@ In the documentation, an <span class="endpoint-meta" style="float:none">app</spa
 
 ## Notes
 
-### basic
-
-The `basic` scope only allows access to any endpoints in the API that require <span class="endpoint-meta" style="float:none">any</span> access token.
+### basic {#basic}
 
 If any other scope is authorized, `basic` is redundant.
 
+Because it is redundant, it will be included in the authorization options if any other scope is authorized. If your app is double-checking what scopes were authorized, be sure it does not get thrown off if it sees `basic`.
 
-### files
+Any scope will allow access to any endpoints in the API that specify <span class="endpoint-meta" style="float:none">any</span> access token. That includes a user's...
 
-This scope is not needed for uploading files. It allows clients to update, attach, and delete files without including a `file_token`.
+* following
+* followers
+* muted
+* blocked
+* presence
+* badges
+* interactions
+* bookmarks
+* public clients
+
+as well as abilities to...
+
+* report a post or message
+* set a stream marker
+* delete user streams
+* get your current token
+
+
+### email {#email}
+
+When the `email` scope is authorized, the user's tokens will include their email address.
+
+`email` cannot be authorized by a user for the first time through Password Flow.
+
+App Streams do not notify of email address changes.
+
+
+### files {#files}
+
+#### Uploading Files vs Managing Files
+
+Clients that only upload files to attach to posts or messages don't need `files` authorized. If you already have `write_post` or a `messages` scope authorized, you can upload files.
+
+If a client has a `files`-related scope, it will be able to retrieve, update, attach, and delete those files without including a `file_token`.
 
 #### Special Extended File Scopes
 
 There are two special file scopes: `files:core_audio` gives access to all files with `kind: audio`, and `files:core_image` gives access to all files with `kind: image`. These do not currently trigger App Stream objects; specific file types or the whole `files` scope would need to be specified to use App Streams with files.
 
 
-### polls
+### polls {#polls}
 
-This scope works similarly to files, and is not needed to create and attach polls to posts and messages, but lets users attach and delete polls without a `poll_token`.
+#### Uploading Polls vs Managing Polls
+
+This scope works similarly to `files`, and is not needed to create and attach polls to posts and messages, but lets users attach and delete polls without a `poll_token`.
 
 
-### email
+### write_post {#write_post}
 
-When the `email` scope is authorized, the user's tokens will include their email.
-
-`email` cannot be authorized by a user for the first time through Password Flow.
-
-App Streams do not notify of email address changes.
+`write_post` allows an app to create files and polls as well, so those can be created and attached using their returned "tokens".

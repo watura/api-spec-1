@@ -14,36 +14,6 @@
         <th>Description</th>
     </tr>
     <tr>
-        <td><code>id</code></td>
-        <td>string</td>
-        <td>Primary identifier for a channel. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Channel objects. There can be a Post and User with the same ID; no relation is implied.</td>
-    </tr>
-    <tr>
-        <td><code>is_active</code></td>
-        <td>boolean</td>
-        <td>Only included if <code>false</code>.</td>
-    </tr>
-    <tr>
-        <td><code>type</code></td>
-        <td>string</td>
-        <td>The type of channel. Generally uses a reversed domain name to identify the intended purpose. None-core channel types (<code>io.pnut.core.*</code>) are not authenticated by the server; clients should not assume other clients created their channel types the same way.</td>
-    </tr>
-    <tr>
-        <td><code>owner</code></td>
-        <td>object</td>
-        <td>This is an embedded <a href="users">User</a> object. Note: In certain cases (e.g., when a user account has been deleted), this key may be omitted.</td>
-    </tr>
-    <tr>
-        <td><code>recent_message_id</code></td>
-        <td>string</td>
-        <td>Optional ID of the most recent message in the channel. Not included if no message has been created yet.</td>
-    </tr>
-    <tr>
-        <td><code>recent_message</code></td>
-        <td>object</td>
-        <td>Optional embedded <a href="messages">Message</a> object.</td>
-    </tr>
-    <tr>
         <td><code>acl</code></td>
         <td>object</td>
         <td>
@@ -76,7 +46,12 @@
                             <tr>
                                 <td><code>user_ids</code></td>
                                 <td>list</td>
-                                <td>A list of user IDs who have full access. (or a list of objects, in certain cases)</td>
+                                <td>A list of user IDs who have full access.</td>
+                            </tr>
+                            <tr>
+                                <td><code>users</code></td>
+                                <td>list</td>
+                                <td>A list of user objects. Only included in some cases.</td>
                             </tr>
                         </table>
                     </td>
@@ -109,7 +84,12 @@
                             <tr>
                                 <td><code>user_ids</code></td>
                                 <td>list</td>
-                                <td>A list of user IDs who have write access. (or a list of objects, in certain cases)</td>
+                                <td>A list of user IDs who have write access.</td>
+                            </tr>
+                            <tr>
+                                <td><code>users</code></td>
+                                <td>list</td>
+                                <td>A list of user objects. Only included in some cases.</td>
                             </tr>
                         </table>
                     </td>
@@ -147,7 +127,12 @@
                             <tr>
                                 <td><code>user_ids</code></td>
                                 <td>list</td>
-                                <td>A list of user IDs who have read access. (or a list of objects, in certain cases)</td>
+                                <td>A list of user IDs who have read access.</td>
+                            </tr>
+                            <tr>
+                                <td><code>users</code></td>
+                                <td>list</td>
+                                <td>A list of user objects. Only included in some cases.</td>
                             </tr>
                         </table>
                     </td>
@@ -179,19 +164,30 @@
         </td>
     </tr>
     <tr>
-        <td><code>you_subscribed</code></td>
-        <td>boolean</td>
-        <td>Whether or not you subscribe to the channel.</td>
+        <td><code>created_at</code></td>
+        <td>string</td>
+        <td><p>The time at which the channel was created in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</p>
+            <p><i>Added at the end of 2020, in version 1.0.0. Channels from before then have it set to the earliest message in the channel.</i></p></td>
     </tr>
     <tr>
-        <td><code>you_muted</code></td>
+        <td><code>has_sticky_messages</code></td>
         <td>boolean</td>
-        <td>You muted subscriptions to the channel.</td>
+        <td>The channel contains sticky messages.</td>
     </tr>
     <tr>
         <td><code>has_unread</code></td>
         <td>boolean</td>
-        <td>Your stream marker is not updated to the latest message in the channel.</td>
+        <td>Your stream marker is not updated to the latest message in the channel. Only included if the call is authenticated.</td>
+    </tr>
+    <tr>
+        <td><code>id</code></td>
+        <td>string</td>
+        <td>Primary identifier for a channel. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Channel objects. There can be a Post and User with the same ID; no relation is implied.</td>
+    </tr>
+    <tr>
+        <td><code>is_active</code></td>
+        <td>boolean</td>
+        <td>Only included if <code>false</code>.</td>
     </tr>
     <tr>
         <td><code>raw</code></td>
@@ -204,17 +200,57 @@
                     <th>Description</th>
                 </tr>
                 <tr>
-                    <td><code>type</code></td>
-                    <td>string</td>
-                    <td>The type of raw item this is.</td>
-                </tr>
-                <tr>
-                    <td><code>value</code></td>
-                    <td>object</td>
-                    <td>The values and fields you specify for this raw item.</td>
+                    <td><code>{type name}</code></td>
+                    <td>list</td>
+                    <td>A list of objects of this type.</td>
                 </tr>
             </table>
         </td>
+    </tr>
+    <tr>
+        <td><code>recent_deleted_message</code></td>
+        <td>object</td>
+        <td>Optional embedded <a href="messages">Message</a> object of the <code>recent_deleted_message_id</code>.</td>
+    </tr>
+    <tr>
+        <td><code>recent_deleted_message_id</code></td>
+        <td>string</td>
+        <td>Optional ID of the most recent message <em>that has been deleted</em> in the channel. Only present if the most recent message in a channel is a deleted message.</td>
+    </tr>
+    <tr>
+        <td><code>recent_message</code></td>
+        <td>object</td>
+        <td>Optional embedded <a href="messages">Message</a> object of the <code>recent_message_id</code>.</td>
+    </tr>
+    <tr>
+        <td><code>recent_message_id</code></td>
+        <td>string</td>
+        <td>Optional ID of the most recent message in the channel. Ignores deleted messages. Not included if no message has been created yet or only deleted messages in the channel</td>
+    </tr>
+    <tr>
+        <td><code>type</code></td>
+        <td>string</td>
+        <td>The type of channel. Generally uses a reversed domain name to identify the intended purpose. None-core channel types (<code>io.pnut.core.*</code>) are not authenticated by the server; clients should not assume other clients created a custom channel type the same way</td>
+    </tr>
+    <tr>
+        <td><code>you_muted</code></td>
+        <td>boolean</td>
+        <td>You muted subscriptions to the channel. Only set on authenticated calls</td>
+    </tr>
+    <tr>
+        <td><code>you_subscribed</code></td>
+        <td>boolean</td>
+        <td>Whether or not you subscribe to the channel. Only set on authenticated calls</td>
+    </tr>
+    <tr>
+        <td><code>user</code></td>
+        <td>object</td>
+        <td>This is an embedded object of the <a href="users">User</a> that owns the channel. In certain cases (e.g., when a user account has been deleted), this key may be omitted. In that case, <code>user_id</code> will still be included. <a href="../how-to/private-messages">Private messages are an exception</a></td>
+    </tr>
+    <tr>
+        <td><code>user_id</code></td>
+        <td>string</td>
+        <td>Primary identifier for the user who created the channel. This is only included if the <code>user</code> above is omitted</td>
     </tr>
 </table>
 
@@ -234,5 +270,5 @@ Name|Type|Description
 `include_inactive`|integer (0 or 1)|Include inactive channels. Defaults to false.
 `include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
 `include_channel_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all channel objects. Defaults to false.
-`include_recent_message`|integer (0 or 1)|Include the most recent message in the channel. Defaults to false.
-`include_limited_users`|integer (0 or 1)|Include limited user objects instead of user IDs in the ACL. Only on `/users/me/channels/subscribed` and `/channels/{channel_id}`. User objects include `username`, `id`, `name` (if set), `avatar_image` (as URL only), and `presence` (if not offline). Defaults to false.
+`include_recent_message`|integer (0 or 1)|Include the most recent message in the channel (and the recent deleted message, if the most recent message was deleted). Defaults to false.
+`include_limited_users`|integer (0 or 1)|Include limited user objects in the ACL. Only on `/users/me/channels/subscribed` and `/channels/{channel_id}`. User objects include `username`, `id`, `name` (if set), `avatar_image` (as URL only), and `presence` (if not offline). Defaults to false.

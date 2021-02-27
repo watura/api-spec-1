@@ -2,8 +2,8 @@
 
 These are the current reasons that will be honored for reporting:
 
-* `account_type`: posting in a behavior counter to the purposes of [account types](https://pnut.io/about/resources/account-types)
-* `nsfw`: unflagged mature material according to [the community guidelines](https://pnut.io/about/resources/mature-content)
+* `account_type`: posting in a behavior counter to the purposes of [account types](https://pnut.io/about/account-types)
+* `nsfw`: unflagged mature material according to [the community guidelines](https://pnut.io/about/mature-content)
 * `soliciting`: unwelcome soliciting
 * `user_abuse`: use of the API or network to abuse another user
 
@@ -37,8 +37,11 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/381576/report" \
+curl "https://api.pnut.io/v1/posts/381576/report" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "Content-Type: application/json" \
+    -D "{\"reason\": \"account_type\"}" \
+    -X POST \
     -H "X-Pretty-Json: 1"
 ```
 

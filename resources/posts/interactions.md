@@ -1,6 +1,6 @@
 # Post Interactions
 
-This endpoint mirrors [User Interactions](/docs/api/resources/users/interactions), but for a single post, instead of a user, and it does not include `objects`.
+This endpoint mirrors [User Interactions](/docs/resources/users/interactions), but for a single post, instead of a user, and it does not include `objects`.
 
 Endpoints:
 
@@ -29,7 +29,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/posts/83/interactions" \
+curl "https://api.pnut.io/v1/posts/83/interactions" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

@@ -23,7 +23,7 @@ Get all app streams for the authenticated app.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/streams" \
+curl "https://api.pnut.io/v1/streams" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X GET \
     -H "X-Pretty-Json: 1"
@@ -44,7 +44,7 @@ Returns a list of streams.
                 "String",
                 "String"
             ],
-            "endpoint": "wss://stream.pnut.io/v0/app",
+            "endpoint": "wss://stream.pnut.io/v1/app",
             "type": "long_poll"
         }
     ]
@@ -67,7 +67,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/streams/4" \
+curl "https://api.pnut.io/v1/streams/4" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X GET \
     -H "X-Pretty-Json: 1"
@@ -87,7 +87,7 @@ Returns the requested stream.
             "String",
             "String"
         ],
-        "endpoint": "wss://stream.pnut.io/v0/app",
+        "endpoint": "wss://stream.pnut.io/v1/app",
         "type": "long_poll"
     }
 }
@@ -113,7 +113,7 @@ Field|Type|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/streams" \
+curl "https://api.pnut.io/v1/streams" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
@@ -141,7 +141,7 @@ Returns the created stream.
             "String",
             "String"
         ],
-        "endpoint": "wss://stream.pnut.io/v0/app",
+        "endpoint": "wss://stream.pnut.io/v1/app",
         "type": "long_poll"
     }
 }
@@ -166,7 +166,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/streams/butterball" \
+curl "https://api.pnut.io/v1/streams/butterball" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
@@ -190,7 +190,7 @@ Returns the updated stream.
         "object_types": [
             "String"
         ],
-        "endpoint": "wss://stream.pnut.io/v0/app",
+        "endpoint": "wss://stream.pnut.io/v1/app",
         "type": "long_poll"
     }
 }
@@ -206,7 +206,7 @@ Delete all app streams for the authorized app.
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/streams" \
+curl "https://api.pnut.io/v1/streams" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"
@@ -226,7 +226,7 @@ Returns a list of deleted streams.
                 "String",
                 "String"
             ],
-            "endpoint": "wss://stream.pnut.io/v0/app",
+            "endpoint": "wss://stream.pnut.io/v1/app",
             "type": "long_poll",
             "is_deleted": true
         }
@@ -250,7 +250,7 @@ Name|Description
 ##### Example {.example-code}
 
 ```bash
-curl "https://api.pnut.io/v0/streams/butterball" \
+curl "https://api.pnut.io/v1/streams/butterball" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -X DELETE \
     -H "X-Pretty-Json: 1"
@@ -270,7 +270,7 @@ Returns the deleted stream.
             "String",
             "String"
         ],
-        "endpoint": "wss://stream.pnut.io/v0/app",
+        "endpoint": "wss://stream.pnut.io/v1/app",
         "type": "long_poll",
         "is_deleted": true
     }
