@@ -36,7 +36,7 @@ Name|Description
 `owner_id`|Channels owned by the included user ID
 `exclude_channel_types`|Comma-separated list of channel types to exclude
 `file_id`|Matches with this file attached
-`is_public`|Whether to include public-readable channels
+`is_public`|`1` or `0` to only include public- or private-readable channels
 `raw_types`|Comma-separated list of attached raw types. Any matches returned
 
 ##### Example {.example-code}

@@ -120,7 +120,9 @@ Newly deleted posts will include `meta.is_deleted`.
       
     ]
   },
-  "data": "...post object..."
+  "data": [
+    "...post object..."
+  ]
 }
 ```
 
@@ -221,7 +223,9 @@ Sent when any message is created or deleted from a channel that any user is subs
       
     ]
   },
-  "data": "...message object..."
+  "data": [
+    "...message object..."
+  ]
 }
 ```
 

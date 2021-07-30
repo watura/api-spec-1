@@ -36,9 +36,9 @@ Name|Description
 `creator_id`|Only include messages created by this user ID
 `file_id`|Matches with this file attached
 `file_kinds`|Comma-separated list of oEmbed-attached file types (`video`, `audio`, `image`, `other`)
-`is_nsfw`|If false, does not include NSFW messages
-`is_reply`|Whether to include messages that are or are not replies
-`is_sticky`|If true, only include sticky messages
+`is_nsfw`|If `0`, does not include NSFW messages
+`is_reply`|`1` or `0` to only include messages that are or are not replies
+`is_sticky`|If `1`, only include sticky messages
 `leading_mentions`|Comma-separated list of mentions at the beginning of a message. Any matches returned
 `mentions`|Comma-separated list of mentions. Any matches returned
 `poll_id`|Matches with this poll attached

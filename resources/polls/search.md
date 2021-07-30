@@ -28,9 +28,9 @@ Name|Description
 `creator_id`|Only include polls created by this user ID
 `exclude_poll_types`|Comma-separated list of poll types to exclude
 `file_id`|Matches with this file attached
-`is_anonymous`|Whether to include anonymous polls
-`is_closed`|Whether to include closed polls
-`is_public`|Whether to include public polls
+`is_anonymous`|`1` or `0` to only include anonymous polls
+`is_closed`|`1` or `0` to only include closed polls
+`is_public`|`1` or `0` to only include public polls
 `poll_types`|Comma-separated list of poll types to include
 `raw_types`|Comma-separated list of attached raw types. Any matches returned
 `you_responded`|If true, only include polls you have responded to

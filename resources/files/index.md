@@ -32,7 +32,7 @@
                 <tr>
                     <td><code>duration_string</code></td>
                     <td>string</td>
-                    <td>Length of audio in hour:minute:second format. Only included on files since API 0.9.5.</td>
+                    <td>Length of audio in hour:minute:second format. Not always included.</td>
                 </tr>
                 <tr>
                     <td><code>bitrate</code></td>
@@ -169,7 +169,7 @@
         </td>
     </tr>
     <tr>
-        <td><code>derivative_files</code></td>
+        <td><code>derived_files</code></td>
         <td>object</td>
         <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> are reserved. Reserved keys are allowed if they match specified parameters. For example:
             <table>
@@ -275,7 +275,7 @@
                 <tr>
                     <td><code>duration_string</code></td>
                     <td>string</td>
-                    <td>Length of video in hour:minute:second format.</td>
+                    <td>Length of video in hour:minute:second format. Not always included.</td>
                 </tr>
                 <tr>
                     <td><code>bitrate</code></td>

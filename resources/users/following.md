@@ -20,6 +20,14 @@ Name|Description
 -|-
 `user_id`|ID of the user whose following to retrieve
 
+### Query Parameters
+
+#### Sort
+
+Name|Description
+-|-
+`order`|One of id, last_post_id, or followed_at. Default is by followed_at
+
 ##### Example {.example-code}
 
 ```bash
@@ -56,6 +64,14 @@ Retrieve a list of user objects that are following the specified user.
 Name|Description
 -|-
 `user_id`|ID of the user whose followers to retrieve
+
+### Query Parameters
+
+#### Sort
+
+Name|Description
+-|-
+`order`|One of id, last_post_id, or followed_at. Default is by followed_at
 
 
 ##### Example {.example-code}

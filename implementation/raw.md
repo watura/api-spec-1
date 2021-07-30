@@ -71,7 +71,7 @@ curl "https://api.pnut.io/v1/posts?include_post_raw=1" \
     -d "{
   \"text\": \"I want everyone to know this is in English.\",
   \"raw\": {
-    [
+    \"io.pnut.core.language\": [
       {
         \"language\": \"en\"
       }
@@ -93,8 +93,8 @@ Returns the new post.
     "id": "2384",
     "source": {
       "id": "3PFPMSet53RutGINA8e5HWqYg_UCDHad",
-      "link": "http://xyz.s3rv.com",
-      "name": "Broadsword"
+      "name": "Broadsword",
+      "url": "http://xyz.s3rv.com"
     },
     "user": {"...User Object..."},
     "thread_id": "2384",

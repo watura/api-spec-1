@@ -35,11 +35,11 @@ Name|Description
 `creator_id`|Only include posts created by this user ID
 `file_id`|Matches with this file attached
 `file_kinds`|Comma-separated list of oEmbed-attached file types (`video`, `audio`, `image`, `other`)
-`has_mentions`|Whether to include posts with any mentions. Excludes other mentions filters below
-`is_directed`|If true, only include [directed posts](../../implementation/entities#leading-mentions)
-`is_nsfw`|If false, does not include NSFW posts
-`is_reply`|Whether to include messages that are or are not replies
-`is_revised`|If true, only include revised posts
+`has_mentions`|`1` or `0` to include posts with or without mentions. Excludes other mentions filters below
+`is_directed`|If `1`, only include [directed posts](../../implementation/entities#leading-mentions)
+`is_nsfw`|If `0`, does not include NSFW posts
+`is_reply`|`1` or `0` to include messages that are or are not replies
+`is_revised`|If `1`, only include revised posts
 `leading_mentions`|Comma-separated list of mentions at the beginning of a post. Any matches returned
 `mentions`|Comma-separated list of mentions. Any matches returned
 `poll_id`|Matches with this poll attached

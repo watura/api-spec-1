@@ -79,19 +79,19 @@ curl "https://api.pnut.io/v1/posts?include_post_raw=1" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "Content-Type: application/json" \
     -d "{
-    \"text\": \"system of a duck\",
-    \"raw\": [
-  {
-    \"type\": \"io.pnut.core.oembed\",
-    \"value\": {
-      \"+io.pnut.core.file\": {
-        \"file_id\": ${FILE_ID},
-        \"file_token\": ${FILE_TOKEN},
-        \"format\": \"oembed\"
+  \"text\": \"system of a duck\",
+  \"raw\": {
+    \"io.pnut.core.oembed\": [
+      {
+        \"+io.pnut.core.file\": {
+          \"file_id\": ${FILE_ID},
+          \"file_token\": ${FILE_TOKEN},
+          \"format\": \"oembed\"
+        }
       }
-    }
+    ]
   }
-]" \
+}" \
     -X POST
 ```
 

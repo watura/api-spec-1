@@ -23,7 +23,7 @@ Name|Description
 
 Name|Description
 -|-
-`order`|One of id or relevance. Default is by relevance
+`order`|One of id or relevance. Default is by relevance when a `q` value is set
 
 #### Filter
 
@@ -31,6 +31,8 @@ Name|Description
 -|-
 `created_after`|ISO 8601-formatted timestamp after which users were created
 `created_before`|ISO 8601-formatted timestamp before which users were created
+`is_follower`|Whether to include users who follow you. Requires authentication
+`is_following`|Whether to include users who you are following. Requires authentication
 `locale`|[Valid user locale](../users#locales) e.g., `en_US`
 `timezone`|[Valid user timezone](../users#timezones) e.g., `America/Chicago`
 `user_types`|Comma-separated list of user types of: human, feed, bot
