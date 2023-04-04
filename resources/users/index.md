@@ -40,7 +40,8 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
         <td><code>badge</code></td>
         <td>object</td>
         <td>
-            Optional. Badges are earned, currently only for supporting pnut.io.
+            Badges are earned for various achievements.
+            <p class="text-explanation">Only set if user has a badge selected.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -114,24 +115,24 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
                                 <th>Description</th>
                             </tr>
                             <tr>
-                                <td><code>url</code></td>
-                                <td>string</td>
-                                <td>URL linking to the current cover image.</td>
-                            </tr>
-                            <tr>
                                 <td><code>is_default</code></td>
                                 <td>boolean</td>
                                 <td>Whether or not the user has uploaded an image for their cover image, or if it is the default plain white background.</td>
                             </tr>
                             <tr>
-                                <td><code>width</code></td>
-                                <td>integer</td>
-                                <td>Original width of the image.</td>
-                            </tr>
-                            <tr>
                                 <td><code>height</code></td>
                                 <td>integer</td>
                                 <td>Original height of the image.</td>
+                            </tr>
+                            <tr>
+                                <td><code>url</code></td>
+                                <td>string</td>
+                                <td>URL linking to the current cover image.</td>
+                            </tr>
+                            <tr>
+                                <td><code>width</code></td>
+                                <td>integer</td>
+                                <td>Original width of the image.</td>
                             </tr>
                         </table>
                     </td>
@@ -149,7 +150,8 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
                 <tr>
                     <td><code>markdown_text</code></td>
                     <td>string</td>
-                    <td><code>text</code>, with the original markdown links preserved. Only included when looking up the authenticated user's profile or <code>GET /token</code>.</td>
+                    <td><code>text</code>, with the original markdown links preserved.
+                        <p class="text-explanation">Only set when looking up the authenticated user's profile or <code>GET /token</code>.</p></td>
                 </tr>
                 <tr>
                     <td><code>text</code></td>
@@ -205,7 +207,8 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
     <tr>
         <td><code>follows_you</code></td>
         <td>boolean</td>
-        <td>Whether or not this user follows you.</td>
+        <td>Whether or not this user follows you.
+            <p class="text-explanation">Only set on authenticated calls.</p></td>
     </tr>
     <tr>
         <td><code>id</code></td>
@@ -220,12 +223,13 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
     <tr>
         <td><code>name</code></td>
         <td>string</td>
-        <td>Optional user-supplied name. All Unicode characters allowed. Maximum length 50 characters. <em>Be sure to escape if necessary.</em></td>
+        <td>User-supplied name. All Unicode characters allowed. Maximum length 50 characters. <em>Be sure to escape if necessary.</em>
+            <p class="text-explanation">Optional.</p></td>
     </tr>
     <tr>
         <td><code>timezone</code></td>
         <td>string</td>
-        <td>User timezone in tzinfo format.</td>
+        <td>User timezone in tzinfo format. E.g., <code>America/Chicago</code> is the default when a user is created.</td>
     </tr>
     <tr>
         <td><code>type</code></td>
@@ -240,27 +244,32 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
     <tr>
         <td><code>you_blocked</code></td>
         <td>boolean</td>
-        <td>Whether or not you blocked this user.</td>
+        <td>Whether or not you blocked this user.
+            <p class="text-explanation">Only set on authenticated calls.</p></td>
     </tr>
     <tr>
         <td><code>you_can_follow</code></td>
         <td>boolean</td>
-        <td>Whether or not you <em>can</em> follow this user -- not taking into account <code>you_follow</code>.</td>
+        <td>Whether or not you <em>can</em> follow this user -- not taking into account <code>you_follow</code>.
+            <p class="text-explanation">Only set on authenticated calls.</p></td>
     </tr>
     <tr>
         <td><code>you_follow</code></td>
         <td>boolean</td>
-        <td>Whether or not you follow this user.</td>
+        <td>Whether or not you follow this user.
+            <p class="text-explanation">Only set on authenticated calls.</p></td>
     </tr>
     <tr>
         <td><code>you_muted</code></td>
         <td>boolean</td>
-        <td>Whether or not you muted this user.</td>
+        <td>Whether or not you muted this user.
+            <p class="text-explanation">Only set on authenticated calls.</p></td>
     </tr>
     <tr>
         <td><code>verified</code></td>
         <td>object</td>
         <td>
+            <p class="text-explanation">Optional.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -270,20 +279,27 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
                 <tr>
                     <td><code>domain</code></td>
                     <td>string</td>
-                    <td>Optional domain verified to be owned by the user</td>
+                    <td>Domain verified to be owned by the user.</td>
                 </tr>
                 <tr>
                     <td><code>url</code></td>
                     <td>string</td>
-                    <td>Optional URL verified to be owned by the user</td>
+                    <td>URL verified to be owned by the user.</td>
                 </tr>
             </table>
         </td>
     </tr>
     <tr>
+        <td><code>presence</code></td>
+        <td>string</td>
+        <td>User presence. Up to 100 characters.
+            <p class="text-explanation">Only set if <code>include_presence</code> is true.</td>
+    </tr>
+    <tr>
         <td><code>raw</code></td>
         <td>object</td>
-        <td>The raw items attached to this object. Only included if query parameter specified.
+        <td>The raw items attached to this object.
+            <p class="text-explanation">Only set if query parameter specified.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -292,7 +308,7 @@ Any user profile can be found at `https://pnut.io/@username`, which will redirec
                 </tr>
                 <tr>
                     <td><code>{type name}</code></td>
-                    <td>list</td>
+                    <td>list of objects</td>
                     <td>A list of objects of this type.</td>
                 </tr>
             </table>
@@ -308,21 +324,21 @@ Any endpoint that returns user objects (including any that return post objects, 
 
 ### General Parameters
 
-Name|Type|Description
--|-|-
-`include_html`|integer (0 or 1)|Should the post and user `html` field be included alongside the `text` field in the response objects? Defaults to true.
-`include_user_html`|integer (0 or 1)|Should the user `html` field be included alongside the `text` field in the response objects? Defaults to true. Note that `include_html` takes priority if present.
-`include_counts`|integer (0 or 1)|Include the user's counts. Defaults to true.
-`include_user`|integer (0 or 1)|Return the user as their complete object, or only as (string) ID if false. Defaults to true.
-`include_presence`|integer (0 or 1)|Include the user's current presence. Defaults to false.
-`include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
-`include_user_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all user objects. Defaults to false.
+Name|Type|Description|Default
+-|-|-|-
+`include_html`|integer (0 or 1)|Should the post and user `html` field be included alongside the `text` field in the response objects?|true
+`include_user_html`|integer (0 or 1)|Should the user `html` field be included alongside the `text` field in the response objects?|true. `include_html` takes priority if present.
+`include_counts`|integer (0 or 1)|Include the user's counts.|true
+`include_user`|integer (0 or 1)|Return the user as their complete object, or only as (string) ID if false.|true
+`include_presence`|integer (0 or 1)|Include the user's current presence.|false
+`include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects.|false
+`include_user_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all user objects.|false
 
 
 
 ## Locales {#locales}
 
-User locales the API recognizes are available as <a href="/dev-assets/locales.txt">a comma-separated text file</a>. To ask for more to be supported, make a feature request to [the API GitHub repository](https://github.com/pnut-api/api-spec). We would like to have translations of all of these for pnut.io account management. You make make pull requests to https://github.com/pnut-api/pnutio-localizations.
+User locales the API recognizes are available as <a href="/dev-assets/locales.txt">a comma-separated text file</a>. To ask for more to be supported, make a feature request to [the API GitHub repository](https://github.com/pnut-api/api-spec). We would like to have translations of all of these for pnut.io account management. You may make pull requests to https://github.com/pnut-api/pnutio-localizations.
 
 
 

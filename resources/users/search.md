@@ -3,6 +3,7 @@
 Endpoints:
 
 * [Search users](#get-users-search)
+* [Suggested users](#get-users-suggested)
 
 
 ## <span class="method method-get">GET</span> /users/search {#get-users-search .endpoint}
@@ -41,6 +42,45 @@ Name|Description
 
 ```bash
 curl "https://api.pnut.io/v1/users/search?q=news&user_types=feed" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1"
+```
+
+Returns a list of users
+
+```json
+{
+    "meta": {
+        "more": false,
+        "max_id": "0",
+        "min_id": "0",
+        "code": 200
+    },
+    "data": [
+        {"...User Object..."},
+        {"...User Object..."}
+    ]
+}
+```
+
+
+
+## <span class="method method-get">GET</span> /users/suggested {#get-users-suggested .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">follow</span>
+
+Get a list of suggested users to follow. Effectively:
+
+- followed by users you follow (if you are following some users)
+- actively posts
+- not blocked or muted
+
+##### Example {.example-code}
+
+```bash
+curl "https://api.pnut.io/v1/users/suggested" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
     -H "X-Pretty-Json: 1"
 ```

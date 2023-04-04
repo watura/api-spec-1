@@ -107,7 +107,7 @@ Must have a Content-Type of `application/json`.
 Field|Type|Description
 -|-|-
 `type`|string|The only value currently allowed is `long_poll`
-`object_types`|array|List of object types to listen for. Valid values are `post`, `bookmark`, `follow`, `mute`, `block`, `message`, `channel`, `channel_subscription`, `token`, `file`, `poll`, and `user`.
+`object_types`|array|List of object types to listen for. Valid values are `post`, `bookmark`, `follow`, `mute`, `block`, `message`, `channel`, `channel_subscription`, `token`, `file`, `poll`, `user_presence`, and `user`.
 `key`|string|Optional name for the stream, instead of an automatically assigned numeric key. Alphanumeric and underscore allowed, 32 characters, unique for this app.
 
 ##### Example {.example-code}
@@ -174,7 +174,7 @@ curl "https://api.pnut.io/v1/streams/butterball" \
         \"post\",\"message\",\"bookmark\"
     ]
 }" \
-    -X POST \
+    -X PUT \
     -H "X-Pretty-Json: 1"
 ```
 

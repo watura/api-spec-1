@@ -10,6 +10,46 @@ Endpoints:
 * [Get a user's presence](#get-users-id-presence)
 * [Update the authenticated user's presence](#put-users-me-presence)
 
+Custom `presence` Object Parameters:
+
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><code>avatar_image</code></td>
+        <td>string</td>
+        <td>URL linking to the current avatar image.</td>
+    </tr>
+    <tr>
+        <td><code>id</code></td>
+        <td>string</td>
+        <td>Primary identifier for the user that made the update.</td>
+    </tr>
+    <tr>
+        <td><code>last_seen_at</code></td>
+        <td>string</td>
+        <td>The time at which the presence was update, in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</td>
+    </tr>
+    <tr>
+        <td><code>name</code></td>
+        <td>string</td>
+        <td>Optional user-supplied name. All Unicode characters allowed. Maximum length 50 characters. <em>Be sure to escape if necessary.</em></td>
+    </tr>
+    <tr>
+        <td><code>presence</code></td>
+        <td>string</td>
+        <td>Updated user presence, up to 100 characters.</td>
+    </tr>
+    <tr>
+        <td><code>username</code></td>
+        <td>string</td>
+        <td>Username of the user that made the update. Case sensitive. 20 characters, may only contain a-z, 0-9 and underscore.</td>
+    </tr>
+</table>
+
 
 ## <span class="method method-get">GET</span> /presence {#get-presence .endpoint}
 

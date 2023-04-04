@@ -64,7 +64,7 @@ Current limitations:
 
 Messages include `meta.subscribed_user_ids`, which lists the users subscribed to that channel.
 
-You may use the `meta.suppress_notifications` key included on posts and messages to be sure not to notify users of muted or blocked users.
+You may use the `meta.suppress_notifications` key included on posts, messages, and polls to be sure not to notify users of muted or blocked users.
 
 Polls also include these fields when a poll is deleted or closes.
 
@@ -99,6 +99,113 @@ Polls also include these fields when a poll is deleted or closes.
 
 ## Example Objects {#example-objects}
 
+### channel
+
+Sent when any channel is created or updated that any user is subscribed to and authorized your app access to.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534019819,
+    "id": "22",
+    "type": "channel"
+  },
+  "data": "...channel object..."
+}
+```
+
+### channel_subscription
+
+Sent when any user who has authorized your app subscribes to or unsubscribes from a channel that they authorized your app access to.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534020228,
+    "id": "22",
+    "type": "channel_subscription"
+  },
+  "data": {
+    "user": "...user subscribing to channel...",
+    "channel": "...channel object..."
+  }
+}
+```
+
+### message
+
+Sent when any message is created or deleted from a channel that any user is subscribed to and authorized your app access to.
+
+`channel_type` is included in the meta.
+
+`channel_name` is included if the channel is a chat room (of type `io.pnut.core.chat`).
+
+`subscribed_user_ids` is included on creation, but not deletion.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534019721,
+    "channel_type": "io.pnut.core.pm",
+    "id": "71",
+    "type": "message",
+    "subscribed_user_ids": [
+      "1",
+      "2"
+    ],
+    "suppress_notifications": [
+
+    ]
+  },
+  "data": [
+    "...message object..."
+  ]
+}
+```
+
+### file
+
+Sent when a user authorizes uploading a file, updates file details, uploads a file, or deletes a file.
+
+```json
+{
+  "meta": {
+    "id": "349",
+    "timestamp": 1534020233,
+    "type": "file"
+  },
+  "data": "...file object..."
+}
+```
+
+### poll
+
+Sent when any poll is created, deleted, initially responded to, or closed by any user that authorized your app access to it.
+
+Polls also include `meta.subscribed_user_ids` and `meta.suppress_notifications` for app stream notifications when a poll is deleted or closes, and `is_closed` when it is closing.
+
+```json
+{
+  "meta": {
+    "id": "450",
+    "is_closed": true,
+    "subscribed_user_ids": [
+      "2",
+      "6"
+    ],
+    "suppress_notifications": [
+
+    ],
+    "timestamp": 1534019819,
+    "type": "poll"
+  },
+  "data": {
+    "poll": "...poll object...",
+    "user": "...user object..."
+  }
+}
+```
+
 ### post
 
 Sent when any post is created, reposted, revised, or deleted.
@@ -117,7 +224,7 @@ Newly deleted posts will include `meta.is_deleted`.
     "is_deleted": true,
     "type": "post",
     "suppress_notifications": [
-      
+
     ]
   },
   "data": [
@@ -140,6 +247,39 @@ Sent when any bookmark is created or deleted.
   "data": {
     "user": "...user who bookmarked post...",
     "post": "...post object..."
+  }
+}
+```
+
+### user
+
+Sent when a user who authorized your app updates their profile.
+
+```json
+{
+  "meta": {
+    "id": "1",
+    "timestamp": 1534020365,
+    "type": "user"
+  },
+  "data": "...user object..."
+}
+```
+
+### block
+
+Sent when a person who has authorized your app blocks or unblocks another user.
+
+```json
+{
+  "meta": {
+    "timestamp": 1534017755,
+    "type": "block",
+    "id": "6"
+  },
+  "data": {
+    "user": "...user blocking another user...",
+    "blocked_user": "...blocked user..."
   }
 }
 ```
@@ -180,116 +320,6 @@ Sent when a person who has authorized your app mutes or unmutes another user.
 }
 ```
 
-### block
-
-Sent when a person who has authorized your app blocks or unblocks another user.
-
-```json
-{
-  "meta": {
-    "timestamp": 1534017755,
-    "type": "block",
-    "id": "6"
-  },
-  "data": {
-    "user": "...user blocking another user...",
-    "blocked_user": "...blocked user..."
-  }
-}
-```
-
-### message
-
-Sent when any message is created or deleted from a channel that any user is subscribed to and authorized your app access to.
-
-`channel_type` is included in the meta.
-
-`channel_name` is included if the channel is a chat room (of type `io.pnut.core.chat`).
-
-`subscribed_user_ids` is included on creation, but not deletion.
-
-```json
-{
-  "meta": {
-    "timestamp": 1534019721,
-    "channel_type": "io.pnut.core.pm",
-    "id": "71",
-    "type": "message",
-    "subscribed_user_ids": [
-      "1",
-      "2"
-    ],
-    "suppress_notifications": [
-      
-    ]
-  },
-  "data": [
-    "...message object..."
-  ]
-}
-```
-
-### channel
-
-Sent when any channel is created or updated that any user is subscribed to and authorized your app access to.
-
-```json
-{
-  "meta": {
-    "timestamp": 1534019819,
-    "id": "22",
-    "type": "channel"
-  },
-  "data": "...channel object..."
-}
-```
-
-### channel_subscription
-
-Sent when any user who has authorized your app subscribes to or unsubscribes from a channel that they authorized your app access to.
-
-```json
-{
-  "meta": {
-    "timestamp": 1534020228,
-    "id": "22",
-    "type": "channel_subscription"
-  },
-  "data": {
-    "user": "...user subscribing to channel...",
-    "channel": "...channel object..."
-  }
-}
-```
-
-### poll
-
-Sent when any poll is created, deleted, initially responded to, or closed by any user that authorized your app access to it.
-
-Polls also include `meta.subscribed_user_ids` and `meta.suppress_notifications` for app stream notifications when a poll is deleted or closes, and `is_closed` when it is closing.
-
-```json
-{
-  "meta": {
-    "id": "450",
-    "is_closed": true,
-    "subscribed_user_ids": [
-      "2",
-      "6"
-    ],
-    "suppress_notifications": [
-      
-    ],
-    "timestamp": 1534019819,
-    "type": "poll"
-  },
-  "data": {
-    "poll": "...poll object...",
-    "user": "...user object..."
-  }
-}
-```
-
 ### token
 
 Sent when a user grants or revokes access to your app.
@@ -305,32 +335,17 @@ Sent when a user grants or revokes access to your app.
 }
 ```
 
-### user
+### user_presence
 
-Sent when a user who authorized your app updates their profile.
+Sent when any user updates their user presence.
 
 ```json
 {
   "meta": {
-    "timestamp": 1534020365,
     "id": "1",
-    "type": "user"
+    "timestamp": 1534020365,
+    "type": "user_presence"
   },
-  "data": "...user object..."
-}
-```
-
-### file
-
-Sent when a user authorizes uploading a file, updates file details, uploads a file, or deletes a file.
-
-```json
-{
-  "meta": {
-    "timestamp": 1534020233,
-    "id": "349",
-    "type": "file"
-  },
-  "data": "...file object..."
+  "data": "...user presence..."
 }
 ```

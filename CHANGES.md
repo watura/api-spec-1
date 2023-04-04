@@ -3,6 +3,33 @@ Follow Pnut API updates <a href="https://api.pnut.io/v1/feed/rss/users/@pnutapi/
 # <span class="orange">Changes</span>
 
 
+## [v1.2.0](/docs/changes/1.2.0) {#1.2.0}
+
+### Features
+
+* Suggested Users
+* User Presence in app streams and user streams
+* Files include lists of objects they are attached to
+* Exclude users from post search
+* Chat room names in E-mail digests
+
+### Changes
+
+* Follower data included in user export
+
+### Fixes
+
+* Stickying message without authentication returned nothing
+* User clients count missing on App Streams
+* Bitrate field for Audio file raw
+* Some calls not finding scopes when calling unauthenticated
+* V0 File Delete returns 404
+* V0 User Presence update response not consistent
+
+*Released 2023-04-04*
+
+
+
 ## [v1.1.0](/docs/changes/1.1.0) {#1.1.0}
 
 ### Features

@@ -15,9 +15,43 @@
         <th>Description</th>
     </tr>
     <tr>
+        <td><code>attached_to</code></td>
+        <td>object</td>
+        <td>Other objects that this file is embedded in as a <code>raw</code> object.
+            <p class="text-explanation">Only set if the file has been attached to another object.
+                <br>Does not currently support files on channels, other files, or users.</p>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>messages</code></td>
+                    <td>list of strings</td>
+                    <td>Sampled list of message IDs it is attached to.
+                        <p class="text-explanation">Only set if attached to messages.</p></td>
+                </tr>
+                <tr>
+                    <td><code>polls</code></td>
+                    <td>list of strings</td>
+                    <td>Sampled list of poll IDs it is attached to.
+                        <p class="text-explanation">Only set if attached to polls.</p></td>
+                </tr>
+                <tr>
+                    <td><code>posts</code></td>
+                    <td>list of strings</td>
+                    <td>Sampled list of post IDs it is attached to.
+                        <p class="text-explanation">Only set if attached to posts.</p></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
         <td><code>audio_info</code></td>
         <td>object</td>
-        <td>Included if <code>kind: audio</code>.
+        <td>Audio properties.
+            <p class="text-explanation">Only set if <code>kind: audio</code>.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -50,22 +84,25 @@
     <tr>
         <td><code>file_token</code></td>
         <td>string</td>
-        <td>A token to modify the file. Only included on creation, if included in the query string, or if the Files scope gives you access to the file.</td>
+        <td>A token to allow you to modify the file.
+            <p class="text-explanation">Only set on <code>POST</code> creation response, if included in the query string, or if the Files scope gives you access to the file.</p></td>
     </tr>
     <tr>
         <td><code>file_token_read</code></td>
         <td>string</td>
-        <td>A token to access the file. Only included if <code>is_public</code> or if it is included in the query string.</td>
+        <td>A token to allow you to access the file.
+            <p class="text-explanation">Only set if <code>is_public</code> or if it is included in the query string.</p></td>
     </tr>
     <tr>
         <td><code>id</code></td>
         <td>string</td>
-        <td>Primary identifier for a file. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to file objects. There can be a Post and User with the same ID; no relation is implied.</td>
+        <td>Primary identifier for a file. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to file objects. There can be a File and User with the same ID; no relation is implied.</td>
     </tr>
     <tr>
         <td><code>image_info</code></td>
         <td>object</td>
-        <td>Included if <code>kind: image</code>.
+        <td>Image properties.
+            <p class="text-explanation">Only set if <code>kind: image</code>.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -103,37 +140,43 @@
     <tr>
         <td><code>url</code></td>
         <td>string</td>
-        <td>Direct link to the file, but with an expiration.</td>
+        <td>Direct link to the file, but with an expiration.
+            <p class="text-explanation">Only set if file is complete.</p></td>
     </tr>
     <tr>
         <td><code>url_expires_at</code></td>
         <td>string</td>
-        <td>ISO 8601 timestamp of when <code>url</code> will expire; YYYY-MM-DDTHH:MM:SSZ. After expiration, file object will need to be fetched to get a new link (<code>GET /files/{file_id}</code>, this also refreshes any derivative files).</td>
+        <td>ISO 8601 timestamp of when <code>url</code> will expire; YYYY-MM-DDTHH:MM:SSZ. After expiration, file object will need to be fetched to get a new link (<code>GET /files/{file_id}</code>, this also refreshes any derivative files).
+            <p class="text-explanation">Only set if file is complete.</p></td>
     </tr>
     <tr>
         <td><code>url_short</code></td>
         <td>string</td>
-        <td>A redirect link to the file. Only included if <code>is_public</code>.</td>
+        <td>A redirect link to the file.
+            <p class="text-explanation">Only set if <code>is_public</code> and file is complete.</p></td>
     </tr>
     <tr>
         <td><code>mime_type</code></td>
         <td>string</td>
-        <td>Optional. Mime encoding of the file. See <a href="#mime-types">Mime Types</a> for details.</td>
+        <td>Mime encoding of the file. See <a href="#mime-types">Mime Types</a> for details.
+            <p class="text-explanation">Only set if file is complete.</p></td>
     </tr>
     <tr>
         <td><code>name</code></td>
         <td>string</td>
-        <td>A readable name of the file. Can be used descriptively or not. Up to 256 Unicode characters.  <em>Be sure to escape if necessary.</em></td>
+        <td>A readable name of the file. Can be used descriptively or not. Up to 256 Unicode characters. <em>Be sure to escape if necessary.</em></td>
     </tr>
     <tr>
         <td><code>sha256</code></td>
         <td>string</td>
-        <td>sha256 checksum of file</td>
+        <td>sha256 checksum of file.
+            <p class="text-explanation">Only set if file is complete.</p></td>
     </tr>
     <tr>
         <td><code>size</code></td>
         <td>integer</td>
-        <td>Size of the file in bytes.</td>
+        <td>Size of the file in bytes.
+            <p class="text-explanation">Only set if file is complete.</p></td>
     </tr>
     <tr>
         <td><code>source</code></td>
@@ -148,7 +191,8 @@
     <tr>
         <td><code>upload_parameters</code></td>
         <td>object</td>
-        <td>Only included on creation of a file placeholder.
+        <td>
+            <p class="text-explanation">Only set on creation of a file placeholder.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -211,7 +255,7 @@
                             <tr>
                                 <td><code>sha256</code></td>
                                 <td>string</td>
-                                <td>sha256 checksum of file</td>
+                                <td>sha256 checksum of file.</td>
                             </tr>
                             <tr>
                                 <td><code>size</code></td>
@@ -250,17 +294,20 @@
     <tr>
         <td><code>user</code></td>
         <td>object</td>
-        <td>This is an embedded User object. In certain cases, this key may be omitted.</td>
+        <td>This is an embedded User object.
+            <p class="text-explanation">In certain cases, this key may be omitted.</p></td>
     </tr>
     <tr>
         <td><code>user_id</code></td>
         <td>string</td>
-        <td>Primary identifier for the user who created the file. This is only included if the <code>user</code> above is omitted.</td>
+        <td>Primary identifier for the user who created the file.
+            <p class="text-explanation">Only set if the <code>user</code> above is omitted.</p></td>
     </tr>
     <tr>
         <td><code>video_info</code></td>
         <td>object</td>
-        <td>Included if <code>kind: video</code>.
+        <td>Video properties.
+            <p class="text-explanation">Only set if <code>kind: video</code>.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -298,7 +345,8 @@
     <tr>
         <td><code>raw</code></td>
         <td>object</td>
-        <td>The raw items attached to this object. Only included if query parameter specified.
+        <td>The raw items attached to this object.
+            <p class="text-explanation">Only set if query parameter specified.</p>
             <table>
                 <tr>
                     <th>Field</th>
@@ -307,7 +355,7 @@
                 </tr>
                 <tr>
                     <td><code>{type name}</code></td>
-                    <td>list</td>
+                    <td>list of objects</td>
                     <td>A list of objects of this type.</td>
                 </tr>
             </table>
@@ -322,15 +370,15 @@ Any endpoint that returns file objects can be subject to these parameters.
 
 ### General Parameters
 
-Name|Type|Description
--|-|-
-`include_incomplete`|integer (0 or 1)|Include incomplete files. Only applicable to the user's file stream. Defaults to true.
-`include_private`|integer (0 or 1)|Include private files. Only applicable to the user's file stream. Defaults to true.
-`mime_types`|list|Comma-separated list of mime types to retrieve. Only applicable to the user's file stream.
-`file_types`|string|Comma-separated list of file types to retrieve. Only applicable to the user's file stream. If not included, will return any files the app is authorized to view.
-`exclude_file_types`|string|Comma-separated list of file types not to retrieve. Only applicable to the user's file stream. Ignored if `file_types` set.
-`include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects. Defaults to false.
-`include_file_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all file objects. Defaults to false.
+Name|Type|Description|Default
+-|-|-|-
+`include_incomplete`|integer (0 or 1)|Include incomplete files. Only applicable to the user's file stream.|true
+`include_private`|integer (0 or 1)|Include private files. Only applicable to the user's file stream.|true
+`mime_types`|list|Comma-separated list of mime types to retrieve. Only applicable to the user's file stream.|all
+`file_types`|string|Comma-separated list of file types to retrieve. Only applicable to the user's file stream. If not included, will return any files the app is authorized to view.|all
+`exclude_file_types`|string|Comma-separated list of file types not to retrieve. Only applicable to the user's file stream. Ignored if `file_types` set.|none
+`include_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all objects.|false
+`include_file_raw`|integer (0 or 1)|Include [raw](../implementation/raw) on all file objects.|false
 
 
 ## Mime Types {#mime-types}

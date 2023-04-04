@@ -47,3 +47,4 @@ These are the endpoints available to app tokens, in addition to any endpoints th
 * DELETE /streams
 * GET /apps/me/users/ids
 * GET /apps/me/users/tokens
+* GET /presence

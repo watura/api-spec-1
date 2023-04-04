@@ -79,6 +79,7 @@ A connection may subscribe to an endpoint more than once (with or without differ
 * /channels/:channel_id/subscribers
 * /token *(includes updates for both the token and the user objects of the current user)*
 * /users/me/files
+* /presence
 
 #### Connection Query Parameters
 
@@ -98,6 +99,7 @@ A connection may subscribe to an endpoint more than once (with or without differ
 
 * include_incomplete *(files)*
 * include_private *(files)*
+* include_not_followed *(user presence)*
 * channel_types
 * file_types
 * include_read
@@ -201,7 +203,7 @@ Sent when a user subscribes to or unsubscribes from a channel. Currently only in
 
 ### token
 
-Sent when you authorize a new token, or update your user object. Currently only a "stub", indicating the profile was updated, but not its details.
+Sent when you authorize a new token, or update your user object.
 
 ```json
 {
@@ -219,7 +221,7 @@ Sent when you authorize a new token, or update your user object. Currently only 
 
 ### file
 
-Sent when a user uploads a file, updates file details, uploads a file, or deletes a file. Currently only a "stub", indicating that the file was uploaded, but not its details.
+Sent when a user uploads a file, updates file details, uploads a file, or deletes a file.
 
 ```json
 {
@@ -229,6 +231,26 @@ Sent when a user uploads a file, updates file details, uploads a file, or delete
     "id": "349",
     "subscription_ids": [
       "rqDNgxAQASRCIBqHZ5Dek71SBar-wPjX"
+    ]
+  }
+}
+```
+
+
+### user_presence
+
+Sent when a user changes their user presence. This should be considered expired after 15 minutes. Currently does not send when a user sets themselves to "offline".
+
+By default, `GET /presence` subscribeds only to user presence updates from followed users. Including `?include_not_followed=1` will include updates from anyone not blocked.
+
+```json
+{
+  "data": "...user presence object...",
+  "meta": {
+    "timestamp": 1678811013,
+    "id": "1",
+    "subscription_ids": [
+      "frenSxAQASRCIBqHZ5Dek71SBar-efke"
     ]
   }
 }

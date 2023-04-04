@@ -33,6 +33,7 @@ Name|Description
 `created_after`|ISO 8601-formatted timestamp after which posts were created
 `created_before`|ISO 8601-formatted timestamp before which posts were created
 `creator_id`|Only include posts created by this user ID
+`exclude_user_ids`|Comma-separated list of user IDs to exclude from results
 `file_id`|Matches with this file attached
 `file_kinds`|Comma-separated list of oEmbed-attached file types (`video`, `audio`, `image`, `other`)
 `has_mentions`|`1` or `0` to include posts with or without mentions. Excludes other mentions filters below
