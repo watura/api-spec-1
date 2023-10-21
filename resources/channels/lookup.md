@@ -1,7 +1,5 @@
 # Channel Lookup
 
-*To only retrieve channels by certain types, include them in a comma-separated list in the query parameter like so: `channel_types=io.pnut.core.pm,com.example.site`.*
-
 Endpoints:
 
 * [Get a channel](#get-channels-id)
@@ -10,6 +8,8 @@ Endpoints:
 * [Get a PM channel between users](#get-users-me-channels-existing_pm)
 * [Get the number of channels unread by the authenticated user](#get-users-me-channels-num_unread)
 * [Set all channels 'read'](#delete-users-me-channels-num_unread)
+
+*To only retrieve channels by certain types, include them in a comma-separated list in the query parameter like so: `channel_types=io.pnut.core.pm,com.example.site`.*
 
 
 ## <span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span> {#get-channels-id .endpoint}

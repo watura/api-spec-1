@@ -3,6 +3,26 @@ Follow Pnut API updates <a href="https://api.pnut.io/v1/feed/rss/users/@pnutapi/
 # <span class="orange">Changes</span>
 
 
+## [v1.3.0](/docs/changes/1.3.0) {#1.3.0}
+
+### Features
+
+* Per-Channel User Presence
+* User Presence timeout configurable
+* Delete multiple files at once
+
+### Fixes
+
+* Post search by `raw_types` failing
+* Data export file name referred to wrong username
+* V0 System Stats endpoint failing
+* V0 Client link entities wrong
+* Revising Post not checking entities
+
+*Released 2023-10-21*
+
+
+
 ## [v1.2.0](/docs/changes/1.2.0) {#1.2.0}
 
 ### Features

@@ -1,13 +1,13 @@
 # Channel Subscribing
 
-Subscribed channels act like an "inbox" of channels ordered by their most recent messages.
-
 Endpoints:
 
 * [Get the authenticated user's subscribed channels](#get-users-me-channels-subscribed)
 * [Get users subscribed to a channel](#get-channels-id-subscribers)
 * [Subscribe to a channel](#put-channels-id-subscribe)
 * [Unsubscribe from a channel](#delete-channels-id-subscribe)
+
+Subscribed channels act like an "inbox" of channels ordered by their most recent messages.
 
 
 ## <span class="method method-get">GET</span> /users/me/channels/subscribed {#get-users-me-channels-subscribed .endpoint}
@@ -53,6 +53,8 @@ Returns a list of subscribed channels.
 Scope: <span class="endpoint-meta">messages</span>
 
 Retrieve a list of users subscribed to a channel.
+
+If `?include_presence=1` is included on the call, the users' `presence` field will reflect their presence in the channel, *not* their global user presence.
 
 ### URL Parameters
 

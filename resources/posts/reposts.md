@@ -1,5 +1,10 @@
 # Reposts
 
+Endpoints:
+
+* [Create a Repost](#put-posts-id-repost)
+* [Delete a repost](#delete-posts-id-repost)
+
 Reposts are special posts. You cannot reply to, repost, or bookmark a repost, but the API will instead reply to, repost, or bookmark the original post that was reposted.
 
 Even if a post is revised, existing reposts will still reflect the acted-on post's original contents, not the revision.
@@ -15,11 +20,6 @@ When a repost is deleted, it will henceforth return a `404 Not Found`, instead o
 __Return Values__
 
 When creating or deleting a repost, the API returns the acted-on post, not the newly created post. This is the same as when bookmarking a post.
-
-Endpoints:
-
-* [Create a Repost](#put-posts-id-repost)
-* [Delete a repost](#delete-posts-id-repost)
 
 
 ## <span class="method method-put">PUT</span> /posts/<span class="call-param">{post_id}</span>/repost {#put-posts-id-repost .endpoint}
@@ -45,7 +45,7 @@ Name|Description
 `is_nsfw`|If true, the post will be marked as "NSFW" (Not Safe For Work/mature/offensive).
 
 ##### Example {.example-code}
-        
+
 ```bash
 curl "https://api.pnut.io/v1/posts/2370/repost" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -62,7 +62,7 @@ Returns the original post that has been reposted.
     },
     "data": {"...Post object..."}
 }
-```    
+```
 
 
 ## <span class="method method-delete">DELETE</span> /posts/<span class="call-param">{post_id}</span>/repost {#delete-posts-id-repost .endpoint}

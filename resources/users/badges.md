@@ -1,14 +1,14 @@
 # Badges
 
-Badges are accessible to users who are [current badge holders](https://pnut.io/about/sign-up).
-
-A user can set what badge to display on their profile [from their account](https://pnut.io/account/badge), or a client can update it [by updating the user](https://docs.pnut.io/resources/users/profile).
-
 Endpoints:
 
 * [Get a badge](#get-badges-id)
 * [Get all badges](#get-badges)
 * [Get the authenticated user's badges](#get-users-me-badges)
+
+Badges are accessible to users who are [current badge holders](https://pnut.io/about/sign-up).
+
+A user can set what badge to display on their profile [from their account](https://pnut.io/account/badge), or a client can update it [by updating the user](https://docs.pnut.io/resources/users/profile).
 
 
 ## <span class="method method-get">GET</span> /badges/<span class="call-param">{badge_id}</span> {#get-badges-id .endpoint}

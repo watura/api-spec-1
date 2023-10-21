@@ -1,12 +1,12 @@
 # Post Bookmarks
 
-Bookmarking is an action for users to keep track of posts. You can see others' bookmarks as well.
-
 Endpoints:
 
 * [Get a user's bookmarks](#get-users-id-bookmarks)
 * [Bookmark a post](#put-posts-id-bookmark)
 * [Delete a bookmark](#delete-posts-id-bookmark)
+
+Bookmarking is an action for users to keep track of posts. You can see others' bookmarks as well.
 
 
 ## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/bookmarks {#get-users-id-bookmarks .endpoint}

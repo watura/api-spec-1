@@ -1,10 +1,10 @@
 # Text Processor
 
-Use this endpoint to test rendering of post content. Particularly useful for debugging, or if you want to show a user exactly how the API will process their post.
-
 Endpoints:
 
 * [Test text processing](#post-text-process)
+
+Use this endpoint to test rendering of post content. Particularly useful for debugging, or if you want to show a user exactly how the API will process their post.
 
 
 ## <span class="method method-post">POST</span> /text/process {#post-text-process .endpoint}

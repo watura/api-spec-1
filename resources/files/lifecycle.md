@@ -1,7 +1,5 @@
 # File Lifecycle
 
-For an explanation of how to attach files to other objects, read [How To File](../../how-to/file).
-
 Endpoints:
 
 * [Create a file or placeholder](#post-files)
@@ -9,6 +7,9 @@ Endpoints:
 * [Upload derivatives of a file](#put-files-id-content-key)
 * [Complete a placeholder file](#put-files-id-content)
 * [Delete a file](#delete-files-id)
+* [Delete multiple files](#delete-files)
+
+For an explanation of how to attach files to other objects, read [How To File](../../how-to/file).
 
 
 ## <span class="method method-post">POST</span> /files {#post-files .endpoint}
@@ -184,7 +185,6 @@ Returns 204 on success
 
 
 
-
 ## <span class="method method-delete">DELETE</span> /files/<span class="call-param">{file_id}</span> {#delete-files-id .endpoint}
 
 Token: <span class="endpoint-meta">user</span>
@@ -216,5 +216,49 @@ Returns the deactivated file
         "code": 200
     },
     "data": {"....File Object..."}
+}
+```
+
+
+
+## <span class="method method-delete">DELETE</span> /files {#delete-files .endpoint}
+
+Token: <span class="endpoint-meta">user</span>
+
+Scope: <span class="endpoint-meta">files</span>
+
+Delete a list of files. This will not disassociate a file from any other objects (posts, messages...).
+
+Because deleting files can take some time, the API call will return the list of files confirmed for deletion, and an endpoint to check the status of the operation.
+
+Look at the [operation status endpoint](/docs/resources/other/system#get-sys-ops-id) for more info.
+
+### Query Parameters
+
+Name|Description
+-|-
+`ids`|Comma-separated list of file IDs. Up to 200 at a time.
+
+##### Example {.example-code}
+
+```bash
+curl "https://api.pnut.io/v1/files?ids=5,35,6426,18259,18242" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -X DELETE \
+    -H "X-Pretty-Json: 1"
+```
+
+Returns a list of files to attempt to delete, and a status endpoint to check status.
+
+```json
+{
+    "meta": {
+        "code": 202,
+        "status_url": "https://api.pnut.io/v1/sys/ops/ecfd4a43-4d75-4bea-8881-7a1194bedfdc"
+    },
+    "data": [
+        "5",
+        "6426"
+    ]
 }
 ```

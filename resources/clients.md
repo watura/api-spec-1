@@ -1,11 +1,11 @@
 # Clients
 
-Client name can contain any Unicode characters. *Be sure to escape it if necessary.*
-
 Endpoints:
 
 * [Get a user's clients](#get-users-id-clients)
 * [Get a client](#get-clients-id)
+
+Client name can contain any Unicode characters. *Be sure to escape it if necessary.*
 
 
 ## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/clients {#get-users-id-clients .endpoint}

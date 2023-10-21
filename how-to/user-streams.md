@@ -77,6 +77,7 @@ A connection may subscribe to an endpoint more than once (with or without differ
 * /channels/:channel_id/messages
 * /channels *(includes new messages for channels you're subscribed to)*
 * /channels/:channel_id/subscribers
+* /channels/:channel_id/presence
 * /token *(includes updates for both the token and the user objects of the current user)*
 * /users/me/files
 * /presence
@@ -239,13 +240,37 @@ Sent when a user uploads a file, updates file details, uploads a file, or delete
 
 ### user_presence
 
-Sent when a user changes their user presence. This should be considered expired after 15 minutes. Currently does not send when a user sets themselves to "offline".
+Sent when a user changes their user presence. Currently does not send when a user sets themselves to "offline" or when the expiration is reached.
 
-By default, `GET /presence` subscribeds only to user presence updates from followed users. Including `?include_not_followed=1` will include updates from anyone not blocked.
+By default, `GET /presence` subscribes only to user presence updates from followed users (including yourself). Including `?include_not_followed=1` will include updates from anyone not blocked.
 
 ```json
 {
-  "data": "...user presence object...",
+  "data": [
+    "...user presence object..."
+  ],
+  "meta": {
+    "timestamp": 1678811013,
+    "id": "1",
+    "subscription_ids": [
+      "frenSxAQASRCIBqHZ5Dek71SBar-efke"
+    ]
+  }
+}
+```
+
+
+### user_channel_presence
+
+Sent when a user changes their user presence within a channel you have a user stream subscription for. Currently does not send when a user sets themselves to "offline" or when the expiration is reached.
+
+By default, `GET /channels/:channel_id/presence` subscribes only to user presence updates from followed users (including yourself). Including `?include_not_followed=1` will include updates from anyone not blocked.
+
+```json
+{
+  "data": [
+    "...user presence object..."
+  ],
   "meta": {
     "timestamp": 1678811013,
     "id": "1",

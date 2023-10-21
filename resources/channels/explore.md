@@ -1,11 +1,11 @@
 # Explore Streams
 
-Explore streams are pre-built searches with some simple criteria.
-
 Endpoints:
 
 * [Get a list of explore streams](#get-channels-streams-explore)
 * [Get an explore stream](#get-channels-streams-explore-slug)
+
+Explore streams are pre-built searches with some simple criteria.
 
 
 ## <span class="method method-get">GET</span> /channels/streams/explore {#get-channels-streams-explore .endpoint}

@@ -1,10 +1,10 @@
 # API
 
-__Current Version: 1.2.0 [(Changes)](../changes)__
+__Current Version: 1.3.0 [(Changes)](../changes)__
 
 API Root: https://api.pnut.io/v1
 
-*Last Updated 2022-02-00*
+*Last Updated 2023-10-21*
 
 Welcome to the documentation for the Pnut API.
 

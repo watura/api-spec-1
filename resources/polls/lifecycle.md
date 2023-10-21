@@ -1,14 +1,14 @@
 # Poll Lifecycle
 
-For an explanation of how to attach polls to other objects, read [How To File](../../how-to/file). Functionally they are almost identical: Create a poll and use the `+io.pnut.core.poll` replacement raw value on a `io.pnut.core.poll-notice` raw item.
-
-You may also look at the [GitHub object-metadata](https://github.com/pnut-api/object-metadata/blob/master/raw-replacement-values/%2Bio.pnut.core.poll.md).
-
 Endpoints:
 
 * [Create a poll](#post-polls)
 * [Respond to a poll](#put-polls-id-response)
 * [Delete a poll](#delete-polls-id)
+
+For an explanation of how to attach polls to other objects, read [How To File](../../how-to/file). Functionally they are almost identical: Create a poll and use the `+io.pnut.core.poll` replacement raw value on a `io.pnut.core.poll-notice` raw item.
+
+You may also look at the [GitHub object-metadata](https://github.com/pnut-api/object-metadata/blob/master/raw-replacement-values/%2Bio.pnut.core.poll.md).
 
 
 ## <span class="method method-post">POST</span> /polls {#post-polls .endpoint}

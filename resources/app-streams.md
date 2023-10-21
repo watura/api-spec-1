@@ -1,9 +1,5 @@
 # App Streams
 
-App streams are long-lasting connections between the API and your server, often for notifications and other applications that need instant updates.
-
-You will need an [app token](../authentication/app-access-token) to use them. Look at [How To: App Streams](../how-to/app-streams) for details on usage.
-
 Endpoints:
 
 * [Get all streams](#get-streams)
@@ -12,6 +8,10 @@ Endpoints:
 * [Update a stream](#put-streams-id)
 * [Delete all streams](#delete-streams)
 * [Delete a stream](#delete-streams-id)
+
+App streams are long-lasting connections between the API and your server, often for notifications and other applications that need instant updates.
+
+You will need an [app token](../authentication/app-access-token) to use them. Look at [How To: App Streams](../how-to/app-streams) for details on usage.
 
 
 ## <span class="method method-get">GET</span> /streams {#get-streams .endpoint}
@@ -107,7 +107,7 @@ Must have a Content-Type of `application/json`.
 Field|Type|Description
 -|-|-
 `type`|string|The only value currently allowed is `long_poll`
-`object_types`|array|List of object types to listen for. Valid values are `post`, `bookmark`, `follow`, `mute`, `block`, `message`, `channel`, `channel_subscription`, `token`, `file`, `poll`, `user_presence`, and `user`.
+`object_types`|array|List of object types to listen for. Valid values are `post`, `bookmark`, `follow`, `mute`, `block`, `message`, `channel`, `channel_subscription`, `token`, `file`, `poll`, `user_presence`, `user_channel_presence`, and `user`.
 `key`|string|Optional name for the stream, instead of an automatically assigned numeric key. Alphanumeric and underscore allowed, 32 characters, unique for this app.
 
 ##### Example {.example-code}

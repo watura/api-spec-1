@@ -1,9 +1,5 @@
 # RSS
 
-This subset of endpoints can be accessed via RSS. Note that filter query parameters will work.
-
-* [Template URIs](#template-uris)
-
 Endpoints:
 
 * [Tagged posts](#get-feed-rss-posts-tags-tag)
@@ -11,6 +7,10 @@ Endpoints:
 * [Post search](#get-feed-rss-posts-search)
 * [Channel messages](#get-feed-rss-channels-id-messages)
 * [Channel search](#get-feed-rss-channels-search)
+
+This subset of endpoints can be accessed via RSS. Note that filter query parameters will work.
+
+* [Template URIs](#template-uris)
 
 
 ## Template URIs {#template-uris}

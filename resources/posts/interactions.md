@@ -1,10 +1,10 @@
 # Post Interactions
 
-This endpoint mirrors [User Interactions](/docs/resources/users/interactions), but for a single post, instead of a user, and it does not include `objects`.
-
 Endpoints:
 
 * [Get interactions made against a post](#get-posts-id-interactions)
+
+This endpoint mirrors [User Interactions](/docs/resources/users/interactions), but for a single post, instead of a user, and it does not include `objects`.
 
 
 ## <span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/interactions {#get-posts-id-interactions .endpoint}

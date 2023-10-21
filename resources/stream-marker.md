@@ -1,28 +1,28 @@
 # Stream Marker
 
+Endpoints:
+
+* [Set a list of stream markers](#post-markers)
+
 Stream markers provide a way to save a user's spot in a stream of posts or messages; a lightweight way to sync between clients, or pick up where you left off without otherwise saving it.
-    
+
 These are special pagination values for `since_id` and `before_id` that you must use on markable streams to actually read from its marker:
-    
+
 * `last_read`: the current `last_read_id` of the stream's marker
 * `last_read_inclusive`
 * `marker`: the current `id` of the stream's marker
 * `marker_inclusive`
-    
+
 Current markable streams/names:
 
 * [global](posts/streams#get-posts-streams-global): "global"
 * [unified](posts/streams#get-posts-streams-unified) and [me](posts/streams#get-posts-streams-me): "personal"
 * [mentions](posts/streams#get-users-id-mentions): "mentions"
 * [channels](channels/lookup#get-channels-id): "channel:{id}"
-    
+
 On creation of posts and messages, you can automatically update the "personal" and "channel" markers to the created ID by including `update_marker=1` in the query string.
 
-Endpoints:
 
-* [Set a list of stream markers](#post-markers)
-    
-    
 ## <span class="method method-post">POST</span> /markers {#post-markers .endpoint}
 
 Token: <span class="endpoint-meta">user</span>
@@ -48,7 +48,7 @@ Name|Description
 `percentage`|Can specify 1-100 percent of the current `id` has been read or positioned in a stream.
 
 ##### Example Call {.example-code}
-        
+
 ```bash
 curl "https://api.pnut.io/v1/markers" \
     -H "Authorization: Bearer ${ACCESS_TOKEN}" \
@@ -62,9 +62,9 @@ curl "https://api.pnut.io/v1/markers" \
 ]"
     -X POST
 ```
-    
+
 Returns a list of the updated markers
-        
+
 ```json
 {
     "meta": {

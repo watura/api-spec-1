@@ -1,11 +1,12 @@
 # System
 
-The System endpoint gives access to system-wide information.
-
 Endpoints:
 
 * [Get configuration](#get-sys-config)
+* [Get status of an operation](#get-sys-ops-id)
 * [Get statistics](#get-sys-stats)
+
+The System endpoint gives access to system-wide information.
 
 
 ## <span class="method method-get">GET</span> /sys/config {#get-sys-config .endpoint}
@@ -64,6 +65,84 @@ Returns a catalog of parameters
             "presence_max_length": 100,
             "username_max_length": 20
         }
+    }
+}
+```
+
+
+
+## <span class="method method-get">GET</span> /sys/ops/<span class="call-param">{ops_id}</span> {#get-sys-ops-id .endpoint}
+
+Scope: <span class="endpoint-meta">any</span>
+
+Retrieve the status of a long-running operation.
+
+Currently the only API call that creates a long-running operation is [deleting multiple files](/docs/resources/files/lifecycle#delete-files), type `FileDelete`.
+
+`ended_at` will only be set if the operation has completed. `status` will be one of `running`, `dead`, and `completed`. `dead` is not definitive, but if `dead`, something went wrong.
+
+### URL Parameters
+
+Name|Description
+-|-
+`ops_id`|UUID of the operation to retrieve details for.
+
+### Return Object Parameters
+
+<table>
+    <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><code>created_at</code></td>
+        <td>string</td>
+        <td>Time at which the operation was created, in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</td>
+    </tr>
+    <tr>
+        <td><code>ended_at</code></td>
+        <td>string</td>
+        <td>Optional time at which the operation was completed, in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</td>
+    </tr>
+    <tr>
+        <td><code>id</code></td>
+        <td>string</td>
+        <td>UUID that identifies the operation.</td>
+    </tr>
+    <tr>
+        <td><code>type</code></td>
+        <td>string</td>
+        <td>Currently only <code>file_delete</code></td>
+    </tr>
+    <tr>
+        <td><code>status</code></td>
+        <td>string</td>
+        <td>One of <code>running</code>, <code>dead</code>, <code>completed</code>.</td>
+    </tr>
+</table>
+
+##### Example {.example-code}
+
+```bash
+curl "https://api.pnut.io/v1/sys/ops/5c689c8d-5d59-4974-8705-f20b7abef338" \
+    -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+    -H "X-Pretty-Json: 1"
+```
+
+Returns the status.
+
+```json
+{
+    "data": {
+        "created_at": "ISO-8601",
+        "ended_at": "ISO-8601 (Optional)",
+        "id": "UUID",
+        "type": "String",
+        "status": "String"
+    },
+    "meta": {
+        "code": 200
     }
 }
 ```

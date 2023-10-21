@@ -1,12 +1,12 @@
 # Post Threads
 
-Post thread is determined by the post that is not a reply. A reply to a reply will not create a new "thread" in the API.
-
-*If looking for how to retrieve only replies to a specific post, use [post search](search).*
-
 Endpoints:
 
 * [Get posts in a thread](#get-posts-id-thread)
+
+Post thread is determined by the post that is not a reply. A reply to a reply will not create a new "thread" in the API.
+
+*If looking for how to retrieve only replies to a specific post, use [post search](search).*
 
 
 ## <span class="method method-get">GET</span> /posts/<span class="call-param">{post_id}</span>/thread {#get-posts-id-thread .endpoint}

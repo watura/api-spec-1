@@ -1,11 +1,11 @@
 # Token
 
-Interactions with the authenticated token
-
 Endpoints:
 
 * [Get the current token](#get-token)
 * [Delete the current token](#delete-token)
+
+Get or delete the current user's authenticated token.
 
 
 ## <span class="method method-get">GET</span> /token {#get-token .endpoint}

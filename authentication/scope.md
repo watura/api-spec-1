@@ -8,10 +8,10 @@ This is what a user is shown by Pnut for each scope they are authorizing:
 * [**email**](#email) - access your email address
 * [**files**](#files) - manage your files
 * **follow** - add and remove follows, mutes, and blocks for you
-* **messages** - send and receive public and private messages
+* [**messages**](#messages) - send and receive public and private messages
   * **public_messages** - send and receive public messages
 * [**polls**](#polls) - manage your polls
-* **presence** - update your presence
+* **presence** - update your global presence
 * **stream** - read your post streams
 * **update_profile** - update your name and other profile information
 * [**write_post**](#write_post) - create and interact with your posts
@@ -69,6 +69,7 @@ Any scope will allow access to any endpoints in the API that specify <span class
 * interactions
 * bookmarks
 * public clients
+* ongoing operations
 
 as well as abilities to...
 
@@ -98,6 +99,13 @@ If a client has a `files`-related scope, it will be able to retrieve, update, at
 #### Special Extended File Scopes
 
 There are two special file scopes: `files:core_audio` gives access to all files with `kind: audio`, and `files:core_image` gives access to all files with `kind: image`. These do not currently trigger App Stream objects; specific file types or the whole `files` scope would need to be specified to use App Streams with files.
+
+
+### messages {#messages}
+
+#### Updating presence in a channel
+
+The `presence` scope is for global user's presence. If a user access token has access to a channel, it can update the user's presence in that channel. The `presence` scope isn't relevant to channel presence permissions.
 
 
 ### polls {#polls}

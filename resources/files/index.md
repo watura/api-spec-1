@@ -82,6 +82,153 @@
         <td>The time at which the file was created in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</td>
     </tr>
     <tr>
+        <td><code>derived_files</code></td>
+        <td>object</td>
+        <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> are reserved. Reserved keys are allowed if they match specified parameters. For example:
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>core_image_200s</code></td>
+                    <td>object</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td><code>audio_info</code></td>
+                                <td>object</td>
+                                <td>Audio properties.
+                                    <p class="text-explanation">Only set if <code>kind: audio</code>.</p>
+                                    <table>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        <tr>
+                                            <td><code>duration</code></td>
+                                            <td>integer</td>
+                                            <td>Length of audio in seconds.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>duration_string</code></td>
+                                            <td>string</td>
+                                            <td>Length of audio in hour:minute:second format. Not always included.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>bitrate</code></td>
+                                            <td>integer</td>
+                                            <td>Bitrate in kbps.</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>image_info</code></td>
+                                <td>object</td>
+                                <td>Included if <code>kind: image</code>.
+                                    <table>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        <tr>
+                                            <td><code>height</code></td>
+                                            <td>integer</td>
+                                            <td>Height of the image.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>width</code></td>
+                                            <td>integer</td>
+                                            <td>Width of the image.</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>mime_type</code></td>
+                                <td>string</td>
+                                <td>The mime-encoding of the file.</td>
+                            </tr>
+                            <tr>
+                                <td><code>name</code></td>
+                                <td>string</td>
+                                <td>A readable name of the file. Can be used descriptively or not. Up to 255 ASCII characters.</td>
+                            </tr>
+                            <tr>
+                                <td><code>sha256</code></td>
+                                <td>string</td>
+                                <td>sha256 checksum of file.</td>
+                            </tr>
+                            <tr>
+                                <td><code>size</code></td>
+                                <td>integer</td>
+                                <td>Size of the file in bytes.</td>
+                            </tr>
+                            <tr>
+                                <td><code>url</code></td>
+                                <td>string</td>
+                                <td>Direct link to the file, but with an expiration.</td>
+                            </tr>
+                            <tr>
+                                <td><code>url_expires_at</code></td>
+                                <td>string</td>
+                                <td>ISO 8601 timestamp of when <code>url</code> will expire; YYYY-MM-DDTHH:MM:SSZ. After expiration, <code>GET /files/{file_id}</code> of the derived file will refresh these as well.</td>
+                            </tr>
+                            <tr>
+                                <td><code>video_info</code></td>
+                                <td>object</td>
+                                <td>Video properties.
+                                    <p class="text-explanation">Only set if <code>kind: video</code>.</p>
+                                    <table>
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                        </tr>
+                                        <tr>
+                                            <td><code>duration</code></td>
+                                            <td>integer</td>
+                                            <td>Length of video in seconds.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>duration_string</code></td>
+                                            <td>string</td>
+                                            <td>Length of video in hour:minute:second format. Not always included.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>bitrate</code></td>
+                                            <td>integer</td>
+                                            <td>Bitrate in kbps.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>height</code></td>
+                                            <td>integer</td>
+                                            <td>Height of the video.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>width</code></td>
+                                            <td>integer</td>
+                                            <td>Width of the video.</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
         <td><code>file_token</code></td>
         <td>string</td>
         <td>A token to allow you to modify the file.
@@ -138,24 +285,6 @@
         <td>Valid options are <code>audio</code>, <code>video</code>, <code>image</code>, and <code>other</code>. <code>audio</code> is currently limited to 52428800-byte files (32MiB). See <a href="#mime-types">Mime Types</a> for explanation.</td>
     </tr>
     <tr>
-        <td><code>url</code></td>
-        <td>string</td>
-        <td>Direct link to the file, but with an expiration.
-            <p class="text-explanation">Only set if file is complete.</p></td>
-    </tr>
-    <tr>
-        <td><code>url_expires_at</code></td>
-        <td>string</td>
-        <td>ISO 8601 timestamp of when <code>url</code> will expire; YYYY-MM-DDTHH:MM:SSZ. After expiration, file object will need to be fetched to get a new link (<code>GET /files/{file_id}</code>, this also refreshes any derivative files).
-            <p class="text-explanation">Only set if file is complete.</p></td>
-    </tr>
-    <tr>
-        <td><code>url_short</code></td>
-        <td>string</td>
-        <td>A redirect link to the file.
-            <p class="text-explanation">Only set if <code>is_public</code> and file is complete.</p></td>
-    </tr>
-    <tr>
         <td><code>mime_type</code></td>
         <td>string</td>
         <td>Mime encoding of the file. See <a href="#mime-types">Mime Types</a> for details.
@@ -165,6 +294,25 @@
         <td><code>name</code></td>
         <td>string</td>
         <td>A readable name of the file. Can be used descriptively or not. Up to 256 Unicode characters. <em>Be sure to escape if necessary.</em></td>
+    </tr>
+    <tr>
+        <td><code>raw</code></td>
+        <td>object</td>
+        <td>The raw items attached to this object.
+            <p class="text-explanation">Only set if query parameter specified.</p>
+            <table>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td><code>{type name}</code></td>
+                    <td>list of objects</td>
+                    <td>A list of objects of this type.</td>
+                </tr>
+            </table>
+        </td>
     </tr>
     <tr>
         <td><code>sha256</code></td>
@@ -184,9 +332,45 @@
         <td>An embedded object of the client that created the file.</td>
     </tr>
     <tr>
+        <td><code>total_size</code></td>
+        <td>integer</td>
+        <td>Size of the file plus any derivative files, in bytes.
+            <p class="text-explanation">Only set if file is complete.</p></td>
+    </tr>
+    <tr>
         <td><code>type</code></td>
         <td>string</td>
         <td>The type of file. Generally uses a reversed domain name to identify the intended purpose. Non-core file types (<code>io.pnut.core.*</code>) are not authenticated by the server; clients should not assume other clients created their file types the same way.</td>
+    </tr>
+    <tr>
+        <td><code>user</code></td>
+        <td>object</td>
+        <td>This is an embedded User object.
+            <p class="text-explanation">In certain cases, this key may be omitted.</p></td>
+    </tr>
+    <tr>
+        <td><code>user_id</code></td>
+        <td>string</td>
+        <td>Primary identifier for the user who created the file.
+            <p class="text-explanation">Only set if the <code>user</code> above is omitted.</p></td>
+    </tr>
+    <tr>
+        <td><code>url</code></td>
+        <td>string</td>
+        <td>Direct link to the file, but with an expiration.
+            <p class="text-explanation">Only set if file is complete.</p></td>
+    </tr>
+    <tr>
+        <td><code>url_expires_at</code></td>
+        <td>string</td>
+        <td>ISO 8601 timestamp of when <code>url</code> will expire; YYYY-MM-DDTHH:MM:SSZ. After expiration, file object will need to be fetched to get a new link (<code>GET /files/{file_id}</code>, this also refreshes any derivative files).
+            <p class="text-explanation">Only set if file is complete.</p></td>
+    </tr>
+    <tr>
+        <td><code>url_short</code></td>
+        <td>string</td>
+        <td>A redirect link to the file.
+            <p class="text-explanation">Only set if <code>is_public</code> and file is complete.</p></td>
     </tr>
     <tr>
         <td><code>upload_parameters</code></td>
@@ -211,97 +395,6 @@
                 </tr>
             </table>
         </td>
-    </tr>
-    <tr>
-        <td><code>derived_files</code></td>
-        <td>object</td>
-        <td>Up to 10 derivative files. The keys can be anything, though keys starting with <code>core_</code> are reserved. Reserved keys are allowed if they match specified parameters. For example:
-            <table>
-                <tr>
-                    <th>Field</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><code>core_image_200s</code></td>
-                    <td>object</td>
-                    <td>
-                        <table>
-                            <tr>
-                                <th>Field</th>
-                                <th>Type</th>
-                                <th>Description</th>
-                            </tr>
-                            <tr>
-                                <td><code>url</code></td>
-                                <td>string</td>
-                                <td>Direct link to the file, but with an expiration.</td>
-                            </tr>
-                            <tr>
-                                <td><code>url_expires_at</code></td>
-                                <td>string</td>
-                                <td>ISO 8601 timestamp of when <code>url</code> will expire; YYYY-MM-DDTHH:MM:SSZ. After expiration, <code>GET /files/{file_id}</code> of the derived file will refresh these as well.</td>
-                            </tr>
-                            <tr>
-                                <td><code>mime_type</code></td>
-                                <td>string</td>
-                                <td>The mime-encoding of the file.</td>
-                            </tr>
-                            <tr>
-                                <td><code>name</code></td>
-                                <td>string</td>
-                                <td>A readable name of the file. Can be used descriptively or not. Up to 255 ASCII characters.</td>
-                            </tr>
-                            <tr>
-                                <td><code>sha256</code></td>
-                                <td>string</td>
-                                <td>sha256 checksum of file.</td>
-                            </tr>
-                            <tr>
-                                <td><code>size</code></td>
-                                <td>integer</td>
-                                <td>Size of the file in bytes.</td>
-                            </tr>
-                            <tr>
-                                <td><code>image_info</code></td>
-                                <td>object</td>
-                                <td>Included if <code>kind: image</code>.
-                                    <table>
-                                        <tr>
-                                            <th>Field</th>
-                                            <th>Type</th>
-                                            <th>Description</th>
-                                        </tr>
-                                        <tr>
-                                            <td><code>height</code></td>
-                                            <td>integer</td>
-                                            <td>Height of the image.</td>
-                                        </tr>
-                                        <tr>
-                                            <td><code>width</code></td>
-                                            <td>integer</td>
-                                            <td>Width of the image.</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td><code>user</code></td>
-        <td>object</td>
-        <td>This is an embedded User object.
-            <p class="text-explanation">In certain cases, this key may be omitted.</p></td>
-    </tr>
-    <tr>
-        <td><code>user_id</code></td>
-        <td>string</td>
-        <td>Primary identifier for the user who created the file.
-            <p class="text-explanation">Only set if the <code>user</code> above is omitted.</p></td>
     </tr>
     <tr>
         <td><code>video_info</code></td>
@@ -338,25 +431,6 @@
                     <td><code>width</code></td>
                     <td>integer</td>
                     <td>Width of the video.</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td><code>raw</code></td>
-        <td>object</td>
-        <td>The raw items attached to this object.
-            <p class="text-explanation">Only set if query parameter specified.</p>
-            <table>
-                <tr>
-                    <th>Field</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td><code>{type name}</code></td>
-                    <td>list of objects</td>
-                    <td>A list of objects of this type.</td>
                 </tr>
             </table>
         </td>

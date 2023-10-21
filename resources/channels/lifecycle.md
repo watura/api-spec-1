@@ -1,15 +1,15 @@
 # Channel Lifecycle
 
-Note that channels will appear "unread" if there is no stream marker for the user+channel, or if the marker's `id` is lower than the most recent message in the channel.
-
-For details on how to use channels for private messaging, look at [How To Private Message](../../how-to/private-messages).
-
 Endpoints:
 
 * [Create a channel](#post-channels)
 * [Update a channel](#put-channels-id)
 * [Change channel owner](#put-channels-id-owner)
 * [Delete a channel](#delete-channels-id)
+
+Note that channels will appear "unread" if there is no stream marker for the user+channel, or if the marker's `id` is lower than the most recent message in the channel.
+
+For details on how to use channels for private messaging, look at [How To Private Message](../../how-to/private-messages).
 
 
 ## <span class="method method-post">POST</span> /channels {#post-channels .endpoint}

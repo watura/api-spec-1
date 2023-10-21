@@ -1,16 +1,16 @@
 # Sticky Messages
 
-"Sticky" messages are like bookmarks for a channel, but they are per-channel, not per-user. They will have `is_sticky: true`. The channel also has an indicator, `channel.has_sticky_messages` that will tell if the channel has sticky messages.
-
-Users with `full` access to a channel are able to sticky and un-sticky messages in the channel.
-
-In Private Message channels (type `io.pnut.core.pm`), anyone can stick and un-sticky messages.
-
 Endpoints:
 
 * [Get sticky messages in a channel](#get-channels-id-sticky_messages)
 * [Sticky a message](#put-channels-id-messages-id-sticky)
 * [Unsticky a message](#delete-channels-id-messages-id-sticky)
+
+"Sticky" messages are like bookmarks for a channel, but they are per-channel, not per-user. They will have `is_sticky: true`. The channel also has an indicator, `channel.has_sticky_messages` that will tell if the channel has sticky messages.
+
+Users with `full` access to a channel are able to sticky and un-sticky messages in the channel.
+
+In Private Message channels (type `io.pnut.core.pm`), anyone can stick and un-sticky messages.
 
 
 ## <span class="method method-get">GET</span> /channels/<span class="call-param">{channel_id}</span>/sticky_messages {#get-channels-id-sticky_messages .endpoint}

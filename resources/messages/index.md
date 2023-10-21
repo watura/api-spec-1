@@ -42,6 +42,12 @@
         <td>The time at which the message was created in ISO 8601 format; YYYY-MM-DDTHH:MM:SSZ.</td>
     </tr>
     <tr>
+        <td><code>deleted_by</code></td>
+        <td>string</td>
+        <td>The ID of the user that deleted the message.
+            <p class="text-explanation">Only set if message was deleted by someone else; messages can be deleted in a channel by anyone who has <code>full</code> access to the channel.</p></td>
+    </tr>
+    <tr>
         <td><code>id</code></td>
         <td>string</td>
         <td>Primary identifier for a message. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed. This id space is unique to Message objects. There can be a Post and Message with the same ID; no relation is implied.</td>

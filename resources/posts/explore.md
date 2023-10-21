@@ -1,11 +1,11 @@
 # Explore Streams
 
-Explore streams are basically pre-built searches with some simple criteria.
-
 Endpoints:
 
 * [Get a list of explore streams](#get-posts-streams-explore)
 * [Get an explore stream](#get-posts-streams-explore-slug)
+
+Explore streams are basically pre-built searches with some simple criteria.
 
 
 ## <span class="method method-get">GET</span> /posts/streams/explore {#get-posts-streams-explore .endpoint}

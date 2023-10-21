@@ -1,5 +1,9 @@
 # User Interactions
 
+Endpoints:
+
+* [Get user interactions](#get-users-me-interactions)
+
 Users may see some common actions that have been made against their self, posts, polls, etcetera. Events from multiple users are grouped into the most recent event of the same type and object, within a short time.
 
 *E.g.*, if two users repost the same post of yours within a day, they may be included in a single event. But further apart, they would be included as separate events.
@@ -13,10 +17,6 @@ Action|Objects
 `poll_response`|Poll
 
 The poll included from a `poll_response` action is static and abbreviated like it is when included embedded in `io.pnut.core.poll` raw. If the poll is anonymous, `users` will not be included.
-
-Endpoints:
-
-* [Get user interactions](#get-users-me-interactions)
 
 
 ## <span class="method method-get">GET</span> /users/me/interactions {#get-users-me-interactions .endpoint}

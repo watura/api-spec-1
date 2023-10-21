@@ -346,6 +346,25 @@ Sent when any user updates their user presence.
     "timestamp": 1534020365,
     "type": "user_presence"
   },
-  "data": "...user presence..."
+  "data": [
+    "...user presence..."
+  ]
+}
+```
+
+### user_channel_presence
+
+Sent when any user authorized for your app updates their user presence in a channel your app has access to.
+
+```json
+{
+  "meta": {
+    "id": "18",
+    "timestamp": 1534020365,
+    "type": "user_channel_presence"
+  },
+  "data": [
+    "...user presence..."
+  ]
 }
 ```

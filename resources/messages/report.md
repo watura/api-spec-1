@@ -1,15 +1,15 @@
 # Report
 
+Endpoints:
+
+* [Report a message](#post-channels-id-messages-id-report)
+
 The current reasons that will be honored for reporting are:
 
 * `account_type`: posting in a behavior counter to the purposes of [account types](https://pnut.io/about/account-types)
 * `nsfw`: unflagged mature material according to [the community guidelines](https://pnut.io/about/mature-content)
 * `soliciting`: unwelcome soliciting
 * `user_abuse`: use of the API or network to abuse another user
-
-Endpoints:
-
-* [Report a message](#post-channels-id-messages-id-report)
 
 
 ## <span class="method method-post">POST</span> /channels/<span class="call-param">{channel_id}</span>/messages/<span class="call-param">{message_id}</span>/report {#post-channels-id-messages-id-report .endpoint}

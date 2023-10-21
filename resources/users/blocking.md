@@ -1,12 +1,12 @@
 # User Blocking
 
-Blocking a user prevents the blocked user and the blocking user from seeing each other on the network except in a few necessary places.
-
 Endpoints:
 
 * [Get blocked users](#get-users-id-blocked)
 * [Block a user](#put-users-id-block)
 * [Unblock a user](#delete-users-id-block)
+
+Blocking a user prevents the blocked user and the blocking user from seeing each other on the network except in a few necessary places.
 
 
 ## <span class="method method-get">GET</span> /users/<span class="call-param">{user_id}</span>/blocked {#get-users-id-blocked .endpoint}

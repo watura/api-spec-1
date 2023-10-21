@@ -1,12 +1,12 @@
 # Channel Muting
 
-Muting a channel prevents other users from being able to auto-subscribe you to that channel.
-
 Endpoints:
 
 * [Get the authenticated user's muted channels](#get-users-me-channels-muted)
 * [Mute a channel](#put-channels-id-mute)
 * [Unmute a channel](#delete-channels-id-mute)
+
+Muting a channel prevents other users from being able to auto-subscribe you to that channel.
 
 
 ## <span class="method method-get">GET</span> /users/me/channels/muted {#get-users-me-channels-muted .endpoint}
