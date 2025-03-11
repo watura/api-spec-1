@@ -1,0 +1,188 @@
+paths:
+  /channels/{channel_id}/messages:
+    post:
+      summary: Create a message
+      description: Create a message in a channel. On creation, you can automatically update the stream marker to the most recent ID in the channel (marking the channel "read") by including update_marker=1 in the query string.
+      operationId: createMessage
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to create a message in
+          schema:
+            type: string
+        - name: update_marker
+          in: query
+          required: false
+          description: If set to 1, will update the stream marker to the most recent ID in the channel
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  maxLength: 2048
+                  description: 2048 character-limited string
+                reply_to:
+                  type: string
+                  description: ID of another message to reply to
+                is_nsfw:
+                  type: boolean
+                  description: Boolean whether the message should be marked as "NSFW" (Not Safe For Work/mature/offensive)
+                entities:
+                  type: object
+                  properties:
+                    parse_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the links should be parsed by the server
+                    parse_markdown_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the markdown links should be parsed by the server
+                raw:
+                  type: object
+                  description: Embedded raw values
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '201':
+          description: The message created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+                  data:
+                    $ref: 'index.yml#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /channels/{channel_id}/messages/{message_id}:
+    delete:
+      summary: Delete a message
+      description: Delete a message in a channel. Creators of messages can delete their messages even if they no longer have access to the channel. Channel creators and full-access users may also delete others' messages in non-private message channels, which will also create a deleted_by field on those deleted messages.
+      operationId: deleteMessage
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to delete a message from
+          schema:
+            type: string
+        - name: message_id
+          in: path
+          required: true
+          description: ID of the message to delete
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: The deleted message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  responses:
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  error_message:
+                    type: string
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    Forbidden:
+      description: The authenticated user doesn't have permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

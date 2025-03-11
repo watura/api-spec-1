@@ -1,0 +1,153 @@
+components:
+  schemas:
+    # Badge schemas
+    Badge:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the badge
+        name:
+          type: string
+          description: Name of the badge
+        description:
+          type: string
+          description: Description of the badge
+    
+    UserBadge:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Badge'
+        - type: object
+          properties:
+            awarded_at:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp when the badge was awarded to the user
+
+paths:
+  /badges/{badge_id}:
+    get:
+      summary: Get a badge
+      description: Retrieve a badge object
+      operationId: getBadge
+      parameters:
+        - name: badge_id
+          in: path
+          required: true
+          description: ID of the badge to retrieve
+          schema:
+            type: string
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: The badge object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/Badge'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /badges:
+    get:
+      summary: Get all badges
+      description: Retrieve a list of all badges. It is not paginated.
+      operationId: getAllBadges
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of badges
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Badge'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /users/me/badges:
+    get:
+      summary: Get the authenticated user's badges
+      description: Retrieve a list of all badges for the authenticated user. It is not paginated.
+      operationId: getUserBadges
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of badges in order of most recently awarded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserBadge'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  responses:
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

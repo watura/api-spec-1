@@ -1,0 +1,188 @@
+paths:
+  /channels/{channel_id}/presence:
+    get:
+      summary: Get users present in a channel
+      description: Retrieve all users' presence statuses that are not "offline"
+      operationId: getChannelPresence
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to get presence for
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: A list of users' presences
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserPresence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/{user_id}/presence/channels/{channel_id}:
+    get:
+      summary: Get a single user's presence in a channel
+      description: Retrieve a user's presence in a channel. If the user has never set a presence, last_seen_at will not be set.
+      operationId: getUserChannelPresence
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to retrieve
+          schema:
+            type: string
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to check within
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: A user's current presence
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/UserPresence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/me/presence/channels/{channel_id}:
+    put:
+      summary: Update the authenticated user's presence in a channel
+      description: Update a user's presence in a channel
+      operationId: updateUserChannelPresence
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to update presence in
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                presence:
+                  type: string
+                  maxLength: 100
+                  description: A string up to 100 unicode characters. If not set, or if it is set to "1", it will be updated to "online". A value of "offline" or "0" will delete the user's presence.
+                expiration:
+                  type: integer
+                  format: int64
+                  description: Unix timestamp for when the given presence should expire. Default is 15 minutes into the future. If set too far into the future, will set to the maximum of 7 days. If set to a past timestamp, will delete the user's presence.
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: The updated user presence
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/UserPresence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  schemas:
+    UserPresence:
+      type: object
+      properties:
+        avatar_image:
+          type: string
+          description: URL to the user's avatar image
+        id:
+          type: string
+          description: The user's ID
+        last_seen_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when the user was last seen (optional)
+        name:
+          type: string
+          description: The user's display name (optional)
+        presence:
+          type: string
+          description: The user's presence status
+        username:
+          type: string
+          description: The user's username
+  
+  responses:
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

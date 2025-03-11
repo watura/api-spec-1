@@ -1,0 +1,80 @@
+paths:
+  /posts/{post_id}/thread:
+    get:
+      summary: Get posts in a thread
+      description: |
+        Retrieve posts within a thread. Threads are separated by what root post all posts below it have replied to.
+        
+        Post thread is determined by the post that is not a reply. A reply to a reply will not create a new "thread" in the API.
+      operationId: getPostThread
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to retrieve the thread for
+          schema:
+            type: string
+        # Pagination parameters
+        - name: before_id
+          in: query
+          description: Return posts created before the specified ID
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Return posts created after the specified ID
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of posts to return
+          schema:
+            type: integer
+            default: 20
+            maximum: 40
+        # General parameters
+        - $ref: 'index.yml#/components/parameters/include_deleted'
+        - $ref: 'index.yml#/components/parameters/include_client'
+        - $ref: 'index.yml#/components/parameters/include_counts'
+        - $ref: 'index.yml#/components/parameters/include_html'
+        - $ref: 'index.yml#/components/parameters/include_post_html'
+        - $ref: 'index.yml#/components/parameters/include_bookmarked_by'
+        - $ref: 'index.yml#/components/parameters/include_reposted_by'
+        - $ref: 'index.yml#/components/parameters/include_directed_posts'
+        - $ref: 'index.yml#/components/parameters/include_mention_posts'
+        - $ref: 'index.yml#/components/parameters/include_replies'
+        - $ref: 'index.yml#/components/parameters/include_muted'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_post_raw'
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: The thread posts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Indicates if more results are available
+                      max_id:
+                        type: string
+                        description: The maximum ID in the result set
+                      min_id:
+                        type: string
+                        description: The minimum ID in the result set
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Post'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'

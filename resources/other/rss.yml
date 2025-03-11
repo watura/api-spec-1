@@ -1,0 +1,185 @@
+paths:
+  /feed/rss/posts/tags/{tag}:
+    get:
+      summary: Tagged posts RSS feed
+      description: The API exposes tagged posts as RSS
+      operationId: getTaggedPostsRSS
+      parameters:
+        - name: tag
+          in: path
+          required: true
+          description: Tag to retrieve posts for
+          schema:
+            type: string
+        - name: uri_template
+          in: query
+          description: |
+            Template URI for links in the RSS feed.
+            Available replacements: {post_id}, {channel_id}, {message_id}, {username}, {user_id}
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: RSS feed of tagged posts
+          content:
+            application/rss+xml:
+              schema:
+                type: string
+        '404':
+          description: Tag not found
+          content:
+            application/xml:
+              schema:
+                type: string
+
+  /feed/rss/users/{user_id}/posts:
+    get:
+      summary: User posts RSS feed
+      description: A user's posts are exposed as RSS
+      operationId: getUserPostsRSS
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to retrieve posts for
+          schema:
+            type: string
+        - name: uri_template
+          in: query
+          description: |
+            Template URI for links in the RSS feed.
+            Available replacements: {post_id}, {channel_id}, {message_id}, {username}, {user_id}
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: RSS feed of user posts
+          content:
+            application/rss+xml:
+              schema:
+                type: string
+        '404':
+          description: User not found
+          content:
+            application/xml:
+              schema:
+                type: string
+
+  /feed/rss/posts/search:
+    get:
+      summary: Post search RSS feed
+      description: Post search results are exposed as RSS
+      operationId: getPostSearchRSS
+      parameters:
+        - name: q
+          in: query
+          description: Search query
+          schema:
+            type: string
+        - name: uri_template
+          in: query
+          description: |
+            Template URI for links in the RSS feed.
+            Available replacements: {post_id}, {channel_id}, {message_id}, {username}, {user_id}
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: RSS feed of post search results
+          content:
+            application/rss+xml:
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/xml:
+              schema:
+                type: string
+
+  /feed/rss/channels/{channel_id}/messages:
+    get:
+      summary: Channel messages RSS feed
+      description: Messages are exposed as RSS. Note that ?access_token={token} will have to be appended to non-public channels.
+      operationId: getChannelMessagesRSS
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to retrieve messages for
+          schema:
+            type: string
+        - name: access_token
+          in: query
+          description: Access token for non-public channels
+          schema:
+            type: string
+        - name: uri_template
+          in: query
+          description: |
+            Template URI for links in the RSS feed.
+            Available replacements: {post_id}, {channel_id}, {message_id}, {username}, {user_id}
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: RSS feed of channel messages
+          content:
+            application/rss+xml:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/xml:
+              schema:
+                type: string
+        '404':
+          description: Channel not found
+          content:
+            application/xml:
+              schema:
+                type: string
+
+  /feed/rss/channels/search:
+    get:
+      summary: Channel search RSS feed
+      description: Channel search results are exposed as RSS
+      operationId: getChannelSearchRSS
+      parameters:
+        - name: q
+          in: query
+          description: Search query
+          schema:
+            type: string
+        - name: uri_template
+          in: query
+          description: |
+            Template URI for links in the RSS feed.
+            Available replacements: {post_id}, {channel_id}, {message_id}, {username}, {user_id}
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: RSS feed of channel search results
+          content:
+            application/rss+xml:
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            application/xml:
+              schema:
+                type: string
+
+components:
+  schemas:
+    RSSFeed:
+      type: string
+      description: RSS feed in XML format

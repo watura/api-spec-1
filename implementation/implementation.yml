@@ -1,0 +1,253 @@
+components:
+  parameters:
+    # Pagination parameters
+    since_id:
+      name: since_id
+      in: query
+      description: Only return objects with IDs higher than this ID
+      schema:
+        type: string
+    before_id:
+      name: before_id
+      in: query
+      description: Only return objects with IDs lower than this ID
+      schema:
+        type: string
+    count:
+      name: count
+      in: query
+      description: Number of objects to return (1-200 for newest, -200 to -1 for oldest)
+      schema:
+        type: integer
+        minimum: -200
+        maximum: 200
+        default: 20
+        
+  schemas:
+    # Common response envelope
+    ResponseEnvelope:
+      type: object
+      required:
+        - meta
+      properties:
+        data:
+          description: The actual response data, may be an object or array of objects
+          oneOf:
+            - type: object
+            - type: array
+            - type: string
+        meta:
+          type: object
+          required:
+            - code
+          properties:
+            code:
+              type: integer
+              description: HTTP status code
+            more:
+              type: boolean
+              description: Whether there are more objects available
+            max_id:
+              type: string
+              description: Highest object ID in the current response
+            min_id:
+              type: string
+              description: Lowest object ID in the current response
+            marker:
+              $ref: '#/components/schemas/StreamMarker'
+    
+    # Stream marker schema
+    StreamMarker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the marker
+        last_read_id:
+          type: string
+          description: ID of the last read item
+        percentage:
+          type: string
+          description: Percentage of items read
+        updated_at:
+          type: string
+          format: date-time
+          description: When the marker was last updated
+        version:
+          type: string
+          description: Version identifier for the marker
+        name:
+          type: string
+          description: Name of the stream
+    
+    # Content object with entities
+    ContentObject:
+      type: object
+      properties:
+        text:
+          type: string
+          description: Plain text content
+        html:
+          type: string
+          description: HTML rendered version of the content
+        entities:
+          type: object
+          properties:
+            links:
+              type: array
+              items:
+                $ref: '#/components/schemas/LinkEntity'
+            mentions:
+              type: array
+              items:
+                $ref: '#/components/schemas/MentionEntity'
+            tags:
+              type: array
+              items:
+                $ref: '#/components/schemas/TagEntity'
+    
+    # Link entity schema
+    LinkEntity:
+      type: object
+      required:
+        - len
+        - pos
+        - text
+        - url
+      properties:
+        len:
+          type: integer
+          description: Length of the text
+        pos:
+          type: integer
+          description: Position of text within the string
+        text:
+          type: string
+          description: The anchor text
+        url:
+          type: string
+          description: The URL with protocol
+        title:
+          type: string
+          description: The title of the URL (only on markdown links with titles)
+        amended_len:
+          type: integer
+          description: The length of the text with the link's domain appended in brackets (only on markdown links)
+    
+    # Mention entity schema
+    MentionEntity:
+      type: object
+      required:
+        - id
+        - len
+        - pos
+        - text
+      properties:
+        id:
+          type: string
+          description: User ID
+        len:
+          type: integer
+          description: Length of the mention
+        pos:
+          type: integer
+          description: Position of the mention within the string
+        text:
+          type: string
+          description: Username without the @ symbol
+        is_leading:
+          type: boolean
+          description: If the mention comes before any other text in the string
+        is_copy:
+          type: boolean
+          description: If the mention comes immediately after a Forward Slash (/) or another mention that does
+    
+    # Tag entity schema
+    TagEntity:
+      type: object
+      required:
+        - len
+        - pos
+        - text
+      properties:
+        len:
+          type: integer
+          description: Length of the tag
+        pos:
+          type: integer
+          description: Position of the tag within the string
+        text:
+          type: string
+          description: The tag without the hash symbol (#)
+    
+    # Error response schema
+    ErrorResponse:
+      type: object
+      required:
+        - meta
+      properties:
+        meta:
+          type: object
+          required:
+            - code
+            - error_message
+          properties:
+            code:
+              type: integer
+              description: HTTP status code
+            error_message:
+              type: string
+              description: Description of the error
+            error_id:
+              type: string
+              description: Uniquely-identifying error ID for support
+
+  responses:
+    # Standard error responses
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: The authenticated user doesn't have permission
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: Rate limit exceeded
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Number of seconds to wait before retrying
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: An unexpected server error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InsufficientStorage:
+      description: User has hit a quota limit
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

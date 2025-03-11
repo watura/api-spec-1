@@ -1,0 +1,563 @@
+components:
+  schemas:
+    # User Stream schemas
+    UserStream:
+      type: object
+      properties:
+        endpoint:
+          type: string
+          description: WebSocket endpoint for the user stream
+          example: "wss://stream.pnut.io/v1/user"
+
+    UserStreamConnection:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            stream:
+              $ref: '#/components/schemas/UserStream'
+            connection_id:
+              type: string
+              description: Unique identifier for the connection
+              example: "5AjC6sMJrR2VueG3lHmiDTTECjzMr68i"
+
+    UserStreamSubscription:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            more:
+              type: boolean
+              description: Whether there are more objects available
+            max_id:
+              type: string
+              description: Highest object ID in the current response
+            min_id:
+              type: string
+              description: Lowest object ID in the current response
+            subscription_id:
+              type: string
+              description: Unique identifier for the subscription
+              example: "So2e3-W76iI8nuX1UWDer_RpzVYPhxDS"
+            code:
+              type: integer
+              description: HTTP status code
+              example: 200
+          required:
+            - subscription_id
+            - code
+        data:
+          type: array
+          description: The data from the subscribed endpoint
+          items:
+            type: object
+
+    UserStreamMessage:
+      type: object
+      properties:
+        meta:
+          type: object
+          required:
+            - timestamp
+            - id
+            - subscription_ids
+          properties:
+            timestamp:
+              type: integer
+              description: Unix timestamp of the event
+            id:
+              type: string
+              description: ID of the object
+            subscription_ids:
+              type: array
+              description: IDs of subscriptions receiving this message
+              items:
+                type: string
+            is_deleted:
+              type: boolean
+              description: Whether the object is being deleted
+            revision:
+              type: integer
+              description: Revision number for posts
+            channel_type:
+              type: string
+              description: Type of channel for messages
+            channel_name:
+              type: string
+              description: Name of channel if it's a chat room
+        data:
+          description: The actual object data
+          oneOf:
+            - type: object
+            - type: array
+            - type: string
+
+paths:
+  /users/me/posts:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - name: include_raw
+        in: query
+        description: Include raw content in the response
+        schema:
+          type: boolean
+      - name: include_post_raw
+        in: query
+        description: Include raw content for posts in the response
+        schema:
+          type: boolean
+      - name: include_user_raw
+        in: query
+        description: Include raw content for users in the response
+        schema:
+          type: boolean
+      - name: include_file_raw
+        in: query
+        description: Include raw content for files in the response
+        schema:
+          type: boolean
+      - name: include_channel_raw
+        in: query
+        description: Include raw content for channels in the response
+        schema:
+          type: boolean
+      - name: include_message_raw
+        in: query
+        description: Include raw content for messages in the response
+        schema:
+          type: boolean
+      - name: include_bookmarked_by
+        in: query
+        description: Include users who bookmarked the post
+        schema:
+          type: boolean
+      - name: include_reposted_by
+        in: query
+        description: Include users who reposted the post
+        schema:
+          type: boolean
+      - name: include_marker
+        in: query
+        description: Include stream marker information
+        schema:
+          type: boolean
+      - name: include_recent_message
+        in: query
+        description: Include recent messages
+        schema:
+          type: boolean
+      - name: include_html
+        in: query
+        description: Include HTML formatted content
+        schema:
+          type: boolean
+      - name: include_deleted
+        in: query
+        description: Include deleted posts
+        schema:
+          type: boolean
+      - name: include_directed_posts
+        in: query
+        description: Include directed posts
+        schema:
+          type: boolean
+    get:
+      summary: Subscribe to user's posts
+      description: Subscribe to updates for the authenticated user's posts
+      operationId: subscribeToUserPosts
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /users/me/mentions:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/1'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/2'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/4'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/5'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/6'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/7'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/8'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/9'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/10'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/11'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/12'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/13'
+    get:
+      summary: Subscribe to user's mentions
+      description: Subscribe to updates for the authenticated user's mentions
+      operationId: subscribeToUserMentions
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /posts/{post_id}/thread:
+    parameters:
+      - name: post_id
+        in: path
+        required: true
+        description: ID of the post to subscribe to thread updates
+        schema:
+          type: string
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/1'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/2'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/4'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/5'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/6'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/7'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/8'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/9'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/10'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/11'
+    get:
+      summary: Subscribe to a post thread
+      description: Subscribe to updates for a specific post thread
+      operationId: subscribeToPostThread
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /posts/streams/me:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/1'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/2'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/4'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/5'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/6'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/7'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/8'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/9'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/10'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/11'
+    get:
+      summary: Subscribe to user's personal stream
+      description: Subscribe to updates for the authenticated user's personal stream
+      operationId: subscribeToPersonalStream
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /posts/streams/unified:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/1'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/2'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/4'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/5'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/6'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/7'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/8'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/9'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/10'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/11'
+    get:
+      summary: Subscribe to user's unified stream
+      description: Subscribe to updates for the authenticated user's unified stream
+      operationId: subscribeToUnifiedStream
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /users/me/following:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+    get:
+      summary: Subscribe to user's following list
+      description: Subscribe to updates for the authenticated user's following list
+      operationId: subscribeToFollowing
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /users/me/followers:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+    get:
+      summary: Subscribe to user's followers list
+      description: Subscribe to updates for the authenticated user's followers list
+      operationId: subscribeToFollowers
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /channels/{channel_id}/messages:
+    parameters:
+      - name: channel_id
+        in: path
+        required: true
+        description: ID of the channel to subscribe to message updates
+        schema:
+          type: string
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/1'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/5'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/6'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/9'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/10'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/11'
+      - name: include_read
+        in: query
+        description: Include read messages
+        schema:
+          type: boolean
+      - name: include_muted
+        in: query
+        description: Include muted messages
+        schema:
+          type: boolean
+      - name: include_deleted
+        in: query
+        description: Include deleted messages
+        schema:
+          type: boolean
+    get:
+      summary: Subscribe to channel messages
+      description: Subscribe to updates for messages in a specific channel
+      operationId: subscribeToChannelMessages
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /channels:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/5'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/10'
+      - name: channel_types
+        in: query
+        description: Types of channels to include
+        schema:
+          type: string
+    get:
+      summary: Subscribe to channels
+      description: Subscribe to updates for channels the user is subscribed to
+      operationId: subscribeToChannels
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /channels/{channel_id}/subscribers:
+    parameters:
+      - name: channel_id
+        in: path
+        required: true
+        description: ID of the channel to subscribe to subscriber updates
+        schema:
+          type: string
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/3'
+      - $ref: '#/paths/~1users~1me~1posts/parameters/5'
+    get:
+      summary: Subscribe to channel subscribers
+      description: Subscribe to updates for subscribers in a specific channel
+      operationId: subscribeToChannelSubscribers
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /channels/{channel_id}/presence:
+    parameters:
+      - name: channel_id
+        in: path
+        required: true
+        description: ID of the channel to subscribe to presence updates
+        schema:
+          type: string
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - name: include_not_followed
+        in: query
+        description: Include presence updates from users not followed
+        schema:
+          type: boolean
+    get:
+      summary: Subscribe to channel presence
+      description: Subscribe to presence updates in a specific channel
+      operationId: subscribeToChannelPresence
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /users/me/files:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - $ref: '#/paths/~1users~1me~1posts/parameters/4'
+      - name: include_incomplete
+        in: query
+        description: Include incomplete files
+        schema:
+          type: boolean
+      - name: include_private
+        in: query
+        description: Include private files
+        schema:
+          type: boolean
+      - name: file_types
+        in: query
+        description: Types of files to include
+        schema:
+          type: string
+    get:
+      summary: Subscribe to user's files
+      description: Subscribe to updates for the authenticated user's files
+      operationId: subscribeToUserFiles
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'
+
+  /presence:
+    parameters:
+      - name: connection_id
+        in: query
+        description: User stream connection ID to subscribe with
+        schema:
+          type: string
+      - name: include_not_followed
+        in: query
+        description: Include presence updates from users not followed
+        schema:
+          type: boolean
+    get:
+      summary: Subscribe to user presence
+      description: Subscribe to presence updates for followed users
+      operationId: subscribeToUserPresence
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Subscription created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserStreamSubscription'

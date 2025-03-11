@@ -1,0 +1,197 @@
+components:
+  schemas:
+    # Client schemas
+    ClientCompact:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the client
+        name:
+          type: string
+          description: Name of the client
+        url:
+          type: string
+          format: uri
+          description: URL of the client's website
+    
+    Client:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the client was created
+        user:
+          type: object
+          description: User object of the client's creator
+        id:
+          type: string
+          description: Unique identifier for the client
+        url:
+          type: string
+          format: uri
+          description: URL of the client's website
+        logo_image:
+          type: string
+          format: uri
+          description: URL of the client's logo image
+        name:
+          type: string
+          description: Name of the client
+        posts:
+          type: integer
+          description: Number of posts created with this client
+        content:
+          type: object
+          properties:
+            text:
+              type: string
+              description: Plain text description of the client
+            html:
+              type: string
+              description: HTML-formatted description of the client
+            entities:
+              type: object
+              properties:
+                links:
+                  type: array
+                  items:
+                    type: object
+                mentions:
+                  type: array
+                  items:
+                    type: object
+                tags:
+                  type: array
+                  items:
+                    type: object
+
+paths:
+  /users/{user_id}/clients:
+    get:
+      summary: Get a user's clients
+      description: Retrieve a list of active clients created by a user
+      operationId: getUserClients
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to list clients from
+          schema:
+            type: string
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of clients
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ClientCompact'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string
+  
+  /clients/{client_id}:
+    get:
+      summary: Get a client
+      description: Retrieve details on a public client, by client ID
+      operationId: getClient
+      parameters:
+        - name: client_id
+          in: path
+          required: true
+          description: ID of the client to retrieve
+          schema:
+            type: string
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: The detailed client object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/Client'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+        '404':
+          description: Client not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string

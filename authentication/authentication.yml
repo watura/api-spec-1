@@ -1,0 +1,167 @@
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.pnut.io/v1/oauth/authenticate
+          tokenUrl: https://api.pnut.io/v1/oauth/access_token
+          scopes:
+            basic: Basic access to account information
+            email: Access to view the account email address
+            write_post: Create and edit posts
+            follow: Follow and unfollow users
+            update_profile: Update profile information
+            presence: Access to user presence information
+            messages: Access to private messages
+            files: Access to file management
+    AppToken:
+      type: apiKey
+      description: App access token for application-only authentication
+      name: Authorization
+      in: header
+    UserToken:
+      type: apiKey
+      description: User access token for user-specific operations
+      name: Authorization
+      in: header
+    
+security:
+  - OAuth2: []
+  - AppToken: []
+  - UserToken: []
+
+paths:
+  /oauth/authenticate:
+    get:
+      summary: Authenticate a user
+      description: Redirects the user to the pnut.io authentication page
+      operationId: authenticateUser
+      parameters:
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The client ID of your application
+        - name: redirect_uri
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The URL to redirect to after authentication
+        - name: scope
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Space-separated list of scopes
+        - name: response_type
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [code]
+          description: The response type, must be 'code'
+      responses:
+        '302':
+          description: Redirect to authentication page
+  
+  /oauth/access_token:
+    post:
+      summary: Exchange authorization code for access token
+      description: Exchange the authorization code for an access token
+      operationId: getAccessToken
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+                - client_id
+                - client_secret
+                - code
+                - redirect_uri
+                - grant_type
+              properties:
+                client_id:
+                  type: string
+                  description: The client ID of your application
+                client_secret:
+                  type: string
+                  description: The client secret of your application
+                code:
+                  type: string
+                  description: The authorization code received from the /oauth/authenticate endpoint
+                redirect_uri:
+                  type: string
+                  description: The redirect URI used in the authentication request
+                grant_type:
+                  type: string
+                  enum: [authorization_code]
+                  description: The grant type, must be 'authorization_code'
+      responses:
+        '200':
+          description: Access token response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: The access token
+                  token_type:
+                    type: string
+                    enum: [Bearer]
+                    description: The token type
+                  scope:
+                    type: string
+                    description: Space-separated list of granted scopes
+                  user:
+                    type: object
+                    description: User information
+                    properties:
+                      id:
+                        type: string
+                        description: User ID
+                      username:
+                        type: string
+                        description: Username
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+
+  /token:
+    get:
+      summary: Get token information
+      description: Get information about the current token
+      operationId: getTokenInfo
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: Token information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  app:
+                    type: object
+                    description: App information
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+                    description: List of granted scopes
+                  user:
+                    type: object
+                    description: User information if token is a user token
+        '401':
+          description: Unauthorized

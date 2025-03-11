@@ -1,0 +1,159 @@
+paths:
+  /oembed:
+    get:
+      summary: oEmbed
+      description: |
+        Pnut has basic oEmbed support.
+        The only format supported is JSON.
+      operationId: getOEmbed
+      parameters:
+        - name: url
+          in: query
+          required: true
+          description: The URL to retrieve oEmbed data for
+          schema:
+            type: string
+            format: uri
+        - name: format
+          in: query
+          description: The format to return (only JSON is supported)
+          schema:
+            type: string
+            enum: [json]
+            default: json
+      responses:
+        '200':
+          description: oEmbed data for the requested URL
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    description: The resource type
+                    enum: [rich, photo, video, link]
+                  version:
+                    type: string
+                    description: The oEmbed version number
+                  title:
+                    type: string
+                    description: The title of the resource
+                  author_name:
+                    type: string
+                    description: The name of the author/owner
+                  author_url:
+                    type: string
+                    description: The URL of the author/owner
+                  provider_name:
+                    type: string
+                    description: The name of the provider
+                  provider_url:
+                    type: string
+                    description: The URL of the provider
+                  cache_age:
+                    type: integer
+                    description: The suggested cache lifetime in seconds
+                  thumbnail_url:
+                    type: string
+                    description: The URL of a thumbnail image
+                  thumbnail_width:
+                    type: integer
+                    description: The width of the thumbnail
+                  thumbnail_height:
+                    type: integer
+                    description: The height of the thumbnail
+                  url:
+                    type: string
+                    description: The URL of the resource
+                  html:
+                    type: string
+                    description: The HTML required to embed the resource
+                  width:
+                    type: integer
+                    description: The width of the embedded resource
+                  height:
+                    type: integer
+                    description: The height of the embedded resource
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string
+
+components:
+  schemas:
+    OEmbedResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The resource type
+          enum: [rich, photo, video, link]
+        version:
+          type: string
+          description: The oEmbed version number
+        title:
+          type: string
+          description: The title of the resource
+        author_name:
+          type: string
+          description: The name of the author/owner
+        author_url:
+          type: string
+          description: The URL of the author/owner
+        provider_name:
+          type: string
+          description: The name of the provider
+        provider_url:
+          type: string
+          description: The URL of the provider
+        cache_age:
+          type: integer
+          description: The suggested cache lifetime in seconds
+        thumbnail_url:
+          type: string
+          description: The URL of a thumbnail image
+        thumbnail_width:
+          type: integer
+          description: The width of the thumbnail
+        thumbnail_height:
+          type: integer
+          description: The height of the thumbnail
+        url:
+          type: string
+          description: The URL of the resource
+        html:
+          type: string
+          description: The HTML required to embed the resource
+        width:
+          type: integer
+          description: The width of the embedded resource
+        height:
+          type: integer
+          description: The height of the embedded resource

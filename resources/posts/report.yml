@@ -1,0 +1,58 @@
+paths:
+  /posts/{post_id}/report:
+    post:
+      summary: Report a post
+      description: |
+        Report a post for abuse.
+        
+        These are the current reasons that will be honored for reporting:
+        
+        * account_type: posting in a behavior counter to the purposes of account types
+        * nsfw: unflagged mature material according to the community guidelines
+        * soliciting: unwelcome soliciting
+        * user_abuse: use of the API or network to abuse another user
+        
+        To test this endpoint, report a post by user @testuser.
+      operationId: reportPost
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to report
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - reason
+              properties:
+                reason:
+                  type: string
+                  enum: [account_type, nsfw, soliciting, user_abuse]
+                  description: The reason for reporting the post
+      security:
+        - UserToken: []
+      responses:
+        '201':
+          description: The report was successfully submitted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+        '400':
+          $ref: 'lifecycle.yml#/components/responses/BadRequest'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'

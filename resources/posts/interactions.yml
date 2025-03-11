@@ -1,0 +1,98 @@
+paths:
+  /posts/{post_id}/interactions:
+    get:
+      summary: Get interactions made against a post
+      description: |
+        Retrieve actions executed against a post.
+        
+        This endpoint mirrors User Interactions, but for a single post, instead of a user, 
+        and it does not include objects.
+      operationId: getPostInteractions
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to retrieve actions for
+          schema:
+            type: string
+        - name: filters
+          in: query
+          description: |
+            Comma-separated list of actions to filter by. 
+            Allowed - bookmark, repost, reply.
+          schema:
+            type: string
+        - name: exclude
+          in: query
+          description: |
+            Comma-separated list of actions to exclude. ?exclude=bookmark will return all actions except bookmarks. 
+            If filters is also specified, this is ignored.
+          schema:
+            type: string
+        # Pagination parameters
+        - name: before_id
+          in: query
+          description: Return interactions created before the specified ID
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Return interactions created after the specified ID
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of interactions to return
+          schema:
+            type: integer
+            default: 20
+            maximum: 40
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: The post interactions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Indicates if more results are available
+                      max_id:
+                        type: string
+                        description: The maximum ID in the result set
+                      min_id:
+                        type: string
+                        description: The minimum ID in the result set
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        pagination_id:
+                          type: string
+                          description: ID for pagination purposes
+                        event_date:
+                          type: string
+                          format: date-time
+                          description: ISO 8601 formatted date when the interaction occurred
+                        action:
+                          type: string
+                          enum: [bookmark, repost, reply]
+                          description: Type of interaction
+                        users:
+                          type: array
+                          description: Users who performed this interaction
+                          items:
+                            $ref: '../users/users.yml#/components/schemas/User'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'

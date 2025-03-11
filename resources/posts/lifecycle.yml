@@ -1,0 +1,256 @@
+paths:
+  /posts:
+    post:
+      summary: Create a post
+      description: |
+        Create a post.
+        
+        On creation, you can automatically update the "personal" stream marker to the post's ID by including update_marker=1 in the query string.
+        
+        Posts from the same human- or feed-type user cannot contain the same text within 120 seconds.
+      operationId: createPost
+      parameters:
+        - name: update_marker
+          in: query
+          description: Automatically update the "personal" stream marker to the post's ID
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  maxLength: 256
+                  description: 256 character-limited string
+                entities:
+                  type: object
+                  properties:
+                    parse_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the links should be parsed by the server
+                    parse_markdown_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the markdown links should be parsed by the server
+                is_nsfw:
+                  type: boolean
+                  description: Boolean whether the post should be marked as "NSFW" (Not Safe For Work/mature/offensive)
+                raw:
+                  type: object
+                  description: Embedded raw values
+                reply_to:
+                  type: string
+                  description: ID of another post to reply to
+      security:
+        - UserToken: 
+          - write_post
+      responses:
+        '201':
+          description: The created post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /posts/{post_id}:
+    put:
+      summary: Revise a post
+      description: |
+        Edit or "revise" a post.
+        
+        * Can only be done within 300 seconds of the original post's creation
+        * Can only be done once to a post
+        * Must contain the same entities that were in the original post (Positions can change. Links can be formatted in any way, but the URLs have to be the same)
+        
+        Once a revision has been made, the original post can still be retrieved from the Revisions endpoint.
+        
+        Reposts made before the revision will continue to point at the original post.
+      operationId: revisePost
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to revise
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  maxLength: 256
+                  description: 256 character-limited string
+                entities:
+                  type: object
+                  properties:
+                    parse_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the links should be parsed by the server
+                    parse_markdown_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the markdown links should be parsed by the server
+                is_nsfw:
+                  type: boolean
+                  description: Boolean whether the post should be marked as "NSFW" (Not Safe For Work/mature/offensive)
+                raw:
+                  type: object
+                  description: Embedded raw values
+      security:
+        - UserToken: 
+          - write_post
+      responses:
+        '201':
+          description: The revised post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    
+    delete:
+      summary: Delete a post
+      description: Delete a post
+      operationId: deletePost
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to delete
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - write_post
+      responses:
+        '200':
+          description: The deleted post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  responses:
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  error_message:
+                    type: string
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    Forbidden:
+      description: The authenticated user doesn't have permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

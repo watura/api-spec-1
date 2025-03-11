@@ -1,0 +1,222 @@
+paths:
+  /polls/{poll_id}:
+    get:
+      summary: Get a poll
+      description: Retrieve a poll object
+      operationId: getPoll
+      parameters:
+        - name: poll_id
+          in: path
+          required: true
+          description: ID of the requested poll
+          schema:
+            type: string
+        - name: poll_token
+          in: query
+          description: Required on private polls when you don't know or aren't guaranteed access
+          schema:
+            type: string
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_poll_raw'
+      security:
+        - UserToken:
+          - polls
+      responses:
+        '200':
+          description: The requested poll details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Poll'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'
+
+  /polls:
+    get:
+      summary: Get multiple polls
+      description: |
+        Retrieve a list of specified poll objects. Only returns the first 100 found.
+        
+        If the polls need a poll_token to access, you may include them with query parameters in the pattern 
+        ?poll_token_{poll_id}=xxx&poll_token_{poll_id}=xxx.
+      operationId: getPolls
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of poll IDs
+          schema:
+            type: string
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_poll_raw'
+      security:
+        - UserToken:
+          - polls
+      responses:
+        '200':
+          description: A list of polls
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Poll'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'
+
+  /users/me/polls:
+    get:
+      summary: Get the authenticated user's polls
+      description: Retrieve a list of polls created by the authenticated user
+      operationId: getUserPolls
+      parameters:
+        - $ref: 'index.yml#/components/parameters/include_closed'
+        - $ref: 'index.yml#/components/parameters/include_private'
+        - $ref: 'index.yml#/components/parameters/poll_types'
+        - $ref: 'index.yml#/components/parameters/exclude_poll_types'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_poll_raw'
+        # Pagination parameters
+        - name: before_id
+          in: query
+          description: Return polls created before the specified ID
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Return polls created after the specified ID
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of polls to return
+          schema:
+            type: integer
+            default: 20
+            maximum: 40
+      security:
+        - UserToken:
+          - polls
+      responses:
+        '200':
+          description: A list of polls created by the authenticated user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Indicates if more results are available
+                      max_id:
+                        type: string
+                        description: The maximum ID in the result set
+                      min_id:
+                        type: string
+                        description: The minimum ID in the result set
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Poll'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'
+
+  /users/me/polls/responses:
+    get:
+      summary: Get responses to the authenticated user's polls
+      description: |
+        Retrieve a list of responses to polls created by the authenticated user. 
+        This is a parallel to the poll_response user interaction.
+      operationId: getUserPollResponses
+      parameters:
+        - name: ids
+          in: query
+          description: Optional comma-separated list of poll IDs. If included, only poll responses to these polls will be returned
+          schema:
+            type: string
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_poll_raw'
+        # Pagination parameters
+        - name: before_id
+          in: query
+          description: Return poll responses created before the specified ID
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Return poll responses created after the specified ID
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of poll responses to return
+          schema:
+            type: integer
+            default: 20
+            maximum: 40
+      security:
+        - UserToken:
+          - polls
+      responses:
+        '200':
+          description: A list of responses to polls created by the authenticated user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Indicates if more results are available
+                      max_id:
+                        type: string
+                        description: The maximum ID in the result set
+                      min_id:
+                        type: string
+                        description: The minimum ID in the result set
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Poll'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'

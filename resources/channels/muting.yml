@@ -1,0 +1,169 @@
+paths:
+  /users/me/channels/muted:
+    get:
+      summary: Get the authenticated user's muted channels
+      description: Retrieve a list of channels the authenticated user has muted
+      operationId: getMutedChannels
+      parameters:
+        - $ref: '#/components/parameters/since_id'
+        - $ref: '#/components/parameters/before_id'
+        - $ref: '#/components/parameters/count'
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: A list of muted channels
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      more:
+                        type: boolean
+                        description: Whether there are more objects available
+                      max_id:
+                        type: string
+                        description: The maximum ID returned in this response
+                      min_id:
+                        type: string
+                        description: The minimum ID returned in this response
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Channel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /channels/{channel_id}/mute:
+    put:
+      summary: Mute a channel
+      description: Mute subscriptions for a channel. Muting unsubscribes, if you were subscribed.
+      operationId: muteChannel
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to mute
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: The muted channel
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Channel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    
+    delete:
+      summary: Unmute a channel
+      description: Delete a subscription mute for a channel
+      operationId: unmuteChannel
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the channel to unmute
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: The unmuted channel
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Channel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  parameters:
+    since_id:
+      name: since_id
+      in: query
+      description: Only return objects with IDs higher than this ID
+      schema:
+        type: string
+    before_id:
+      name: before_id
+      in: query
+      description: Only return objects with IDs lower than this ID
+      schema:
+        type: string
+    count:
+      name: count
+      in: query
+      description: Number of objects to return (1-200 for newest, -200 to -1 for oldest)
+      schema:
+        type: integer
+        minimum: -200
+        maximum: 200
+        default: 20
+  
+  responses:
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

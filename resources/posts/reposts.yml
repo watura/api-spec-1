@@ -1,0 +1,109 @@
+paths:
+  /posts/{post_id}/repost:
+    put:
+      summary: Create a Repost
+      description: |
+        Repost another post. The repost will show up in followers' streams if they have not seen another repost 
+        of the same within the last week, and if the reposted post is not in their recent stream. It is created 
+        in its own thread, not the thread of the original post. This increments a user's post count.
+        
+        Reposts are special posts. You cannot reply to, repost, or bookmark a repost, but the API will instead 
+        reply to, repost, or bookmark the original post that was reposted.
+        
+        Even if a post is revised, existing reposts will still reflect the acted-on post's original contents, 
+        not the revision.
+        
+        Reposts can be marked as NSFW just like a normal post, but will always identify as NSFW if the embedded 
+        original post was marked as NSFW. The "repost" will be marked NSFW, but the embedded original post will 
+        be embedded however it was created.
+        
+        When creating a repost, the API returns the acted-on post, not the newly created post.
+      operationId: createRepost
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to repost
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_nsfw:
+                  type: boolean
+                  description: If true, the post will be marked as "NSFW" (Not Safe For Work/mature/offensive)
+      security:
+        - UserToken:
+          - write_post
+      responses:
+        '201':
+          description: The original post that has been reposted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '400':
+          $ref: 'lifecycle.yml#/components/responses/BadRequest'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'
+          
+    delete:
+      summary: Delete a repost
+      description: |
+        Delete a repost. The actual repost is completely deleted; it does not leave behind a thread or 
+        deleted post to look up.
+        
+        Users can also delete their own reposts even if they no longer have access to the original reposted 
+        post (e.g., they were blocked). In that case, the returned post in the data field is simply 
+        {"id":POST_ID,"you_reposted":false}.
+        
+        When deleting a repost, the API returns the acted-on post, not the deleted post.
+      operationId: deleteRepost
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: ID of the post to delete a repost for
+          schema:
+            type: string
+      security:
+        - UserToken:
+          - write_post
+      responses:
+        '200':
+          description: The original post that was previously reposted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'

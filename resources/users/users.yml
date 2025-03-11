@@ -1,0 +1,605 @@
+components:
+  schemas:
+    # User schemas
+    UserBadge:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Reference ID of the badge
+        name:
+          type: string
+          description: Common name for the badge
+
+    UserContent:
+      type: object
+      properties:
+        avatar_image:
+          type: object
+          properties:
+            is_default:
+              type: boolean
+              description: Whether or not the user's avatar is the original identicon generated for their username, or an image they uploaded
+            height:
+              type: integer
+              description: Original height of the image
+            url:
+              type: string
+              format: uri
+              description: URL linking to the current avatar image
+            width:
+              type: integer
+              description: Original width of the image
+        cover_image:
+          type: object
+          properties:
+            is_default:
+              type: boolean
+              description: Whether or not the user has uploaded an image for their cover image, or if it is the default plain white background
+            height:
+              type: integer
+              description: Original height of the image
+            url:
+              type: string
+              format: uri
+              description: URL linking to the current cover image
+            width:
+              type: integer
+              description: Original width of the image
+        entities:
+          type: object
+          description: Rich text information for this user
+        html:
+          type: string
+          description: Server-generated annotated HTML rendering of user text
+        markdown_text:
+          type: string
+          description: text, with the original markdown links preserved
+        text:
+          type: string
+          maxLength: 256
+          description: User supplied text of the user. All Unicode characters allowed. Maximum length 256 characters
+
+    UserCounts:
+      type: object
+      properties:
+        bookmarks:
+          type: integer
+          description: Number of bookmarks this user has saved
+        clients:
+          type: integer
+          description: Number of public clients this user has created
+        followers:
+          type: integer
+          description: Number of users following this user
+        following:
+          type: integer
+          description: Number of users this user is following
+        posts:
+          type: integer
+          description: Number of posts created by this user
+
+    User:
+      type: object
+      properties:
+        badge:
+          $ref: '#/components/schemas/UserBadge'
+        content:
+          $ref: '#/components/schemas/UserContent'
+        counts:
+          $ref: '#/components/schemas/UserCounts'
+        created_at:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the user was created
+        id:
+          type: string
+          description: User ID
+        locale:
+          type: string
+          description: User's preferred locale
+        name:
+          type: string
+          maxLength: 50
+          description: Display name of the user
+        presence:
+          type: string
+          maxLength: 100
+          description: User presence
+        timezone:
+          type: string
+          description: User's preferred timezone
+        type:
+          type: string
+          enum: [human, feed, bot]
+          description: Type of account
+        username:
+          type: string
+          description: Username of the account
+
+paths:
+  /users/me:
+    put:
+      summary: Completely update a user
+      description: Replaces the authenticated user's profile. Anything not included is removed.
+      operationId: updateUserProfile
+      security:
+        - UserToken: 
+          - update_profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - locale
+                - timezone
+              properties:
+                locale:
+                  type: string
+                  description: Valid user locale
+                timezone:
+                  type: string
+                  description: Valid user timezone
+                content:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      maxLength: 256
+                      description: User description text
+                name:
+                  type: string
+                  maxLength: 50
+                  description: Display name of the user
+                raw:
+                  type: object
+                  description: Embedded raw values
+      responses:
+        '200':
+          description: The updated user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+    
+    patch:
+      summary: Partially update a user
+      description: Updates only specified parts of the authenticated user's profile
+      operationId: partialUpdateUserProfile
+      security:
+        - UserToken: 
+          - update_profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                locale:
+                  type: string
+                  description: Valid user locale
+                timezone:
+                  type: string
+                  description: Valid user timezone
+                content:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+                      maxLength: 256
+                      description: User description text
+                name:
+                  type: string
+                  maxLength: 50
+                  description: Display name of the user
+                raw:
+                  type: object
+                  description: Embedded raw values
+      responses:
+        '200':
+          description: The updated user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+
+  /users/{user_id}/avatar:
+    get:
+      summary: Get user avatar
+      description: Returns an HTTP 302 redirect to the user's current avatar image
+      operationId: getUserAvatar
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user whose avatar to retrieve
+          schema:
+            type: string
+        - name: h
+          in: query
+          required: false
+          description: The requested height to scale the image down to. Will only scale down from the height of the original avatar. If w is also set, h will be ignored
+          schema:
+            type: integer
+        - name: w
+          in: query
+          required: false
+          description: The requested width to scale the image down to. Will only scale down from the width of the original avatar
+          schema:
+            type: integer
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '302':
+          description: Redirect to avatar image
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string
+
+  /users/me/avatar:
+    post:
+      summary: Update user avatar
+      description: Uploads a new avatar image for the authenticated user
+      operationId: updateUserAvatar
+      security:
+        - UserToken: 
+          - update_profile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+                  description: An image file (JPEG, PNG, or GIF smaller than 2MiB)
+          application/json:
+            schema:
+              type: object
+              properties:
+                from_url:
+                  type: string
+                  format: uri
+                  description: A publicly accessible URL of an image to download
+      responses:
+        '200':
+          description: The updated user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+    
+    delete:
+      summary: Delete user avatar
+      description: Deletes the existing user avatar and reverts to their default personalized identicon
+      operationId: deleteUserAvatar
+      security:
+        - UserToken: 
+          - update_profile
+      responses:
+        '200':
+          description: The updated user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+
+  /users/{user_id}/cover:
+    get:
+      summary: Get user cover
+      description: Returns an HTTP 302 redirect to the user's current cover image
+      operationId: getUserCover
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user whose cover to retrieve
+          schema:
+            type: string
+        - name: h
+          in: query
+          required: false
+          description: The requested height to scale the image down to. Will only scale down from the height of the original cover. If w is also set, h will be ignored
+          schema:
+            type: integer
+        - name: w
+          in: query
+          required: false
+          description: The requested width to scale the image down to. Will only scale down from the width of the original cover
+          schema:
+            type: integer
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '302':
+          description: Redirect to cover image
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string
+
+  /users/me/cover:
+    post:
+      summary: Update user cover
+      description: Uploads a new cover image for the authenticated user
+      operationId: updateUserCover
+      security:
+        - UserToken: 
+          - update_profile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                cover:
+                  type: string
+                  format: binary
+                  description: An image file (JPEG, PNG, or GIF smaller than 2MiB)
+          application/json:
+            schema:
+              type: object
+              properties:
+                from_url:
+                  type: string
+                  format: uri
+                  description: A publicly accessible URL of an image to download
+      responses:
+        '200':
+          description: The updated user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/User'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+    
+    delete:
+      summary: Delete user cover
+      description: Deletes the existing user cover and reverts to the default white background
+      operationId: deleteUserCover
+      security:
+        - UserToken: 
+          - update_profile
+      responses:
+        '200':
+          description: The updated user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string

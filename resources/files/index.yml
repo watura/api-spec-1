@@ -1,0 +1,187 @@
+components:
+  schemas:
+    # File schemas
+    File:
+      type: object
+      properties:
+        attached_to:
+          type: object
+          description: Other objects that this file is embedded in as a raw object
+          properties:
+            messages:
+              type: array
+              items:
+                type: string
+              description: Sampled list of message IDs it is attached to
+            polls:
+              type: array
+              items:
+                type: string
+              description: Sampled list of poll IDs it is attached to
+            posts:
+              type: array
+              items:
+                type: string
+              description: Sampled list of post IDs it is attached to
+        audio_info:
+          type: object
+          description: Audio properties. Only set if kind is audio.
+          properties:
+            duration:
+              type: integer
+              description: Length of audio in seconds
+            duration_string:
+              type: string
+              description: Length of audio in hour:minute:second format
+            bitrate:
+              type: integer
+              description: Bitrate in kbps
+        created_at:
+          type: string
+          format: date-time
+          description: The time at which the file was created in ISO 8601 format
+        derived_files:
+          type: object
+          description: Up to 10 derivative files
+          additionalProperties:
+            type: object
+            properties:
+              audio_info:
+                $ref: '#/components/schemas/AudioInfo'
+              image_info:
+                $ref: '#/components/schemas/ImageInfo'
+              mime_type:
+                type: string
+                description: The mime-encoding of the file
+              name:
+                type: string
+                description: A readable name of the file
+                maxLength: 255
+              sha256:
+                type: string
+                description: sha256 checksum of file
+              size:
+                type: integer
+                description: Size of the file in bytes
+              url:
+                type: string
+                format: uri
+                description: Direct link to the file, but with an expiration
+              url_expires_at:
+                type: string
+                format: date-time
+                description: ISO 8601 timestamp of when url will expire
+              video_info:
+                $ref: '#/components/schemas/VideoInfo'
+        file_token:
+          type: string
+          description: A token to allow you to modify the file
+        file_token_read:
+          type: string
+          description: A token to allow you to read the file
+        id:
+          type: string
+          description: Primary identifier for the file
+        image_info:
+          $ref: '#/components/schemas/ImageInfo'
+        is_complete:
+          type: boolean
+          description: Whether the file has been fully uploaded
+        is_public:
+          type: boolean
+          description: Whether the file is publicly accessible
+        kind:
+          type: string
+          enum: [audio, image, video, other]
+          description: The kind of file
+        mime_type:
+          type: string
+          description: The mime-encoding of the file
+        name:
+          type: string
+          maxLength: 256
+          description: A readable name of the file
+        sha256:
+          type: string
+          description: sha256 checksum of file
+        size:
+          type: integer
+          description: Size of the file in bytes
+        source:
+          $ref: '#/components/schemas/Source'
+        type:
+          type: string
+          description: Reverse domain name-style identifier of the file type
+        url:
+          type: string
+          format: uri
+          description: Direct link to the file, but with an expiration
+        url_expires_at:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp of when url will expire
+        user:
+          $ref: '../users/users.yml#/components/schemas/User'
+        user_id:
+          type: string
+          description: Primary identifier for the user who created the file
+        video_info:
+          $ref: '#/components/schemas/VideoInfo'
+    
+    # Common sub-schemas
+    AudioInfo:
+      type: object
+      description: Audio properties
+      properties:
+        duration:
+          type: integer
+          description: Length of audio in seconds
+        duration_string:
+          type: string
+          description: Length of audio in hour:minute:second format
+        bitrate:
+          type: integer
+          description: Bitrate in kbps
+    
+    ImageInfo:
+      type: object
+      description: Image properties
+      properties:
+        height:
+          type: integer
+          description: Height of the image
+        width:
+          type: integer
+          description: Width of the image
+    
+    VideoInfo:
+      type: object
+      description: Video properties
+      properties:
+        duration:
+          type: integer
+          description: Length of video in seconds
+        duration_string:
+          type: string
+          description: Length of video in hour:minute:second format
+        height:
+          type: integer
+          description: Height of the video
+        width:
+          type: integer
+          description: Width of the video
+    
+    Source:
+      type: object
+      description: Information about the application that created the file
+      properties:
+        name:
+          type: string
+          description: Name of the application
+        link:
+          type: string
+          format: uri
+          description: Link to the application's website
+        id:
+          type: string
+          description: Application's client ID

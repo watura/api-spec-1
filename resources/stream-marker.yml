@@ -1,0 +1,115 @@
+components:
+  schemas:
+    # Stream Marker schemas
+    StreamMarker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the object in the stream marked as most recently read
+        last_read_id:
+          type: string
+          description: The last item in the stream that has ever been consumed by the marker
+        percentage:
+          type: integer
+          description: Percentage (1-100) of the current ID that has been read or positioned in a stream
+          minimum: 0
+          maximum: 100
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO-8601 timestamp when the marker was last updated
+        version:
+          type: string
+          description: Version identifier for the marker
+        name:
+          type: string
+          description: The name of the marker, e.g., 'global', 'personal', 'mentions', or 'channel:{id}'
+
+paths:
+  /markers:
+    post:
+      summary: Set stream markers
+      description: Post a list of marker objects to update a user's position in various streams
+      operationId: setStreamMarkers
+      parameters:
+        - name: reset_read_id
+          in: query
+          required: false
+          description: If true, resets the last_read_id to the value of id
+          schema:
+            type: boolean
+      security:
+        - UserToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              maxItems: 10
+              items:
+                type: object
+                required:
+                  - id
+                  - name
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the object in the stream you want to mark as having read most recently
+                  name:
+                    type: string
+                    description: What marker to update for a user (e.g., 'global', 'personal', 'mentions', or 'channel:{id}')
+                  percentage:
+                    type: integer
+                    minimum: 1
+                    maximum: 100
+                    description: Percentage (1-100) of the current ID that has been read or positioned in a stream
+      responses:
+        '200':
+          description: A list of the updated markers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StreamMarker'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string

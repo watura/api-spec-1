@@ -1,0 +1,105 @@
+components:
+  schemas:
+    StreamMeta:
+      type: object
+      description: Metadata for a stream response
+      properties:
+        more:
+          type: boolean
+          description: Whether there are more results available
+        code:
+          type: integer
+          description: HTTP status code
+          example: 200
+        deleted_ids:
+          type: array
+          description: IDs of posts that have been deleted since the since_id
+          items:
+            type: string
+        revised_ids:
+          type: array
+          description: IDs of posts that have been revised since the since_id
+          items:
+            type: string
+
+paths:
+  /posts/streams/global:
+    get:
+      summary: Get global post stream
+      description: |
+        Retrieve the global stream of posts with support for dynamic updates.
+
+        When polling using since_id pagination, the meta object on the stream will include lists meta.deleted_ids
+        and meta.revised_ids if a post has been deleted or revised after the ID of since_id was created.
+      operationId: getGlobalStream
+      parameters:
+        - name: since_id
+          in: query
+          description: Return posts created after the specified ID
+          schema:
+            type: string
+        - name: before_id
+          in: query
+          description: Return posts created before the specified ID
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of posts to return
+          schema:
+            type: integer
+            default: 20
+            maximum: 40
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: Global post stream
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    $ref: '#/components/schemas/StreamMeta'
+                  data:
+                    type: array
+                    items:
+                      $ref: '../resources/posts/index.yml#/components/schemas/Post'
+
+info:
+  title: Dynamic Polling
+  description: |
+    # How To Dynamically Update Polling Streams
+
+    When polling a stream of posts like the global feed, or messages in a channel, there is a way to catch updates on deleted and revised posts.
+
+    When polling using `since_id` pagination, the `meta` object on the stream will include lists `meta.deleted_ids` and `meta.revised_ids`
+    if a post has been deleted or revised after the ID of `since_id` was created.
+
+    For example: my client is making the request `curl "https://api.pnut.io/v1/posts/streams/global?since_id=500"`, when `500` is the
+    latest post in the stream. Someone deletes their post `244`. The next time my client requests global with `since_id=500`,
+    this is what I get back:
+
+    ```json
+    {
+      "meta": {
+        "more": false,
+        "code": 200,
+        "deleted_ids": [
+          "244"
+        ]
+      },
+      "data": []
+    }
+    ```
+
+    Knowing this, my client can determine if post `244` is being displayed, and update its view to show that the post is now deleted.
+
+    The same is true for revised posts, and deleted messages. The client, knowing that a post is revised, could automatically make a call
+    to `GET /posts?ids=244`, for whatever posts were revised that were also being displayed.
+
+    This is most useful when a client is polling forward, though; note that the sample of deleted and revised posts is not capped going forward.
+    If you made a call with `since_id=200` and 40 posts had been deleted since post `200` was created, you would get all of those IDs.
+    So it is not very useful when a client is pulling up old, cached posts (a fresh request of old posts would include the deleted or
+    revised posts' most recent state, rendering "updates" like these irrelevant).

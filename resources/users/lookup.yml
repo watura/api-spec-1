@@ -1,0 +1,188 @@
+components:
+  schemas:
+    # User schemas are defined in users.yml
+    
+    # User Token schema
+    UserToken:
+      type: object
+      description: User token object
+
+paths:
+  /users/{user_id}:
+    get:
+      summary: Get a user
+      description: Retrieve a user object
+      operationId: getUser
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: User ID or username with "@" symbol of the user to retrieve
+          schema:
+            type: string
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: The user object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'users.yml#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users:
+    get:
+      summary: Get multiple users
+      description: Retrieve a list of specified user objects. Only retrieves the first 200 found.
+      operationId: getMultipleUsers
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of user IDs or usernames with "@" symbol
+          schema:
+            type: string
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'users.yml#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /apps/me/users/ids:
+    get:
+      summary: Get app user IDs
+      description: Retrieve a list of all user IDs that authorize the requesting app. It is not paginated.
+      operationId: getAppUserIds
+      security:
+        - AppToken: []
+      responses:
+        '200':
+          description: A list of user IDs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      type: string
+                      description: User ID
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /apps/me/users/tokens:
+    get:
+      summary: Get app user tokens
+      description: Retrieve a list of all user token objects that authorize the requesting app. Not currently paginated.
+      operationId: getAppUserTokens
+      security:
+        - AppToken: []
+      responses:
+        '200':
+          description: A list of user tokens
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  responses:
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  error_message:
+                    type: string
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

@@ -1,0 +1,458 @@
+components:
+  schemas:
+    # App Stream schemas
+    AppStream:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Unique identifier for the app stream
+        endpoint:
+          type: string
+          description: WebSocket endpoint for the app stream
+        object_types:
+          type: array
+          description: Types of objects the stream is listening for
+          items:
+            type: string
+            enum: [block, bookmark, follow, message, post, channel, channel_subscription, file, poll, user, mute, token, user_presence, user_channel_presence]
+
+    AppStreamConnection:
+      type: object
+      properties:
+        meta:
+          type: object
+          properties:
+            stream:
+              type: object
+              properties:
+                key:
+                  type: string
+                  description: Unique identifier for the app stream
+                endpoint:
+                  type: string
+                  description: WebSocket endpoint for the app stream
+                object_types:
+                  type: array
+                  description: Types of objects the stream is listening for
+                  items:
+                    type: string
+                    enum: [block, bookmark, follow, message, post, channel, channel_subscription, file, poll, user, mute, token, user_presence, user_channel_presence]
+            connection_id:
+              type: string
+              description: Unique identifier for the connection
+
+    AppStreamMessage:
+      type: object
+      properties:
+        meta:
+          type: object
+          required:
+            - timestamp
+            - id
+            - type
+          properties:
+            timestamp:
+              type: integer
+              description: Unix timestamp of the event
+            id:
+              type: string
+              description: ID of the object
+            type:
+              type: string
+              description: Type of the object
+              enum: [channel, channel_subscription, message, file, poll, post, bookmark, user, block, follow, mute, token, user_presence, user_channel_presence]
+            is_deleted:
+              type: boolean
+              description: Whether the object is being deleted
+            is_closed:
+              type: boolean
+              description: Whether a poll is being closed
+            revision:
+              type: integer
+              description: Revision number for posts
+            channel_type:
+              type: string
+              description: Type of channel for messages
+            channel_name:
+              type: string
+              description: Name of channel if it's a chat room
+            subscribed_user_ids:
+              type: array
+              description: IDs of users subscribed to the channel
+              items:
+                type: string
+            suppress_notifications:
+              type: array
+              description: IDs of users who should not receive notifications
+              items:
+                type: string
+        data:
+          description: The actual object data
+          oneOf:
+            - type: object
+            - type: array
+            - type: string
+
+paths:
+  /streams:
+    post:
+      summary: Create an app stream
+      description: Create a new app stream to receive real-time updates
+      operationId: createAppStream
+      security:
+        - AppToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - object_types
+              properties:
+                object_types:
+                  type: array
+                  description: Types of objects to receive in the stream
+                  items:
+                    type: string
+                    enum: [block, bookmark, follow, message, post, channel, channel_subscription, file, poll, user, mute, token, user_presence, user_channel_presence]
+      responses:
+        '200':
+          description: App stream created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: Unique identifier for the app stream
+                      endpoint:
+                        type: string
+                        description: WebSocket endpoint for the app stream
+                      object_types:
+                        type: array
+                        description: Types of objects the stream is listening for
+                        items:
+                          type: string
+                          enum: [block, bookmark, follow, message, post, channel, channel_subscription, file, poll, user, mute, token, user_presence, user_channel_presence]
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+
+  /streams/{key}:
+    parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+        description: App stream key
+    
+    get:
+      summary: Get app stream
+      description: Get information about an app stream
+      operationId: getAppStream
+      security:
+        - AppToken: []
+      responses:
+        '200':
+          description: App stream details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: Unique identifier for the app stream
+                      endpoint:
+                        type: string
+                        description: WebSocket endpoint for the app stream
+                      object_types:
+                        type: array
+                        description: Types of objects the stream is listening for
+                        items:
+                          type: string
+                          enum: [block, bookmark, follow, message, post, channel, channel_subscription, file, poll, user, mute, token, user_presence, user_channel_presence]
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+    
+    put:
+      summary: Update app stream
+      description: Update an existing app stream
+      operationId: updateAppStream
+      security:
+        - AppToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                object_types:
+                  type: array
+                  description: Types of objects to receive in the stream
+                  items:
+                    type: string
+                    enum: [block, bookmark, follow, message, post, channel, channel_subscription, file, poll, user, mute, token, user_presence, user_channel_presence]
+      responses:
+        '200':
+          description: App stream updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        description: Unique identifier for the app stream
+                      endpoint:
+                        type: string
+                        description: WebSocket endpoint for the app stream
+                      object_types:
+                        type: array
+                        description: Types of objects the stream is listening for
+                        items:
+                          type: string
+                          enum: [block, bookmark, follow, message, post, channel, channel_subscription, file, poll, user, mute, token, user_presence, user_channel_presence]
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      error_message:
+                        type: string
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string
+    
+    delete:
+      summary: Delete app stream
+      description: Delete an app stream
+      operationId: deleteAppStream
+      security:
+        - AppToken: []
+      responses:
+        '200':
+          description: App stream deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string
+
+  /streams/{key}/test:
+    parameters:
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+        description: App stream key
+    
+    post:
+      summary: Test app stream
+      description: Send a test message to all connections of this app stream
+      operationId: testAppStream
+      security:
+        - AppToken: []
+      responses:
+        '200':
+          description: Test message sent successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 404
+                      error_message:
+                        type: string

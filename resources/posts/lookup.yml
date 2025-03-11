@@ -1,0 +1,136 @@
+paths:
+  /posts/{post_id}:
+    get:
+      summary: Get a post
+      description: Retrieve a post object
+      operationId: getPost
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: Post to retrieve
+          schema:
+            type: string
+        - $ref: 'index.yml#/components/parameters/include_deleted'
+        - $ref: 'index.yml#/components/parameters/include_client'
+        - $ref: 'index.yml#/components/parameters/include_counts'
+        - $ref: 'index.yml#/components/parameters/include_html'
+        - $ref: 'index.yml#/components/parameters/include_post_html'
+        - $ref: 'index.yml#/components/parameters/include_bookmarked_by'
+        - $ref: 'index.yml#/components/parameters/include_reposted_by'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_post_raw'
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: The requested post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'
+
+  /posts:
+    get:
+      summary: Get multiple posts
+      description: Retrieve a list of specified post objects. Only retrieves the first 200 found.
+      operationId: getPosts
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of post IDs
+          schema:
+            type: string
+        - $ref: 'index.yml#/components/parameters/include_deleted'
+        - $ref: 'index.yml#/components/parameters/include_client'
+        - $ref: 'index.yml#/components/parameters/include_counts'
+        - $ref: 'index.yml#/components/parameters/include_html'
+        - $ref: 'index.yml#/components/parameters/include_post_html'
+        - $ref: 'index.yml#/components/parameters/include_bookmarked_by'
+        - $ref: 'index.yml#/components/parameters/include_reposted_by'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_post_raw'
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: The requested posts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Post'
+        '400':
+          $ref: 'lifecycle.yml#/components/responses/BadRequest'
+
+  /posts/{post_id}/revisions:
+    get:
+      summary: Get post revisions
+      description: |
+        Retrieve a list of previous versions of a post, not including the most recent. 
+        Currently a post can only have one previous version.
+        
+        Revisions returned will have revision as a String number indicating which version of the post it is. 
+        Revisions start at "0".
+      operationId: getPostRevisions
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: Post ID to retrieve any revisions of
+          schema:
+            type: string
+        - $ref: 'index.yml#/components/parameters/include_deleted'
+        - $ref: 'index.yml#/components/parameters/include_client'
+        - $ref: 'index.yml#/components/parameters/include_counts'
+        - $ref: 'index.yml#/components/parameters/include_html'
+        - $ref: 'index.yml#/components/parameters/include_post_html'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_post_raw'
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: The post revisions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Post'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'

@@ -1,0 +1,135 @@
+components:
+  schemas:
+    Poll:
+      type: object
+      properties:
+        closed_at:
+          type: string
+          format: date-time
+          description: The time at which the poll closes in ISO 8601 format
+        created_at:
+          type: string
+          format: date-time
+          description: The time at which the poll was created in ISO 8601 format
+        id:
+          type: string
+          description: Primary identifier for a poll. This will be an integer, but it is always expressed as a string to avoid limitations with the way JavaScript integers are expressed
+        is_anonymous:
+          type: boolean
+          description: Whether poll results are anonymous, or if who responded to what option is displayed when the poll is over (or the creator of the poll looks at it)
+        is_public:
+          type: boolean
+          description: Whether poll is public or private. If private, it still may be attached to a public object, such as a post or a message
+        max_options:
+          type: integer
+          default: 1
+          description: How many options can be selected at once by responders
+        options:
+          type: array
+          description: A list of 2 to 10 responses for the poll
+          minItems: 2
+          maxItems: 10
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                maxLength: 64
+                description: Up to 64 Unicode characters. One response for users to choose for the poll
+              position:
+                type: integer
+                minimum: 1
+                description: Order of the option in the list of options, starting at 1 and going up sequentially
+              is_your_response:
+                type: boolean
+                description: True if user responded to the poll with this option. Only set on authenticated user calls
+              respondents:
+                type: integer
+                description: Number of users that responded to the poll. Only set if the poll is closed
+              respondent_ids:
+                type: array
+                description: A sample of respondent IDs. Only set if is_anonymous is false and respondents is present
+                items:
+                  type: string
+        poll_token:
+          type: string
+          description: A token to access and respond to the poll. Only set on POST creation response, if included in the query string, or if the Polls scope gives you access to the poll
+        prompt:
+          type: string
+          maxLength: 256
+          description: A readable name of the poll. This is the prompt users will be responding to for the Options
+        source:
+          type: object
+          description: Information about the client that created the poll
+          properties:
+            name:
+              type: string
+              description: Description of the API consumer that created this poll
+            id:
+              type: string
+              description: The public client id of the API consumer that created this poll
+            url:
+              type: string
+              description: Link provided by the API consumer that created this poll
+        type:
+          type: string
+          description: The type of poll. Generally uses a reversed domain name to identify the intended purpose
+        user:
+          $ref: '../users/users.yml#/components/schemas/User'
+          description: This is an embedded User object. In certain cases, this key may be omitted
+        user_id:
+          type: string
+          description: Primary identifier for the user who created the poll. Only set if the user above is omitted
+        raw:
+          type: object
+          description: The raw items attached to this object. Only set if query parameter specified
+          additionalProperties:
+            type: array
+            items:
+              type: object
+
+  parameters:
+    include_closed:
+      name: include_closed
+      in: query
+      description: Include closed polls. Only applicable to the user's poll stream
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_private:
+      name: include_private
+      in: query
+      description: Include private polls. Only applicable to the user's poll stream
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    poll_types:
+      name: poll_types
+      in: query
+      description: Comma-separated list of poll types to retrieve. Only applicable to the user's poll stream
+      schema:
+        type: string
+    exclude_poll_types:
+      name: exclude_poll_types
+      in: query
+      description: Comma-separated list of poll types not to retrieve. Only applicable to the user's poll stream. Ignored if poll_types set
+      schema:
+        type: string
+    include_raw:
+      name: include_raw
+      in: query
+      description: Include raw on all objects
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    include_poll_raw:
+      name: include_poll_raw
+      in: query
+      description: Include raw on all poll objects
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0

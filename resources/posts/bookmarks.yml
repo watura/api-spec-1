@@ -1,0 +1,176 @@
+paths:
+  /users/{user_id}/bookmarks:
+    get:
+      summary: Get a user's bookmarks
+      description: |
+        Retrieve a list of bookmarks made by the specified user.
+        
+        Returned posts may include a note string field if looking up bookmarks made by the authorized user.
+        
+        Bookmarking is an action for users to keep track of posts. You can see others' bookmarks as well.
+      operationId: getUserBookmarks
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: What user's bookmarks to look up
+          schema:
+            type: string
+        # Pagination parameters
+        - name: before_id
+          in: query
+          description: Return posts created before the specified ID
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Return posts created after the specified ID
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of posts to return
+          schema:
+            type: integer
+            default: 20
+            maximum: 40
+        # General parameters
+        - $ref: 'index.yml#/components/parameters/include_deleted'
+        - $ref: 'index.yml#/components/parameters/include_client'
+        - $ref: 'index.yml#/components/parameters/include_counts'
+        - $ref: 'index.yml#/components/parameters/include_html'
+        - $ref: 'index.yml#/components/parameters/include_post_html'
+        - $ref: 'index.yml#/components/parameters/include_bookmarked_by'
+        - $ref: 'index.yml#/components/parameters/include_reposted_by'
+        - $ref: 'index.yml#/components/parameters/include_directed_posts'
+        - $ref: 'index.yml#/components/parameters/include_mention_posts'
+        - $ref: 'index.yml#/components/parameters/include_replies'
+        - $ref: 'index.yml#/components/parameters/include_muted'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_post_raw'
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: The user's bookmarks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Indicates if more results are available
+                      max_id:
+                        type: string
+                        description: The maximum ID in the result set
+                      min_id:
+                        type: string
+                        description: The minimum ID in the result set
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      allOf:
+                        - $ref: 'index.yml#/components/schemas/Post'
+                        - type: object
+                          properties:
+                            note:
+                              type: string
+                              description: Optional note visible only to the bookmark creator
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'
+          
+  /posts/{post_id}/bookmark:
+    put:
+      summary: Bookmark a post
+      description: Bookmark a post
+      operationId: bookmarkPost
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: Post to bookmark
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                note:
+                  type: string
+                  maxLength: 128
+                  description: Optional 128-character note that will only be visible when a user retrieves their own bookmarks. It is not escaped.
+      security:
+        - UserToken:
+          - write_post
+      responses:
+        '200':
+          description: The bookmarked post
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '400':
+          $ref: 'lifecycle.yml#/components/responses/BadRequest'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'
+          
+    delete:
+      summary: Delete a bookmark
+      description: Delete a bookmark
+      operationId: deleteBookmark
+      parameters:
+        - name: post_id
+          in: path
+          required: true
+          description: Post to delete a bookmark for
+          schema:
+            type: string
+      security:
+        - UserToken:
+          - write_post
+      responses:
+        '200':
+          description: The post a bookmark was removed from
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Post'
+        '401':
+          $ref: 'lifecycle.yml#/components/responses/Unauthorized'
+        '403':
+          $ref: 'lifecycle.yml#/components/responses/Forbidden'
+        '404':
+          $ref: 'lifecycle.yml#/components/responses/NotFound'

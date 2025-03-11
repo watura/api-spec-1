@@ -1,0 +1,207 @@
+paths:
+  /channels/messages/search:
+    get:
+      summary: Search messages
+      description: Retrieve a list of messages filtered by the given criteria
+      operationId: searchMessages
+      parameters:
+        - name: q
+          in: query
+          description: List of words included in messages
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Sort order for results
+          schema:
+            type: string
+            enum: [id, relevance]
+            default: relevance
+        - name: channel_ids
+          in: query
+          required: true
+          description: 'pm' to search all accessible private messages, or comma-separated list of channel IDs
+          schema:
+            type: string
+        - name: client_id
+          in: query
+          description: Only include messages created by this client ID
+          schema:
+            type: string
+        - name: created_after
+          in: query
+          description: ISO 8601-formatted timestamp after which messages were created
+          schema:
+            type: string
+            format: date-time
+        - name: created_before
+          in: query
+          description: ISO 8601-formatted timestamp before which messages were created
+          schema:
+            type: string
+            format: date-time
+        - name: creator_id
+          in: query
+          description: Only include messages created by this user ID
+          schema:
+            type: string
+        - name: file_id
+          in: query
+          description: Matches with this file attached
+          schema:
+            type: string
+        - name: file_kinds
+          in: query
+          description: Comma-separated list of oEmbed-attached file types (video, audio, image, other)
+          schema:
+            type: string
+        - name: is_nsfw
+          in: query
+          description: If 0, does not include NSFW messages
+          schema:
+            type: string
+            enum: ['0', '1']
+        - name: is_reply
+          in: query
+          description: 1 or 0 to only include messages that are or are not replies
+          schema:
+            type: string
+            enum: ['0', '1']
+        - name: is_sticky
+          in: query
+          description: If 1, only include sticky messages
+          schema:
+            type: string
+            enum: ['0', '1']
+        - name: leading_mentions
+          in: query
+          description: Comma-separated list of mentions at the beginning of a message. Any matches returned
+          schema:
+            type: string
+        - name: mentions
+          in: query
+          description: Comma-separated list of mentions. Any matches returned
+          schema:
+            type: string
+        - name: poll_id
+          in: query
+          description: Matches with this poll attached
+          schema:
+            type: string
+        - name: raw_types
+          in: query
+          description: Comma-separated list of attached raw types. Any matches returned
+          schema:
+            type: string
+        - name: reply_to
+          in: query
+          description: Only include messages replying to this message
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: Comma-separated list of tags. Any matches returned
+          schema:
+            type: string
+        - name: thread_id
+          in: query
+          description: Only include messages in this thread
+          schema:
+            type: string
+        - name: url_domains
+          in: query
+          description: Comma-separated list of domains. Any matches returned. Do not include http:// or www in front of domain
+          schema:
+            type: string
+        - name: urls
+          in: query
+          description: Comma-separated list of URLs. Any matches returned
+          schema:
+            type: string
+        - name: user_types
+          in: query
+          description: Comma-separated list of user types of - human, feed, bot
+          schema:
+            type: string
+        - $ref: '#/components/parameters/since_id'
+        - $ref: '#/components/parameters/before_id'
+        - $ref: '#/components/parameters/count'
+        - $ref: 'index.yml#/components/parameters/include_deleted'
+        - $ref: 'index.yml#/components/parameters/include_html'
+        - $ref: 'index.yml#/components/parameters/include_message_html'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_message_raw'
+        - $ref: 'index.yml#/components/parameters/include_client'
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of messages matching the search criteria
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      more:
+                        type: boolean
+                        description: Whether there are more objects available
+                      max_id:
+                        type: string
+                        description: The maximum ID returned in this response
+                      min_id:
+                        type: string
+                        description: The minimum ID returned in this response
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+components:
+  parameters:
+    since_id:
+      name: since_id
+      in: query
+      description: Only return objects with IDs higher than this ID
+      schema:
+        type: string
+    before_id:
+      name: before_id
+      in: query
+      description: Only return objects with IDs lower than this ID
+      schema:
+        type: string
+    count:
+      name: count
+      in: query
+      description: Number of objects to return (1-200 for newest, -200 to -1 for oldest)
+      schema:
+        type: integer
+        minimum: -200
+        maximum: 200
+        default: 20
+  
+  responses:
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  error_message:
+                    type: string

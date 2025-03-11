@@ -1,0 +1,167 @@
+components:
+  schemas:
+    # User Presence schema
+    UserPresence:
+      type: object
+      properties:
+        avatar_image:
+          type: string
+          format: uri
+          description: URL linking to the current avatar image
+        id:
+          type: string
+          description: Primary identifier for the user that made the update
+        last_seen_at:
+          type: string
+          format: date-time
+          description: Optional time at which the presence was updated, in ISO 8601 format
+        name:
+          type: string
+          maxLength: 50
+          description: Optional user-supplied name
+        presence:
+          type: string
+          maxLength: 100
+          description: Updated user presence, up to 100 characters
+        username:
+          type: string
+          maxLength: 20
+          description: Username of the user that made the update
+
+paths:
+  /presence:
+    get:
+      summary: Get present users
+      description: Retrieve all users' presence statuses that are not "offline"
+      operationId: getPresentUsers
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of users' presences
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/UserPresence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /users/{user_id}/presence:
+    get:
+      summary: Get a user's presence
+      description: Retrieve a user's presence
+      operationId: getUserPresence
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to retrieve
+          schema:
+            type: string
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: A user's current presence
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/UserPresence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/me/presence:
+    put:
+      summary: Update the authenticated user's presence
+      description: Update a user's presence
+      operationId: updateUserPresence
+      parameters:
+        - name: presence
+          in: query
+          required: false
+          description: A string up to 100 unicode characters. If not set, or if it is set to "1", it will be updated to "online". A value of "offline" or "0" will delete the user's presence.
+          schema:
+            type: string
+            maxLength: 100
+        - name: expiration
+          in: query
+          required: false
+          description: Unix timestamp for when the given presence should expire. Default is 15 minutes into the future. Maximum is 7 days.
+          schema:
+            type: integer
+      security:
+        - UserToken: 
+          - presence
+      responses:
+        '200':
+          description: The updated user presence
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/UserPresence'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  responses:
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

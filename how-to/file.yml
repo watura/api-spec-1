@@ -1,0 +1,322 @@
+components:
+  schemas:
+    FileUploadParameters:
+      type: object
+      description: Parameters for uploading a file
+      properties:
+        method:
+          type: string
+          description: HTTP method to use for uploading
+          enum: [PUT]
+        url:
+          type: string
+          description: URL to upload the file to
+    
+    FileObject:
+      type: object
+      description: A file object
+      properties:
+        url:
+          type: string
+          description: Direct link to the file
+        url_short:
+          type: string
+          description: Short link to the file (for public files)
+        url_expires_at:
+          type: string
+          format: date-time
+          description: When the URL will expire
+        file_token:
+          type: string
+          description: Token for accessing the file
+        file_token_read:
+          type: string
+          description: Token for reading the file
+
+paths:
+  /files:
+    post:
+      summary: Upload a file
+      description: |
+        Upload a file in a single step (recommended) or create metadata for a two-step upload.
+        
+        For a single-step upload, use multipart/form-data with type and content fields.
+        For a two-step upload, first create metadata, then upload the file content separately.
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - type
+              properties:
+                kind:
+                  type: string
+                  description: Kind of file
+                  enum: [image, video, audio, other]
+                type:
+                  type: string
+                  description: Type identifier for the file
+                content:
+                  type: string
+                  format: binary
+                  description: The file content (for single-step upload)
+                core_image_200s:
+                  type: string
+                  format: binary
+                  description: Custom 200x200 thumbnail image
+                core_image_960r:
+                  type: string
+                  format: binary
+                  description: Custom image that fits within 640x960 pixels
+          application/json:
+            schema:
+              type: object
+              required:
+                - type
+              properties:
+                kind:
+                  type: string
+                  description: Kind of file
+                  enum: [image, video, audio, other]
+                type:
+                  type: string
+                  description: Type identifier for the file
+      security:
+        - UserToken:
+          - files
+      responses:
+        '201':
+          description: File created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/FileObject'
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+  
+  /files/{file_id}/content:
+    parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the file
+    put:
+      summary: Upload file content
+      description: |
+        Upload the content for a file that was previously created with metadata only.
+        
+        This is the second step in a two-step upload process.
+      operationId: uploadFileContent
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                content:
+                  type: string
+                  format: binary
+                  description: The file content
+      security:
+        - UserToken:
+          - files
+      responses:
+        '200':
+          description: File content uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/FileObject'
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+
+  /files/{file_id}/content/{key}:
+    parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: ID of the file
+      - name: key
+        in: path
+        required: true
+        schema:
+          type: string
+          enum: [core_image_200s, core_image_960r]
+        description: Key for the derivative image
+    put:
+      summary: Upload derivative image
+      description: |
+        Upload a custom derivative image for a file.
+        
+        When uploading GIF, JPEG, and PNG images, Pnut will generate standard resized images, 
+        but you can provide your own versions.
+      operationId: uploadDerivativeImage
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                content:
+                  type: string
+                  format: binary
+                  description: The derivative image content
+      security:
+        - UserToken:
+          - files
+      responses:
+        '200':
+          description: Derivative image uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/FileObject'
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+
+info:
+  title: File Upload and Attachment
+  description: |
+    # How To Upload and Attach Files
+
+    Paid users are given 10GiB of file storage to upload to. Invited users are given 512MiB. 
+    Once files are uploaded, they can be attached to any object's Raw contents.
+
+    ## Uploading a File
+
+    Files can be uploaded in one or two steps:
+
+    ### A: Upload in a single step *(recommended)*
+
+    1. Make one `multipart/form-data` POST including metadata and the file.
+
+    To set the metadata and upload the file all at once, you must have a Content-Type of `multipart/form-data`, 
+    and keys for `type`, and `content` (the file).
+
+    The most common use will be for uploading images. If you know you are uploading images only, 
+    you would want to set `kind=image`.
+
+    `type` will be searchable in the future, and is a file filter now.
+
+    ### B: Upload in two steps
+
+    This takes an initial POST with metadata, and a second PUT with the file contents.
+
+    This allows you to provision an upload and set the metadata before uploading the file.
+
+    1. Make a `POST` to `/files` of either `application/json` or `multipart/form-data` including a `kind` and `type`. 
+       You may submit other optional File parameters, as well.
+    2. Then make a second `PUT` call using the created file's ID, to `/files/{file_id}/content`, 
+       with a `multipart/form-data` and a key set to `content` for the file.
+
+    If you upload in this way, then the first `POST` to `/files` will also return an `upload_parameters` key on the file, 
+    with `method` and `url` parameters for how to upload the file contents.
+
+    ## Derivative Images
+
+    When uploading GIF, JPEG, and PNG images, Pnut will generate two standard resized images from your image: 
+    a 200x200 pixel thumbnail (`core_image_200s`) and a version that fits within 640 pixels wide by 960 tall, 
+    if the original image does not fit within those dimensions.
+
+    If you want to provide your own versions of those images, you can. To upload your own 200x200 pixel thumbnail, 
+    include it with the `core_image_200s` key, and be sure it is 200x200 pixels and GIF, JPEG, or PNG mime type. 
+    Likewise, upload a version with the key `core_image_960r`.
+
+    ## Linking to Files
+
+    ### Directly
+
+    On file objects themselves, `url` is a direct link to the file, and if it is a public file, 
+    `url_short` is a redirect to the `url`.
+
+    #### Link Expiration
+
+    `url` will expire after `url_expires_at`. To get a new link, GET `/files/{file_id}`, 
+    and it will have a new `url` and expiration time.
+
+    `url_short` will always handle expired links.
+
+    ### Attached oEmbeds
+
+    oEmbed is a standard way of adding file metadata to most Pnut objects — most commonly posts and messages.
+
+    `photo`-type oEmbeds provide data for displaying them properly. Non-photo oEmbed items have HTML elements 
+    rendered specific to the item in addition to metadata.
+
+    #### Attaching Images to Posts or Messages
+
+    Once you have the ID of a completed image file, you can attach it to a post or message using the 
+    `io.pnut.core.oembed` *raw* type. You could fill in the oEmbed raw data manually as needed, 
+    but it's highly recommended that you use this specialized "replacement" raw value for files: `+io.pnut.core.file`.
+
+    #### Public Access
+
+    If a file is ever made public and attached to an object, it could be accessed by others indefinitely 
+    using an embedded `file_token_read`, or until the file link expires, even if the file is later made private. 
+    For this reason, never imply in an app that a public file might be made secure by making it private again. 
+    Once someone has the file details, only deleting the file will restrict their access to it.
+
+    #### Link Expiration
+
+    If a post or message has a pnut.io file in a `photo`-type oEmbed raw item, it will have a `url` link, 
+    with an expiration time in `url_expires_at`. `url` is always the most recent direct link to the file. 
+    If `url_expires_at` is past, then the file needs to be retrieved again with the File Read Token 
+    (`GET /files/{file_id}?file_token_read={file read token}`) or simply with an access token authorized 
+    with the `files` scope (`GET /files/{file_id}`). This will refresh any `url` references to the file. 
+    The URLs expire in years, so a new one should very seldom be needed.
+
+    1. Check if `url_expires_at` is passed.
+    2. Fetch the file with the `file_read_token` if it has expired. You will now have a new `url` and 
+       `url_expires_at` from the file call, and can use that. Future requests to the file will be updated 
+       with the new link.
+
+    #### Video oEmbed
+
+    The API supports a Pnut-specific `video`-type oEmbed. When a file is submitted with `kind: video` 
+    it will be checked and certain parameters will be included in the oEmbed.
+
+    `.mov`, `.mp4`, `.m4p`, `.m4v`, or `.webm` extensions are expected, with `mime_type`s of `video/mp4`, 
+    `video/quicktime`, `video/x-msvideo`, or `video/webm`.
+
+    Provided metadata:
+
+    * __Always__ width
+    * __Always__ height
+    * __Always__ duration
+    * encoding (mov, mp4, webm...)
+    * frame_rate
+    * video_bitrate

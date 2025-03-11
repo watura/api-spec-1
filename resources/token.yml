@@ -1,0 +1,118 @@
+components:
+  schemas:
+    # Token schemas
+    TokenResponse:
+      type: object
+      properties:
+        app:
+          type: object
+          properties:
+            id:
+              type: string
+              description: Unique identifier for the app
+            url:
+              type: string
+              format: uri
+              description: URL of the app's website
+            name:
+              type: string
+              description: Name of the app
+        scopes:
+          type: array
+          description: List of authorized scopes for this token
+          items:
+            type: string
+        user:
+          type: object
+          description: User object of the token owner
+        storage:
+          type: object
+          properties:
+            available:
+              type: integer
+              description: Available storage in bytes
+            total:
+              type: integer
+              description: Total storage allocation in bytes
+        email:
+          type: string
+          format: email
+          description: User's email address (only included if email scope is authorized)
+
+paths:
+  /token:
+    get:
+      summary: Get the current token
+      description: Retrieve an object with the currently authenticated token, username, and user ID
+      operationId: getCurrentToken
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: The requested token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string
+    
+    delete:
+      summary: Delete the current token
+      description: Delete the currently authenticated token
+      operationId: deleteCurrentToken
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: The deleted token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 401
+                      error_message:
+                        type: string

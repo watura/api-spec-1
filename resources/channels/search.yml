@@ -1,0 +1,124 @@
+paths:
+  /channels/search:
+    get:
+      summary: Search channels
+      description: Retrieve a list of channels filtered by the given criteria
+      operationId: searchChannels
+      parameters:
+        - name: q
+          in: query
+          description: Basic text string searched for in names and descriptions in a channel's io.pnut.core.chat-settings raw
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Sort order for results
+          schema:
+            type: string
+            enum: [activity, id, popularity]
+            default: activity
+        - name: categories
+          in: query
+          description: Comma-separated list of categories (fun, lifestyle, profession, language, community, tech, event, general)
+          schema:
+            type: string
+        - name: channel_types
+          in: query
+          description: Comma-separated list of channel types to include
+          schema:
+            type: string
+        - name: created_after
+          in: query
+          description: ISO 8601-formatted timestamp after which channels were created
+          schema:
+            type: string
+            format: date-time
+        - name: created_before
+          in: query
+          description: ISO 8601-formatted timestamp before which channels were created
+          schema:
+            type: string
+            format: date-time
+        - name: owner_id
+          in: query
+          description: Channels owned by the included user ID
+          schema:
+            type: string
+        - name: exclude_channel_types
+          in: query
+          description: Comma-separated list of channel types to exclude
+          schema:
+            type: string
+        - name: file_id
+          in: query
+          description: Matches with this file attached
+          schema:
+            type: string
+        - name: is_public
+          in: query
+          description: 1 or 0 to only include public- or private-readable channels
+          schema:
+            type: string
+            enum: ['0', '1']
+        - name: raw_types
+          in: query
+          description: Comma-separated list of attached raw types. Any matches returned
+          schema:
+            type: string
+        - $ref: '#/components/parameters/since_id'
+        - $ref: '#/components/parameters/before_id'
+        - $ref: '#/components/parameters/count'
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of channels matching the search criteria
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      more:
+                        type: boolean
+                        description: Whether there are more objects available
+                      max_id:
+                        type: string
+                        description: The maximum ID returned in this response
+                      min_id:
+                        type: string
+                        description: The minimum ID returned in this response
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Channel'
+
+components:
+  parameters:
+    since_id:
+      name: since_id
+      in: query
+      description: Only return objects with IDs higher than this ID
+      schema:
+        type: string
+    before_id:
+      name: before_id
+      in: query
+      description: Only return objects with IDs lower than this ID
+      schema:
+        type: string
+    count:
+      name: count
+      in: query
+      description: Number of objects to return (1-200 for newest, -200 to -1 for oldest)
+      schema:
+        type: integer
+        minimum: -200
+        maximum: 200
+        default: 20

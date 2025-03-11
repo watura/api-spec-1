@@ -1,0 +1,152 @@
+components:
+  schemas:
+    PrivateMessageChannel:
+      type: object
+      description: A private message channel
+      properties:
+        type:
+          type: string
+          description: Channel type identifier
+          enum: [io.pnut.core.pm]
+        acl:
+          type: object
+          description: Access control list for the channel
+          properties:
+            full:
+              type: object
+              description: Users with full management access to the channel
+              properties:
+                immutable:
+                  type: boolean
+                  description: Whether this access level can be changed
+                  default: true
+                you:
+                  type: boolean
+                  description: Whether the authenticated user has this access level
+                user_ids:
+                  type: array
+                  description: List of user IDs with this access level
+                  items:
+                    type: string
+            write:
+              type: object
+              description: Users with write access to the channel
+              properties:
+                any_user:
+                  type: boolean
+                  description: Whether any user can write to the channel
+                  default: false
+                immutable:
+                  type: boolean
+                  description: Whether this access level can be changed
+                  default: true
+                you:
+                  type: boolean
+                  description: Whether the authenticated user has this access level
+                user_ids:
+                  type: array
+                  description: List of user IDs with this access level
+                  items:
+                    type: string
+            read:
+              type: object
+              description: Users with read access to the channel
+              properties:
+                any_user:
+                  type: boolean
+                  description: Whether any user can read the channel
+                  default: false
+                immutable:
+                  type: boolean
+                  description: Whether this access level can be changed
+                  default: true
+                public:
+                  type: boolean
+                  description: Whether the channel is publicly readable
+                  default: false
+                you:
+                  type: boolean
+                  description: Whether the authenticated user has this access level
+                user_ids:
+                  type: array
+                  description: List of user IDs with this access level
+                  items:
+                    type: string
+
+paths:
+  /channels/pm/messages:
+    post:
+      summary: Send a private message
+      description: |
+        Create a new private message to one or more users.
+        
+        If you don't know the channel ID or it hasn't been created yet, you can create a message with the channel_id of "pm" 
+        and a list of destinations, specifying all users by @username or their user ID.
+      operationId: createPrivateMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+                - destinations
+              properties:
+                text:
+                  type: string
+                  description: The message text
+                destinations:
+                  type: array
+                  description: List of users to send the message to, by username or ID
+                  items:
+                    oneOf:
+                      - type: string
+                        description: Username in the format @username
+                      - type: integer
+                        description: User ID
+      security:
+        - UserToken: []
+      responses:
+        '201':
+          description: Message created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    description: The created message
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+
+info:
+  title: Private Messages
+  description: |
+    # How To: Private Message
+
+    Private messages are special channels with the restricted `io.pnut.core.pm` channel type. They cannot be directly created or deactivated, 
+    and they're completely immutable (you cannot change who is included in the channel). This makes the "owner" of the channel irrelevant.
+
+    ## Creation
+
+    Channel creation is handled by Pnut.
+
+    ## Sending a Message
+
+    To send a message to other users, you need to know all of the users you will be sending the message to, or the ID of an already-created channel. 
+    If you know the channel, you may create a message in it just like you would any other channel. If you do not, or it has not been created yet, 
+    you can create an `application/json`-encoded message with the `channel_id` of "pm", and a special list in the JSON of `destinations`, 
+    listing all users by "@username" or their user ID.
+
+    In every other way, they can be treated like other channels and messages. Note that the "owner's" ID will not be in the write-access ACL, 
+    but they will not function any differently from anyone else.
+
+    ## Existing PM Channels
+
+    If you want to see a PM channel between specific users without sending a message, you can use the Existing PM endpoint to find the channel ID.

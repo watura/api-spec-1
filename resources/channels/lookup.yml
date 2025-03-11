@@ -1,0 +1,315 @@
+paths:
+  /channels/{channel_id}:
+    get:
+      summary: Get a channel
+      description: Retrieve a channel object
+      operationId: getChannel
+      parameters:
+        - name: channel_id
+          in: path
+          required: true
+          description: ID of the requested channel
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: The requested channel
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Channel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /channels:
+    get:
+      summary: Get multiple channels
+      description: Retrieve a list of specified channel objects. Only returns the first 200 found.
+      operationId: getMultipleChannels
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of channel IDs
+          schema:
+            type: string
+        - name: channel_types
+          in: query
+          required: false
+          description: Comma-separated list of channel types to filter by
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: A list of channels
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Channel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /users/me/channels:
+    get:
+      summary: Get the authenticated user's created channels
+      description: Retrieve a list of channels created by the authenticated user
+      operationId: getUserChannels
+      parameters:
+        - $ref: '#/components/parameters/since_id'
+        - $ref: '#/components/parameters/before_id'
+        - $ref: '#/components/parameters/count'
+        - name: channel_types
+          in: query
+          required: false
+          description: Comma-separated list of channel types to filter by
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: A list of channels
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                      more:
+                        type: boolean
+                        description: Whether there are more objects available
+                      max_id:
+                        type: string
+                        description: The maximum ID returned in this response
+                      min_id:
+                        type: string
+                        description: The minimum ID returned in this response
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Channel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /users/me/channels/existing_pm:
+    get:
+      summary: Get a PM channel between users
+      description: Retrieve a Private Message channel for a set of users, if one exists
+      operationId: getExistingPMChannel
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of User IDs or @-usernames. The authenticated user can be included or excluded.
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: The requested PM channel
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Channel'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/me/channels/num_unread:
+    get:
+      summary: Get the number of channels unread by the authenticated user
+      description: Retrieve the number of unread messages for the authenticated user
+      operationId: getUnreadChannelCount
+      parameters:
+        - name: channel_types
+          in: query
+          required: false
+          description: Comma-separated list of channel types to look up. Up to 4 at a time. Defaults to io.pnut.core.pm
+          schema:
+            type: string
+            default: io.pnut.core.pm
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: An object with channel types and their unread counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                    example:
+                      io.pnut.core.pm: 2
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    
+    delete:
+      summary: Set all channels 'read'
+      description: Mark all unread messages as read for the specified channel types for the authenticated user
+      operationId: markAllChannelsRead
+      parameters:
+        - name: channel_types
+          in: query
+          required: false
+          description: Comma-separated list of channel types to mark as read. Up to 4 at a time. Defaults to io.pnut.core.pm
+          schema:
+            type: string
+            default: io.pnut.core.pm
+      security:
+        - UserToken: 
+          - messages
+      responses:
+        '200':
+          description: An object with channel types and their new count of 0
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                      enum: [0]
+                    example:
+                      io.pnut.core.pm: 0
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  parameters:
+    since_id:
+      name: since_id
+      in: query
+      description: Only return objects with IDs higher than this ID
+      schema:
+        type: string
+    before_id:
+      name: before_id
+      in: query
+      description: Only return objects with IDs lower than this ID
+      schema:
+        type: string
+    count:
+      name: count
+      in: query
+      description: Number of objects to return (1-200 for newest, -200 to -1 for oldest)
+      schema:
+        type: integer
+        minimum: -200
+        maximum: 200
+        default: 20
+  
+  responses:
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    Forbidden:
+      description: The authenticated user doesn't have permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

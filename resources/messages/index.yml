@@ -1,0 +1,128 @@
+components:
+  schemas:
+    # Message schemas
+    Message:
+      type: object
+      properties:
+        channel_id:
+          type: string
+          description: Primary identifier for the channel this message is a part of
+        counts:
+          type: object
+          description: Count information for the message
+          properties:
+            replies:
+              type: integer
+              description: The number of messages created in reply to this message
+        created_at:
+          type: string
+          format: date-time
+          description: The time at which the message was created in ISO 8601 format
+        deleted_by:
+          type: string
+          description: The ID of the user that deleted the message. Only set if message was deleted by someone else.
+        id:
+          type: string
+          description: Primary identifier for a message
+        is_deleted:
+          type: boolean
+          description: Whether message is deleted. content will not be included if true. Only set if true.
+        is_sticky:
+          type: boolean
+          description: Whether a full-access user has stickied the message
+        source:
+          type: object
+          description: Information about the API consumer that created this message
+          properties:
+            name:
+              type: string
+              description: Description of the API consumer that created this message
+            id:
+              type: string
+              description: The public client id of the API consumer that created this message
+            url:
+              type: string
+              description: Link provided by the API consumer that created this message
+        reply_to:
+          type: string
+          description: ID of the message this message is replying to. Only set if message is a reply.
+        thread_id:
+          type: string
+          description: The ID of the message at the root of the thread that this message is a part of
+        user:
+          $ref: '../users/users.yml#/components/schemas/User'
+          description: This is an embedded User object. In certain cases (e.g., when a user account has been deleted), this may be omitted.
+        user_id:
+          type: string
+          description: Primary identifier for the user who created the message. Only set if the user above is omitted.
+        content:
+          type: object
+          description: Content of the message. Not set if the message has been deleted.
+          properties:
+            text:
+              type: string
+              maxLength: 2048
+              description: User supplied text of the message. All Unicode characters allowed. Maximum length 2048 characters.
+            html:
+              type: string
+              description: Server-generated annotated HTML rendering of message text
+            entities:
+              type: object
+              description: Rich text information for this message
+        raw:
+          type: object
+          description: The raw items attached to this object. Only set if query parameter specified.
+          additionalProperties:
+            type: array
+            items:
+              type: object
+  
+  parameters:
+    include_deleted:
+      name: include_deleted
+      in: query
+      description: Include deleted messages
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_html:
+      name: include_html
+      in: query
+      description: Should the message and user html field be included alongside the text field in the response objects?
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_message_html:
+      name: include_message_html
+      in: query
+      description: Should the message html field be included alongside the text field in the response objects?
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_raw:
+      name: include_raw
+      in: query
+      description: Include raw on all objects
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    include_message_raw:
+      name: include_message_raw
+      in: query
+      description: Include raw on all message objects
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    include_client:
+      name: include_client
+      in: query
+      description: Include the client object with the post
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1

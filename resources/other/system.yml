@@ -1,0 +1,290 @@
+paths:
+  /sys/config:
+    get:
+      summary: Get configuration
+      description: Retrieve a list of parameters for interacting with the API
+      operationId: getSystemConfig
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: A catalog of parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/SystemConfig'
+
+  /sys/ops/{ops_id}:
+    get:
+      summary: Get status of an operation
+      description: |
+        Retrieve the status of a long-running operation.
+        
+        Currently the only API call that creates a long-running operation is deleting multiple files, type `FileDelete`.
+        
+        `ended_at` will only be set if the operation has completed. `status` will be one of `running`, `dead`, and `completed`. 
+        `dead` is not definitive, but if `dead`, something went wrong.
+      operationId: getOperationStatus
+      parameters:
+        - name: ops_id
+          in: path
+          required: true
+          description: UUID of the operation to retrieve details for
+          schema:
+            type: string
+            format: uuid
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: The status of the operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/Operation'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /sys/stats:
+    get:
+      summary: Get statistics
+      description: Retrieve basic statistics for the network
+      operationId: getSystemStats
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/SystemStats'
+
+components:
+  schemas:
+    SystemConfig:
+      type: object
+      properties:
+        file:
+          type: object
+          properties:
+            audio_max_size_bytes:
+              type: integer
+              description: Maximum size in bytes for audio files
+              example: 52428800
+            max_size_bytes:
+              type: integer
+              description: Maximum size in bytes for files
+              example: 104857600
+        message:
+          type: object
+          properties:
+            max_length:
+              type: integer
+              description: Maximum length for messages
+              example: 2048
+        post:
+          type: object
+          properties:
+            max_length:
+              type: integer
+              description: Maximum length for posts
+              example: 256
+            seconds_between_duplicates:
+              type: integer
+              description: Minimum seconds between duplicate posts
+              example: 60
+            seconds_for_revision:
+              type: integer
+              description: Seconds allowed for post revision
+              example: 300
+        rate_limit:
+          type: object
+          properties:
+            anonymous:
+              type: object
+              properties:
+                reads:
+                  type: integer
+                  description: Number of read operations allowed
+                  example: 40
+                read_reset_seconds:
+                  type: integer
+                  description: Seconds until read limit resets
+                  example: 60
+            authorized:
+              type: object
+              properties:
+                reads:
+                  type: integer
+                  description: Number of read operations allowed
+                  example: 5000
+                read_reset_seconds:
+                  type: integer
+                  description: Seconds until read limit resets
+                  example: 3600
+                writes:
+                  type: integer
+                  description: Number of write operations allowed
+                  example: 20
+                write_reset_seconds:
+                  type: integer
+                  description: Seconds until write limit resets
+                  example: 60
+            seconds_banned:
+              type: integer
+              description: Seconds a user is banned after exceeding rate limits
+              example: 600
+        raw:
+          type: object
+          properties:
+            max_length:
+              type: integer
+              description: Maximum length for raw content
+              example: 8192
+        user:
+          type: object
+          properties:
+            description_max_length:
+              type: integer
+              description: Maximum length for user descriptions
+              example: 256
+            name_max_length:
+              type: integer
+              description: Maximum length for user names
+              example: 50
+            presence_max_length:
+              type: integer
+              description: Maximum length for user presence
+              example: 100
+            username_max_length:
+              type: integer
+              description: Maximum length for usernames
+              example: 20
+    
+    Operation:
+      type: object
+      properties:
+        created_at:
+          type: string
+          format: date-time
+          description: Time at which the operation was created, in ISO 8601 format
+        ended_at:
+          type: string
+          format: date-time
+          description: Optional time at which the operation was completed, in ISO 8601 format
+        id:
+          type: string
+          format: uuid
+          description: UUID that identifies the operation
+        type:
+          type: string
+          description: Type of operation
+          enum: [file_delete]
+        status:
+          type: string
+          description: Status of the operation
+          enum: [running, dead, completed]
+    
+    SystemStats:
+      type: object
+      properties:
+        clients:
+          type: object
+          properties:
+            created:
+              type: integer
+              description: Number of clients created
+            public:
+              type: integer
+              description: Number of public clients
+        days:
+          type: integer
+          description: Number of days the service has been running
+        files:
+          type: object
+          properties:
+            created:
+              type: integer
+              description: Number of files created
+        messages:
+          type: object
+          properties:
+            created:
+              type: integer
+              description: Number of messages created
+        polls:
+          type: object
+          properties:
+            created:
+              type: integer
+              description: Number of polls created
+        posts:
+          type: object
+          properties:
+            created:
+              type: integer
+              description: Number of posts created
+        users:
+          type: object
+          properties:
+            active:
+              type: object
+              additionalProperties:
+                type: integer
+              description: Number of active users per day (format YYYY-MM-DD)
+            created:
+              type: integer
+              description: Number of users created
+            disabled:
+              type: integer
+              description: Number of disabled users
+            present:
+              type: integer
+              description: Number of users currently present
+  
+  responses:
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

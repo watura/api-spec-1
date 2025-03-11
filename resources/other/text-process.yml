@@ -1,0 +1,158 @@
+paths:
+  /text/process:
+    post:
+      summary: Test text processing
+      description: |
+        Use this endpoint to test rendering of post content. Particularly useful for debugging, 
+        or if you want to show a user exactly how the API will process their post.
+      operationId: processText
+      parameters:
+        - name: object_type
+          in: query
+          description: |
+            'post' or 'message'. By default, 'text' character length is restricted to 256, like a post. 
+            You may change it to rendering like a message with up to 2048 characters by including this parameter with a value of 'message'.
+          schema:
+            type: string
+            enum: [post, message]
+            default: post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - text
+              properties:
+                text:
+                  type: string
+                  description: The text to process
+                entities:
+                  type: object
+                  properties:
+                    parse_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the links should be parsed by the server
+                    parse_markdown_links:
+                      type: boolean
+                      default: true
+                      description: Boolean whether the markdown links should be parsed by the server
+      security:
+        - UserToken: []
+      responses:
+        '200':
+          description: The processed text
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: '#/components/schemas/ProcessedText'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  schemas:
+    ProcessedText:
+      type: object
+      properties:
+        text:
+          type: string
+          description: The original text
+        links:
+          type: array
+          description: Array of links found in the text
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                description: The link text
+              url:
+                type: string
+                description: The link URL
+              pos:
+                type: integer
+                description: Position of the link in the text
+              len:
+                type: integer
+                description: Length of the link in the text
+        tags:
+          type: array
+          description: Array of tags found in the text
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                description: The tag text
+              pos:
+                type: integer
+                description: Position of the tag in the text
+              len:
+                type: integer
+                description: Length of the tag in the text
+        mentions:
+          type: array
+          description: Array of mentions found in the text
+          items:
+            type: object
+            properties:
+              text:
+                type: string
+                description: The mention text
+              id:
+                type: string
+                description: The user ID of the mentioned user
+              pos:
+                type: integer
+                description: Position of the mention in the text
+              len:
+                type: integer
+                description: Length of the mention in the text
+        html:
+          type: string
+          description: HTML representation of the processed text
+  
+  responses:
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  error_message:
+                    type: string
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string

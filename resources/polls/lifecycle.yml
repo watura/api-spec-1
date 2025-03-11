@@ -1,0 +1,275 @@
+paths:
+  /polls:
+    post:
+      summary: Create a poll
+      description: |
+        Create a poll. By default, the poll will be private and anonymous.
+        
+        For an explanation of how to attach polls to other objects, read How To File. Functionally they are almost identical: 
+        Create a poll and use the +io.pnut.core.poll replacement raw value on a io.pnut.core.poll-notice raw item.
+      operationId: createPoll
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+                - options
+                - type
+              oneOf:
+                - required: [closed_at]
+                - required: [duration]
+              properties:
+                closed_at:
+                  type: string
+                  format: date-time
+                  description: ISO 8601 timestamp at least 1 minute and no more than 2 weeks in the future, after which no one can respond to it
+                duration:
+                  type: integer
+                  minimum: 1
+                  maximum: 20160
+                  description: Number of minutes the poll should be open, minimum of 1 and maximum of 20160
+                options:
+                  type: array
+                  minItems: 2
+                  maxItems: 10
+                  description: List of 2 to 10 options must be specified, each with text and optional position
+                  items:
+                    type: object
+                    required:
+                      - text
+                    properties:
+                      text:
+                        type: string
+                        maxLength: 64
+                        description: Up to 64 Unicode characters. One response for users to choose for the poll
+                      position:
+                        type: integer
+                        minimum: 1
+                        description: Order of the option in the list of options, starting at 1 and going up sequentially
+                prompt:
+                  type: string
+                  maxLength: 256
+                  description: 256-character explanation or question for the options (to be displayed and attached to the object)
+                type:
+                  type: string
+                  description: Reverse domain name-style identifier of the poll type. E.g., com.example.site
+                is_anonymous:
+                  type: boolean
+                  default: true
+                  description: If false, user IDs will be identified in the final poll
+                is_public:
+                  type: boolean
+                  default: false
+                  description: If true, poll is public
+                max_options:
+                  type: integer
+                  minimum: 1
+                  default: 1
+                  description: Number of options a user can respond with, from 1 to the total number of options. Default is 1
+                raw:
+                  type: object
+                  description: Embedded raw values
+      security:
+        - UserToken:
+          - polls
+          - write_post
+      responses:
+        '201':
+          description: The created poll
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+                  data:
+                    $ref: 'index.yml#/components/schemas/Poll'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /polls/{poll_id}/response:
+    put:
+      summary: Respond to a poll
+      description: |
+        Respond to a poll.
+        
+        Only human-type accounts may respond to polls.
+        
+        If a poll is private, you must inherently have access to the poll to respond, or include a poll_token in the query string. 
+        Polls attached to posts, for example, always include poll_token in the raw data. Since you might not know if a poll is public 
+        or private in such a case, you should always include the poll token when you have it.
+        
+        Responses can be changed until the poll closes.
+        
+        An empty positions will indicate to clear any responses for the user, but they will still be notified by E-mail when the poll closes, 
+        if they have the option enabled on https://pnut.io.
+      operationId: respondToPoll
+      parameters:
+        - name: poll_id
+          in: path
+          required: true
+          description: ID of the poll to respond to
+          schema:
+            type: string
+        - name: poll_token
+          in: query
+          description: Required on private polls when you don't know or aren't guaranteed access
+          schema:
+            type: string
+        - name: positions
+          in: query
+          description: Instead of including positions as POST body data, you can include it as a query parameter, either as array or a comma-separated string of IDs
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                positions:
+                  type: array
+                  description: Positions of the options to respond with, if not including positions as a query parameter
+                  items:
+                    type: integer
+      security:
+        - UserToken:
+          - polls
+          - write_post
+      responses:
+        '200':
+          description: The poll with updated responses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Poll'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /polls/{poll_id}:
+    delete:
+      summary: Delete a poll
+      description: Delete a poll. This will not disassociate a poll with any other objects (posts, messages...)
+      operationId: deletePoll
+      parameters:
+        - name: poll_id
+          in: path
+          required: true
+          description: ID of the poll to delete
+          schema:
+            type: string
+      security:
+        - UserToken:
+          - polls
+      responses:
+        '200':
+          description: The deleted poll
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/Poll'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  responses:
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  error_message:
+                    type: string
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    Forbidden:
+      description: The authenticated user doesn't have permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

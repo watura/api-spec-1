@@ -1,0 +1,134 @@
+components:
+  schemas:
+    # Channel schemas
+    Channel:
+      type: object
+      properties:
+        acl:
+          type: object
+          description: Access control list for the channel
+          properties:
+            full:
+              type: object
+              description: Full access permissions
+              properties:
+                immutable:
+                  type: boolean
+                  description: If full access is immutable
+                you:
+                  type: boolean
+                  description: If you have full access
+                user_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of user IDs who have full access
+                users:
+                  type: array
+                  items:
+                    $ref: '../users/users.yml#/components/schemas/User'
+                  description: A list of user objects. Only set when include_limited_users is true
+            write:
+              type: object
+              description: Write access permissions
+              properties:
+                any_user:
+                  type: boolean
+                  description: Whether any user can write to the channel
+                immutable:
+                  type: boolean
+                  description: If write access is immutable
+                you:
+                  type: boolean
+                  description: If you have write access
+                user_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of user IDs who have write access
+                users:
+                  type: array
+                  items:
+                    $ref: '../users/users.yml#/components/schemas/User'
+                  description: A list of user objects. Only set when include_limited_users is true
+            read:
+              type: object
+              description: Read access permissions
+              properties:
+                any_user:
+                  type: boolean
+                  description: Whether any user can read the channel
+                immutable:
+                  type: boolean
+                  description: If read access is immutable
+                public:
+                  type: boolean
+                  description: If the channel can be read by unauthenticated access
+                you:
+                  type: boolean
+                  description: If you have read access
+                user_ids:
+                  type: array
+                  items:
+                    type: string
+                  description: A list of user IDs who have read access
+                users:
+                  type: array
+                  items:
+                    $ref: '../users/users.yml#/components/schemas/User'
+                  description: A list of user objects. Only set when include_limited_users is true
+        counts:
+          type: object
+          description: Count information for the channel
+          properties:
+            messages:
+              type: integer
+              description: The number of messages in the channel
+            subscribers:
+              type: integer
+              description: The number of subscribers to the channel. Only set if the requesting user has full ACL access
+        created_at:
+          type: string
+          format: date-time
+          description: The time at which the channel was created in ISO 8601 format
+        has_sticky_messages:
+          type: boolean
+          description: The channel contains sticky messages
+        has_unread:
+          type: boolean
+          description: Your stream marker is not updated to the latest message in the channel. Only set if the call is authenticated
+        id:
+          type: string
+          description: Primary identifier for a channel
+        is_active:
+          type: boolean
+          description: Whether the channel is archival or still usable. Only set if false
+        raw:
+          type: object
+          description: The raw items attached to this object
+        owner:
+          type: object
+          description: Information about the owner of the channel
+          properties:
+            id:
+              type: string
+              description: User ID of the owner
+            type:
+              type: string
+              enum: [user]
+              description: Type of the owner
+        type:
+          type: string
+          description: The type of channel
+        unread_count:
+          type: integer
+          description: The number of unread messages in the channel. Only set if the call is authenticated and include_read_state is true
+        unread_count_display:
+          type: integer
+          description: The number of unread messages in the channel, excluding muted users. Only set if the call is authenticated and include_read_state is true
+        user:
+          $ref: '../users/users.yml#/components/schemas/User'
+          description: This is an embedded object of the User that owns the channel
+        user_id:
+          type: string
+          description: Primary identifier for the user who created the channel. Only set if the user above is omitted

@@ -1,0 +1,365 @@
+paths:
+  /files:
+    post:
+      summary: Create a file or placeholder
+      description: Create a file placeholder or a complete file. By default, the file will be private.
+      operationId: createFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  format: binary
+                  description: Required (if uploading in a single step) Key of the uploaded file
+                type:
+                  type: string
+                  description: Required. Reverse domain name-style identifier of the file type. E.g., com.example.site. Searchable
+                name:
+                  type: string
+                  maxLength: 256
+                  description: 256-character name or description. If not included, name of file uploaded will be used
+                kind:
+                  type: string
+                  enum: [other, image, audio, video]
+                  description: One of other, image (for JPEG, GIF, PNG), audio (for WAVE, MP3, FLAC), video (for MP4, MOV, M4V, WEBM)
+                is_public:
+                  type: boolean
+                  default: false
+                  description: If true, file is public. Default false
+                sha256:
+                  type: string
+                  description: API will check the file's SHA256 checksum against this, and return an error if they do not match
+                mime_type:
+                  type: string
+                  description: If the API cannot determine mime_type, it will use this
+                process_image_exif:
+                  type: string
+                  description: If uploading a JPEG image with EXIF, and this is set to 0, the API will not re-orient the image automatically
+                raw:
+                  type: object
+                  description: Embedded raw values
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: Required. Reverse domain name-style identifier of the file type
+                name:
+                  type: string
+                  maxLength: 256
+                  description: 256-character name or description
+                kind:
+                  type: string
+                  enum: [other, image, audio, video]
+                  description: One of other, image, audio, video
+                is_public:
+                  type: boolean
+                  default: false
+                  description: If true, file is public. Default false
+                raw:
+                  type: object
+                  description: Embedded raw values
+      security:
+        - UserToken: 
+          - files
+      responses:
+        '201':
+          description: The created file details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 201
+                  data:
+                    $ref: 'index.yml#/components/schemas/File'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    
+    delete:
+      summary: Delete multiple files
+      description: Delete multiple files at once
+      operationId: deleteMultipleFiles
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of file IDs to delete
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - files
+      responses:
+        '200':
+          description: Success response with deleted file IDs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      type: string
+                      description: IDs of deleted files
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /files/{file_id}:
+    patch:
+      summary: Update file metadata
+      description: Update a file's details
+      operationId: updateFile
+      parameters:
+        - name: file_id
+          in: path
+          required: true
+          description: ID of the file to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 256
+                  description: 256-character name or description
+                is_public:
+                  type: boolean
+                  description: True or false
+                raw:
+                  type: object
+                  description: Embedded raw values
+      security:
+        - UserToken: 
+          - files
+      responses:
+        '200':
+          description: The updated file
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'index.yml#/components/schemas/File'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    
+    delete:
+      summary: Delete a file
+      description: Delete a file. This will not disassociate a file with any other objects (posts, messages...)
+      operationId: deleteFile
+      parameters:
+        - name: file_id
+          in: path
+          required: true
+          description: ID of the file to delete
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - files
+      responses:
+        '200':
+          description: Success response with deleted file ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: string
+                    description: ID of deleted file
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /files/{file_id}/content/{derived_key}:
+    put:
+      summary: Upload derivatives of a file
+      description: Upload a new derivative file. You may only do this with an existing file placeholder (an incomplete file)
+      operationId: uploadDerivativeFile
+      parameters:
+        - name: file_id
+          in: path
+          required: true
+          description: ID of the file placeholder to create a derivative file for
+          schema:
+            type: string
+        - name: derived_key
+          in: path
+          required: true
+          description: Multipart key to the file. Keys starting with core_ are reserved
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  format: binary
+                  description: The file content
+      security:
+        - UserToken: 
+          - files
+      responses:
+        '204':
+          description: Success with no content
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /files/{file_id}/content:
+    put:
+      summary: Complete a placeholder file
+      description: Set a file placeholder's content. You may only do this with an incomplete file
+      operationId: completeFile
+      parameters:
+        - name: file_id
+          in: path
+          required: true
+          description: ID of the file to set contents for
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  format: binary
+                  description: The file content
+      security:
+        - UserToken: 
+          - files
+      responses:
+        '204':
+          description: Success with no content
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  responses:
+    BadRequest:
+      description: The request was malformed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 400
+                  error_message:
+                    type: string
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    Forbidden:
+      description: The authenticated user doesn't have permission
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 403
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

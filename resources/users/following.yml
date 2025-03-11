@@ -1,0 +1,249 @@
+components:
+  schemas:
+    # Following-related schemas are defined in users.yml
+
+paths:
+  /users/{user_id}/following:
+    get:
+      summary: Get followed users
+      description: Retrieve a list of user objects that the specified user is following
+      operationId: getFollowedUsers
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user whose following to retrieve
+          schema:
+            type: string
+        - name: order
+          in: query
+          required: false
+          description: Sort order for the results
+          schema:
+            type: string
+            enum: [id, last_post_id, followed_at]
+            default: followed_at
+        - $ref: '#/components/parameters/since_id'
+        - $ref: '#/components/parameters/before_id'
+        - $ref: '#/components/parameters/count'
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Whether there are more objects available
+                      max_id:
+                        type: string
+                        description: Highest object ID in the current response
+                      min_id:
+                        type: string
+                        description: Lowest object ID in the current response
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'users.yml#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/{user_id}/followers:
+    get:
+      summary: Get a user's followers
+      description: Retrieve a list of user objects that are following the specified user
+      operationId: getUserFollowers
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user whose followers to retrieve
+          schema:
+            type: string
+        - name: order
+          in: query
+          required: false
+          description: Sort order for the results
+          schema:
+            type: string
+            enum: [id, last_post_id, followed_at]
+            default: followed_at
+        - $ref: '#/components/parameters/since_id'
+        - $ref: '#/components/parameters/before_id'
+        - $ref: '#/components/parameters/count'
+      security:
+        - OAuth2: []
+        - AppToken: []
+        - UserToken: []
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Whether there are more objects available
+                      max_id:
+                        type: string
+                        description: Highest object ID in the current response
+                      min_id:
+                        type: string
+                        description: Lowest object ID in the current response
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'users.yml#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/{user_id}/follow:
+    put:
+      summary: Follow a user
+      description: Follow a user
+      operationId: followUser
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to follow
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - follow
+      responses:
+        '200':
+          description: The followed user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'users.yml#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    
+    delete:
+      summary: Unfollow a user
+      description: Unfollow a user
+      operationId: unfollowUser
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user to unfollow
+          schema:
+            type: string
+      security:
+        - UserToken: 
+          - follow
+      responses:
+        '200':
+          description: The unfollowed user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    $ref: 'users.yml#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+components:
+  parameters:
+    since_id:
+      name: since_id
+      in: query
+      description: Only return objects with IDs higher than this ID
+      schema:
+        type: string
+    before_id:
+      name: before_id
+      in: query
+      description: Only return objects with IDs lower than this ID
+      schema:
+        type: string
+    count:
+      name: count
+      in: query
+      description: Number of objects to return (1-200 for newest, -200 to -1 for oldest)
+      schema:
+        type: integer
+        minimum: -200
+        maximum: 200
+        default: 20
+  
+  responses:
+    Unauthorized:
+      description: Authentication is required or has failed
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 401
+                  error_message:
+                    type: string
+    NotFound:
+      description: The requested resource was not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 404
+                  error_message:
+                    type: string

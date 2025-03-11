@@ -1,0 +1,207 @@
+paths:
+  /posts/search:
+    get:
+      summary: Search posts
+      description: Retrieve a list of posts filtered by the given criteria
+      operationId: searchPosts
+      parameters:
+        # Search parameters
+        - name: q
+          in: query
+          description: List of words included in posts
+          schema:
+            type: string
+        
+        # Sort parameters
+        - name: order
+          in: query
+          description: Sort order
+          schema:
+            type: string
+            enum: [id, relevance]
+            default: relevance
+        
+        # Filter parameters
+        - name: client_id
+          in: query
+          description: Only include posts created by this client ID
+          schema:
+            type: string
+        - name: created_after
+          in: query
+          description: ISO 8601-formatted timestamp after which posts were created
+          schema:
+            type: string
+            format: date-time
+        - name: created_before
+          in: query
+          description: ISO 8601-formatted timestamp before which posts were created
+          schema:
+            type: string
+            format: date-time
+        - name: creator_id
+          in: query
+          description: Only include posts created by this user ID
+          schema:
+            type: string
+        - name: exclude_user_ids
+          in: query
+          description: Comma-separated list of user IDs to exclude from results
+          schema:
+            type: string
+        - name: file_id
+          in: query
+          description: Matches with this file attached
+          schema:
+            type: string
+        - name: file_kinds
+          in: query
+          description: Comma-separated list of oEmbed-attached file types (video, audio, image, other)
+          schema:
+            type: string
+        - name: has_mentions
+          in: query
+          description: 1 or 0 to include posts with or without mentions. Excludes other mentions filters below
+          schema:
+            type: integer
+            enum: [0, 1]
+        - name: is_directed
+          in: query
+          description: If 1, only include directed posts
+          schema:
+            type: integer
+            enum: [0, 1]
+        - name: is_nsfw
+          in: query
+          description: If 0, does not include NSFW posts
+          schema:
+            type: integer
+            enum: [0, 1]
+        - name: is_reply
+          in: query
+          description: 1 or 0 to include messages that are or are not replies
+          schema:
+            type: integer
+            enum: [0, 1]
+        - name: is_revised
+          in: query
+          description: If 1, only include revised posts
+          schema:
+            type: integer
+            enum: [0, 1]
+        - name: leading_mentions
+          in: query
+          description: Comma-separated list of mentions at the beginning of a post. Any matches returned
+          schema:
+            type: string
+        - name: mentions
+          in: query
+          description: Comma-separated list of mentions. Any matches returned
+          schema:
+            type: string
+        - name: poll_id
+          in: query
+          description: Matches with this poll attached
+          schema:
+            type: string
+        - name: raw_types
+          in: query
+          description: Comma-separated list of attached raw types. Any matches returned
+          schema:
+            type: string
+        - name: reply_to
+          in: query
+          description: Only include posts replying to this post
+          schema:
+            type: string
+        - name: tags
+          in: query
+          description: Comma-separated list of tags. Any matches returned
+          schema:
+            type: string
+        - name: thread_id
+          in: query
+          description: Only include posts in this thread
+          schema:
+            type: string
+        - name: url_domains
+          in: query
+          description: Comma-separated list of domains. Any matches returned. Do not include http:// or www in front of domain
+          schema:
+            type: string
+        - name: urls
+          in: query
+          description: Comma-separated list of URLs. Any matches returned
+          schema:
+            type: string
+        - name: user_types
+          in: query
+          description: Comma-separated list of user types of - human, feed, bot
+          schema:
+            type: string
+        
+        # Pagination parameters
+        - name: before_id
+          in: query
+          description: Return posts created before the specified ID
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          description: Return posts created after the specified ID
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: Number of posts to return
+          schema:
+            type: integer
+            default: 20
+            maximum: 40
+        
+        # General parameters
+        - $ref: 'index.yml#/components/parameters/include_deleted'
+        - $ref: 'index.yml#/components/parameters/include_client'
+        - $ref: 'index.yml#/components/parameters/include_counts'
+        - $ref: 'index.yml#/components/parameters/include_html'
+        - $ref: 'index.yml#/components/parameters/include_post_html'
+        - $ref: 'index.yml#/components/parameters/include_bookmarked_by'
+        - $ref: 'index.yml#/components/parameters/include_reposted_by'
+        - $ref: 'index.yml#/components/parameters/include_directed_posts'
+        - $ref: 'index.yml#/components/parameters/include_mention_posts'
+        - $ref: 'index.yml#/components/parameters/include_replies'
+        - $ref: 'index.yml#/components/parameters/include_muted'
+        - $ref: 'index.yml#/components/parameters/include_raw'
+        - $ref: 'index.yml#/components/parameters/include_post_raw'
+      security:
+        - {}
+        - UserToken: []
+      responses:
+        '200':
+          description: The search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      more:
+                        type: boolean
+                        description: Indicates if more results are available
+                      max_id:
+                        type: string
+                        description: The maximum ID in the result set
+                      min_id:
+                        type: string
+                        description: The minimum ID in the result set
+                      code:
+                        type: integer
+                        example: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: 'index.yml#/components/schemas/Post'
+        '400':
+          $ref: 'lifecycle.yml#/components/responses/BadRequest'

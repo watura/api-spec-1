@@ -1,0 +1,219 @@
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        bookmarked_by:
+          type: array
+          description: A sampled list of Users who bookmarked the post. Only set if query parameter include_bookmarked_by specified.
+          items:
+            $ref: '../users/users.yml#/components/schemas/User'
+        content:
+          type: object
+          description: Content of the post. Not set if the post has been deleted.
+          properties:
+            entities:
+              type: object
+              description: Rich text information for this post
+            html:
+              type: string
+              description: Server-generated annotated HTML rendering of post text
+            text:
+              type: string
+              maxLength: 256
+              description: User supplied text of the post. All Unicode characters allowed. Maximum length 256 characters.
+        counts:
+          type: object
+          description: Count information for the post
+          properties:
+            bookmarks:
+              type: integer
+              description: The number of users who have bookmarked this post
+            replies:
+              type: integer
+              description: The number of posts created in reply to this post
+            reposts:
+              type: integer
+              description: The number of users who have reposted this post
+            threads:
+              type: integer
+              description: The number of threads created in reply to this or other children of this post
+        created_at:
+          type: string
+          format: date-time
+          description: The time at which the post was created in ISO 8601 format
+        id:
+          type: string
+          description: Primary identifier for a post
+        is_deleted:
+          type: boolean
+          description: Post is deleted. content will not be set. Only set if true.
+        is_nsfw:
+          type: boolean
+          description: User marked the post as "Not Safe For Work". Only set if true.
+        is_revised:
+          type: boolean
+          description: Post has been revised. Looking up the revised posts will return a result. Only set if true.
+        raw:
+          type: object
+          description: The raw items attached to this object. Only set if query parameter specified.
+          additionalProperties:
+            type: array
+            items:
+              type: object
+        reply_to:
+          type: string
+          description: ID of the post this post is replying to. Only set if a reply.
+        repost_of:
+          $ref: '#/components/schemas/Post'
+          description: Embedded post object being reposted. Only set if a repost of another post.
+        reposted_by:
+          type: array
+          description: A sampled list of users who reposted the post. Only set if query parameter include_reposted_by specified.
+          items:
+            $ref: '../users/users.yml#/components/schemas/User'
+        revision:
+          type: integer
+          description: Revision number of the post. Only set if post is a "previous" version of a post.
+        source:
+          type: object
+          description: Information about the API consumer that created this post
+          properties:
+            id:
+              type: string
+              description: The public client ID of the API consumer ("app") that created this post
+            name:
+              type: string
+              description: Description of the API consumer that created this post
+            url:
+              type: string
+              description: Link provided by the API consumer that created this post
+        thread_id:
+          type: string
+          description: The ID of the post at the root of the thread that this post is a part of
+        user:
+          $ref: '../users/users.yml#/components/schemas/User'
+          description: This is an embedded User object. In certain cases (e.g., when a user account has been deleted), this may be omitted.
+        user_id:
+          type: string
+          description: Primary identifier for the user who created the post. Only set if the user above is omitted.
+        you_bookmarked:
+          type: boolean
+          description: True if authenticated user bookmarked the post. Only set on authenticated calls.
+        you_reposted:
+          type: boolean
+          description: True if authenticated user reposted the post. Only set on authenticated calls.
+  
+  parameters:
+    include_deleted:
+      name: include_deleted
+      in: query
+      description: Include deleted posts
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_client:
+      name: include_client
+      in: query
+      description: Include the client object with the post. If false, source will be the client ID string instead of the client object.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_counts:
+      name: include_counts
+      in: query
+      description: Include the post's counts. Also affects any included user object.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_html:
+      name: include_html
+      in: query
+      description: Should the post and user html field be included alongside the text field in the response objects?
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_post_html:
+      name: include_post_html
+      in: query
+      description: Should the post html field be included alongside the text field in the response objects?
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_bookmarked_by:
+      name: include_bookmarked_by
+      in: query
+      description: Include bookmarked_by - a sampled list of users who bookmarked the post
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    include_reposted_by:
+      name: include_reposted_by
+      in: query
+      description: Include reposted_by - a sampled list of users who reposted the post
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    include_directed_posts:
+      name: include_directed_posts
+      in: query
+      description: Include posts with "leading mentions" of users you do not follow. Not applicable to all post streams.
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_mention_posts:
+      name: include_mention_posts
+      in: query
+      description: Include posts with mentions
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_copy_mentions:
+      name: include_copy_mentions
+      in: query
+      description: Include "copy mentions" in the /users/{user_id}/mentions endpoint
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_replies:
+      name: include_replies
+      in: query
+      description: Include posts replying to other posts
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 1
+    include_muted:
+      name: include_muted
+      in: query
+      description: Include posts from users you have muted
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    include_raw:
+      name: include_raw
+      in: query
+      description: Include raw on all objects
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
+    include_post_raw:
+      name: include_post_raw
+      in: query
+      description: Include raw on all post objects
+      schema:
+        type: integer
+        enum: [0, 1]
+        default: 0
